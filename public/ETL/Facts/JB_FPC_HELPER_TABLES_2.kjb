@@ -1,0 +1,1210 @@
+<job>
+  <name>JB_FPC_HELPER_TABLES_2</name>
+  <description>Job to create work tables for Fact_PolicyCoverage</description>
+  <extended_description>Date       By    Description
+02/25/2016 Jma   Issue #168860.</extended_description>
+  <job_version/>
+  <job_status>0</job_status>
+  <directory>/public/ETL/Facts</directory>
+  <created_user>-</created_user>
+  <created_date>2014/06/23 16:46:00.133</created_date>
+  <modified_user>joe</modified_user>
+  <modified_date>2017/03/16 09:09:37.571</modified_date>
+  <parameters>
+    </parameters>
+  <connection>
+    <name>4SBI_Staging</name>
+    <server>${G_STAGING_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_STAGING_DB_NAME}</database>
+    <port>${G_STAGING_DB_PORT}</port>
+    <username>${G_STAGING_DB_USERNAME}</username>
+    <password>${G_STAGING_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_STAGING_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_STAGING_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_STAGING_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>DW_Log_Link</name>
+    <server>${G_LOG_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_LOG_DB_NAME}</database>
+    <port>${G_LOG_DB_PORT}</port>
+    <username>${G_LOG_DB_USERNAME}</username>
+    <password>${G_LOG_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_LOG_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_LOG_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_LOG_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <slaveservers>
+    <slaveserver>
+      <name>4Sight BI - PDI Server</name>
+      <hostname>10.0.0.21</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>joe</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Carte 1</name>
+      <hostname>localhost</hostname>
+      <port>9081</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>DI Server</name>
+      <hostname>localhost</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>joe</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_DEV</name>
+      <hostname>magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>shota</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_SERVER</name>
+      <hostname>http://magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>shota</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_TEST</name>
+      <hostname>magspentahotest</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO</name>
+      <hostname>magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO_BTS</name>
+      <hostname>129.144.25.104</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO_DEV</name>
+      <hostname>magspentahodev</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Master</name>
+      <hostname>localhost</hostname>
+      <port>8081</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SERVER1</name>
+      <hostname>LOCALHOST</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SLAVE ONE</name>
+      <hostname>192.168.2.101</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4a418bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SLAVE TWO</name>
+      <hostname>192.168.2.101</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave1</name>
+      <hostname>localhost</hostname>
+      <port>8082</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave2</name>
+      <hostname>localhost</hostname>
+      <port>8083</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave3</name>
+      <hostname>localhost</hostname>
+      <port>8084</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>local DIS</name>
+      <hostname>localhost</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>magspentahodev</name>
+      <hostname>magspentahodev</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+  </slaveservers>
+  <job-log-table>
+    <connection>DW_Log_Link</connection>
+    <schema/>
+    <table>${G_DB_JOB_LOG_TABLE}</table>
+    <size_limit_lines/>
+    <interval/>
+    <timeout_days/>
+    <field>
+      <id>ID_JOB</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>JOBNAME</name>
+    </field>
+    <field>
+      <id>STATUS</id>
+      <enabled>Y</enabled>
+      <name>STATUS</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>STARTDATE</id>
+      <enabled>Y</enabled>
+      <name>STARTDATE</name>
+    </field>
+    <field>
+      <id>ENDDATE</id>
+      <enabled>Y</enabled>
+      <name>ENDDATE</name>
+    </field>
+    <field>
+      <id>LOGDATE</id>
+      <enabled>Y</enabled>
+      <name>LOGDATE</name>
+    </field>
+    <field>
+      <id>DEPDATE</id>
+      <enabled>Y</enabled>
+      <name>DEPDATE</name>
+    </field>
+    <field>
+      <id>REPLAYDATE</id>
+      <enabled>Y</enabled>
+      <name>REPLAYDATE</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>Y</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>EXECUTING_SERVER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_SERVER</name>
+    </field>
+    <field>
+      <id>EXECUTING_USER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_USER</name>
+    </field>
+    <field>
+      <id>START_JOB_ENTRY</id>
+      <enabled>N</enabled>
+      <name>START_JOB_ENTRY</name>
+    </field>
+    <field>
+      <id>CLIENT</id>
+      <enabled>N</enabled>
+      <name>CLIENT</name>
+    </field>
+  </job-log-table>
+  <jobentry-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>TRANSNAME</name>
+    </field>
+    <field>
+      <id>JOBENTRYNAME</id>
+      <enabled>Y</enabled>
+      <name>STEPNAME</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>RESULT</id>
+      <enabled>Y</enabled>
+      <name>RESULT</name>
+    </field>
+    <field>
+      <id>NR_RESULT_ROWS</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_ROWS</name>
+    </field>
+    <field>
+      <id>NR_RESULT_FILES</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_FILES</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>N</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>COPY_NR</id>
+      <enabled>N</enabled>
+      <name>COPY_NR</name>
+    </field>
+  </jobentry-log-table>
+  <channel-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>LOGGING_OBJECT_TYPE</id>
+      <enabled>Y</enabled>
+      <name>LOGGING_OBJECT_TYPE</name>
+    </field>
+    <field>
+      <id>OBJECT_NAME</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_NAME</name>
+    </field>
+    <field>
+      <id>OBJECT_COPY</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_COPY</name>
+    </field>
+    <field>
+      <id>REPOSITORY_DIRECTORY</id>
+      <enabled>Y</enabled>
+      <name>REPOSITORY_DIRECTORY</name>
+    </field>
+    <field>
+      <id>FILENAME</id>
+      <enabled>Y</enabled>
+      <name>FILENAME</name>
+    </field>
+    <field>
+      <id>OBJECT_ID</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_ID</name>
+    </field>
+    <field>
+      <id>OBJECT_REVISION</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_REVISION</name>
+    </field>
+    <field>
+      <id>PARENT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>PARENT_CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>ROOT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>ROOT_CHANNEL_ID</name>
+    </field>
+  </channel-log-table>
+  <checkpoint-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <max_nr_retries/>
+    <run_retry_period/>
+    <namespace_parameter/>
+    <save_parameters/>
+    <save_result_rows/>
+    <save_result_files/>
+    <field>
+      <id>ID_JOB_RUN</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB_RUN</name>
+    </field>
+    <field>
+      <id>ID_JOB</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>JOBNAME</name>
+    </field>
+    <field>
+      <id>NAMESPACE</id>
+      <enabled>Y</enabled>
+      <name>NAMESPACE</name>
+    </field>
+    <field>
+      <id>CHECKPOINT_NAME</id>
+      <enabled>Y</enabled>
+      <name>CHECKPOINT_NAME</name>
+    </field>
+    <field>
+      <id>CHECKPOINT_COPYNR</id>
+      <enabled>Y</enabled>
+      <name>CHECKPOINT_COPYNR</name>
+    </field>
+    <field>
+      <id>ATTEMPT_NR</id>
+      <enabled>Y</enabled>
+      <name>ATTEMPT_NR</name>
+    </field>
+    <field>
+      <id>JOB_RUN_START_DATE</id>
+      <enabled>Y</enabled>
+      <name>JOB_RUN_START_DATE</name>
+    </field>
+    <field>
+      <id>LOGDATE</id>
+      <enabled>Y</enabled>
+      <name>LOGDATE</name>
+    </field>
+    <field>
+      <id>RESULT_XML</id>
+      <enabled>Y</enabled>
+      <name>RESULT_XML</name>
+    </field>
+    <field>
+      <id>PARAMETER_XML</id>
+      <enabled>Y</enabled>
+      <name>PARAMETER_XML</name>
+    </field>
+  </checkpoint-log-table>
+  <pass_batchid>N</pass_batchid>
+  <shared_objects_file/>
+  <entries>
+    <entry>
+      <name>Create tmp_fpc_get_polid</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_fpc_get_polid
+nologging 
+tablespace ${G_STAGING_DB_DATA}
+as
+select p.sk_Period, p.pol_uniqueid, p.policy_id, p.record_version
+from
+(
+	SELECT m.sk_Period, dp.pol_uniqueid, dp.policy_id, dp.record_version,
+	row_number() over (partition by m.sk_period, dp.pol_uniqueid order by dp.record_version desc) pick1
+	FROM   Dim_Policy dp, tmp_fpc_genmonths m
+	where 
+	       trunc(dp.valid_fromdate) &lt;= m.sql_periodEndDate
+	AND    trunc(dp.valid_todate) >= m.sql_periodEndDate
+) p
+where p.pick1 = 1
+;
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>326</xloc>
+      <yloc>159</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_fpc_wk_union1</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_fpc_wk_union1 nologging tablespace ${G_STAGING_DB_DATA}
+as
+SELECT /*+ USE_HASH(f m) */
+       m.sk_period,
+       f.FIRSTINSURED_ID,
+       f.SECONDINSURED_ID,
+       f.THIRDINSURED_ID,
+       f.FIRSTOTHERINTEREST_ID,
+       f.SECONDOTHERINTEREST_ID,
+       f.LIMIT_ID,
+       f.DEDUCTIBLE_ID,
+       f.CLASS_ID,
+       f.COVEREDRISKEXTENSION_ID,
+       f.POLICYTRANSACTIONEXTENSION_ID,
+       f.EFFECTIVEDATE_ID,
+       f.COVERAGEEFFECTIVEDATE_ID,
+       f.COVERAGEEXPIRATIONDATE_ID,
+       --Jma 10/02/2014 Add component dates and otheradjustment dates
+       f.COMPONENTEFFECTIVEDATE_ID,
+       f.COMPONENTEXPIRATIONDATE_ID,
+       f.OTHERADJEFFECTIVEDATE_ID,
+       f.OTHERADJEXPIRATIONDATE_ID,
+       --
+       f.UNDERWRITER_ID,
+       f.PRODUCT_ID,
+       f.COMPANY_ID,
+       f.TERRITORY_ID,
+       f.TRANSACTIONTYPE_ID,
+       f.PRODUCER_ID,
+       f.COVERAGE_ID,
+       f.POLICYEXTENSION_ID,
+       f.POLICYEFFECTIVEDATE_ID,
+       f.POLICYEXPIRATIONDATE_ID,
+       f.POLICY_ID,
+       f.POL_UNIQUEID,
+       f.COV_UNIQUEID,
+       f.COMPONENT_UNIQUEID,
+       f.OTHERADJUSTMENT_UNIQUEID,
+       f.COVEREDRISK_ID,
+       f.CVRSK_UNIQUEID AS PRSK_UNIQUEID,
+       f.COVEREDRISKLOCATION_ID,
+       -- Jma 02/09/2017 Add following fields for VL merge
+       f.OFFERINGCOMPANY_ID,
+       f.POLICYUNIT_ID,
+       f.POLICYVERSION_ID,
+       f.AGENT_ID,
+       f.LOCATION_ID,
+       f.CLASSIFICATIONEXTENSION_ID,
+       f.STATE_ID,
+       f.LOB_ID,
+       -- End update
+       f.EARNINGSTYPE,
+       f.TRANS_CODE,
+       to_date(case when f.ACCOUNTINGDATE_ID=0 then '19000101' 
+                    else to_char(f.ACCOUNTINGDATE_ID) end,'YYYYMMDD') ACCOUNTINGDATE,
+       to_date(case when f.COVERAGEEFFECTIVEDATE_ID=0 then '19000101' 
+                    else to_char(f.COVERAGEEFFECTIVEDATE_ID) end,'YYYYMMDD') COVERAGEEFFECTIVEDATE,
+       to_date(case when f.COVERAGEEXPIRATIONDATE_ID=0 then '19000101' 
+                    else to_char(f.COVERAGEEXPIRATIONDATE_ID) end,'YYYYMMDD') COVERAGEEXPIRATIONDATE,
+       to_date(case when f.EFFECTIVEDATE_ID=0 then '19000101' 
+                    else to_char(f.EFFECTIVEDATE_ID) end,'YYYYMMDD') TRANSACTIONEFFECTIVEDATE,
+       to_date(case when f.EARNFROMDATE_ID=0 then '19000101' 
+                    else to_char(f.EARNFROMDATE_ID) end,'YYYYMMDD') EARNFROM_DATE,
+       to_date(case when f.EARNTODATE_ID=0 then '19000101' 
+                    else to_char(f.EARNTODATE_ID) end,'YYYYMMDD') EARNTO_DATE,
+       --Jma 10/02/2014 Add component dates and otheradjustment dates
+       to_date(case when f.COMPONENTEFFECTIVEDATE_ID=0 then '19000101' 
+                    else to_char(f.COMPONENTEFFECTIVEDATE_ID) end,'YYYYMMDD') COMPONENTEFFECTIVEDATE,
+       to_date(case when f.COMPONENTEXPIRATIONDATE_ID=0 then '19000101' 
+                    else to_char(f.COMPONENTEXPIRATIONDATE_ID) end,'YYYYMMDD') COMPONENTEXPIRATIONDATE,
+       to_date(case when f.OTHERADJEFFECTIVEDATE_ID=0 then '19000101' 
+                    else to_char(f.OTHERADJEFFECTIVEDATE_ID) end,'YYYYMMDD') OTHERADJUSTEFFECTIVEDATE,
+       to_date(case when f.OTHERADJEXPIRATIONDATE_ID=0 then '19000101' 
+                    else to_char(f.OTHERADJEXPIRATIONDATE_ID) end,'YYYYMMDD') OTHERADJUSTEXPIRATIONDATE,
+       --
+       f.MMCOV_COVERAGE_SEGMENT_CODE,
+       to_date(case when f.org_pol_expdate_id=0 then '19000101' 
+                    else to_char(f.org_pol_expdate_id) end,'YYYYMMDD') org_pol_expdate,
+       f.prem_type,
+       SUM(f.AMOUNT) AS AMOUNT,
+       SUM(f.COMMISSION_AMOUNT) AS COMMISSION_AMOUNT
+FROM   tmp_fpc_fact_policytrans f,
+       tmp_fpc_genmonths m
+WHERE  1=1
+       -- Exclude future transactions.
+AND    f.EFFECTIVEDATE_ID  &lt;= m.sql_periodEndDate_ID
+AND    f.ACCOUNTINGDATE_ID &lt;= m.sql_periodEndDate_ID
+AND    ( -- Policy still active in this time period. 
+         (f.POLICYEXPIRATIONDATE_ID > m.sql_periodStartDate_ID AND f.POLICYEFFECTIVEDATE_ID &lt;= m.sql_periodEndDate_ID)
+         OR 
+         -- Transaction processed in this time period, but term effective date ls less than the period start date
+         -- A sample of this kind of transaction is a REINSTATE transaction after EXTEND transaction.
+         (f.POLICYEFFECTIVEDATE_ID &lt;= m.sql_periodStartDate_ID AND f.EFFECTIVEDATE_ID >= m.sql_periodStartDate_ID) 
+         OR 
+         -- Policy processed in the last day of the policy term and policy term equals to period start time
+         (f.POLICYEXPIRATIONDATE_ID = m.sql_periodStartDate_ID AND f.EFFECTIVEDATE_ID = f.POLICYEXPIRATIONDATE_ID)
+         OR  
+         -- Policy term that cancelled or expired in this year, and policy original expiration date is in this year and
+         -- greater than current period's start date.
+         (f.POLICYEXPIRATIONDATE_ID &lt;= m.sql_periodEndDate_ID AND 
+          to_number(substr(to_char(f.POLICYEXPIRATIONDATE_ID),1,4)) = m.periodYear AND
+          f.POLICYEXPIRATIONDATE_ID >= m.sql_periodStartYear AND
+          f.org_pol_expdate_id > m.sql_periodStartDate_ID) 
+         OR  
+         -- Policy cacelled in last year but the original term expiration date is greater than the period start date
+         -- We need to include the cancel transaction in this year so it can reverse
+         -- the transaction amount for the initial term  
+         (f.POLICYEXPIRATIONDATE_ID &lt;= m.sql_periodEndDate_ID AND 
+          to_number(substr(to_char(f.POLICYEXPIRATIONDATE_ID),1,4)) &lt; m.periodYear AND
+          f.org_pol_expdate_id > m.sql_periodStartDate_ID AND
+          f.MMPOL_POLICY_CURRENT_STATUS = 'CANCEL')      
+       )
+GROUP BY
+       m.sk_period,
+       f.FIRSTINSURED_ID,
+       f.SECONDINSURED_ID,
+       f.THIRDINSURED_ID,
+       f.FIRSTOTHERINTEREST_ID,
+       f.SECONDOTHERINTEREST_ID,
+       f.LIMIT_ID,
+       f.DEDUCTIBLE_ID,
+       f.CLASS_ID,
+       f.COVEREDRISKEXTENSION_ID,
+       f.POLICYTRANSACTIONEXTENSION_ID,
+       f.EFFECTIVEDATE_ID,
+       f.COVERAGEEFFECTIVEDATE_ID,
+       f.COVERAGEEXPIRATIONDATE_ID,
+       --Jma 10/02/2014 Add component dates and otheradjustment dates
+       f.COMPONENTEFFECTIVEDATE_ID,
+       f.COMPONENTEXPIRATIONDATE_ID,
+       f.OTHERADJEFFECTIVEDATE_ID,
+       f.OTHERADJEXPIRATIONDATE_ID,
+       --
+       f.UNDERWRITER_ID,
+       f.PRODUCT_ID,
+       f.COMPANY_ID,
+       f.TERRITORY_ID,
+       f.TRANSACTIONTYPE_ID,
+       f.PRODUCER_ID,
+       f.COVERAGE_ID,
+       f.POLICYEXTENSION_ID,
+       f.POLICYEFFECTIVEDATE_ID,
+       f.POLICYEXPIRATIONDATE_ID,
+       f.POLICY_ID,
+       f.POL_UNIQUEID,
+       f.COV_UNIQUEID,
+       f.COMPONENT_UNIQUEID,
+       f.OTHERADJUSTMENT_UNIQUEID,
+       f.COVEREDRISK_ID,
+       f.CVRSK_UNIQUEID,
+       f.COVEREDRISKLOCATION_ID,
+       -- Jma 02/09/2017 Add following fields for VL merge
+       f.OFFERINGCOMPANY_ID,
+       f.POLICYUNIT_ID,
+       f.POLICYVERSION_ID,
+       f.AGENT_ID,
+       f.LOCATION_ID,
+       f.CLASSIFICATIONEXTENSION_ID,
+       f.STATE_ID,
+       f.LOB_ID,
+       -- End update
+       f.EARNINGSTYPE,
+       f.TRANS_CODE,
+       f.ACCOUNTINGDATE_ID,
+       f.COVERAGEEFFECTIVEDATE_ID,
+       f.COVERAGEEXPIRATIONDATE_ID ,
+       f.EFFECTIVEDATE_ID,
+       f.EARNFROMDATE_ID ,
+       f.EARNTODATE_ID,
+       f.MMCOV_COVERAGE_SEGMENT_CODE,
+       f.org_pol_expdate_id, 
+       f.prem_type
+order by m.sk_period,f.ACCOUNTINGDATE_ID, f.POLICYTRANSACTIONEXTENSION_ID;
+
+
+create index tmp_fpc_wk_union1_ix1 on tmp_fpc_wk_union1 (sk_period) nologging tablespace ${G_STAGING_DB_INDEX};
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>326</xloc>
+      <yloc>315</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_fpc_wk_union2</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_fpc_wk_union2 nologging pctfree 0 tablespace ${G_STAGING_DB_DATA}
+as
+SELECT 1 sk_period,
+       f.firstinsured_id,
+       f.secondinsured_id,
+       f.thirdinsured_id,
+       f.firstotherinterest_id,
+       f.secondotherinterest_id,
+       f.limit_id,
+       f.deductible_id,
+       f.class_id,
+       f.coveredriskextension_id,
+       f.policytransactionextension_id,
+       f.effectivedate_id,
+       f.coverageeffectivedate_id,
+       f.coverageexpirationdate_id,
+       f.componenteffectivedate_id,
+       f.componentexpirationdate_id,
+       f.otheradjeffectivedate_id,
+       f.otheradjexpirationdate_id,
+       f.underwriter_id,
+       f.product_id,
+       f.company_id,
+       f.territory_id,
+       f.transactiontype_id,
+       f.producer_id,
+       f.coverage_id,
+       f.policyextension_id,
+       f.policyeffectivedate_id,
+       f.policyexpirationdate_id,
+       f.policy_id,
+       f.pol_uniqueid,
+       f.cov_uniqueid,
+       f.component_uniqueid,
+       f.otheradjustment_uniqueid,
+       f.coveredrisk_id,
+       f.cvrsk_uniqueid AS prsk_uniqueid,
+       f.coveredrisklocation_id,
+       -- Jma 02/09/2017 Add following fields for VL merge
+       f.OFFERINGCOMPANY_ID,
+       f.POLICYUNIT_ID,
+       f.POLICYVERSION_ID,
+       f.AGENT_ID,
+       f.LOCATION_ID,
+       f.CLASSIFICATIONEXTENSION_ID,
+       f.STATE_ID,
+       f.LOB_ID,
+       -- End update
+       f.earningstype,
+       f.trans_code,
+       to_date(CASE
+                 WHEN f.accountingdate_id = 0 THEN
+                  '19000101'
+                 ELSE
+                  to_char(f.accountingdate_id)
+               END,
+               'YYYYMMDD') accountingdate,
+       to_date(CASE
+                 WHEN f.coverageeffectivedate_id = 0 THEN
+                  '19000101'
+                 ELSE
+                  to_char(f.coverageeffectivedate_id)
+               END,
+               'YYYYMMDD') coverageeffectivedate,
+       to_date(CASE
+                 WHEN f.coverageexpirationdate_id = 0 THEN
+                  '19000101'
+                 ELSE
+                  to_char(f.coverageexpirationdate_id)
+               END,
+               'YYYYMMDD') coverageexpirationdate,
+       to_date(CASE
+                 WHEN f.effectivedate_id = 0 THEN
+                  '19000101'
+                 ELSE
+                  to_char(f.effectivedate_id)
+               END,
+               'YYYYMMDD') transactioneffectivedate,
+       to_date(CASE
+                 WHEN f.earnfromdate_id = 0 THEN
+                  '19000101'
+                 ELSE
+                  to_char(f.earnfromdate_id)
+               END,
+               'YYYYMMDD') earnfrom_date,
+       to_date(CASE
+                 WHEN f.earntodate_id = 0 THEN
+                  '19000101'
+                 ELSE
+                  to_char(f.earntodate_id)
+               END,
+               'YYYYMMDD') earnto_date,
+       to_date(CASE
+                 WHEN f.componenteffectivedate_id = 0 THEN
+                  '19000101'
+                 ELSE
+                  to_char(f.componenteffectivedate_id)
+               END,
+               'YYYYMMDD') componenteffectivedate,
+       to_date(CASE
+                 WHEN f.componentexpirationdate_id = 0 THEN
+                  '19000101'
+                 ELSE
+                  to_char(f.componentexpirationdate_id)
+               END,
+               'YYYYMMDD') componentexpirationdate,
+       to_date(CASE
+                 WHEN f.otheradjeffectivedate_id = 0 THEN
+                  '19000101'
+                 ELSE
+                  to_char(f.otheradjeffectivedate_id)
+               END,
+               'YYYYMMDD') otheradjusteffectivedate,
+       to_date(CASE
+                 WHEN f.otheradjexpirationdate_id = 0 THEN
+                  '19000101'
+                 ELSE
+                  to_char(f.otheradjexpirationdate_id)
+               END,
+               'YYYYMMDD') otheradjustexpirationdate,
+       f.mmcov_coverage_segment_code,
+       to_date(CASE
+                 WHEN f.org_pol_expdate_id = 0 THEN
+                  '19000101'
+                 ELSE
+                  to_char(f.org_pol_expdate_id)
+               END,
+               'YYYYMMDD') org_pol_expdate,
+       f.prem_type,
+       SUM(f.amount) AS amount,
+       SUM(f.commission_amount) AS commission_amount
+FROM   tmp_fpc_fact_policytrans f, 
+       tmp_fpc_wk_union2_t2 j
+WHERE  1 = 1
+AND    f.sk_tmp_fpc_policytrans = j.sk_tmp_fpc_policytrans
+GROUP  BY 1,
+          f.firstinsured_id,
+          f.secondinsured_id,
+          f.thirdinsured_id,
+          f.firstotherinterest_id,
+          f.secondotherinterest_id,
+          f.limit_id,
+          f.deductible_id,
+          f.class_id,
+          f.coveredriskextension_id,
+          f.policytransactionextension_id,
+          f.effectivedate_id,
+          f.coverageeffectivedate_id,
+          f.coverageexpirationdate_id,
+          f.componenteffectivedate_id,
+          f.componentexpirationdate_id,
+          f.otheradjeffectivedate_id,
+          f.otheradjexpirationdate_id,
+          f.underwriter_id,
+          f.product_id,
+          f.company_id,
+          f.territory_id,
+          f.transactiontype_id,
+          f.producer_id,
+          f.coverage_id,
+          f.policyextension_id,
+          f.policyeffectivedate_id,
+          f.policyexpirationdate_id,
+          f.policy_id,
+          f.pol_uniqueid,
+          f.cov_uniqueid,
+          f.component_uniqueid,
+          f.otheradjustment_uniqueid,
+          f.coveredrisk_id,
+          f.cvrsk_uniqueid,
+          f.coveredrisklocation_id,
+          -- Jma 02/09/2017 Add following fields for VL merge
+          f.OFFERINGCOMPANY_ID,
+          f.POLICYUNIT_ID,
+          f.POLICYVERSION_ID,
+          f.AGENT_ID,
+          f.LOCATION_ID,
+          f.CLASSIFICATIONEXTENSION_ID,
+          f.STATE_ID,
+          f.LOB_ID,
+          -- End update
+          f.earningstype,
+          f.trans_code,
+          f.accountingdate_id,
+          f.coverageeffectivedate_id,
+          f.coverageexpirationdate_id,
+          f.effectivedate_id,
+          f.earnfromdate_id,
+          f.earntodate_id,
+          f.mmcov_coverage_segment_code,
+          f.org_pol_expdate_id,
+          f.prem_type
+ORDER BY  1, f.accountingdate_id, f.policytransactionextension_id;
+
+create index tmp_fpc_wk_union2_ix1 on tmp_fpc_wk_union2 (sk_period) nologging tablespace ${G_STAGING_DB_INDEX};
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>326</xloc>
+      <yloc>401</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_fpc_maxtrans_wk</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_fpc_maxtrans_wk nologging tablespace ${G_STAGING_DB_DATA}
+as
+SELECT m.sk_period, m.sql_periodEndDate, spt.policy_uniqueid, MAX(spt.pt_sequence) MAX_PT_SEQUENCE
+FROM   tmp_fpc_pol_uniqueid spt,tmp_fpc_genmonths m
+WHERE  spt.pt_effectivedate &lt;= m.sql_periodEndDate
+AND    spt.pt_accountingdate &lt;= m.sql_periodEndDate
+GROUP  BY m.sk_period,m.sql_periodEndDate,spt.policy_uniqueid
+;
+
+
+create index tmp_fpc_maxtrans_wk_ix on tmp_fpc_maxtrans_wk (sk_period, policy_uniqueid, sql_periodEndDate, max_pt_sequence) nologging tablespace ${G_STAGING_DB_INDEX};
+
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>326</xloc>
+      <yloc>234</yloc>
+    </entry>
+    <entry>
+      <name>START</name>
+      <description/>
+      <type>SPECIAL</type>
+      <start>Y</start>
+      <dummy>N</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>Y</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>91</xloc>
+      <yloc>294</yloc>
+    </entry>
+  </entries>
+  <hops>
+    <hop>
+      <from>START</from>
+      <to>Create tmp_fpc_get_polid</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>Create tmp_fpc_maxtrans_wk</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>Create tmp_fpc_wk_union1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>Create tmp_fpc_wk_union2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+  </hops>
+  <notepads>
+  </notepads>
+  <attributes>
+    <group>
+      <name>JobRestart</name>
+      <attribute>
+        <key>UniqueConnections</key>
+        <value>N</value>
+      </attribute>
+    </group>
+  </attributes>
+</job>

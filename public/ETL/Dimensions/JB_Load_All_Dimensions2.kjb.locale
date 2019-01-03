@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:35 EST 2019
+file.title=JB_Load_All_Dimensions2
+description=Loads the dimension tables from staging. 
+title=JB_Load_All_Dimensions2
+file.description=Loads the dimension tables from staging. 

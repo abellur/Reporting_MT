@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:56 EST 2019
+file.title=TR_POP_MAX_SEQUENCE
+description=Populate max policy transaction log PK of each policy unique ID to STG_MAX_TRANS_WORK table
+title=TR_POP_MAX_SEQUENCE
+file.description=Populate max policy transaction log PK of each policy unique ID to STG_MAX_TRANS_WORK table

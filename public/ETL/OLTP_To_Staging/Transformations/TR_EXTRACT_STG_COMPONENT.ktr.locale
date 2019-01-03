@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:05 EST 2019
+file.title=TR_EXTRACT_STG_COMPONENT
+description=This is the transformation to load OASIS component data int STG_COMPONENT table.
+title=TR_EXTRACT_STG_COMPONENT
+file.description=This is the transformation to load OASIS component data int STG_COMPONENT table.

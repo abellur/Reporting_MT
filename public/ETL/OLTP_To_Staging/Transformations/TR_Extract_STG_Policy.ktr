@@ -1,0 +1,3533 @@
+<transformation>
+  <info>
+    <name>TR_Extract_STG_Policy</name>
+    <description>Extract data to STG_POLICY table</description>
+    <extended_description>Date         By     Description
+02/16/2105   Jma    Issue 167723. Add a few new columns added in OASIS 2016.1
+02/23/2016   Jma    Issue 169151. Add field to get correct policy original effective date.</extended_description>
+    <trans_version/>
+    <trans_type>Normal</trans_type>
+    <trans_status>1</trans_status>
+    <directory>/public/ETL/OLTP_To_Staging/Transformations</directory>
+    <parameters>
+    </parameters>
+    <log>
+      <trans-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <size_limit_lines/>
+        <interval/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STATUS</id>
+          <enabled>Y</enabled>
+          <name>STATUS</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+          <subject/>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>STARTDATE</id>
+          <enabled>Y</enabled>
+          <name>STARTDATE</name>
+        </field>
+        <field>
+          <id>ENDDATE</id>
+          <enabled>Y</enabled>
+          <name>ENDDATE</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>DEPDATE</id>
+          <enabled>Y</enabled>
+          <name>DEPDATE</name>
+        </field>
+        <field>
+          <id>REPLAYDATE</id>
+          <enabled>Y</enabled>
+          <name>REPLAYDATE</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>Y</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+        <field>
+          <id>EXECUTING_SERVER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_SERVER</name>
+        </field>
+        <field>
+          <id>EXECUTING_USER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_USER</name>
+        </field>
+        <field>
+          <id>CLIENT</id>
+          <enabled>N</enabled>
+          <name>CLIENT</name>
+        </field>
+      </trans-log-table>
+      <perf-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <interval/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>SEQ_NR</id>
+          <enabled>Y</enabled>
+          <name>SEQ_NR</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>INPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>INPUT_BUFFER_ROWS</name>
+        </field>
+        <field>
+          <id>OUTPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>OUTPUT_BUFFER_ROWS</name>
+        </field>
+      </perf-log-table>
+      <channel-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>LOGGING_OBJECT_TYPE</id>
+          <enabled>Y</enabled>
+          <name>LOGGING_OBJECT_TYPE</name>
+        </field>
+        <field>
+          <id>OBJECT_NAME</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_NAME</name>
+        </field>
+        <field>
+          <id>OBJECT_COPY</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_COPY</name>
+        </field>
+        <field>
+          <id>REPOSITORY_DIRECTORY</id>
+          <enabled>Y</enabled>
+          <name>REPOSITORY_DIRECTORY</name>
+        </field>
+        <field>
+          <id>FILENAME</id>
+          <enabled>Y</enabled>
+          <name>FILENAME</name>
+        </field>
+        <field>
+          <id>OBJECT_ID</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_ID</name>
+        </field>
+        <field>
+          <id>OBJECT_REVISION</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_REVISION</name>
+        </field>
+        <field>
+          <id>PARENT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>PARENT_CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>ROOT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>ROOT_CHANNEL_ID</name>
+        </field>
+      </channel-log-table>
+      <step-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>N</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+      </step-log-table>
+      <metrics-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_DATE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_CODE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_CODE</name>
+        </field>
+        <field>
+          <id>METRICS_DESCRIPTION</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DESCRIPTION</name>
+        </field>
+        <field>
+          <id>METRICS_SUBJECT</id>
+          <enabled>Y</enabled>
+          <name>METRICS_SUBJECT</name>
+        </field>
+        <field>
+          <id>METRICS_TYPE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_TYPE</name>
+        </field>
+        <field>
+          <id>METRICS_VALUE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_VALUE</name>
+        </field>
+      </metrics-log-table>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+      <slaveserver>
+        <name>4Sight BI - PDI Server</name>
+        <hostname>10.0.0.21</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>joe</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Carte 1</name>
+        <hostname>localhost</hostname>
+        <port>9081</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>DI Server</name>
+        <hostname>localhost</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>joe</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_DEV</name>
+        <hostname>magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>shota</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_SERVER</name>
+        <hostname>http://magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>shota</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_TEST</name>
+        <hostname>magspentahotest</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO</name>
+        <hostname>magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO_BTS</name>
+        <hostname>129.144.25.104</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO_DEV</name>
+        <hostname>magspentahodev</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Master</name>
+        <hostname>localhost</hostname>
+        <port>8081</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SERVER1</name>
+        <hostname>LOCALHOST</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SLAVE ONE</name>
+        <hostname>192.168.2.101</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4a418bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SLAVE TWO</name>
+        <hostname>192.168.2.101</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave1</name>
+        <hostname>localhost</hostname>
+        <port>8082</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave2</name>
+        <hostname>localhost</hostname>
+        <port>8083</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave3</name>
+        <hostname>localhost</hostname>
+        <port>8084</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>local DIS</name>
+        <hostname>localhost</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>magspentahodev</name>
+        <hostname>magspentahodev</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+    </slaveservers>
+    <clusterschemas>
+      <clusterschema>
+        <name>4sbi_admin</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+        </slaveservers>
+      </clusterschema>
+      <clusterschema>
+        <name>ClusterSchema</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+          <name>Slave3</name>
+          <name>Slave2</name>
+          <name>Slave1</name>
+          <name>Master</name>
+        </slaveservers>
+      </clusterschema>
+      <clusterschema>
+        <name>cluster A</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+          <name>Carte 1</name>
+          <name>local DIS</name>
+        </slaveservers>
+      </clusterschema>
+    </clusterschemas>
+    <created_user>joe</created_user>
+    <created_date>2014/04/04 09:30:49.245</created_date>
+    <modified_user>joe</modified_user>
+    <modified_date>2016/02/23 16:50:38.773</modified_date>
+    <key_for_session_key/>
+    <is_key_private>N</is_key_private>
+  </info>
+  <notepads>
+    <notepad>
+      <note>Step      Description
+1         Load current refresh period
+2         Load the transactions changed in the given time period
+3         Find the records of Policy and Policy_Term_History table that changed by these transactions
+4         Find the policies that have billing relation changed in the given time period
+5         Find the policies that have agent changed in the given time period
+6         Find the policies that have Underwriter changed in the given time period
+7         Merge the changed records and find the billing/agent/underwriter info as of the transaction occuring time
+8         Output records to STG_QUOTE, STG_POLICY and STG_POLICY_EXT tables</note>
+      <xloc>565</xloc>
+      <yloc>36</yloc>
+      <width>845</width>
+      <heigth>136</heigth>
+      <fontname>Courier New</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>165</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+  </notepads>
+  <connection>
+    <name>4SBI_Staging</name>
+    <server>${G_STAGING_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_STAGING_DB_NAME}</database>
+    <port>${G_STAGING_DB_PORT}</port>
+    <username>${G_STAGING_DB_USERNAME}</username>
+    <password>${G_STAGING_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_STAGING_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_STAGING_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_STAGING_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>Delphi_OLTP</name>
+    <server>${G_OLTP_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_OLTP_DB_NAME}</database>
+    <port>${G_OLTP_DB_PORT}</port>
+    <username>${G_OLTP_DB_USERNAME}</username>
+    <password>${G_OLTP_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_OLTP_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_OLTP_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_OLTP_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <order>
+    <hop>
+      <from>Add constants for QUOTE</from>
+      <to>Insert Data to STG_Quote</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Calculator</from>
+      <to>Get System Info</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing)</from>
+      <to>Unique rows (HashSet)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter QUOTE transaction</from>
+      <to>Add constants for QUOTE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter QUOTE transaction</from>
+      <to>Select values</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Bill Relation Change</from>
+      <to>Dummy (do nothing)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get OOS Cancel Changes</from>
+      <to>Dummy (do nothing)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Policy Agent Change</from>
+      <to>Dummy (do nothing)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Policy Term Changed</from>
+      <to>Dummy (do nothing)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get System Info</from>
+      <to>Get Bill Relation Change</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get System Info</from>
+      <to>Get OOS Cancel Changes</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get System Info</from>
+      <to>Get Policy Agent Change</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get System Info</from>
+      <to>Get Policy Term Changed</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get System Info</from>
+      <to>Get Uwd Changes</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Uwd Changes</from>
+      <to>Dummy (do nothing)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Variables</from>
+      <to>Add constants</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>If field value is null</from>
+      <to>Get Variables</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Load refresh date</from>
+      <to>If field value is null</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Memory Group by</from>
+      <to>Sort rows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values</from>
+      <to>Memory Group by</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sequence STGPOLICY_ID</from>
+      <to>Insert Data to STG_Policy</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unique rows (HashSet)</from>
+      <to>Filter QUOTE transaction</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / Case</from>
+      <to>Database lookup - Policy History</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Database lookup - Policy History</from>
+      <to>Sequence STGPOLICY_ID</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / Case</from>
+      <to>Database join - Add data elements</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Database join - Add data elements</from>
+      <to>Sequence STGPOLICY_ID</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Add constants</from>
+      <to>Calculator</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort rows</from>
+      <to>Database join - Get Policy Original Eff Date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Database join - Get Policy Original Eff Date</from>
+      <to>Switch / Case</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <step>
+    <name>Add constants</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>SOURCE_SYSTEM</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>OASIS</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>PRODCUCT_ID</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>POLICY_RETRO_DATE_COL</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>POLICY_RETRO_DATE</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>335</xloc>
+      <yloc>100</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Add constants for QUOTE</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>FILE_VERSION</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>3.0QUOTE</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>SOURCE_SYSTEM</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>OASIS</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>179</xloc>
+      <yloc>562</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Calculator</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <calculation>
+      <field_name>V_TAB_NAME</field_name>
+      <calc_type>CONSTANT</calc_type>
+      <field_a>POL</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <calculation>
+      <field_name>FILE_VERSION</field_name>
+      <calc_type>ADD</calc_type>
+      <field_a>V_NUM</field_a>
+      <field_b>V_TAB_NAME</field_b>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>335</xloc>
+      <yloc>206</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Database join - Add data elements</name>
+    <type>DBJoin</type>
+    <description>Added for issue 167723.</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>-- Issue 167723.
+-- Add following fields if source system do not have these fields added.
+SELECT CAST(NULL AS DATE) policy_retro_date,
+       CAST(NULL AS VARCHAR2(15)) policy_phase_code,
+       CAST(NULL AS DATE) binder_effective_to_date,
+       CAST(NULL AS VARCHAR2(10)) form_of_business,
+       CAST(NULL AS VARCHAR2(10)) rating_method,
+       CAST(NULL AS NUMBER(5,2)) rating_deviation, 
+       CAST(NULL AS VARCHAR2(1)) company_insured_b,
+       CAST(NULL AS INTEGER) number_of_physicians, 
+       CAST(NULL AS INTEGER) number_of_employees,
+       CAST(NULL AS NUMBER(5,2)) discovery_period_rating 
+FROM   dual</sql>
+    <outer_join>N</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>782</xloc>
+      <yloc>622</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Database join - Get Policy Original Eff Date</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>SELECT MIN(pth.effective_from_date) original_pol_eff_date 
+FROM   policy_term_history pth
+WHERE  pth.record_mode_code = 'OFFICIAL'
+AND    pth.base_record_b = 'Y'
+AND    pth.policy_fk = ?</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>Y</replace_vars>
+    <parameter>
+      <field>
+        <name>POLICY_PK</name>
+        <type>Integer</type>
+      </field>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>566</xloc>
+      <yloc>622</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Database lookup - Policy History</name>
+    <type>DBLookup</type>
+    <description>Added for issue 167723.
+Get extra columns from POLICY_TERM_HISTORY table for OASIS 2016.1 or above.</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>POLICY_TERM_HISTORY</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>POLICY_TERM_HISTORY_PK</name>
+        <field>POLICY_TERM_HISTORY_PK</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>POLICY_RETRO_DATE</name>
+        <rename>POLICY_RETRO_DATE</rename>
+        <default/>
+        <type>Date</type>
+      </value>
+      <value>
+        <name>POLICY_PHASE_CODE</name>
+        <rename>POLICY_PHASE_CODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>BINDER_EFFECTIVE_TO_DATE</name>
+        <rename>BINDER_EFFECTIVE_TO_DATE</rename>
+        <default/>
+        <type>Date</type>
+      </value>
+      <value>
+        <name>FORM_OF_BUSINESS</name>
+        <rename>FORM_OF_BUSINESS</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>RATING_METHOD</name>
+        <rename>RATING_METHOD</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>RATING_DEVIATION</name>
+        <rename>RATING_DEVIATION</rename>
+        <default/>
+        <type>Number</type>
+      </value>
+      <value>
+        <name>COMPANY_INSURED_B</name>
+        <rename>COMPANY_INSURED_B</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>NUMBER_OF_PHYSICIANS</name>
+        <rename>NUMBER_OF_PHYSICIANS</rename>
+        <default/>
+        <type>Number</type>
+      </value>
+      <value>
+        <name>NUMBER_OF_EMPLOYEES</name>
+        <rename>NUMBER_OF_EMPLOYEES</rename>
+        <default/>
+        <type>Number</type>
+      </value>
+      <value>
+        <name>DISCOVERY_PERIOD_RATING</name>
+        <rename>DISCOVERY_PERIOD_RATING</rename>
+        <default/>
+        <type>Number</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>782</xloc>
+      <yloc>489</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing)</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>335</xloc>
+      <yloc>415</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Filter QUOTE transaction</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>Select values</send_true_to>
+    <send_false_to>Add constants for QUOTE</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>POLICY_CYCLE_CODE</leftvalue>
+        <function>=</function>
+        <rightvalue/>
+        <value>
+          <name>constant</name>
+          <type>String</type>
+          <text>POLICY</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask/>
+        </value>
+      </condition>
+    </compare>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>335</xloc>
+      <yloc>562</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get Bill Relation Change</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>
+-- Billing relation change records
+SELECT dw_staging_util.Get_Trans_Acct_New(ptt.ptt_sequence) ptt_accountingdate,
+       ptt.pol_uniqueid,
+       trunc(p.inception_date) inception_date,
+       p.policy_no,
+       trunc(p.sys_create_time) policy_create_time,
+       pth.effective_from_date,
+       pth.effective_to_date,
+       pth.issue_state_code,
+       pth.issue_company_entity_fk,
+       p.policy_type_code,
+       (SELECT pt.Long_Description
+          FROM policy_type pt
+         WHERE pt.code = p.policy_type_code) policy_type_desc,
+       pth.pol_rel_stat_type_code pol_curr_status_code,
+       pth.sys_created_by policy_created_by,
+       pth.sys_updated_by policy_updated_by,
+       trunc(pth.sys_update_time) policy_update_time,
+       pth.policy_term_code,
+       pth.renewal_indicator_code,
+       lc.short_description renewal_indicator_desc,
+       pth.non_renewal_reason_code,
+       prc.short_description non_renewal_reason_desc,
+       pth.pol_rel_status_code,
+       pth.pol_rel_reason_code,
+       pth.renewal_cycle_code,
+       pth.process_location_code,
+       pth.short_term_b,
+       trunc(pth.rolling_ibnr_date) rolling_ibnr_date,
+       p.char1 pol_char1,
+       p.char2 pol_char2,
+       p.char3 pol_char3,
+       p.num1 pol_num1,
+       p.num2 pol_num2,
+       p.num3 pol_num3,
+       trunc(p.date1) pol_date1,
+       trunc(p.date2) pol_date2,
+       trunc(p.date3) pol_date3,
+       e.client_id comp_uniqueid,
+       dw_staging_util.get_agent_clientid(p.policy_pk,ptt.ptt_accountingdate, ptt.ptt_effectivedate) prdr_uniqueid, --This will be replaced by function
+       Dw_Staging_Util.Get_Uw_Clientid(
+         p.policy_pk,
+         ptt.ptt_sequence,
+         pth.effective_from_date,
+         pth.effective_to_date,
+         ptt.ptt_accountingdate,
+         ptt.ptt_effectivedate) uw_uniqueid,
+       ba.account_no account_no, 
+       ba.long_description account_desc, 
+       e1.client_id insured_uniqueid,
+       trunc(bs.accounting_from_date) change_eff_date,
+       p.policy_cycle_code,
+       pth.organization_type_code,
+       (SELECT lc1.short_description
+          FROM lookup_code lc1
+         WHERE lc1.code = pth.organization_type_code
+           AND lc1.lookup_type_code = 'ORGANIZATION_TYPE_CODE') organization_type_desc,
+       pth.payment_plan_lst,
+       p.RECEIVE_DATE,
+       p.REFERRAL_CODE,
+       p.FACULTATIVE_B,
+       p.PROGRAM_CODE,
+       p.FORMATTED_POL_NO,
+       p.QUESTIONNAIRE_DATE,
+       p.PRT_B,
+       p.OFF_NUM,
+       p.WIP_NUM,
+       p.POLICY_LAYER_CODE,
+       p.POLICY_FORM_CODE,
+       pth.GUARANTEE_DATE,
+       pth.BINDER_B,
+       pth.TERM_POLICY_NO,
+       pth.DECLINATION_DATE,
+       pth.CATEGORY_CODE,
+       pth.COLLATERAL_B,
+       pth.ROLLING_IBNR_DATE,
+       pth.HOSP_TIER ,
+       pth.CM_YEAR,
+       pth.PEER_GROUPS_CODE ,
+       pth.POTENTIAL_CANCEL_1,
+       pth.POTENTIAL_CANCEL_2,
+       pth.ACCOUNT_NO,
+       pth.ACCOUNT_IDENTIFIER,
+       pth.PL_AGGREGATE,
+       pth.GL_AGGREGATE,
+       p.legacy_policy_no,
+       p.legacy_issue_company_fk,
+       p.process_status_code,
+       p.requested_eff_date,
+       ptt.ptt_sequence,
+       prsc.short_description pol_cancel_type_desc,
+       prc1.short_description pol_cancel_reason_desc,
+       p.policy_pk,
+       pth.accounting_from_date,
+       pth.accounting_to_date,
+       -- Issue 167723
+       pth.policy_term_history_pk    
+  FROM policy                     p,
+       policy_term_history        pth,
+       entity                     e,
+       entity_role                er,
+       entity                     e1,
+       Dw_Stg_Policytransaction_temp ptt,
+       fm_billing_setup           bs,
+       billing_account            ba,
+       Lookup_Code lc,
+       Policy_Rel_Reason_Code     prc,
+       Policy_Rel_Reason_Code     prc1,
+       Policy_Rel_Status_Code     prsc
+ WHERE bs.source_record_fk = ptt.ptt_pol_fk
+   AND bs.source_subsystem_code = 'PM'
+   AND bs.billing_account_fk = ba.billing_account_pk
+   AND bs.accounting_to_date > ptt.ptt_accountingdate
+   AND bs.effective_to_date > ptt.ptt_effectivedate
+   AND ptt.ptt_typecode NOT IN ('QUEST')
+   --AND ptt.ptt_typecode NOT IN ('CANCEL', 'REINSTATE', 'QUEST')
+   AND ptt.ptt_pol_fk = p.policy_pk
+   AND p.policy_pk = pth.policy_fk
+   AND pth.term_base_record_fk = ptt.ptt_term_base_fk
+   AND pth.base_record_b = 'N'
+       --  Policy_Term_History:  Find the version as it looked as
+       --  of the particular transaction
+   AND Pm_Acct_Date.Chk(pth.transaction_log_fk,   pth.accounting_from_date,
+                        pth.closing_trans_log_fk, pth.accounting_to_date,
+                        ptt.ptt_sequence,         ptt.ptt_accountingdate) = 0 
+   AND e.entity_pk = pth.issue_company_entity_fk
+   AND er.role_type_code IN ('POLHOLDER','PROSPECT')
+   AND er.source_record_fk = p.policy_pk
+   AND nvl(er.accounting_from_date, to_date('01/01/1900', 'mm/dd/yyyy')) &lt;=
+       ptt.ptt_accountingdate
+   AND nvl(er.accounting_to_date, to_date('01/01/3000', 'mm/dd/yyyy')) >
+       ptt.ptt_accountingdate
+   AND nvl(er.effective_from_date, to_date('01/01/1900', 'mm/dd/yyyy')) &lt;=
+       ptt.ptt_effectivedate
+   AND nvl(er.effective_to_date, to_date('01/01/3000', 'mm/dd/yyyy')) >
+       ptt.ptt_effectivedate
+   AND er.entity_fk = e1.entity_pk
+   and lc.lookup_type_code(+) = 'RENEWAL_INDICATOR_CODE'
+   AND lc.code(+)          = pth.renewal_indicator_code  
+   AND prc.code (+) = pth.non_renewal_reason_code
+   AND prc.policy_rel_status_code (+) = 'RENEW'
+   AND prc1.code (+) = pth.pol_rel_reason_code
+   AND prc1.policy_rel_status_code (+) = pth.pol_rel_status_code
+   AND prsc.code (+) = pth.pol_rel_status_code
+   AND prsc.pol_rel_status_type_code (+) = pth.pol_rel_stat_type_code
+   AND ptt.ptt_typesubcode = 'RELCHG'
+   AND bs.sys_update_time > ?
+   AND bs.sys_update_time &lt;= ?
+</sql>
+    <outer_join>N</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>LAST_REFRESH_START_TIME</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>CURRENT_REFRESH_DATE</name>
+        <type>Date</type>
+      </field>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>258</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get OOS Cancel Changes</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>-- Find the future policy terms affected by OOS Cancellation
+SELECT dw_staging_util.Get_Trans_Acct_New(ptt.ptt_sequence) ptt_accountingdate,
+       ptt.pol_uniqueid,
+       TRUNC(p.inception_date) inception_date,
+       p.policy_no,
+       TRUNC(p.sys_create_time) policy_create_time,
+       pth.effective_from_date,
+       least(ptt.ptt_effectivedate,pth.effective_to_date) effective_to_date,
+       pth.issue_state_code,
+       pth.issue_company_entity_fk,
+       p.policy_type_code,
+       pt.long_description policy_type_desc,
+       'CANCEL' pol_curr_status_code,
+       pth.sys_created_by policy_created_by,
+       pth.sys_updated_by policy_updated_by,
+       TRUNC(pth.sys_update_time) policy_update_time,
+       pth.policy_term_code,
+       pth.renewal_indicator_code,
+       lc.short_description renewal_indicator_desc,
+       pth.non_renewal_reason_code,
+       prc.short_description non_renewal_reason_desc,
+       pth.pol_rel_status_code,       
+       pth.pol_rel_reason_code,       
+       pth.renewal_cycle_code,
+       pth.process_location_code,
+       pth.short_term_b,
+       TRUNC(pth.rolling_ibnr_date) rolling_ibnr_date,
+       p.char1 pol_char1,
+       p.char2 pol_char2,
+       p.char3 pol_char3,
+       p.num1 pol_num1,
+       p.num2 pol_num2,
+       p.num3 pol_num3,
+       TRUNC(p.date1) pol_date1,
+       TRUNC(p.date2) pol_date2,
+       TRUNC(p.date3) pol_date3,
+       e.client_id comp_uniqueid,
+       Dw_Staging_Util.Get_Agent_Clientid(
+         p.policy_pk,
+         ptt.ptt_accountingdate,
+         ptt.ptt_effectivedate) prdr_uniqueid,
+       Dw_Staging_Util.Get_Uw_Clientid(
+         p.policy_pk,
+         ptt.ptt_sequence,
+         pth.effective_from_date,
+         pth.effective_to_date,
+         ptt.ptt_accountingdate,
+         ptt.ptt_effectivedate) uw_uniqueid,
+       Dw_Staging_Util.Get_Account_Info(
+         p.policy_pk,
+         ptt.ptt_accountingdate,
+         ptt.ptt_effectivedate,
+         'NO') account_no,
+       Dw_Staging_Util.Get_Account_Info(
+         p.policy_pk,
+         ptt.ptt_accountingdate,
+         ptt.ptt_effectivedate,
+         'DESC') account_desc,
+       e1.client_id insured_uniqueid,
+       TRUNC(ptt.ptt_accountingdate) change_eff_date,
+       p.policy_cycle_code,
+       pth.organization_type_code,
+       Cs_Report.Get_Lookup_Code('ORGANIZATION_TYPE_CODE', 
+                                 pth.organization_type_code, 
+                                 'S') organization_type_desc,
+       pth.payment_plan_lst,
+       p.RECEIVE_DATE,
+       p.REFERRAL_CODE,
+       p.FACULTATIVE_B,
+       p.PROGRAM_CODE,
+       p.FORMATTED_POL_NO,
+       p.QUESTIONNAIRE_DATE,
+       p.PRT_B,
+       p.OFF_NUM,
+       p.WIP_NUM,
+       p.POLICY_LAYER_CODE,
+       p.POLICY_FORM_CODE,
+       pth.GUARANTEE_DATE,
+       pth.BINDER_B,
+       pth.TERM_POLICY_NO,
+       pth.DECLINATION_DATE,
+       pth.CATEGORY_CODE,
+       pth.COLLATERAL_B,
+       pth.ROLLING_IBNR_DATE,
+       pth.HOSP_TIER ,
+       pth.CM_YEAR,
+       pth.PEER_GROUPS_CODE ,
+       pth.POTENTIAL_CANCEL_1,
+       pth.POTENTIAL_CANCEL_2,
+       pth.ACCOUNT_NO,
+       pth.ACCOUNT_IDENTIFIER,
+       pth.PL_AGGREGATE,
+       pth.GL_AGGREGATE,
+       p.legacy_policy_no,
+       p.legacy_issue_company_fk,
+       p.process_status_code,
+       p.requested_eff_date,
+       ptt.ptt_sequence,
+       prsc.short_description pol_cancel_type_desc,
+       prc1.short_description pol_cancel_reason_desc,
+       p.policy_pk,
+       pth.accounting_from_date,
+       pth.accounting_to_date,
+       -- Issue 167723
+       pth.policy_term_history_pk
+FROM   Entity                     e1,
+       Entity_Role                er,  
+       Entity                     e,    
+       Policy_Type                pt,   
+       Policy                     p,          
+       Policy_Term_History        pth,           
+       Dw_Stg_Policytransaction_Temp ptt,
+       Transaction_Applied_Term   tat,
+       Lookup_Code                lc,
+       Policy_Rel_Reason_Code     prc,
+       Policy_Rel_Reason_Code     prc1,
+       Policy_Rel_Status_Code     prsc
+WHERE  pt.code = p.policy_type_code
+AND    e1.entity_pk = er.entity_fk   
+       --  Entity_Role  Join to policyholder (policy) or prospect (quote)
+AND    Pm_Acct_Date.Chk(er.transaction_log_fk,   er.accounting_from_date,
+                        er.closing_trans_log_fk, er.accounting_to_date,
+                        ptt.ptt_sequence,          ptt.ptt_accountingdate) = 0  
+AND    er.role_type_code IN ('POLHOLDER', 'PROSPECT')
+AND    er.source_record_fk = p.policy_pk      
+       --  Entity  Issue Company 
+AND    e.entity_pk = pth.issue_company_entity_fk 
+AND    p.policy_pk = pth.policy_fk   
+AND    pth.base_record_b = 'N'
+AND    pth.record_mode_code = 'OFFICIAL'  
+AND    pth.term_base_record_fk = ptt.ptt_term_base_fk                        
+AND    pth.policy_fk = ptt.ptt_pol_fk
+       -- Find the term closed by the cancel transaction
+AND    pth.closing_trans_log_fk = ptt.ptt_sequence
+       -- Future term status is still ACTIVE in PTH table
+AND    pth.pol_rel_stat_type_code &lt;&gt; 'CANCEL'
+AND    lc.lookup_type_code(+) = 'RENEWAL_INDICATOR_CODE'
+AND    lc.code(+) = pth.renewal_indicator_code   
+AND    prc.code (+) = pth.non_renewal_reason_code
+AND    prc.policy_rel_status_code (+) = 'RENEW'
+AND    prc1.code (+) = pth.pol_rel_reason_code
+AND    prc1.policy_rel_status_code (+) = pth.pol_rel_status_code
+AND    prsc.code (+) = pth.pol_rel_status_code
+AND    prsc.pol_rel_status_type_code (+) = pth.pol_rel_stat_type_code
+AND    ptt.ptt_typecode = 'CANCEL'
+AND    tat.transaction_log_fk = ptt.ptt_sequence
+AND    tat.term_base_record_fk = pth.term_base_record_fk
+AND    tat.init_term_b = 'N'   
+</sql>
+    <outer_join>N</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>687</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get Policy Agent Change</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>--Policy Agent Change
+SELECT trunc(pa.accounting_from_date) ptt_accountingdate,
+       p.policy_no || '^' || pth.term_base_record_fk pol_uniqueid,
+       trunc(p.inception_date) inception_date,
+       p.policy_no,
+       trunc(p.sys_create_time) policy_create_time,
+       pth.effective_from_date,
+       pth.effective_to_date,
+       pth.issue_state_code,
+       pth.issue_company_entity_fk,
+       p.policy_type_code,
+       (SELECT pt.Long_Description
+          FROM policy_type pt
+         WHERE pt.code = p.policy_type_code) policy_type_desc,
+       pth.pol_rel_stat_type_code pol_curr_status_code,
+       pth.sys_created_by policy_created_by,
+       pth.sys_updated_by policy_updated_by,
+       trunc(pth.sys_update_time) policy_update_time,
+       pth.policy_term_code,
+       pth.renewal_indicator_code,
+       lc.short_description renewal_indicator_desc,
+       pth.non_renewal_reason_code,
+       prc.short_description non_renewal_reason_desc,
+       pth.pol_rel_status_code,
+       pth.pol_rel_reason_code,
+       pth.renewal_cycle_code,
+       pth.process_location_code,
+       pth.short_term_b,
+       trunc(pth.rolling_ibnr_date) rolling_ibnr_date,
+       p.char1 pol_char1,
+       p.char2 pol_char2,
+       p.char3 pol_char3,
+       p.num1 pol_num1,
+       p.num2 pol_num2,
+       p.num3 pol_num3,
+       trunc(p.date1) pol_date1,
+       trunc(p.date2) pol_date2,
+       trunc(p.date3) pol_date3,
+       e.client_id comp_uniqueid,
+       ea.client_id prdr_uniqueid, 
+       dw_staging_util.get_uw_clientid(p.policy_pk,
+                                       pth.transaction_log_fk,
+                                       pth.effective_from_date,
+                                       pth.effective_to_date,
+                                       pa.accounting_from_date, 
+                                       pa.effective_start_date) uw_uniqueid,
+       dw_staging_util.GET_ACCOUNT_INFO(p.policy_pk,pa.accounting_from_date, pa.effective_start_date,'NO') account_no, 
+       dw_staging_util.GET_ACCOUNT_INFO(p.policy_pk,pa.accounting_from_date, pa.effective_start_date,'DESC') account_desc, 
+       e1.client_id insured_uniqueid,
+       trunc(pa.accounting_from_date) change_eff_date,
+       p.policy_cycle_code,
+       pth.organization_type_code,
+       (SELECT lc1.short_description
+          FROM lookup_code lc1
+         WHERE lc1.code = pth.organization_type_code
+           AND lc1.lookup_type_code = 'ORGANIZATION_TYPE_CODE') organization_type_desc,
+       pth.payment_plan_lst,
+       p.RECEIVE_DATE,
+       p.REFERRAL_CODE,
+       p.FACULTATIVE_B,
+       p.PROGRAM_CODE,
+       p.FORMATTED_POL_NO,
+       p.QUESTIONNAIRE_DATE,
+       p.PRT_B,
+       p.OFF_NUM,
+       p.WIP_NUM,
+       p.POLICY_LAYER_CODE,
+       p.POLICY_FORM_CODE,
+       pth.GUARANTEE_DATE,
+       pth.BINDER_B,
+       pth.TERM_POLICY_NO,
+       pth.DECLINATION_DATE,
+       pth.CATEGORY_CODE,
+       pth.COLLATERAL_B,
+       pth.ROLLING_IBNR_DATE,
+       pth.HOSP_TIER ,
+       pth.CM_YEAR,
+       pth.PEER_GROUPS_CODE ,
+       pth.POTENTIAL_CANCEL_1,
+       pth.POTENTIAL_CANCEL_2,
+       pth.ACCOUNT_NO,
+       pth.ACCOUNT_IDENTIFIER,
+       pth.PL_AGGREGATE,
+       pth.GL_AGGREGATE,
+       p.legacy_policy_no,
+       p.legacy_issue_company_fk,
+       p.process_status_code,
+       p.requested_eff_date,
+       pth.transaction_log_fk ptt_sequence,
+       prsc.short_description pol_cancel_type_desc,
+       prc1.short_description pol_cancel_reason_desc,
+       p.policy_pk,
+       pth.accounting_from_date,
+       pth.accounting_to_date,
+       -- Issue 167723
+       pth.policy_term_history_pk
+  FROM policy              p,
+       policy_term_history pth,
+       entity              e,
+       entity_role         er,
+       entity              e1,
+       policy_agent        pa,
+       agent_license       al,
+       AGENT               a,
+       entity              ea,
+       Lookup_Code lc,
+       Policy_Rel_Reason_Code     prc,
+       Policy_Rel_Reason_Code     prc1,
+       Policy_Rel_Status_Code     prsc
+ WHERE p.policy_pk = pth.policy_fk
+   AND p.policy_pk = pa.policy_fk
+   AND pth.base_record_b = 'N'
+   AND e.entity_pk = pth.issue_company_entity_fk
+   AND er.role_type_code IN ('POLHOLDER','PROSPECT')
+   AND er.record_mode_code = 'OFFICIAL'
+   AND er.source_record_fk = p.policy_pk
+   AND nvl(er.accounting_from_date, to_date('01/01/1900', 'mm/dd/yyyy')) &lt;=
+       pa.accounting_from_date
+   AND nvl(er.accounting_to_date, to_date('01/01/3000', 'mm/dd/yyyy')) >
+       pa.accounting_from_date
+   AND nvl(er.effective_from_date, to_date('01/01/1900', 'mm/dd/yyyy')) &lt;=
+       pa.effective_start_date
+   AND nvl(er.effective_to_date, to_date('01/01/3000', 'mm/dd/yyyy')) >
+       pa.effective_start_date
+   AND er.entity_fk = e1.entity_pk
+   AND al.agent_license_pk = pa.producer_agent_license_fk
+   AND al.agent_fk = a.agent_pk
+   AND a.entity_fk = ea.entity_pk
+   AND pth.accounting_from_date &lt;= pa.accounting_from_date
+   AND pth.accounting_to_date > pa.accounting_from_date
+   AND pth.effective_from_date &lt;= pa.effective_start_date
+   AND pth.effective_to_date > pa.effective_start_date
+   AND lc.lookup_type_code(+) = 'RENEWAL_INDICATOR_CODE'
+   AND lc.code(+) = pth.renewal_indicator_code
+   AND prc.code (+) = pth.non_renewal_reason_code
+   AND prc.policy_rel_status_code (+) = 'RENEW'
+   AND prc1.code (+) = pth.pol_rel_reason_code
+   AND prc1.policy_rel_status_code (+) = pth.pol_rel_status_code
+   AND prsc.code (+) = pth.pol_rel_status_code
+   AND prsc.pol_rel_status_type_code (+) = pth.pol_rel_stat_type_code
+   AND pa.sys_update_time > ?
+   AND pa.sys_update_time &lt;= ?
+   AND instr(?,substr(to_char(p.policy_pk),${CHUNK_POSITION},1)) > 0
+</sql>
+    <outer_join>N</outer_join>
+    <replace_vars>Y</replace_vars>
+    <parameter>
+      <field>
+        <name>LAST_REFRESH_START_TIME</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>CURRENT_REFRESH_DATE</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>chunkNumber</name>
+        <type>String</type>
+      </field>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>537</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get Policy Term Changed</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>-- Transactions that affect policy term info
+SELECT dw_staging_util.Get_Trans_Acct_New(ptt.ptt_sequence) ptt_accountingdate,
+       ptt.pol_uniqueid,
+       TRUNC(p.inception_date) inception_date,
+       p.policy_no,
+       TRUNC(p.sys_create_time) policy_create_time,
+       pth.effective_from_date,
+       pth.effective_to_date,
+       pth.issue_state_code,
+       pth.issue_company_entity_fk,
+       p.policy_type_code,
+       pt.long_description policy_type_desc,
+       pth.pol_rel_stat_type_code pol_curr_status_code,
+       pth.sys_created_by policy_created_by,
+       pth.sys_updated_by policy_updated_by,
+       TRUNC(pth.sys_update_time) policy_update_time,
+       pth.policy_term_code,
+       pth.renewal_indicator_code,
+       lc.short_description renewal_indicator_desc,
+       pth.non_renewal_reason_code,
+       prc.short_description non_renewal_reason_desc,
+       pth.pol_rel_status_code,       
+       pth.pol_rel_reason_code,       
+       pth.renewal_cycle_code,
+       pth.process_location_code,
+       pth.short_term_b,
+       TRUNC(pth.rolling_ibnr_date) rolling_ibnr_date,
+       p.char1 pol_char1,
+       p.char2 pol_char2,
+       p.char3 pol_char3,
+       p.num1 pol_num1,
+       p.num2 pol_num2,
+       p.num3 pol_num3,
+       TRUNC(p.date1) pol_date1,
+       TRUNC(p.date2) pol_date2,
+       TRUNC(p.date3) pol_date3,
+       e.client_id comp_uniqueid,
+       Dw_Staging_Util.Get_Agent_Clientid(
+         p.policy_pk,
+         ptt.ptt_accountingdate,
+         ptt.ptt_effectivedate) prdr_uniqueid,
+       Dw_Staging_Util.Get_Uw_Clientid(
+         p.policy_pk,
+         ptt.ptt_sequence,
+         pth.effective_from_date,
+         pth.effective_to_date,
+         ptt.ptt_accountingdate,
+         ptt.ptt_effectivedate) uw_uniqueid,
+       Dw_Staging_Util.Get_Account_Info(
+         p.policy_pk,
+         ptt.ptt_accountingdate,
+         ptt.ptt_effectivedate,
+         'NO') account_no,
+       Dw_Staging_Util.Get_Account_Info(
+         p.policy_pk,
+         ptt.ptt_accountingdate,
+         ptt.ptt_effectivedate,
+         'DESC') account_desc,
+       e1.client_id insured_uniqueid,
+       TRUNC(ptt.ptt_accountingdate) change_eff_date,
+       p.policy_cycle_code,
+       pth.organization_type_code,
+       Cs_Report.Get_Lookup_Code('ORGANIZATION_TYPE_CODE', 
+                                 pth.organization_type_code, 
+                                 'S') organization_type_desc,
+       pth.payment_plan_lst,
+       p.RECEIVE_DATE,
+       p.REFERRAL_CODE,
+       p.FACULTATIVE_B,
+       p.PROGRAM_CODE,
+       p.FORMATTED_POL_NO,
+       p.QUESTIONNAIRE_DATE,
+       p.PRT_B,
+       p.OFF_NUM,
+       p.WIP_NUM,
+       p.POLICY_LAYER_CODE,
+       p.POLICY_FORM_CODE,
+       pth.GUARANTEE_DATE,
+       pth.BINDER_B,
+       pth.TERM_POLICY_NO,
+       pth.DECLINATION_DATE,
+       pth.CATEGORY_CODE,
+       pth.COLLATERAL_B,
+       pth.ROLLING_IBNR_DATE,
+       pth.HOSP_TIER ,
+       pth.CM_YEAR,
+       pth.PEER_GROUPS_CODE ,
+       pth.POTENTIAL_CANCEL_1,
+       pth.POTENTIAL_CANCEL_2,
+       pth.ACCOUNT_NO,
+       pth.ACCOUNT_IDENTIFIER,
+       pth.PL_AGGREGATE,
+       pth.GL_AGGREGATE,
+       p.legacy_policy_no,
+       p.legacy_issue_company_fk,
+       p.process_status_code,
+       p.requested_eff_date,
+       ptt.ptt_sequence,
+       prsc.short_description pol_cancel_type_desc,
+       prc1.short_description pol_cancel_reason_desc,
+       p.policy_pk,
+       pth.accounting_from_date,
+       pth.accounting_to_date,
+       -- Issue 167723
+       pth.policy_term_history_pk
+FROM   Entity                     e1,
+       Entity_Role                er,  
+       Entity                     e,    
+       Policy_Type                pt,   
+       Policy                     p,          
+       Policy_Term_History        pth,           
+       Dw_Stg_Policytransaction_Temp ptt,
+       Lookup_Code                lc,
+       Policy_Rel_Reason_Code     prc,
+       Policy_Rel_Reason_Code     prc1,
+       Policy_Rel_Status_Code     prsc
+WHERE  pt.code = p.policy_type_code
+AND    e1.entity_pk = er.entity_fk   
+AND    er.role_type_code IN ('POLHOLDER', 'PROSPECT')
+AND    er.source_record_fk = p.policy_pk      
+AND    nvl(er.accounting_from_date, to_date('01/01/1900', 'mm/dd/yyyy')) &lt;=
+             ptt.ptt_accountingdate
+      AND    nvl(er.accounting_to_date, to_date('01/01/3000', 'mm/dd/yyyy')) >=
+             ptt.ptt_accountingdate
+      AND    nvl(er.effective_from_date, to_date('01/01/1900', 'mm/dd/yyyy')) &lt;=
+             ptt.ptt_effectivedate
+       --  Entity:  Issue Company 
+AND    e.entity_pk = pth.issue_company_entity_fk 
+       -- Policy
+AND    p.policy_pk = pth.policy_fk   
+       --  Policy_Term_History:  Find the version as it looked as
+       --  of the particular transaction
+AND    Pm_Acct_Date.Chk(pth.transaction_log_fk,   pth.accounting_from_date,
+                        pth.closing_trans_log_fk, pth.accounting_to_date,
+                        ptt.ptt_sequence,          ptt.ptt_accountingdate) = 0 
+AND    pth.base_record_b = 'N'
+AND    pth.record_mode_code = 'OFFICIAL'  
+AND    pth.term_base_record_fk = ptt.ptt_term_base_fk                        
+AND    pth.policy_fk = ptt.ptt_pol_fk
+AND    pth.transaction_log_fk = ptt.ptt_sequence
+AND    lc.lookup_type_code(+) = 'RENEWAL_INDICATOR_CODE'
+AND    lc.code(+) = pth.renewal_indicator_code   
+AND    prc.code (+) = pth.non_renewal_reason_code
+AND    prc.policy_rel_status_code (+) = 'RENEW'
+AND    prc1.code (+) = pth.pol_rel_reason_code
+AND    prc1.policy_rel_status_code (+) = pth.pol_rel_status_code
+AND    prsc.code (+) = pth.pol_rel_status_code
+AND    prsc.pol_rel_status_type_code (+) = pth.pol_rel_stat_type_code
+</sql>
+    <outer_join>N</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>100</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get System Info</name>
+    <type>SystemInfo</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>sysdate</name>
+        <type>system date (variable)</type>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>335</xloc>
+      <yloc>264</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get Uwd Changes</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>-- Underwriter change records
+SELECT dw_staging_util.get_trans_acct_new(ptt.ptt_sequence) ptt_accountingdate,
+       ptt.pol_uniqueid,
+       trunc(p.inception_date) inception_date,
+       p.policy_no,
+       trunc(p.sys_create_time) policy_create_time,
+       pth.effective_from_date,
+       pth.effective_to_date,
+       pth.issue_state_code,
+       pth.issue_company_entity_fk,
+       p.policy_type_code,
+       (SELECT pt.long_description
+          FROM policy_type pt
+         WHERE pt.code = p.policy_type_code) policy_type_desc,
+       pth.pol_rel_stat_type_code pol_curr_status_code,
+       pth.sys_created_by policy_created_by,
+       pth.sys_updated_by policy_updated_by,
+       trunc(pth.sys_update_time) policy_update_time,
+       pth.policy_term_code,
+       pth.renewal_indicator_code,
+       lc.short_description renewal_indicator_desc,
+       pth.non_renewal_reason_code,
+       prc.short_description non_renewal_reason_desc,
+       pth.pol_rel_status_code,
+       pth.pol_rel_reason_code,
+       pth.renewal_cycle_code,
+       pth.process_location_code,
+       pth.short_term_b,
+       trunc(pth.rolling_ibnr_date) rolling_ibnr_date,
+       p.char1 pol_char1,
+       p.char2 pol_char2,
+       p.char3 pol_char3,
+       p.num1 pol_num1,
+       p.num2 pol_num2,
+       p.num3 pol_num3,
+       trunc(p.date1) pol_date1,
+       trunc(p.date2) pol_date2,
+       trunc(p.date3) pol_date3,
+       e.client_id comp_uniqueid,
+       dw_staging_util.get_agent_clientid(p.policy_pk,
+                                          ptt.ptt_accountingdate,
+                                          ptt.ptt_effectivedate) prdr_uniqueid,
+       e2.client_id uw_uniqueid,
+       dw_staging_util.get_account_info(p.policy_pk,
+                                        ptt.ptt_accountingdate,
+                                        ptt.ptt_effectivedate,
+                                        'NO') account_no,
+       dw_staging_util.get_account_info(p.policy_pk,
+                                        ptt.ptt_accountingdate,
+                                        ptt.ptt_effectivedate,
+                                        'DESC') account_desc,
+       e1.client_id insured_uniqueid,
+       trunc(er1.accounting_from_date) change_eff_date,
+       p.policy_cycle_code,
+       pth.organization_type_code,
+       (SELECT lc1.short_description
+          FROM lookup_code lc1
+         WHERE lc1.code = pth.organization_type_code
+           AND lc1.lookup_type_code = 'ORGANIZATION_TYPE_CODE') organization_type_desc,
+       pth.payment_plan_lst,
+       p.receive_date,
+       p.referral_code,
+       p.facultative_b,
+       p.program_code,
+       p.formatted_pol_no,
+       p.questionnaire_date,
+       p.prt_b,
+       p.off_num,
+       p.wip_num,
+       p.policy_layer_code,
+       p.policy_form_code,
+       pth.guarantee_date,
+       pth.binder_b,
+       pth.term_policy_no,
+       pth.declination_date,
+       pth.category_code,
+       pth.collateral_b,
+       pth.rolling_ibnr_date,
+       pth.hosp_tier,
+       pth.cm_year,
+       pth.peer_groups_code,
+       pth.potential_cancel_1,
+       pth.potential_cancel_2,
+       pth.account_no,
+       pth.account_identifier,
+       pth.pl_aggregate,
+       pth.gl_aggregate,
+       p.legacy_policy_no,
+       p.legacy_issue_company_fk,
+       p.process_status_code,
+       p.requested_eff_date,
+       ptt.ptt_sequence,
+       prsc.short_description pol_cancel_type_desc,
+       prc1.short_description pol_cancel_reason_desc,
+       p.policy_pk,
+       pth.accounting_from_date,
+       pth.accounting_to_date,
+       -- Issue 167723
+       pth.policy_term_history_pk
+  FROM entity_role                   er1,
+       entity                        e2,
+       policy                        p,
+       policy_term_history           pth,
+       entity                        e,
+       entity_role                   er,
+       entity                        e1,
+       dw_stg_policytransaction_temp ptt,
+       lookup_code                   lc,
+       policy_rel_reason_code        prc,
+       policy_rel_reason_code        prc1,
+       policy_rel_status_code        prsc
+ WHERE er1.source_record_fk = ptt.ptt_pol_fk
+   AND er1.role_type_code = 'UNDWRITER'
+   AND er1.record_mode_code = 'OFFICIAL'
+   AND er1.entity_fk = e2.entity_pk
+   AND er1.transaction_log_fk = ptt.ptt_sequence  
+   AND nvl(er1.accounting_from_date, to_date('01/01/1900', 'mm/dd/yyyy')) &lt;=
+       ptt.ptt_accountingdate
+   AND nvl(er1.accounting_to_date, to_date('01/01/3000', 'mm/dd/yyyy')) >
+       ptt.ptt_accountingdate
+   AND nvl(er1.effective_from_date, to_date('01/01/1900', 'mm/dd/yyyy')) &lt;=
+       ptt.ptt_effectivedate
+   AND nvl(er1.effective_to_date, to_date('01/01/3000', 'mm/dd/yyyy')) >
+       ptt.ptt_effectivedate
+   AND ptt.ptt_typecode &lt;&gt; 'QUEST' 
+   --AND ptt.ptt_typecode NOT IN ('CANCEL', 'REINSTATE', 'QUEST')
+   AND p.policy_pk = ptt.ptt_pol_fk
+   -- Policy Term
+   AND pth.term_base_record_fk = ptt.ptt_term_base_fk
+       --  Policy_Term_History:  Find the version as it looked as
+       --  of the particular transaction
+   AND Pm_Acct_Date.Chk(pth.transaction_log_fk,   pth.accounting_from_date,
+                        pth.closing_trans_log_fk, pth.accounting_to_date,
+                        ptt.ptt_sequence,         ptt.ptt_accountingdate) = 0 
+   AND pth.base_record_b = 'N'
+   AND e.entity_pk = pth.issue_company_entity_fk
+   AND er.role_type_code IN ('POLHOLDER', 'PROSPECT')
+   AND er.source_record_fk = p.policy_pk
+   AND nvl(er.accounting_from_date, to_date('01/01/1900', 'mm/dd/yyyy')) &lt;=
+       ptt.ptt_accountingdate
+   AND nvl(er.accounting_to_date, to_date('01/01/3000', 'mm/dd/yyyy')) >
+       ptt.ptt_accountingdate
+   AND nvl(er.effective_from_date, to_date('01/01/1900', 'mm/dd/yyyy')) &lt;=
+       ptt.ptt_effectivedate
+   AND nvl(er.effective_to_date, to_date('01/01/3000', 'mm/dd/yyyy')) >
+       ptt.ptt_effectivedate
+   AND er.entity_fk = e1.entity_pk
+   -- Renewal indicator Desc
+   AND lc.lookup_type_code(+) = 'RENEWAL_INDICATOR_CODE'
+   AND lc.code(+) = pth.renewal_indicator_code
+   AND prc.code(+) = pth.non_renewal_reason_code
+   AND prc.policy_rel_status_code(+) = 'RENEW'
+   AND prc1.code(+) = pth.pol_rel_reason_code
+   AND prc1.policy_rel_status_code(+) = pth.pol_rel_status_code
+   AND prsc.code(+) = pth.pol_rel_status_code
+   AND prsc.pol_rel_status_type_code(+) = pth.pol_rel_stat_type_code   
+</sql>
+    <outer_join>N</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>395</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get Variables</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>V_NUM</name>
+        <variable>${G_VERSION_NUMBER}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>loaddate</name>
+        <variable>${loadDate}</variable>
+        <type>Date</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>chunkNumber</name>
+        <variable>${CHUNK_NUMBER}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>v_20161_or_later</name>
+        <variable>${v_20161_or_later}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>335</xloc>
+      <yloc>33</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>If field value is null</name>
+    <type>IfNull</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <replaceAllByValue/>
+    <replaceAllMask/>
+    <selectFields>N</selectFields>
+    <selectValuesType>Y</selectValuesType>
+    <setEmptyStringAll>N</setEmptyStringAll>
+    <valuetypes>
+      <valuetype>
+        <name>Date</name>
+        <value>${G_DEFAULT_DATE}</value>
+        <mask>MM/dd/yyyy</mask>
+        <set_type_empty_string>N</set_type_empty_string>
+      </valuetype>
+    </valuetypes>
+    <fields>
+      </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>193</xloc>
+      <yloc>33</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Insert Data to STG_Policy</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>4SBI_Staging</connection>
+    <schema/>
+    <table>STG_POLICY</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>FILE_VERSION</column_name>
+        <stream_name>FILE_VERSION</stream_name>
+      </field>
+      <field>
+        <column_name>SOURCE_SYSTEM</column_name>
+        <stream_name>SOURCE_SYSTEM</stream_name>
+      </field>
+      <field>
+        <column_name>EXTRACT_DATE</column_name>
+        <stream_name>CURRENT_REFRESH_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>POLICY_UNIQUEID</column_name>
+        <stream_name>POL_UNIQUEID</stream_name>
+      </field>
+      <field>
+        <column_name>POL_POLICYNUMBER</column_name>
+        <stream_name>POLICY_NO</stream_name>
+      </field>
+      <field>
+        <column_name>POL_ORIGINALEFFECTIVEDATE</column_name>
+        <stream_name>original_pol_eff_date</stream_name>
+      </field>
+      <field>
+        <column_name>POL_ISSUEDDATE</column_name>
+        <stream_name>POLICY_CREATE_TIME</stream_name>
+      </field>
+      <field>
+        <column_name>POL_EFFECTIVEDATE</column_name>
+        <stream_name>EFFECTIVE_FROM_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>POL_EXPIRATIONDATE</column_name>
+        <stream_name>EFFECTIVE_TO_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>POL_MASTERSTATE</column_name>
+        <stream_name>ISSUE_STATE_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>POL_ACCOUNTNUMBER</column_name>
+        <stream_name>ACCOUNT_NO</stream_name>
+      </field>
+      <field>
+        <column_name>POL_ACCOUNTDESCRIPTION</column_name>
+        <stream_name>ACCOUNT_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>PRODUCT_UNIQUEID</column_name>
+        <stream_name>PRODCUCT_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMPANY_UNIQUEID</column_name>
+        <stream_name>COMP_UNIQUEID</stream_name>
+      </field>
+      <field>
+        <column_name>PRODUCER_UNIQUEID</column_name>
+        <stream_name>PRDR_UNIQUEID</stream_name>
+      </field>
+      <field>
+        <column_name>UNDERWRITER_UNIQUEID</column_name>
+        <stream_name>UW_UNIQUEID</stream_name>
+      </field>
+      <field>
+        <column_name>FIRSTINSURED_UNIQUEID</column_name>
+        <stream_name>INSURED_UNIQUEID</stream_name>
+      </field>
+      <field>
+        <column_name>POL_CHANGEEFFECTIVEDATE</column_name>
+        <stream_name>MIN_CHANGE_EFF_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_POLICY_TYPE_CODE</column_name>
+        <stream_name>POLICY_TYPE_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_POLICY_CYCLE_CODE</column_name>
+        <stream_name>POLICY_CYCLE_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_POLICY_CURRENT_STATUS</column_name>
+        <stream_name>POL_CURR_STATUS_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_POLICY_CREATED_BY</column_name>
+        <stream_name>POLICY_CREATED_BY</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_POLICY_UPDATED_BY</column_name>
+        <stream_name>POLICY_UPDATED_BY</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_POLICY_UPDATE_TIME</column_name>
+        <stream_name>POLICY_UPDATE_TIME</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_POLICY_TERM_CODE</column_name>
+        <stream_name>POLICY_TERM_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_RENEWAL_INDICATOR_CODE</column_name>
+        <stream_name>RENEWAL_INDICATOR_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_NON_RENEWAL_REASON_CODE</column_name>
+        <stream_name>NON_RENEWAL_REASON_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_RENEWAL_CYCLE_CODE</column_name>
+        <stream_name>RENEWAL_CYCLE_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_POL_CANCEL_REASON_CODE</column_name>
+        <stream_name>POL_REL_REASON_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_POLICY_CANCEL_TYPE_CODE</column_name>
+        <stream_name>POL_REL_STATUS_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_PROCESS_LOCATION_CODE</column_name>
+        <stream_name>PROCESS_LOCATION_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_SHORT_TERM_B</column_name>
+        <stream_name>SHORT_TERM_B</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_IBNR</column_name>
+        <stream_name>ROLLING_IBNR_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_CHAR1</column_name>
+        <stream_name>POL_CHAR1</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_CHAR2</column_name>
+        <stream_name>POL_CHAR2</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_CHAR3</column_name>
+        <stream_name>POL_CHAR3</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_NUM1</column_name>
+        <stream_name>POL_NUM1</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_NUM3</column_name>
+        <stream_name>POL_NUM3</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_NUM2</column_name>
+        <stream_name>POL_NUM2</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_DATE1</column_name>
+        <stream_name>POL_DATE1</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_DATE2</column_name>
+        <stream_name>POL_DATE2</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_DATE3</column_name>
+        <stream_name>POL_DATE3</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_POLICY_TYPE_DESC</column_name>
+        <stream_name>POLICY_TYPE_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>LOADDATE</column_name>
+        <stream_name>loaddate</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_RENEWAL_INDICATOR_DESC</column_name>
+        <stream_name>RENEWAL_INDICATOR_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_NON_RENEWAL_REASON_DESC</column_name>
+        <stream_name>NON_RENEWAL_REASON_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_ORGANIZATION_TYPE_CODE</column_name>
+        <stream_name>ORGANIZATION_TYPE_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_ORGANIZATION_TYPE_DESC</column_name>
+        <stream_name>ORGANIZATION_TYPE_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_PAYMENT_PLAN_LST</column_name>
+        <stream_name>PAYMENT_PLAN_LST</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_RECEIVE_DATE</column_name>
+        <stream_name>RECEIVE_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_REFERRAL_CODE</column_name>
+        <stream_name>REFERRAL_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_FACULTATIVE_B</column_name>
+        <stream_name>FACULTATIVE_B</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_PROGRAM_CODE</column_name>
+        <stream_name>PROGRAM_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_FORMATTED_POL_NO</column_name>
+        <stream_name>FORMATTED_POL_NO</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_QUESTIONNAIRE_DATE</column_name>
+        <stream_name>QUESTIONNAIRE_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_PRT_B</column_name>
+        <stream_name>PRT_B</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_OFF_NUM</column_name>
+        <stream_name>OFF_NUM</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_WIP_NUM</column_name>
+        <stream_name>WIP_NUM</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_POLICY_LAYER_CODE</column_name>
+        <stream_name>POLICY_LAYER_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_POLICY_FORM_CODE</column_name>
+        <stream_name>POLICY_FORM_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_GUARANTEE_DATE</column_name>
+        <stream_name>GUARANTEE_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_BINDER_B</column_name>
+        <stream_name>BINDER_B</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_TERM_POLICY_NO</column_name>
+        <stream_name>TERM_POLICY_NO</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_DECLINATION_DATE</column_name>
+        <stream_name>DECLINATION_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_CATEGORY_CODE</column_name>
+        <stream_name>CATEGORY_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_COLLATERAL_B</column_name>
+        <stream_name>COLLATERAL_B</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_ROLLING_IBNR_DATE</column_name>
+        <stream_name>ROLLING_IBNR_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_HOSP_TIER</column_name>
+        <stream_name>HOSP_TIER</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_CM_YEAR</column_name>
+        <stream_name>CM_YEAR</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_PEER_GROUPS_CODE</column_name>
+        <stream_name>PEER_GROUPS_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_POTENTIAL_CANCEL_1</column_name>
+        <stream_name>POTENTIAL_CANCEL_1</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_POTENTIAL_CANCEL_2</column_name>
+        <stream_name>POTENTIAL_CANCEL_2</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_ACCOUNT_NO</column_name>
+        <stream_name>ACCOUNT_NO</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_ACCOUNT_IDENTIFIER</column_name>
+        <stream_name>ACCOUNT_IDENTIFIER</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_PL_AGGREGATE</column_name>
+        <stream_name>PL_AGGREGATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_GL_AGGREGATE</column_name>
+        <stream_name>GL_AGGREGATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_LEGACY_POLICY_NO</column_name>
+        <stream_name>LEGACY_POLICY_NO</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_PROCESS_STATUS_CODE</column_name>
+        <stream_name>PROCESS_STATUS_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_REQUESTED_EFF_DATE</column_name>
+        <stream_name>REQUESTED_EFF_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOC_LEGACY_ISS_COMP_FK</column_name>
+        <stream_name>LEGACY_ISSUE_COMPANY_FK</stream_name>
+      </field>
+      <field>
+        <column_name>POL_TRANSACTIONACCOUNTINGDATE</column_name>
+        <stream_name>PTT_ACCOUNTINGDATE</stream_name>
+      </field>
+      <field>
+        <column_name>PT_SEQUENCE</column_name>
+        <stream_name>PTT_SEQUENCE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_POLICY_CANCEL_TYPE_DESC</column_name>
+        <stream_name>POL_CANCEL_TYPE_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_POL_CANCEL_REASON_DESC</column_name>
+        <stream_name>POL_CANCEL_REASON_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>POLICY_PK</column_name>
+        <stream_name>POLICY_PK</stream_name>
+      </field>
+      <field>
+        <column_name>STGPOLICY_ID</column_name>
+        <stream_name>STGPOLICY_ID</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_POLICY_RETRO_DATE</column_name>
+        <stream_name>POLICY_RETRO_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_POLICY_PHASE_CODE</column_name>
+        <stream_name>POLICY_PHASE_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_BINDER_EFF_TO_DATE</column_name>
+        <stream_name>BINDER_EFFECTIVE_TO_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_FORM_OF_BUSINESS</column_name>
+        <stream_name>FORM_OF_BUSINESS</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_RATING_METHOD</column_name>
+        <stream_name>RATING_METHOD</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_RATING_DEVIATION</column_name>
+        <stream_name>RATING_DEVIATION</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_COMPANY_INSURED_B</column_name>
+        <stream_name>COMPANY_INSURED_B</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_NUMBER_OF_PHYSICIANS</column_name>
+        <stream_name>NUMBER_OF_PHYSICIANS</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_NUMBER_OF_EMPLOYEES</column_name>
+        <stream_name>NUMBER_OF_EMPLOYEES</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_DISCOVERY_PERIOD_RATING</column_name>
+        <stream_name>DISCOVERY_PERIOD_RATING</stream_name>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1022</xloc>
+      <yloc>562</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Insert Data to STG_Quote</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>4SBI_Staging</connection>
+    <schema>${G_SCHEMA_NAME}</schema>
+    <table>STG_QUOTE</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>QUOTE_UNIQUEID</column_name>
+        <stream_name>POL_UNIQUEID</stream_name>
+      </field>
+      <field>
+        <column_name>FILE_VERSION</column_name>
+        <stream_name>FILE_VERSION</stream_name>
+      </field>
+      <field>
+        <column_name>SOURCE_SYSTEM</column_name>
+        <stream_name>SOURCE_SYSTEM</stream_name>
+      </field>
+      <field>
+        <column_name>EXTRACT_DATE</column_name>
+        <stream_name>CURRENT_REFRESH_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>Q_POLICYNUMBER</column_name>
+        <stream_name>POLICY_NO</stream_name>
+      </field>
+      <field>
+        <column_name>Q_ORIGINALEFFECTIVEDATE</column_name>
+        <stream_name>INCEPTION_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>Q_ISSUEDDATE</column_name>
+        <stream_name>POLICY_CREATE_TIME</stream_name>
+      </field>
+      <field>
+        <column_name>Q_EFFECTIVEDATE</column_name>
+        <stream_name>EFFECTIVE_FROM_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>Q_EXPIRATIONDATE</column_name>
+        <stream_name>EFFECTIVE_TO_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>Q_MASTERSTATE</column_name>
+        <stream_name>ISSUE_STATE_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>Q_ACCOUNTNUMBER</column_name>
+        <stream_name>ACCOUNT_NO</stream_name>
+      </field>
+      <field>
+        <column_name>Q_ACCOUNTDESCRIPTION</column_name>
+        <stream_name>ACCOUNT_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>comp_uniqueid</column_name>
+        <stream_name>COMP_UNIQUEID</stream_name>
+      </field>
+      <field>
+        <column_name>prdr_uniqueID</column_name>
+        <stream_name>PRDR_UNIQUEID</stream_name>
+      </field>
+      <field>
+        <column_name>uw_uniqueID</column_name>
+        <stream_name>UW_UNIQUEID</stream_name>
+      </field>
+      <field>
+        <column_name>Q_CHANGE_EFF_DATE</column_name>
+        <stream_name>CHANGE_EFF_DATE</stream_name>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>179</xloc>
+      <yloc>488</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Load refresh date</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>4SBI_Staging</connection>
+    <sql>SELECT
+  MAX(CURRENT_REFRESH_DATE) CURRENT_REFRESH_DATE
+, MAX(LAST_REFRESH_START_TIME) LAST_REFRESH_START_TIME
+FROM DW_REFRESH_DATE
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>82</xloc>
+      <yloc>33</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Memory Group by</name>
+    <type>MemoryGroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>CURRENT_REFRESH_DATE</name>
+      </field>
+      <field>
+        <name>loaddate</name>
+      </field>
+      <field>
+        <name>PTT_ACCOUNTINGDATE</name>
+      </field>
+      <field>
+        <name>POL_UNIQUEID</name>
+      </field>
+      <field>
+        <name>INCEPTION_DATE</name>
+      </field>
+      <field>
+        <name>POLICY_NO</name>
+      </field>
+      <field>
+        <name>POLICY_CREATE_TIME</name>
+      </field>
+      <field>
+        <name>EFFECTIVE_FROM_DATE</name>
+      </field>
+      <field>
+        <name>EFFECTIVE_TO_DATE</name>
+      </field>
+      <field>
+        <name>ISSUE_STATE_CODE</name>
+      </field>
+      <field>
+        <name>ISSUE_COMPANY_ENTITY_FK</name>
+      </field>
+      <field>
+        <name>POLICY_TYPE_CODE</name>
+      </field>
+      <field>
+        <name>POLICY_TYPE_DESC</name>
+      </field>
+      <field>
+        <name>POL_CURR_STATUS_CODE</name>
+      </field>
+      <field>
+        <name>POLICY_CREATED_BY</name>
+      </field>
+      <field>
+        <name>POLICY_UPDATED_BY</name>
+      </field>
+      <field>
+        <name>POLICY_UPDATE_TIME</name>
+      </field>
+      <field>
+        <name>POLICY_TERM_CODE</name>
+      </field>
+      <field>
+        <name>RENEWAL_INDICATOR_CODE</name>
+      </field>
+      <field>
+        <name>RENEWAL_INDICATOR_DESC</name>
+      </field>
+      <field>
+        <name>NON_RENEWAL_REASON_CODE</name>
+      </field>
+      <field>
+        <name>NON_RENEWAL_REASON_DESC</name>
+      </field>
+      <field>
+        <name>POL_REL_STATUS_CODE</name>
+      </field>
+      <field>
+        <name>POL_REL_REASON_CODE</name>
+      </field>
+      <field>
+        <name>RENEWAL_CYCLE_CODE</name>
+      </field>
+      <field>
+        <name>PROCESS_LOCATION_CODE</name>
+      </field>
+      <field>
+        <name>SHORT_TERM_B</name>
+      </field>
+      <field>
+        <name>ROLLING_IBNR_DATE</name>
+      </field>
+      <field>
+        <name>POL_CHAR1</name>
+      </field>
+      <field>
+        <name>POL_CHAR2</name>
+      </field>
+      <field>
+        <name>POL_CHAR3</name>
+      </field>
+      <field>
+        <name>POL_NUM1</name>
+      </field>
+      <field>
+        <name>POL_NUM2</name>
+      </field>
+      <field>
+        <name>POL_NUM3</name>
+      </field>
+      <field>
+        <name>POL_DATE1</name>
+      </field>
+      <field>
+        <name>POL_DATE2</name>
+      </field>
+      <field>
+        <name>POL_DATE3</name>
+      </field>
+      <field>
+        <name>COMP_UNIQUEID</name>
+      </field>
+      <field>
+        <name>PRDR_UNIQUEID</name>
+      </field>
+      <field>
+        <name>UW_UNIQUEID</name>
+      </field>
+      <field>
+        <name>ACCOUNT_NO</name>
+      </field>
+      <field>
+        <name>ACCOUNT_DESC</name>
+      </field>
+      <field>
+        <name>INSURED_UNIQUEID</name>
+      </field>
+      <field>
+        <name>POLICY_CYCLE_CODE</name>
+      </field>
+      <field>
+        <name>ORGANIZATION_TYPE_CODE</name>
+      </field>
+      <field>
+        <name>ORGANIZATION_TYPE_DESC</name>
+      </field>
+      <field>
+        <name>PAYMENT_PLAN_LST</name>
+      </field>
+      <field>
+        <name>RECEIVE_DATE</name>
+      </field>
+      <field>
+        <name>REFERRAL_CODE</name>
+      </field>
+      <field>
+        <name>FACULTATIVE_B</name>
+      </field>
+      <field>
+        <name>PROGRAM_CODE</name>
+      </field>
+      <field>
+        <name>FORMATTED_POL_NO</name>
+      </field>
+      <field>
+        <name>QUESTIONNAIRE_DATE</name>
+      </field>
+      <field>
+        <name>PRT_B</name>
+      </field>
+      <field>
+        <name>OFF_NUM</name>
+      </field>
+      <field>
+        <name>WIP_NUM</name>
+      </field>
+      <field>
+        <name>POLICY_LAYER_CODE</name>
+      </field>
+      <field>
+        <name>POLICY_FORM_CODE</name>
+      </field>
+      <field>
+        <name>GUARANTEE_DATE</name>
+      </field>
+      <field>
+        <name>BINDER_B</name>
+      </field>
+      <field>
+        <name>TERM_POLICY_NO</name>
+      </field>
+      <field>
+        <name>DECLINATION_DATE</name>
+      </field>
+      <field>
+        <name>CATEGORY_CODE</name>
+      </field>
+      <field>
+        <name>COLLATERAL_B</name>
+      </field>
+      <field>
+        <name>HOSP_TIER</name>
+      </field>
+      <field>
+        <name>CM_YEAR</name>
+      </field>
+      <field>
+        <name>PEER_GROUPS_CODE</name>
+      </field>
+      <field>
+        <name>POTENTIAL_CANCEL_1</name>
+      </field>
+      <field>
+        <name>POTENTIAL_CANCEL_2</name>
+      </field>
+      <field>
+        <name>ACCOUNT_IDENTIFIER</name>
+      </field>
+      <field>
+        <name>PL_AGGREGATE</name>
+      </field>
+      <field>
+        <name>GL_AGGREGATE</name>
+      </field>
+      <field>
+        <name>LEGACY_POLICY_NO</name>
+      </field>
+      <field>
+        <name>LEGACY_ISSUE_COMPANY_FK</name>
+      </field>
+      <field>
+        <name>PROCESS_STATUS_CODE</name>
+      </field>
+      <field>
+        <name>REQUESTED_EFF_DATE</name>
+      </field>
+      <field>
+        <name>PTT_SEQUENCE</name>
+      </field>
+      <field>
+        <name>POL_CANCEL_TYPE_DESC</name>
+      </field>
+      <field>
+        <name>POL_CANCEL_REASON_DESC</name>
+      </field>
+      <field>
+        <name>POLICY_PK</name>
+      </field>
+      <field>
+        <name>SOURCE_SYSTEM</name>
+      </field>
+      <field>
+        <name>PRODCUCT_ID</name>
+      </field>
+      <field>
+        <name>FILE_VERSION</name>
+      </field>
+      <field>
+        <name>ACCOUNTING_FROM_DATE</name>
+      </field>
+      <field>
+        <name>ACCOUNTING_TO_DATE</name>
+      </field>
+      <field>
+        <name>v_20161_or_later</name>
+      </field>
+      <field>
+        <name>POLICY_TERM_HISTORY_PK</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>MIN_CHANGE_EFF_DATE</aggregate>
+        <subject>CHANGE_EFF_DATE</subject>
+        <type>MIN</type>
+        <valuefield/>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>511</xloc>
+      <yloc>488</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>ACCOUNT_NO_1</name>
+      </remove>
+      <remove>
+        <name>chunkNumber</name>
+      </remove>
+      <remove>
+        <name>LAST_REFRESH_START_TIME</name>
+      </remove>
+      <remove>
+        <name>ROLLING_IBNR_DATE_1</name>
+      </remove>
+      <remove>
+        <name>sysdate</name>
+      </remove>
+      <remove>
+        <name>V_NUM</name>
+      </remove>
+      <remove>
+        <name>V_TAB_NAME</name>
+      </remove>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>466</xloc>
+      <yloc>562</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sequence STGPOLICY_ID</name>
+    <type>Sequence</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <valuename>STGPOLICY_ID</valuename>
+    <use_database>N</use_database>
+    <connection/>
+    <schema/>
+    <seqname>SEQ_</seqname>
+    <use_counter>Y</use_counter>
+    <counter_name/>
+    <start_at>${MAX_STGPOLICY_ID}</start_at>
+    <increment_by>1</increment_by>
+    <max_value>999999999999999999</max_value>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>877</xloc>
+      <yloc>562</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort rows</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>MIN_CHANGE_EFF_DATE</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>2</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>PTT_ACCOUNTINGDATE</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>2</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>PTT_SEQUENCE</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>2</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>ACCOUNTING_TO_DATE</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>2</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>566</xloc>
+      <yloc>562</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Switch / Case</name>
+    <type>SwitchCase</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fieldname>v_20161_or_later</fieldname>
+    <use_contains>N</use_contains>
+    <case_value_type>String</case_value_type>
+    <case_value_format/>
+    <case_value_decimal/>
+    <case_value_group/>
+    <default_target_step>Database join - Add data elements</default_target_step>
+    <cases>
+      <case>
+        <value>Y</value>
+        <target_step>Database lookup - Policy History</target_step>
+      </case>
+    </cases>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>658</xloc>
+      <yloc>562</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Unique rows (HashSet)</name>
+    <type>UniqueRowsByHashSet</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <store_values>N</store_values>
+    <reject_duplicate_row>N</reject_duplicate_row>
+    <error_description/>
+    <fields>      </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>335</xloc>
+      <yloc>488</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step_error_handling>
+  </step_error_handling>
+  <slave-step-copy-partition-distribution>
+  </slave-step-copy-partition-distribution>
+  <slave_transformation>N</slave_transformation>
+</transformation>

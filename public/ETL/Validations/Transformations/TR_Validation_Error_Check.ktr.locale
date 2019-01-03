@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:18 EST 2019
+file.title=TR_Validation_Error_Check
+description=Check if there are any errors found during the validation job.
+title=TR_Validation_Error_Check
+file.description=Check if there are any errors found during the validation job.

@@ -1,0 +1,1511 @@
+<job>
+  <name>SBJ_FS_Create_Help_Tables</name>
+  <description>Create help tables to load data to Fact_Financialsummary</description>
+  <extended_description>1. Create tmp_fs_trans_detail table which includes all transactions happen in current month,
+and all Fact_Financialsummary records from last month.
+2. Create tmp_fs_month_group table to group the data in tmp_fs_trans_detail and calculate 
+MTD/YTD/ITD amounts.
+3. Create tmp_fs_month_group_ids table as a smaller tmp_fs_month_group table to just keep the 
+dimension ids for future lookup use.</extended_description>
+  <job_version/>
+  <job_status>0</job_status>
+  <directory>/public/ETL/Facts/Sub-Jobs</directory>
+  <created_user>-</created_user>
+  <created_date>2014/10/15 15:54:29.333</created_date>
+  <modified_user>-</modified_user>
+  <modified_date>2015/01/05 16:23:47.828</modified_date>
+  <parameters>
+    </parameters>
+  <connection>
+    <name>4SBI_Staging</name>
+    <server>${G_STAGING_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_STAGING_DB_NAME}</database>
+    <port>${G_STAGING_DB_PORT}</port>
+    <username>${G_STAGING_DB_USERNAME}</username>
+    <password>${G_STAGING_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_STAGING_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_STAGING_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_STAGING_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <slaveservers>
+    <slaveserver>
+      <name>4Sight BI - PDI Server</name>
+      <hostname>10.0.0.21</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>joe</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Carte 1</name>
+      <hostname>localhost</hostname>
+      <port>9081</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>DI Server</name>
+      <hostname>localhost</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>joe</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_DEV</name>
+      <hostname>magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>shota</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_SERVER</name>
+      <hostname>http://magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>shota</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_TEST</name>
+      <hostname>magspentahotest</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO</name>
+      <hostname>magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO_BTS</name>
+      <hostname>129.144.25.104</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO_DEV</name>
+      <hostname>magspentahodev</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Master</name>
+      <hostname>localhost</hostname>
+      <port>8081</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SERVER1</name>
+      <hostname>LOCALHOST</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SLAVE ONE</name>
+      <hostname>192.168.2.101</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4a418bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SLAVE TWO</name>
+      <hostname>192.168.2.101</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave1</name>
+      <hostname>localhost</hostname>
+      <port>8082</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave2</name>
+      <hostname>localhost</hostname>
+      <port>8083</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave3</name>
+      <hostname>localhost</hostname>
+      <port>8084</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>local DIS</name>
+      <hostname>localhost</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>magspentahodev</name>
+      <hostname>magspentahodev</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+  </slaveservers>
+  <job-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <size_limit_lines/>
+    <interval/>
+    <timeout_days/>
+    <field>
+      <id>ID_JOB</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>JOBNAME</name>
+    </field>
+    <field>
+      <id>STATUS</id>
+      <enabled>Y</enabled>
+      <name>STATUS</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>STARTDATE</id>
+      <enabled>Y</enabled>
+      <name>STARTDATE</name>
+    </field>
+    <field>
+      <id>ENDDATE</id>
+      <enabled>Y</enabled>
+      <name>ENDDATE</name>
+    </field>
+    <field>
+      <id>LOGDATE</id>
+      <enabled>Y</enabled>
+      <name>LOGDATE</name>
+    </field>
+    <field>
+      <id>DEPDATE</id>
+      <enabled>Y</enabled>
+      <name>DEPDATE</name>
+    </field>
+    <field>
+      <id>REPLAYDATE</id>
+      <enabled>Y</enabled>
+      <name>REPLAYDATE</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>Y</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>EXECUTING_SERVER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_SERVER</name>
+    </field>
+    <field>
+      <id>EXECUTING_USER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_USER</name>
+    </field>
+    <field>
+      <id>START_JOB_ENTRY</id>
+      <enabled>N</enabled>
+      <name>START_JOB_ENTRY</name>
+    </field>
+    <field>
+      <id>CLIENT</id>
+      <enabled>N</enabled>
+      <name>CLIENT</name>
+    </field>
+  </job-log-table>
+  <jobentry-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>TRANSNAME</name>
+    </field>
+    <field>
+      <id>JOBENTRYNAME</id>
+      <enabled>Y</enabled>
+      <name>STEPNAME</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>RESULT</id>
+      <enabled>Y</enabled>
+      <name>RESULT</name>
+    </field>
+    <field>
+      <id>NR_RESULT_ROWS</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_ROWS</name>
+    </field>
+    <field>
+      <id>NR_RESULT_FILES</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_FILES</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>N</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>COPY_NR</id>
+      <enabled>N</enabled>
+      <name>COPY_NR</name>
+    </field>
+  </jobentry-log-table>
+  <channel-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>LOGGING_OBJECT_TYPE</id>
+      <enabled>Y</enabled>
+      <name>LOGGING_OBJECT_TYPE</name>
+    </field>
+    <field>
+      <id>OBJECT_NAME</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_NAME</name>
+    </field>
+    <field>
+      <id>OBJECT_COPY</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_COPY</name>
+    </field>
+    <field>
+      <id>REPOSITORY_DIRECTORY</id>
+      <enabled>Y</enabled>
+      <name>REPOSITORY_DIRECTORY</name>
+    </field>
+    <field>
+      <id>FILENAME</id>
+      <enabled>Y</enabled>
+      <name>FILENAME</name>
+    </field>
+    <field>
+      <id>OBJECT_ID</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_ID</name>
+    </field>
+    <field>
+      <id>OBJECT_REVISION</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_REVISION</name>
+    </field>
+    <field>
+      <id>PARENT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>PARENT_CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>ROOT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>ROOT_CHANNEL_ID</name>
+    </field>
+  </channel-log-table>
+  <checkpoint-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <max_nr_retries/>
+    <run_retry_period/>
+    <namespace_parameter/>
+    <save_parameters/>
+    <save_result_rows/>
+    <save_result_files/>
+    <field>
+      <id>ID_JOB_RUN</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB_RUN</name>
+    </field>
+    <field>
+      <id>ID_JOB</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>JOBNAME</name>
+    </field>
+    <field>
+      <id>NAMESPACE</id>
+      <enabled>Y</enabled>
+      <name>NAMESPACE</name>
+    </field>
+    <field>
+      <id>CHECKPOINT_NAME</id>
+      <enabled>Y</enabled>
+      <name>CHECKPOINT_NAME</name>
+    </field>
+    <field>
+      <id>CHECKPOINT_COPYNR</id>
+      <enabled>Y</enabled>
+      <name>CHECKPOINT_COPYNR</name>
+    </field>
+    <field>
+      <id>ATTEMPT_NR</id>
+      <enabled>Y</enabled>
+      <name>ATTEMPT_NR</name>
+    </field>
+    <field>
+      <id>JOB_RUN_START_DATE</id>
+      <enabled>Y</enabled>
+      <name>JOB_RUN_START_DATE</name>
+    </field>
+    <field>
+      <id>LOGDATE</id>
+      <enabled>Y</enabled>
+      <name>LOGDATE</name>
+    </field>
+    <field>
+      <id>RESULT_XML</id>
+      <enabled>Y</enabled>
+      <name>RESULT_XML</name>
+    </field>
+    <field>
+      <id>PARAMETER_XML</id>
+      <enabled>Y</enabled>
+      <name>PARAMETER_XML</name>
+    </field>
+  </checkpoint-log-table>
+  <pass_batchid>N</pass_batchid>
+  <shared_objects_file/>
+  <entries>
+    <entry>
+      <name>START</name>
+      <description/>
+      <type>SPECIAL</type>
+      <start>Y</start>
+      <dummy>N</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>60</xloc>
+      <yloc>76</yloc>
+    </entry>
+    <entry>
+      <name>If exists tmp_fs_trans_detail</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>tmp_fs_trans_detail</tablename>
+      <schemaname/>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>215</xloc>
+      <yloc>76</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_fs_trans_detail</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_fs_trans_detail nologging PCTFREE 0 
+tablespace ${G_STAGING_DB_DATA}
+as
+SELECT ${month_id} month_id,
+       ${periodMonth} period_month,
+       ${sql_periodStartDate} period_start_date,
+       ${sql_periodEndDate} period_end_date,
+       ff.product_id,
+       ff.transactionissuingcompany_id,
+       ff.billingcompany_id,
+       ff.bookedtermeffectivedate_id,
+       ff.bookedtermexpirationdate_id,
+       ff.territory_id,
+       ff.classification_id,
+       ff.firstinsured_id,
+       ff.subproducer_id,
+       0 account2_id,
+       0 account2extension_id,
+       ff.subaccount_id,
+       ff.financialgroup_id,
+       ff.financialterms_id,
+       ${UNK_INVOICESTATUS_ID} invoicestatus_id,
+       ff.invoice_id,
+       ff.account_uniqueid account1_uniqueid,
+       dp.pol_uniqueid,
+       vpr.prsk_uniqueid,
+       dce.cov_uniqueid,
+       dc.clm_uniqueid,
+       nvl(decode(dftt.ftrans_writtenpremium,'+',ff.amount,'-',-1*ff.amount),0) wrtn_prem_amt,
+       0 wrtn_prem_amt_ytd,
+       0 wrtn_prem_amt_itd,
+       nvl(decode(dftt.ftrans_tax,'+',ff.amount,'-',-1*ff.amount),0) tax_amt,
+       0 tax_amt_ytd,
+       0 tax_amt_itd,
+       nvl(decode(dftt.ftrans_fee,'+',ff.amount,'-',-1*ff.amount),0) fee_amt,
+       0 fee_amt_ytd,
+       0 fee_amt_itd,
+       nvl(decode(dftt.ftrans_surcharge,'+',ff.amount,'-',-1*ff.amount),0) surchg_amt,
+       0 surchg_amt_ytd,
+       0 surchg_amt_itd,
+       nvl(decode(dftt.ftrans_payment,'+',ff.amount,'-',-1*ff.amount),0) paymnt_amt,
+       0 paymnt_amt_ytd,
+       0 paymnt_amt_itd,
+       nvl(decode(dftt.ftrans_transfer,'+',ff.amount,'-',-1*ff.amount),0) trnsfr_amt,      
+       0 trnsfr_amt_ytd,
+       0 trnsfr_amt_itd,
+       nvl(decode(dftt.ftrans_commission,'+',ff.amount,'-',-1*ff.amount),0) comm_amt,
+       0 comm_amt_ytd,
+       0 comm_amt_itd,
+       nvl(decode(dftt.ftrans_commissionpayable,'+',ff.amount,'-',-1*ff.amount),0) comm_paybl_amt,
+       0 comm_paybl_amt_ytd,
+       0 comm_paybl_amt_itd,
+       nvl(decode(dftt.ftrans_writeoff,'+',ff.amount,'-',-1*ff.amount),0) writeoff_amt,
+       0 writeoff_amt_ytd,
+       0 writeoff_amt_itd,
+       nvl(decode(dftt.ftrans_refund,'+',ff.amount,'-',-1*ff.amount),0) refund_amt,
+       0 refund_amt_ytd,
+       0 refund_amt_itd,
+       nvl(decode(dftt.ftrans_cancelrefund,'+',ff.amount,'-',-1*ff.amount),0) cncl_refund_amt,
+       0 cncl_refund_amt_ytd,
+       0 cncl_refund_amt_itd,
+       nvl(decode(dftt.ftrans_recovery,'+',ff.amount,'-',-1*ff.amount),0) recvry_amt,
+       0 recvry_amt_ytd,
+       0 recvry_amt_itd,    
+       nvl(decode(dftt.ftrans_dividend,'+',ff.amount,'-',-1*ff.amount),0) divdnd_amt,
+       0 divdnd_amt_ytd,
+       0 divdnd_amt_itd,
+       nvl(decode(dftt.ftrans_surplus,'+',ff.amount,'-',-1*ff.amount),0) surpls_amt,
+       0 surpls_amt_ytd,
+       0 surpls_amt_itd,
+       nvl(decode(dftt.ftrans_balanceforward,'+',ff.amount,'-',-1*ff.amount),0) bal_frwrd_amt,
+       0 bal_frwrd_amt_ytd,
+       0 bal_frwrd_amt_itd,
+       nvl(decode(ff.transaction_status,'c',
+           decode(dftt.ftrans_totalreceivable,'+',ff.amount,'-',-1*ff.amount),0),0) curr_bal_chng_amt,
+       0 curr_bal_chng_amt_ytd,
+       0 curr_bal_chng_amt_itd,  
+       nvl(decode(ff.transaction_status,'f',
+           decode(dftt.ftrans_totalreceivable,'+',ff.amount,'-',-1*ff.amount),0),0) futr_bal_chng_amt,
+       0 futr_bal_chng_amt_ytd,
+       0 futr_bal_chng_amt_itd,    
+       nvl(decode(dftt.ftrans_totalreceivable,'+',ff.amount,'-',-1*ff.amount),0) tot_rcvbl_amt,
+       0 tot_rcvbl_amt_ytd,
+       0 tot_rcvbl_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary1,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum1_amt_mtd,
+       0 usr_def_sum1_amt_ytd,
+       0 usr_def_sum1_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary2,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum2_amt_mtd,
+       0 usr_def_sum2_amt_ytd,
+       0 usr_def_sum2_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary3,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum3_amt_mtd,
+       0 usr_def_sum3_amt_ytd,
+       0 usr_def_sum3_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary4,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum4_amt_mtd,
+       0 usr_def_sum4_amt_ytd,
+       0 usr_def_sum4_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary5,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum5_amt_mtd,
+       0 usr_def_sum5_amt_ytd,
+       0 usr_def_sum5_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary6,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum6_amt_mtd,
+       0 usr_def_sum6_amt_ytd,
+       0 usr_def_sum6_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary7,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum7_amt_mtd,
+       0 usr_def_sum7_amt_ytd,
+       0 usr_def_sum7_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary8,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum8_amt_mtd,
+       0 usr_def_sum8_amt_ytd,
+       0 usr_def_sum8_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary9,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum9_amt_mtd,
+       0 usr_def_sum9_amt_ytd,
+       0 usr_def_sum9_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary10,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum10_amt_mtd,
+       0 usr_def_sum10_amt_ytd,
+       0 usr_def_sum10_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary11,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum11_amt_mtd,
+       0 usr_def_sum11_amt_ytd,
+       0 usr_def_sum11_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary12,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum12_amt_mtd,
+       0 usr_def_sum12_amt_ytd,
+       0 usr_def_sum12_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary13,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum13_amt_mtd,
+       0 usr_def_sum13_amt_ytd,
+       0 usr_def_sum13_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary14,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum14_amt_mtd,
+       0 usr_def_sum14_amt_ytd,
+       0 usr_def_sum14_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary15,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum15_amt_mtd,
+       0 usr_def_sum15_amt_ytd,
+       0 usr_def_sum15_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary16,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum16_amt_mtd,
+       0 usr_def_sum16_amt_ytd,
+       0 usr_def_sum16_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary17,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum17_amt_mtd,
+       0 usr_def_sum17_amt_ytd,
+       0 usr_def_sum17_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary18,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum18_amt_mtd,
+       0 usr_def_sum18_amt_ytd,
+       0 usr_def_sum18_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary19,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum19_amt_mtd,
+       0 usr_def_sum19_amt_ytd,
+       0 usr_def_sum19_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary20,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum20_amt_mtd,
+       0 usr_def_sum20_amt_ytd,
+       0 usr_def_sum20_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary21,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum21_amt_mtd,
+       0 usr_def_sum21_amt_ytd,
+       0 usr_def_sum21_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary22,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum22_amt_mtd,
+       0 usr_def_sum22_amt_ytd,
+       0 usr_def_sum22_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary23,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum23_amt_mtd,
+       0 usr_def_sum23_amt_ytd,
+       0 usr_def_sum23_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary24,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum24_amt_mtd,
+       0 usr_def_sum24_amt_ytd,
+       0 usr_def_sum24_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary25,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum25_amt_mtd,
+       0 usr_def_sum25_amt_ytd,
+       0 usr_def_sum25_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary26,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum26_amt_mtd,
+       0 usr_def_sum26_amt_ytd,
+       0 usr_def_sum26_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary27,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum27_amt_mtd,
+       0 usr_def_sum27_amt_ytd,
+       0 usr_def_sum27_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary28,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum28_amt_mtd,
+       0 usr_def_sum28_amt_ytd,
+       0 usr_def_sum28_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary29,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum29_amt_mtd,
+       0 usr_def_sum29_amt_ytd,
+       0 usr_def_sum29_amt_itd,
+       nvl(decode(dftt.ftrans_userdefinedsummary30,'+',ff.amount,'-',-1*ff.amount),0) usr_def_sum30_amt_mtd,
+       0 usr_def_sum30_amt_ytd,
+       0 usr_def_sum30_amt_itd
+FROM  fact_financialtransaction ff,
+      vdim_accountingdate va, 
+      dim_policy dp,
+      dim_coverageextension dce,
+      vdim_primaryrisk vpr,
+      dim_claim dc,
+      dim_financialtransactiontype dftt
+WHERE 1=1
+AND   ff.accountingdate_id = va.accountingdate_id
+AND   ff.policy_id = dp.policy_id
+AND   ff.coverageextension_id = dce.coverageextension_id
+AND   ff.primaryrisk_id = vpr.primaryrisk_id
+AND   ff.claim_id = dc.claim_id
+AND   ff.financialtransactiontype_id = dftt.financialtransactiontype_id
+AND   va.acct_date >= ${sql_periodStartDate}
+AND   va.acct_date &lt;= ${sql_periodEndDate}
+UNION ALL
+SELECT ${month_id} month_id,
+       ${periodMonth} period_month,
+       ${sql_periodStartDate} period_start_date,
+       ${sql_periodEndDate} period_end_date,
+       fs.product_id,
+       fs.transactionissuingcompany_id,
+       fs.billingcompany_id,       
+       fs.bookedtermeffectivedate_id,
+       fs.bookedtermexpirationdate_id,
+       fs.territory_id,     
+       fs.classification_id,
+       fs.firstinsured_id,
+       fs.subproducer_id,     
+       fs.account2_id,
+       fs.account2extension_id,
+       fs.subaccount_id,
+       fs.financialgroup_id,
+       fs.financialterms_id,
+       fs.invoicestatus_id,
+       fs.invoice_id,     
+       va.ACCOUNT1_UNIQUEID,
+       dp.pol_uniqueid,       
+       dcre.cvrsk_uniqueid PRSK_UNIQUEID,
+       dce.cov_uniqueid,
+       dc.clm_uniqueid,       
+       0 wrtn_prem_amt_mtd,
+       fs.wrtn_prem_amt_ytd,
+       fs.wrtn_prem_amt_itd,
+       0 tax_amt_mtd,
+       fs.tax_amt_ytd,
+       fs.tax_amt_itd,
+       0 fee_amt_mtd,
+       fs.fee_amt_ytd,
+       fs.fee_amt_itd,
+       0 surchg_amt_mtd,
+       fs.surchg_amt_ytd,
+       fs.surchg_amt_itd,
+       0 paymnt_amt_mtd,
+       fs.paymnt_amt_ytd,
+       fs.paymnt_amt_itd,
+       0 trnsfr_amt_mtd,
+       fs.trnsfr_amt_ytd,  
+       fs.trnsfr_amt_itd,
+       0 comm_amt_mtd,
+       fs.comm_amt_ytd,
+       fs.comm_amt_itd,
+       0 comm_paybl_amt_mtd,
+       fs.comm_paybl_amt_ytd,
+       fs.comm_paybl_amt_itd,
+       0 writeoff_amt_mtd,
+       fs.writeoff_amt_ytd,
+       fs.writeoff_amt_itd,
+       0 refund_amt_mtd,
+       fs.refund_amt_ytd,
+       fs.refund_amt_itd,
+       0 cncl_refund_amt_mtd,
+       fs.cncl_refund_amt_ytd,
+       fs.cncl_refund_amt_itd,
+       0 recvry_amt_mtd,
+       fs.recvry_amt_ytd,
+       fs.recvry_amt_itd,
+       0 divdnd_amt_mtd,
+       fs.divdnd_amt_ytd,
+       fs.divdnd_amt_itd,
+       0 surpls_amt_mtd,
+       fs.surpls_amt_ytd,
+       fs.surpls_amt_itd, 
+       0 bal_frwrd_amt_mtd,
+       fs.bal_frwrd_amt_ytd,
+       fs.bal_frwrd_amt_itd,
+       0 curr_bal_chng_amt_mtd,
+       fs.curr_bal_chng_amt_ytd,
+       fs.curr_bal_chng_amt_itd,
+       0 futr_bal_chng_amt_mtd,
+       fs.futr_bal_chng_amt_ytd,
+       fs.futr_bal_chng_amt_itd,
+       0 tot_rcvbl_amt,
+       fs.tot_rcvbl_amt_ytd,
+       fs.tot_rcvbl_amt_itd,
+       0 usr_def_sum1_amt_mtd,
+       fs.usr_def_sum1_amt_ytd,
+       fs.usr_def_sum1_amt_itd,
+       0 usr_def_sum2_amt_mtd,
+       fs.usr_def_sum2_amt_ytd,
+       fs.usr_def_sum2_amt_itd,
+       0 usr_def_sum3_amt_mtd,
+       fs.usr_def_sum3_amt_ytd,
+       fs.usr_def_sum3_amt_itd,
+       0 usr_def_sum4_amt_mtd,
+       fs.usr_def_sum4_amt_ytd,
+       fs.usr_def_sum4_amt_itd,
+       0 usr_def_sum5_amt_mtd,
+       fs.usr_def_sum5_amt_ytd,
+       fs.usr_def_sum5_amt_itd,
+       0 usr_def_sum6_amt_mtd,
+       fs.usr_def_sum6_amt_ytd,
+       fs.usr_def_sum6_amt_itd,
+       0 usr_def_sum7_amt_mtd,
+       fs.usr_def_sum7_amt_ytd,
+       fs.usr_def_sum7_amt_itd,
+       0 usr_def_sum8_amt_mtd,
+       fs.usr_def_sum8_amt_ytd,
+       fs.usr_def_sum8_amt_itd,
+       0 usr_def_sum9_amt_mtd,
+       fs.usr_def_sum9_amt_ytd,
+       fs.usr_def_sum9_amt_itd,
+       0 usr_def_sum10_amt_mtd,
+       fs.usr_def_sum10_amt_ytd,
+       fs.usr_def_sum10_amt_itd,
+       0 usr_def_sum11_amt_mtd,
+       fs.usr_def_sum11_amt_ytd,
+       fs.usr_def_sum11_amt_itd,
+       0 usr_def_sum12_amt_mtd,
+       fs.usr_def_sum12_amt_ytd,
+       fs.usr_def_sum12_amt_itd,
+       0 usr_def_sum13_amt_mtd,
+       fs.usr_def_sum13_amt_ytd,
+       fs.usr_def_sum13_amt_itd,
+       0 usr_def_sum14_amt_mtd,
+       fs.usr_def_sum14_amt_ytd,
+       fs.usr_def_sum14_amt_itd,
+       0 usr_def_sum15_amt_mtd,
+       fs.usr_def_sum15_amt_ytd,
+       fs.usr_def_sum15_amt_itd,
+       0 usr_def_sum16_amt_mtd,
+       fs.usr_def_sum16_amt_ytd,
+       fs.usr_def_sum16_amt_itd,
+       0 usr_def_sum17_amt_mtd,
+       fs.usr_def_sum17_amt_ytd,
+       fs.usr_def_sum17_amt_itd,
+       0 usr_def_sum18_amt_mtd,
+       fs.usr_def_sum18_amt_ytd,
+       fs.usr_def_sum18_amt_itd,
+       0 usr_def_sum19_amt_mtd,
+       fs.usr_def_sum19_amt_ytd,
+       fs.usr_def_sum19_amt_itd,
+       0 usr_def_sum20_amt_mtd,
+       fs.usr_def_sum20_amt_ytd,
+       fs.usr_def_sum20_amt_itd,
+       0 usr_def_sum21_amt_mtd,
+       fs.usr_def_sum21_amt_ytd,
+       fs.usr_def_sum21_amt_itd,
+       0 usr_def_sum22_amt_mtd,
+       fs.usr_def_sum22_amt_ytd,
+       fs.usr_def_sum22_amt_itd,
+       0 usr_def_sum23_amt_mtd,
+       fs.usr_def_sum23_amt_ytd,
+       fs.usr_def_sum23_amt_itd,
+       0 usr_def_sum24_amt_mtd,
+       fs.usr_def_sum24_amt_ytd,
+       fs.usr_def_sum24_amt_itd,
+       0 usr_def_sum25_amt_mtd,
+       fs.usr_def_sum25_amt_ytd,
+       fs.usr_def_sum25_amt_itd,
+       0 usr_def_sum26_amt_mtd,
+       fs.usr_def_sum26_amt_ytd,
+       fs.usr_def_sum26_amt_itd,
+       0 usr_def_sum27_amt_mtd,
+       fs.usr_def_sum27_amt_ytd,
+       fs.usr_def_sum27_amt_itd,
+       0 usr_def_sum28_amt_mtd,
+       fs.usr_def_sum28_amt_ytd,
+       fs.usr_def_sum28_amt_itd,
+       0 usr_def_sum29_amt_mtd,
+       fs.usr_def_sum29_amt_ytd,
+       fs.usr_def_sum29_amt_itd,
+       0 usr_def_sum30_amt_mtd,
+       fs.usr_def_sum30_amt_ytd,
+       fs.usr_def_sum30_amt_itd       
+FROM   Fact_Financialsummary fs,
+       Dim_Month             dm,
+       Vdim_Account1         va,
+       Dim_Policy            dp,
+       Dim_Coveredriskextension dcre,
+       Dim_Coverageextension dce,
+       Dim_Subaccount        dsa,
+       Dim_Claim             dc,
+       Dim_Invoice           di,
+       Dim_Financialgroup    dfg,
+       Dim_Financialterms    dft
+WHERE  fs.month_id = dm.month_id
+AND    fs.account1_id = va.ACCOUNT1_ID
+AND    fs.policy_id   = dp.policy_id
+AND    fs.primaryriskextension_id = dcre.coveredriskextension_id
+AND    fs.coverageextension_id = dce.coverageextension_id
+AND    fs.subaccount_id = dsa.subaccount_id
+AND    fs.claim_id = dc.claim_id
+AND    fs.invoice_id = di.invoice_id
+AND    fs.financialgroup_id = dfg.financialgroup_id
+AND    fs.financialterms_id = dft.financialterms_id
+AND    dm.month_id = ${priorMonth_id}
+;
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>468</xloc>
+      <yloc>76</yloc>
+    </entry>
+    <entry>
+      <name>Drop tmp_fs_trans_detail</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table tmp_fs_trans_detail purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>323</xloc>
+      <yloc>15</yloc>
+    </entry>
+    <entry>
+      <name>If exists tmp_fs_month_group</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>tmp_fs_month_group</tablename>
+      <schemaname/>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>468</xloc>
+      <yloc>199</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_fs_month_group</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_fs_month_group nologging PCTFREE 0 
+tablespace ${G_STAGING_DB_DATA}
+as
+SELECT ROWNUM sk_recordnum,
+       x.*
+FROM   (
+SELECT t.month_id,
+       t.period_month,
+       t.period_start_date,
+       t.period_end_date,
+       t.PRODUCT_ID,
+       t.TRANSACTIONISSUINGCOMPANY_ID,
+       t.BILLINGCOMPANY_ID,
+       t.BOOKEDTERMEFFECTIVEDATE_ID,
+       t.BOOKEDTERMEXPIRATIONDATE_ID,
+       t.TERRITORY_ID,
+       t.CLASSIFICATION_ID,
+       t.SUBPRODUCER_ID,
+       t.ACCOUNT2_ID,
+       t.ACCOUNT2EXTENSION_ID,
+       t.SUBACCOUNT_ID,
+       t.FINANCIALGROUP_ID,
+       t.FINANCIALTERMS_ID,
+       t.INVOICESTATUS_ID,
+       t.INVOICE_ID,
+       t.ACCOUNT1_UNIQUEID,
+       t.POL_UNIQUEID,
+       t.PRSK_UNIQUEID,
+       t.COV_UNIQUEID,
+       t.CLM_UNIQUEID,
+       SUM(t.wrtn_prem_amt) wrtn_prem_amt,
+       SUM(t.tax_amt) tax_amt,
+       SUM(t.fee_amt) fee_amt,
+       SUM(t.surchg_amt) surchg_amt,
+       SUM(t.paymnt_amt) paymnt_amt,
+       SUM(t.trnsfr_amt) trnsfr_amt,
+       SUM(t.comm_amt) comm_amt,
+       SUM(t.comm_paybl_amt) comm_paybl_amt,
+       SUM(t.writeoff_amt) writeoff_amt,
+       SUM(t.refund_amt) refund_amt,
+       SUM(t.cncl_refund_amt) cncl_refund_amt,
+       SUM(t.recvry_amt) recvry_amt,
+       SUM(t.divdnd_amt) divdnd_amt,
+       SUM(t.surpls_amt) surpls_amt,
+       SUM(t.bal_frwrd_amt) bal_frwrd_amt,
+       SUM(t.curr_bal_chng_amt) curr_bal_chng_amt,
+       SUM(t.futr_bal_chng_amt) futr_bal_chng_amt,
+       SUM(t.tot_rcvbl_amt) tot_rcvbl_amt,
+       SUM(USR_DEF_SUM1_AMT_MTD) USR_DEF_SUM1_AMT_MTD,
+       SUM(USR_DEF_SUM2_AMT_MTD) USR_DEF_SUM2_AMT_MTD,
+       SUM(USR_DEF_SUM3_AMT_MTD) USR_DEF_SUM3_AMT_MTD,
+       SUM(USR_DEF_SUM4_AMT_MTD) USR_DEF_SUM4_AMT_MTD,
+       SUM(USR_DEF_SUM5_AMT_MTD) USR_DEF_SUM5_AMT_MTD,
+       SUM(USR_DEF_SUM6_AMT_MTD) USR_DEF_SUM6_AMT_MTD,
+       SUM(USR_DEF_SUM7_AMT_MTD) USR_DEF_SUM7_AMT_MTD,
+       SUM(USR_DEF_SUM8_AMT_MTD) USR_DEF_SUM8_AMT_MTD,
+       SUM(USR_DEF_SUM9_AMT_MTD) USR_DEF_SUM9_AMT_MTD,
+       SUM(USR_DEF_SUM10_AMT_MTD) USR_DEF_SUM10_AMT_MTD,
+       SUM(USR_DEF_SUM11_AMT_MTD) USR_DEF_SUM11_AMT_MTD,
+       SUM(USR_DEF_SUM12_AMT_MTD) USR_DEF_SUM12_AMT_MTD,
+       SUM(USR_DEF_SUM13_AMT_MTD) USR_DEF_SUM13_AMT_MTD,
+       SUM(USR_DEF_SUM14_AMT_MTD) USR_DEF_SUM14_AMT_MTD,
+       SUM(USR_DEF_SUM15_AMT_MTD) USR_DEF_SUM15_AMT_MTD,
+       SUM(USR_DEF_SUM16_AMT_MTD) USR_DEF_SUM16_AMT_MTD,
+       SUM(USR_DEF_SUM17_AMT_MTD) USR_DEF_SUM17_AMT_MTD,
+       SUM(USR_DEF_SUM18_AMT_MTD) USR_DEF_SUM18_AMT_MTD,
+       SUM(USR_DEF_SUM19_AMT_MTD) USR_DEF_SUM19_AMT_MTD,
+       SUM(USR_DEF_SUM20_AMT_MTD) USR_DEF_SUM20_AMT_MTD,
+       SUM(USR_DEF_SUM21_AMT_MTD) USR_DEF_SUM21_AMT_MTD,
+       SUM(USR_DEF_SUM22_AMT_MTD) USR_DEF_SUM22_AMT_MTD,
+       SUM(USR_DEF_SUM23_AMT_MTD) USR_DEF_SUM23_AMT_MTD,
+       SUM(USR_DEF_SUM24_AMT_MTD) USR_DEF_SUM24_AMT_MTD,
+       SUM(USR_DEF_SUM25_AMT_MTD) USR_DEF_SUM25_AMT_MTD,
+       SUM(USR_DEF_SUM26_AMT_MTD) USR_DEF_SUM26_AMT_MTD,
+       SUM(USR_DEF_SUM27_AMT_MTD) USR_DEF_SUM27_AMT_MTD,
+       SUM(USR_DEF_SUM28_AMT_MTD) USR_DEF_SUM28_AMT_MTD,
+       SUM(USR_DEF_SUM29_AMT_MTD) USR_DEF_SUM29_AMT_MTD,
+       SUM(USR_DEF_SUM30_AMT_MTD) USR_DEF_SUM30_AMT_MTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.WRTN_PREM_AMT),SUM(t.WRTN_PREM_AMT)+SUM(t.WRTN_PREM_AMT_YTD)) WRTN_PREM_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.TAX_AMT),SUM(t.TAX_AMT)+SUM(t.TAX_AMT_YTD)) TAX_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.FEE_AMT),SUM(t.FEE_AMT)+SUM(t.FEE_AMT_YTD)) FEE_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.SURCHG_AMT),SUM(t.SURCHG_AMT)+SUM(t.SURCHG_AMT_YTD)) SURCHG_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.PAYMNT_AMT),SUM(t.PAYMNT_AMT)+SUM(t.PAYMNT_AMT_YTD)) PAYMNT_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.TRNSFR_AMT),SUM(t.TRNSFR_AMT)+SUM(t.TRNSFR_AMT_YTD)) TRNSFR_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.COMM_AMT),SUM(t.COMM_AMT)+SUM(t.COMM_AMT_YTD)) COMM_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.COMM_PAYBL_AMT),SUM(t.COMM_PAYBL_AMT)+SUM(t.COMM_PAYBL_AMT_YTD)) COMM_PAYBL_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.WRITEOFF_AMT),SUM(t.WRITEOFF_AMT)+SUM(t.WRITEOFF_AMT_YTD)) WRITEOFF_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.REFUND_AMT),SUM(t.REFUND_AMT)+SUM(t.REFUND_AMT_YTD)) REFUND_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.CNCL_REFUND_AMT),SUM(t.CNCL_REFUND_AMT)+SUM(t.CNCL_REFUND_AMT_YTD)) CNCL_REFUND_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.RECVRY_AMT),SUM(t.RECVRY_AMT)+SUM(t.RECVRY_AMT_YTD)) RECVRY_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.DIVDND_AMT),SUM(t.DIVDND_AMT)+SUM(t.DIVDND_AMT_YTD)) DIVDND_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.SURPLS_AMT),SUM(t.SURPLS_AMT)+SUM(t.SURPLS_AMT_YTD)) SURPLS_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.BAL_FRWRD_AMT),SUM(t.BAL_FRWRD_AMT)+SUM(t.BAL_FRWRD_AMT_YTD)) BAL_FRWRD_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.CURR_BAL_CHNG_AMT),SUM(t.CURR_BAL_CHNG_AMT)+SUM(t.CURR_BAL_CHNG_AMT_YTD)) CURR_BAL_CHNG_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.FUTR_BAL_CHNG_AMT),SUM(t.FUTR_BAL_CHNG_AMT)+SUM(t.FUTR_BAL_CHNG_AMT_YTD)) FUTR_BAL_CHNG_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.TOT_RCVBL_AMT),SUM(t.TOT_RCVBL_AMT)+SUM(t.TOT_RCVBL_AMT_YTD)) TOT_RCVBL_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM1_AMT_MTD),SUM(t.USR_DEF_SUM1_AMT_MTD)+SUM(t.USR_DEF_SUM1_AMT_YTD)) USR_DEF_SUM1_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM2_AMT_MTD),SUM(t.USR_DEF_SUM2_AMT_MTD)+SUM(t.USR_DEF_SUM2_AMT_YTD)) USR_DEF_SUM2_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM3_AMT_MTD),SUM(t.USR_DEF_SUM3_AMT_MTD)+SUM(t.USR_DEF_SUM3_AMT_YTD)) USR_DEF_SUM3_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM4_AMT_MTD),SUM(t.USR_DEF_SUM4_AMT_MTD)+SUM(t.USR_DEF_SUM4_AMT_YTD)) USR_DEF_SUM4_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM5_AMT_MTD),SUM(t.USR_DEF_SUM5_AMT_MTD)+SUM(t.USR_DEF_SUM5_AMT_YTD)) USR_DEF_SUM5_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM6_AMT_MTD),SUM(t.USR_DEF_SUM6_AMT_MTD)+SUM(t.USR_DEF_SUM6_AMT_YTD)) USR_DEF_SUM6_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM7_AMT_MTD),SUM(t.USR_DEF_SUM7_AMT_MTD)+SUM(t.USR_DEF_SUM7_AMT_YTD)) USR_DEF_SUM7_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM8_AMT_MTD),SUM(t.USR_DEF_SUM8_AMT_MTD)+SUM(t.USR_DEF_SUM8_AMT_YTD)) USR_DEF_SUM8_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM9_AMT_MTD),SUM(t.USR_DEF_SUM9_AMT_MTD)+SUM(t.USR_DEF_SUM9_AMT_YTD)) USR_DEF_SUM9_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM10_AMT_MTD),SUM(t.USR_DEF_SUM10_AMT_MTD)+SUM(t.USR_DEF_SUM10_AMT_YTD)) USR_DEF_SUM10_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM11_AMT_MTD),SUM(t.USR_DEF_SUM11_AMT_MTD)+SUM(t.USR_DEF_SUM11_AMT_YTD)) USR_DEF_SUM11_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM12_AMT_MTD),SUM(t.USR_DEF_SUM12_AMT_MTD)+SUM(t.USR_DEF_SUM12_AMT_YTD)) USR_DEF_SUM12_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM13_AMT_MTD),SUM(t.USR_DEF_SUM13_AMT_MTD)+SUM(t.USR_DEF_SUM13_AMT_YTD)) USR_DEF_SUM13_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM14_AMT_MTD),SUM(t.USR_DEF_SUM14_AMT_MTD)+SUM(t.USR_DEF_SUM14_AMT_YTD)) USR_DEF_SUM14_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM15_AMT_MTD),SUM(t.USR_DEF_SUM15_AMT_MTD)+SUM(t.USR_DEF_SUM15_AMT_YTD)) USR_DEF_SUM15_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM16_AMT_MTD),SUM(t.USR_DEF_SUM16_AMT_MTD)+SUM(t.USR_DEF_SUM16_AMT_YTD)) USR_DEF_SUM16_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM17_AMT_MTD),SUM(t.USR_DEF_SUM17_AMT_MTD)+SUM(t.USR_DEF_SUM17_AMT_YTD)) USR_DEF_SUM17_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM18_AMT_MTD),SUM(t.USR_DEF_SUM18_AMT_MTD)+SUM(t.USR_DEF_SUM18_AMT_YTD)) USR_DEF_SUM18_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM19_AMT_MTD),SUM(t.USR_DEF_SUM19_AMT_MTD)+SUM(t.USR_DEF_SUM19_AMT_YTD)) USR_DEF_SUM19_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM20_AMT_MTD),SUM(t.USR_DEF_SUM20_AMT_MTD)+SUM(t.USR_DEF_SUM20_AMT_YTD)) USR_DEF_SUM20_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM21_AMT_MTD),SUM(t.USR_DEF_SUM21_AMT_MTD)+SUM(t.USR_DEF_SUM21_AMT_YTD)) USR_DEF_SUM21_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM22_AMT_MTD),SUM(t.USR_DEF_SUM22_AMT_MTD)+SUM(t.USR_DEF_SUM22_AMT_YTD)) USR_DEF_SUM22_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM23_AMT_MTD),SUM(t.USR_DEF_SUM23_AMT_MTD)+SUM(t.USR_DEF_SUM23_AMT_YTD)) USR_DEF_SUM23_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM24_AMT_MTD),SUM(t.USR_DEF_SUM24_AMT_MTD)+SUM(t.USR_DEF_SUM24_AMT_YTD)) USR_DEF_SUM24_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM25_AMT_MTD),SUM(t.USR_DEF_SUM25_AMT_MTD)+SUM(t.USR_DEF_SUM25_AMT_YTD)) USR_DEF_SUM25_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM26_AMT_MTD),SUM(t.USR_DEF_SUM26_AMT_MTD)+SUM(t.USR_DEF_SUM26_AMT_YTD)) USR_DEF_SUM26_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM27_AMT_MTD),SUM(t.USR_DEF_SUM27_AMT_MTD)+SUM(t.USR_DEF_SUM27_AMT_YTD)) USR_DEF_SUM27_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM28_AMT_MTD),SUM(t.USR_DEF_SUM28_AMT_MTD)+SUM(t.USR_DEF_SUM28_AMT_YTD)) USR_DEF_SUM28_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM29_AMT_MTD),SUM(t.USR_DEF_SUM29_AMT_MTD)+SUM(t.USR_DEF_SUM29_AMT_YTD)) USR_DEF_SUM29_AMT_YTD,
+       DECODE(T.PERIOD_MONTH,1,SUM(t.USR_DEF_SUM30_AMT_MTD),SUM(t.USR_DEF_SUM30_AMT_MTD)+SUM(t.USR_DEF_SUM30_AMT_YTD)) USR_DEF_SUM30_AMT_YTD,
+       SUM(t.WRTN_PREM_AMT)+SUM(t.WRTN_PREM_AMT_ITD) WRTN_PREM_AMT_ITD,
+       SUM(t.TAX_AMT)+SUM(t.TAX_AMT_ITD) TAX_AMT_ITD,
+       SUM(t.FEE_AMT)+SUM(t.FEE_AMT_ITD) FEE_AMT_ITD,
+       SUM(t.SURCHG_AMT)+SUM(t.SURCHG_AMT_ITD) SURCHG_AMT_ITD,
+       SUM(t.PAYMNT_AMT)+SUM(t.PAYMNT_AMT_ITD) PAYMNT_AMT_ITD,
+       SUM(t.TRNSFR_AMT)+SUM(t.TRNSFR_AMT_ITD) TRNSFR_AMT_ITD,
+       SUM(t.COMM_AMT)+SUM(t.COMM_AMT_ITD) COMM_AMT_ITD,
+       SUM(t.COMM_PAYBL_AMT)+SUM(t.COMM_PAYBL_AMT_ITD) COMM_PAYBL_AMT_ITD,
+       SUM(t.WRITEOFF_AMT)+SUM(t.WRITEOFF_AMT_ITD) WRITEOFF_AMT_ITD,
+       SUM(t.REFUND_AMT)+SUM(t.REFUND_AMT_ITD) REFUND_AMT_ITD,
+       SUM(t.CNCL_REFUND_AMT)+SUM(t.CNCL_REFUND_AMT_ITD) CNCL_REFUND_AMT_ITD,
+       SUM(t.RECVRY_AMT)+SUM(t.RECVRY_AMT_ITD) RECVRY_AMT_ITD,
+       SUM(t.DIVDND_AMT)+SUM(t.DIVDND_AMT_ITD) DIVDND_AMT_ITD,
+       SUM(t.SURPLS_AMT)+SUM(t.SURPLS_AMT_ITD) SURPLS_AMT_ITD,
+       SUM(t.BAL_FRWRD_AMT)+SUM(t.BAL_FRWRD_AMT_ITD) BAL_FRWRD_AMT_ITD,
+       SUM(t.CURR_BAL_CHNG_AMT)+SUM(t.CURR_BAL_CHNG_AMT_ITD) CURR_BAL_CHNG_AMT_ITD,
+       SUM(t.FUTR_BAL_CHNG_AMT)+SUM(t.FUTR_BAL_CHNG_AMT_ITD) FUTR_BAL_CHNG_AMT_ITD,
+       SUM(t.TOT_RCVBL_AMT)+SUM(t.TOT_RCVBL_AMT_ITD) TOT_RCVBL_AMT_ITD,
+       SUM(t.USR_DEF_SUM1_AMT_MTD)+SUM(t.USR_DEF_SUM1_AMT_ITD) USR_DEF_SUM1_AMT_ITD,
+       SUM(t.USR_DEF_SUM2_AMT_MTD)+SUM(t.USR_DEF_SUM2_AMT_ITD) USR_DEF_SUM2_AMT_ITD,
+       SUM(t.USR_DEF_SUM3_AMT_MTD)+SUM(t.USR_DEF_SUM3_AMT_ITD) USR_DEF_SUM3_AMT_ITD,
+       SUM(t.USR_DEF_SUM4_AMT_MTD)+SUM(t.USR_DEF_SUM4_AMT_ITD) USR_DEF_SUM4_AMT_ITD,
+       SUM(t.USR_DEF_SUM5_AMT_MTD)+SUM(t.USR_DEF_SUM5_AMT_ITD) USR_DEF_SUM5_AMT_ITD,
+       SUM(t.USR_DEF_SUM6_AMT_MTD)+SUM(t.USR_DEF_SUM6_AMT_ITD) USR_DEF_SUM6_AMT_ITD,
+       SUM(t.USR_DEF_SUM7_AMT_MTD)+SUM(t.USR_DEF_SUM7_AMT_ITD) USR_DEF_SUM7_AMT_ITD,
+       SUM(t.USR_DEF_SUM8_AMT_MTD)+SUM(t.USR_DEF_SUM8_AMT_ITD) USR_DEF_SUM8_AMT_ITD,
+       SUM(t.USR_DEF_SUM9_AMT_MTD)+SUM(t.USR_DEF_SUM9_AMT_ITD) USR_DEF_SUM9_AMT_ITD,
+       SUM(t.USR_DEF_SUM10_AMT_MTD)+SUM(t.USR_DEF_SUM10_AMT_ITD) USR_DEF_SUM10_AMT_ITD,
+       SUM(t.USR_DEF_SUM11_AMT_MTD)+SUM(t.USR_DEF_SUM11_AMT_ITD) USR_DEF_SUM11_AMT_ITD,
+       SUM(t.USR_DEF_SUM12_AMT_MTD)+SUM(t.USR_DEF_SUM12_AMT_ITD) USR_DEF_SUM12_AMT_ITD,
+       SUM(t.USR_DEF_SUM13_AMT_MTD)+SUM(t.USR_DEF_SUM13_AMT_ITD) USR_DEF_SUM13_AMT_ITD,
+       SUM(t.USR_DEF_SUM14_AMT_MTD)+SUM(t.USR_DEF_SUM14_AMT_ITD) USR_DEF_SUM14_AMT_ITD,
+       SUM(t.USR_DEF_SUM15_AMT_MTD)+SUM(t.USR_DEF_SUM15_AMT_ITD) USR_DEF_SUM15_AMT_ITD,
+       SUM(t.USR_DEF_SUM16_AMT_MTD)+SUM(t.USR_DEF_SUM16_AMT_ITD) USR_DEF_SUM16_AMT_ITD,
+       SUM(t.USR_DEF_SUM17_AMT_MTD)+SUM(t.USR_DEF_SUM17_AMT_ITD) USR_DEF_SUM17_AMT_ITD,
+       SUM(t.USR_DEF_SUM18_AMT_MTD)+SUM(t.USR_DEF_SUM18_AMT_ITD) USR_DEF_SUM18_AMT_ITD,
+       SUM(t.USR_DEF_SUM19_AMT_MTD)+SUM(t.USR_DEF_SUM19_AMT_ITD) USR_DEF_SUM19_AMT_ITD,
+       SUM(t.USR_DEF_SUM20_AMT_MTD)+SUM(t.USR_DEF_SUM20_AMT_ITD) USR_DEF_SUM20_AMT_ITD,
+       SUM(t.USR_DEF_SUM21_AMT_MTD)+SUM(t.USR_DEF_SUM21_AMT_ITD) USR_DEF_SUM21_AMT_ITD,
+       SUM(t.USR_DEF_SUM22_AMT_MTD)+SUM(t.USR_DEF_SUM22_AMT_ITD) USR_DEF_SUM22_AMT_ITD,
+       SUM(t.USR_DEF_SUM23_AMT_MTD)+SUM(t.USR_DEF_SUM23_AMT_ITD) USR_DEF_SUM23_AMT_ITD,
+       SUM(t.USR_DEF_SUM24_AMT_MTD)+SUM(t.USR_DEF_SUM24_AMT_ITD) USR_DEF_SUM24_AMT_ITD,
+       SUM(t.USR_DEF_SUM25_AMT_MTD)+SUM(t.USR_DEF_SUM25_AMT_ITD) USR_DEF_SUM25_AMT_ITD,
+       SUM(t.USR_DEF_SUM26_AMT_MTD)+SUM(t.USR_DEF_SUM26_AMT_ITD) USR_DEF_SUM26_AMT_ITD,
+       SUM(t.USR_DEF_SUM27_AMT_MTD)+SUM(t.USR_DEF_SUM27_AMT_ITD) USR_DEF_SUM27_AMT_ITD,
+       SUM(t.USR_DEF_SUM28_AMT_MTD)+SUM(t.USR_DEF_SUM28_AMT_ITD) USR_DEF_SUM28_AMT_ITD,
+       SUM(t.USR_DEF_SUM29_AMT_MTD)+SUM(t.USR_DEF_SUM29_AMT_ITD) USR_DEF_SUM29_AMT_ITD,
+       SUM(t.USR_DEF_SUM30_AMT_MTD)+SUM(t.USR_DEF_SUM30_AMT_ITD) USR_DEF_SUM30_AMT_ITD
+FROM   tmp_fs_trans_detail t
+GROUP  BY t.month_id,
+       t.period_month,
+       t.period_start_date,
+       t.period_end_date,
+       t.PRODUCT_ID,
+       t.TRANSACTIONISSUINGCOMPANY_ID,
+       t.BILLINGCOMPANY_ID,
+       t.BOOKEDTERMEFFECTIVEDATE_ID,
+       t.BOOKEDTERMEXPIRATIONDATE_ID,
+       t.TERRITORY_ID,
+       t.CLASSIFICATION_ID,
+       t.SUBPRODUCER_ID,
+       t.ACCOUNT2_ID,
+       t.ACCOUNT2EXTENSION_ID,
+       t.SUBACCOUNT_ID,
+       t.FINANCIALGROUP_ID,
+       t.FINANCIALTERMS_ID,
+       t.INVOICESTATUS_ID,
+       t.INVOICE_ID,
+       t.account1_uniqueid,
+       t.POL_UNIQUEID,
+       t.PRSK_UNIQUEID,
+       t.COV_UNIQUEID,
+       t.CLM_UNIQUEID) x;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>722</xloc>
+      <yloc>199</yloc>
+    </entry>
+    <entry>
+      <name>Drop tmp_fs_month_group</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table tmp_fs_month_group purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>577</xloc>
+      <yloc>138</yloc>
+    </entry>
+    <entry>
+      <name>If exists tmp_fs_month_group_ids</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>tmp_fs_month_group_ids</tablename>
+      <schemaname/>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>722</xloc>
+      <yloc>322</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_fs_month_group_ids</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_fs_month_group_ids nologging PCTFREE 0 
+tablespace ${G_STAGING_DB_DATA}
+as
+SELECT g.sk_recordnum,
+       g.period_start_date,
+       g.period_end_date,
+       g.product_id,
+       g.transactionissuingcompany_id,
+       g.billingcompany_id,
+       g.bookedtermeffectivedate_id,
+       g.bookedtermexpirationdate_id,
+       g.territory_id,
+       g.classification_id,
+       g.subproducer_id,
+       g.subaccount_id,
+       g.financialgroup_id,
+       g.financialterms_id,
+       g.invoicestatus_id,
+       g.invoice_id,
+       g.account1_uniqueid,
+       g.pol_uniqueid,
+       g.prsk_uniqueid,
+       g.cov_uniqueid,
+       g.clm_uniqueid
+FROM   tmp_fs_month_group g;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>977</xloc>
+      <yloc>322</yloc>
+    </entry>
+    <entry>
+      <name>Drop tmp_fs_month_group_ids</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table tmp_fs_month_group_ids purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>832</xloc>
+      <yloc>261</yloc>
+    </entry>
+  </entries>
+  <hops>
+    <hop>
+      <from>START</from>
+      <to>If exists tmp_fs_trans_detail</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_fs_trans_detail</from>
+      <to>Drop tmp_fs_trans_detail</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop tmp_fs_trans_detail</from>
+      <to>Create tmp_fs_trans_detail</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_fs_trans_detail</from>
+      <to>Create tmp_fs_trans_detail</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create tmp_fs_trans_detail</from>
+      <to>If exists tmp_fs_month_group</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_fs_month_group</from>
+      <to>Drop tmp_fs_month_group</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop tmp_fs_month_group</from>
+      <to>Create tmp_fs_month_group</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_fs_month_group</from>
+      <to>Create tmp_fs_month_group</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create tmp_fs_month_group</from>
+      <to>If exists tmp_fs_month_group_ids</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_fs_month_group_ids</from>
+      <to>Drop tmp_fs_month_group_ids</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop tmp_fs_month_group_ids</from>
+      <to>Create tmp_fs_month_group_ids</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_fs_month_group_ids</from>
+      <to>Create tmp_fs_month_group_ids</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+  </hops>
+  <notepads>
+  </notepads>
+</job>

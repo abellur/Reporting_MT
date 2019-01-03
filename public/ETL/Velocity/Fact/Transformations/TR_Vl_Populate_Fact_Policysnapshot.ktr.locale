@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:26 EST 2019
+file.title=TR_Vl_Populate_Fact_Policysnapshot
+description=Transformation to insert data into FACT_POLICYSNAPSHOT
+title=TR_Vl_Populate_Fact_Policysnapshot
+file.description=Transformation to insert data into FACT_POLICYSNAPSHOT

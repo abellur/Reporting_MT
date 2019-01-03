@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:00 EST 2019
+file.title=TR_Populate_Premium_Delta
+description=Transformation to call Calc_Prem_Delta procedure to populate premium delta data for legacy policies.
+title=TR_Populate_Premium_Delta
+file.description=Transformation to call Calc_Prem_Delta procedure to populate premium delta data for legacy policies.

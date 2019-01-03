@@ -1,0 +1,3335 @@
+<transformation>
+  <info>
+    <name>TR_Extract_STG_Claim_Transaction</name>
+    <description/>
+    <extended_description>Date       By    Description
+07/24/2015 Jma   Updated for issue 164111.</extended_description>
+    <trans_version/>
+    <trans_type>Normal</trans_type>
+    <trans_status>1</trans_status>
+    <directory>/public/ETL/OLTP_To_Staging/Transformations</directory>
+    <parameters>
+    </parameters>
+    <log>
+      <trans-log-table>
+        <connection>DW_LOG_Link</connection>
+        <schema/>
+        <table>${G_DB_TR_LOG_TABLE}</table>
+        <size_limit_lines/>
+        <interval/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STATUS</id>
+          <enabled>Y</enabled>
+          <name>STATUS</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+          <subject/>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>STARTDATE</id>
+          <enabled>Y</enabled>
+          <name>STARTDATE</name>
+        </field>
+        <field>
+          <id>ENDDATE</id>
+          <enabled>Y</enabled>
+          <name>ENDDATE</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>DEPDATE</id>
+          <enabled>Y</enabled>
+          <name>DEPDATE</name>
+        </field>
+        <field>
+          <id>REPLAYDATE</id>
+          <enabled>Y</enabled>
+          <name>REPLAYDATE</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>Y</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+        <field>
+          <id>EXECUTING_SERVER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_SERVER</name>
+        </field>
+        <field>
+          <id>EXECUTING_USER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_USER</name>
+        </field>
+        <field>
+          <id>CLIENT</id>
+          <enabled>N</enabled>
+          <name>CLIENT</name>
+        </field>
+      </trans-log-table>
+      <perf-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <interval/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>SEQ_NR</id>
+          <enabled>Y</enabled>
+          <name>SEQ_NR</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>INPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>INPUT_BUFFER_ROWS</name>
+        </field>
+        <field>
+          <id>OUTPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>OUTPUT_BUFFER_ROWS</name>
+        </field>
+      </perf-log-table>
+      <channel-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>LOGGING_OBJECT_TYPE</id>
+          <enabled>Y</enabled>
+          <name>LOGGING_OBJECT_TYPE</name>
+        </field>
+        <field>
+          <id>OBJECT_NAME</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_NAME</name>
+        </field>
+        <field>
+          <id>OBJECT_COPY</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_COPY</name>
+        </field>
+        <field>
+          <id>REPOSITORY_DIRECTORY</id>
+          <enabled>Y</enabled>
+          <name>REPOSITORY_DIRECTORY</name>
+        </field>
+        <field>
+          <id>FILENAME</id>
+          <enabled>Y</enabled>
+          <name>FILENAME</name>
+        </field>
+        <field>
+          <id>OBJECT_ID</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_ID</name>
+        </field>
+        <field>
+          <id>OBJECT_REVISION</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_REVISION</name>
+        </field>
+        <field>
+          <id>PARENT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>PARENT_CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>ROOT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>ROOT_CHANNEL_ID</name>
+        </field>
+      </channel-log-table>
+      <step-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>N</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+      </step-log-table>
+      <metrics-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_DATE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_CODE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_CODE</name>
+        </field>
+        <field>
+          <id>METRICS_DESCRIPTION</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DESCRIPTION</name>
+        </field>
+        <field>
+          <id>METRICS_SUBJECT</id>
+          <enabled>Y</enabled>
+          <name>METRICS_SUBJECT</name>
+        </field>
+        <field>
+          <id>METRICS_TYPE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_TYPE</name>
+        </field>
+        <field>
+          <id>METRICS_VALUE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_VALUE</name>
+        </field>
+      </metrics-log-table>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+      <slaveserver>
+        <name>4Sight BI - PDI Server</name>
+        <hostname>10.0.0.21</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>joe</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Carte 1</name>
+        <hostname>localhost</hostname>
+        <port>9081</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>DI Server</name>
+        <hostname>localhost</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>joe</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_DEV</name>
+        <hostname>magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>shota</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_SERVER</name>
+        <hostname>http://magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>shota</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_TEST</name>
+        <hostname>magspentahotest</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO</name>
+        <hostname>magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO_BTS</name>
+        <hostname>129.144.25.104</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO_DEV</name>
+        <hostname>magspentahodev</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Master</name>
+        <hostname>localhost</hostname>
+        <port>8081</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SERVER1</name>
+        <hostname>LOCALHOST</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SLAVE ONE</name>
+        <hostname>192.168.2.101</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4a418bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SLAVE TWO</name>
+        <hostname>192.168.2.101</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave1</name>
+        <hostname>localhost</hostname>
+        <port>8082</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave2</name>
+        <hostname>localhost</hostname>
+        <port>8083</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave3</name>
+        <hostname>localhost</hostname>
+        <port>8084</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>local DIS</name>
+        <hostname>localhost</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>magspentahodev</name>
+        <hostname>magspentahodev</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+    </slaveservers>
+    <clusterschemas>
+      <clusterschema>
+        <name>4sbi_admin</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+        </slaveservers>
+      </clusterschema>
+      <clusterschema>
+        <name>ClusterSchema</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+          <name>Slave3</name>
+          <name>Slave2</name>
+          <name>Slave1</name>
+          <name>Master</name>
+        </slaveservers>
+      </clusterschema>
+      <clusterschema>
+        <name>cluster A</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+          <name>Carte 1</name>
+          <name>local DIS</name>
+        </slaveservers>
+      </clusterschema>
+    </clusterschemas>
+    <created_user>joe</created_user>
+    <created_date>2014/04/04 09:30:20.468</created_date>
+    <modified_user>-</modified_user>
+    <modified_date>2017/08/25 17:12:24.535</modified_date>
+    <key_for_session_key/>
+    <is_key_private>N</is_key_private>
+  </info>
+  <notepads>
+    <notepad>
+      <note>Developer Notes:
+Date            By      Desc
+02/21/2012  hxk     Initial version 
+
+1)   Get any txn keys were we had any data changes
+2)   Get transaction data for the keys
+3)   Get batch data for the txn if appropriate
+4)   Get invoice info for the txn if appropriate
+5)   Get base keys for the transaction
+6)   Get payment info for the txn if appropriate 
+7)   Translate the claimant/claim_insured/cix keys to a feature key
+8)   Get the change effective date which is the greatest update time for 
+      the "source" of the data change 
+9)  Output this all to the stg_claimTransaction table.</note>
+      <xloc>692</xloc>
+      <yloc>0</yloc>
+      <width>553</width>
+      <heigth>284</heigth>
+      <fontname>Arial</fontname>
+      <fontsize>10</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>128</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+  </notepads>
+  <connection>
+    <name>4SBI_Staging</name>
+    <server>${G_STAGING_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_STAGING_DB_NAME}</database>
+    <port>${G_STAGING_DB_PORT}</port>
+    <username>${G_STAGING_DB_USERNAME}</username>
+    <password>${G_STAGING_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_STAGING_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_STAGING_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_STAGING_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>Delphi_OLTP</name>
+    <server>${G_OLTP_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_OLTP_DB_NAME}</database>
+    <port>${G_OLTP_DB_PORT}</port>
+    <username>${G_OLTP_DB_USERNAME}</username>
+    <password>${G_OLTP_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_OLTP_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_OLTP_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_OLTP_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>DW_Log_Link</name>
+    <server>${G_LOG_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_LOG_DB_NAME}</database>
+    <port>${G_LOG_DB_PORT}</port>
+    <username>${G_LOG_DB_USERNAME}</username>
+    <password>${G_LOG_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_LOG_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_LOG_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_LOG_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <order>
+    <hop>
+      <from>get batch info</from>
+      <to>Get Invoice Info</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Invoice Info</from>
+      <to>Add constants</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>get term base  fk</from>
+      <to>get risk base</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>get risk base</from>
+      <to>get coverage base</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Load refresh date</from>
+      <to>If field value is null</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Property Vars</from>
+      <to>Add constants 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>If field value is null</from>
+      <to>Get Property Vars</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Add constants</from>
+      <to>get term base  fk</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Build File Version</from>
+      <to>Get keys </to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get keys </from>
+      <to>Get claim trans data</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Feature Uniqueids</from>
+      <to>Get Change Eff Date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get claim trans data</from>
+      <to>get batch info</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get CM Payment Info</from>
+      <to>Get Feature Uniqueids</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Change Eff Date</from>
+      <to>Sequence (stgclaimtransaction_id)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sequence (stgclaimtransaction_id)</from>
+      <to>Claim Transaction</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Add constants 2</from>
+      <to>Check if we have CM_PAYMENT_FK</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Check if we have CM_PAYMENT_FK</from>
+      <to>Build File Version</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>get coverage base</from>
+      <to>Switch/Case - CM_PAYMENT_FK</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch/Case - CM_PAYMENT_FK</from>
+      <to>Get CM Payment Info</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch/Case - CM_PAYMENT_FK</from>
+      <to>Get CM Payment Info 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get CM Payment Info 2</from>
+      <to>Get Feature Uniqueids</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <step>
+    <name>Add constants</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>file_version</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>3.0CT</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>source_system</name>
+        <type>string</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>OASIS</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>481</xloc>
+      <yloc>39</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Add constants 2</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>file_code</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>CT</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>source_system</name>
+        <type>string</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>OASIS</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>c_cm_payment_fk</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>CM_PAYMENT_FK</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>154</xloc>
+      <yloc>370</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Build File Version</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <calculation>
+      <field_name>file_version</field_name>
+      <calc_type>ADD</calc_type>
+      <field_a>version_number</field_a>
+      <field_b>file_code</field_b>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>154</xloc>
+      <yloc>613</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Check if we have CM_PAYMENT_FK</name>
+    <type>ColumnExists</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <tablename>cm_trans_status_history</tablename>
+    <schemaname/>
+    <istablenameInfield>N</istablenameInfield>
+    <tablenamefield/>
+    <columnnamefield>c_cm_payment_fk</columnnamefield>
+    <resultfieldname>result</resultfieldname>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>154</xloc>
+      <yloc>469</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Claim Transaction</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>4SBI_Staging</connection>
+    <schema/>
+    <table>stg_claimtransaction</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>N</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>STGCLAIMTRANSACTION_ID</column_name>
+        <stream_name>STGCLAIMTRANSACTION_ID</stream_name>
+      </field>
+      <field>
+        <column_name>FILE_VERSION</column_name>
+        <stream_name>file_version</stream_name>
+      </field>
+      <field>
+        <column_name>SOURCE_SYSTEM</column_name>
+        <stream_name>source_system</stream_name>
+      </field>
+      <field>
+        <column_name>EXTRACT_DATE</column_name>
+        <stream_name>CURRENT_REFRESH_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>CT_SEQUENCE</column_name>
+        <stream_name>CT_SEQUENCE</stream_name>
+      </field>
+      <field>
+        <column_name>CT_TRANSACTIONDATE</column_name>
+        <stream_name>MMCT_TRANS_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>CT_ACCOUNTINGDATE</column_name>
+        <stream_name>CT_ACCOUNTINGDATE</stream_name>
+      </field>
+      <field>
+        <column_name>CT_TYPECODE</column_name>
+        <stream_name>CT_TYPECODE</stream_name>
+      </field>
+      <field>
+        <column_name>CT_SUBTYPECODE</column_name>
+        <stream_name>CT_SUBTYPECODE</stream_name>
+      </field>
+      <field>
+        <column_name>CT_AMOUNT</column_name>
+        <stream_name>CT_AMOUNT</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_TRANS_STATUS_DESC</column_name>
+        <stream_name>MMCT_TRANS_STATUS_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_TRANS_STATUS_DATE</column_name>
+        <stream_name>MMCT_TRANS_STATUS_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_TRANS_APPROVED_DATE</column_name>
+        <stream_name>MMCT_TRANS_APPROVED_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_BATCH_TYPE_CODE</column_name>
+        <stream_name>MMCT_BATCH_TYPE_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_BATCH_TYPE_DESC</column_name>
+        <stream_name>MMCT_BATCH_TYPE_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_BATCH_STATUS_CODE</column_name>
+        <stream_name>MMCT_BATCH_STATUS_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_BATCH_STATUS_DESC</column_name>
+        <stream_name>MMCT_BATCH_STATUS_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_BATCH_ENTRY_DATE</column_name>
+        <stream_name>MMCT_BATCH_ENTRY_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_BATCH_ACCOUNTING_DATE</column_name>
+        <stream_name>MMCT_BATCH_ACCOUNTING_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_BATCH_APPROVAL_DATE</column_name>
+        <stream_name>MMCT_BATCH_APPROVAL_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_BATCH_APPROVED_BY</column_name>
+        <stream_name>MMCT_BATCH_APPROVED_BY</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_BATCH_BRANCH_OFFICE_CODE</column_name>
+        <stream_name>MMCT_BATCH_BRANCH_OFFICE_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_BATCH_BRANCH_OFFICE_DESC</column_name>
+        <stream_name>MMCT_BATCH_BRANCH_OFFICE_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_BATCH_TOT_AMT</column_name>
+        <stream_name>MMCT_BATCH_TOT_AMT</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_BATCH_TOT_QTY</column_name>
+        <stream_name>MMCT_BATCH_TOT_QTY</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_BATCH_SOURCE</column_name>
+        <stream_name>MMCT_BATCH_SOURCE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_INVOICE_NO</column_name>
+        <stream_name>MMCT_INVOICE_NO</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_INVOICE_DATE</column_name>
+        <stream_name>MMCT_INVOICE_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_INVOICE_AMT</column_name>
+        <stream_name>MMCT_INVOICE_AMT</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_INVOICE_SOURCE</column_name>
+        <stream_name>MMCT_INVOICE_SOURCE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PAYEE_NAME</column_name>
+        <stream_name>MMCT_PAYEE_NAME</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PAYEE_UNIQUEID</column_name>
+        <stream_name>MMCT_PAYEE_UNIQUEID</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_INVOICE_RECEIVE_DATE</column_name>
+        <stream_name>MMCT_INVOICE_RECEIVE_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_INVOICE_ACCOUNTING_DATE</column_name>
+        <stream_name>MMCT_INVOICE_ACCOUNTING_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_INVOICE_COST_TYPE_CODE</column_name>
+        <stream_name>MMCT_INVOICE_COST_TYPE_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_INVOICE_COST_TYPE_DESC</column_name>
+        <stream_name>MMCT_INVOICE_COST_TYPE_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_INVOICE_DENIED_AMT</column_name>
+        <stream_name>MMCT_INVOICE_DENIED_AMT</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_INVOICE_SEQUENCE_NO</column_name>
+        <stream_name>MMCT_INVOICE_SEQUENCE_NO</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_INVIOCE_INVOICER_UNIQUEID</column_name>
+        <stream_name>MMCT_INVIOCE_INVOICER_UNIQUEID</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PMT_TYPE_DESC</column_name>
+        <stream_name>MMCT_PMT_TYPE_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_CM_COST_TYPE_DESC</column_name>
+        <stream_name>MMCT_COST_TYPE_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_CM_COST_TYPE_CODE</column_name>
+        <stream_name>MMCT_COST_TYPE_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_COMMENTS</column_name>
+        <stream_name>MMCT_COMMENTS</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_CPT_CODE1</column_name>
+        <stream_name>MMCT_CPT_CODE1</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_CPT_CODE2</column_name>
+        <stream_name>MMCT_CPT_CODE2</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_CPT_CODE3</column_name>
+        <stream_name>MMCT_CPT_CODE3</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_CPT_CODE4</column_name>
+        <stream_name>MMCT_CPT_CODE4</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_RATE</column_name>
+        <stream_name>MMCT_RATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_QUANTITY</column_name>
+        <stream_name>MMCT_QUANTITY</stream_name>
+      </field>
+      <field>
+        <column_name>CLAIM_UNIQUEID</column_name>
+        <stream_name>claim_key</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PMT_PMT_TYPE_CODE</column_name>
+        <stream_name>MMCT_PMT_PMT_TYPE_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PMT_PMT_TYPE_DESC</column_name>
+        <stream_name>MMCT_PMT_PMT_TYPE_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PMT_NO</column_name>
+        <stream_name>MMCT_PMT_NUMBER</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PMT_STATUS_CODE</column_name>
+        <stream_name>MMCT_PMT_PMT_STATUS_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PMT_STATUS_DESC</column_name>
+        <stream_name>MMCT_PMT_PMT_STATUS_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PMT_STATUS_DATE</column_name>
+        <stream_name>MMCT_PMT_STATUS_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PMT_AMOUNT</column_name>
+        <stream_name>MMCT_PMT_AMOUNT</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PMT_NAME</column_name>
+        <stream_name>MMCT_PMT_PAYEE_NAME</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PMT_PAYEE_BNK_ACCT_NO</column_name>
+        <stream_name>MMCT_PMT_PAYEE_BNK_ACCT_NO</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PMT_BNK_RTE_NO</column_name>
+        <stream_name>MMCT_PMT_PAYEE_BNK_RTE_NO</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PMT_REQUEST_DATE</column_name>
+        <stream_name>MMCT_PMT_REQUEST_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PMT_CUT_DATE</column_name>
+        <stream_name>MMCT_PMT_CUT_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PMT_ACCPT_DATE</column_name>
+        <stream_name>MMCT_PMT_ACCEPT_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PMT_ADDR1</column_name>
+        <stream_name>MMCT_PMT_ADDR1</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PMT_ADDR2</column_name>
+        <stream_name>MMCT_PMT_ADDR2</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PMT_CITY</column_name>
+        <stream_name>MMCT_PMT_CITY</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PMT_STATE</column_name>
+        <stream_name>MMCT_PMT_STATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PMT_ZIP</column_name>
+        <stream_name>MMCT_PMT_ZIP</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PMT_COUNTRY</column_name>
+        <stream_name>MMCT_PMT_COUNTRY</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PMT_BNK_ACCT_NO</column_name>
+        <stream_name>MMCT_PMT_BNK_ACCT_NO</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PMT_STOPVOID_REASON</column_name>
+        <stream_name>MMCT_PMT_STOPVOID_REASON</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PMT_STOPVOID_ACTION</column_name>
+        <stream_name>MMCT_PMT_STOPVOID_ACTION</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PMT_REISSUED</column_name>
+        <stream_name>MMCT_PMT_REISSUED</stream_name>
+      </field>
+      <field>
+        <column_name>CT_TRANSACTIONFLAG</column_name>
+        <stream_name>CT_TRANSACTIONFLAG</stream_name>
+      </field>
+      <field>
+        <column_name>CLAIMTRANSACTION_UNIQUEID</column_name>
+        <stream_name>CLAIMTRANSACTION_UNIQUEID</stream_name>
+      </field>
+      <field>
+        <column_name>PAYEE_UNIQUEID</column_name>
+        <stream_name>PAYEE_UNIQUEID</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_INVOICE_INV_QTY</column_name>
+        <stream_name>MMCT_INVOICE_QTY</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_INVOICE_DUE_DATE</column_name>
+        <stream_name>MMCT_INVOICE_DUE_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_CM_BATCH_NO</column_name>
+        <stream_name>MMCT_BATCH_NO</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_INVOICE_INVOICER_NAME</column_name>
+        <stream_name>MMCT_INVOICER_NAME</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_TRANS_UNIQUEID</column_name>
+        <stream_name>MMCT_TRANSACTION_UNQIUEID</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_TRANS_AMT</column_name>
+        <stream_name>MMCT_TRANS_AMT</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PAYEE_TAX_ID</column_name>
+        <stream_name>MMCT_PAYEE_TAX_ID</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PAYEE_TAX_ID_TYPE</column_name>
+        <stream_name>MMCT_PAYEE_TAX_ID_TYPE</stream_name>
+      </field>
+      <field>
+        <column_name>CT_TRANSACTIONSTATUS</column_name>
+        <stream_name>MMCT_TRANS_STATUS_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_PMT_TYPE_CODE</column_name>
+        <stream_name>MMCT_PMT_TYPE_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>LOADDATE</column_name>
+        <stream_name>LOADDATE</stream_name>
+      </field>
+      <field>
+        <column_name>CT_CHANGEEFFECTIVEDATE</column_name>
+        <stream_name>CT_CHANGEEFFECTIVEDATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_TRANS_CATEGORY</column_name>
+        <stream_name>MMCT_TRANS_CATEGORY</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_SYS_CREATE_TIME</column_name>
+        <stream_name>MMCT_SYS_CREATE_TIME</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_SYS_UPDATE_TIME</column_name>
+        <stream_name>MMCT_SYS_UPDATE_TIME</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_SYS_CREATED_BY</column_name>
+        <stream_name>MMCT_SYS_CREATED_BY</stream_name>
+      </field>
+      <field>
+        <column_name>MMCT_SYS_UPDATED_BY</column_name>
+        <stream_name>MMCT_SYS_UPDATED_BY</stream_name>
+      </field>
+      <field>
+        <column_name>TRANSACTIONSTATUS_ID</column_name>
+        <stream_name>TRANSACTIONSTATUS_ID</stream_name>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>648</xloc>
+      <yloc>190</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get CM Payment Info</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>SELECT CM_PAYMENT_TYPE_CODE MMCT_PMT_pmt_TYPE_CODE,
+       CS_REPORT.GET_LOOKUP_CODE('CMPAYMENTTYPE',
+                                 CM_PAYMENT_TYPE_CODE,
+                                 'LONG') MMCT_PMT_pmt_TYPE_DESC,
+       PAYMENT_NUMBER MMCT_PMT_NUMBER,
+       PAYMENT_STATUS_CODE MMCT_PMT_pmt_STATUS_CODE,
+       CS_REPORT.GET_LOOKUP_CODE('CMPAYMENTSTAT',
+                                 PAYMENT_STATUS_CODE,
+                                 'LONG') MMCT_PMT_pmt_STATUS_DESC,
+       trunc(PAYMENT_STATUS_DATE) MMCT_PMT_STATUS_DATE,
+       PAYMENT_AMOUNT MMCT_PMT_AMOUNT,
+       PAYEE_NAME MMCT_PMT_PAYEE_NAME,
+       PAYEE_ACCOUNT_NO MMCT_PMT_PAYEE_BNK_ACCT_NO,
+       PAYEE_ROUTING_NO MMCT_PMT_PAYEE_BNK_RTE_NO,
+       PAYMENT_REQUEST_DATE MMCT_PMT_REQUEST_DATE,
+       trunc(PAYMENT_CUT_DATE) MMCT_PMT_CUT_DATE,
+       trunc(PAYMENT_ACCEPTED_DATE) MMCT_PMT_ACCEPT_DATE,
+       ADDR1 MMCT_PMT_ADDR1,
+       ADDR2 MMCT_PMT_ADDR2,
+       CITY MMCT_PMT_CITY,
+       STATE MMCT_PMT_STATE,
+       replace(rtrim(ltrim(zip)),' ','-') MMCT_PMT_ZIP,
+       COUNTRY MMCT_PMT_COUNTRY,
+       BANK_ACCOUNT_NO MMCT_PMT_BNK_ACCT_NO,
+       STOPVOID_REASON MMCT_PMT_STOPVOID_REASON,
+       STOPVOID_ACTION MMCT_PMT_STOPVOID_ACTION,
+       REISSUE_B MMCT_PMT_REISSUED,
+       p.sys_update_time pmt_update_time
+  FROM CM_PAYMENT P,
+       CM_PAYMENT_TRANSACTION_XREF X
+ where x.cm_transaction_fk = ?
+   and x.cm_payment_fk = p.cm_payment_pk
+   and p.cm_payment_pk = NVL(
+       (SELECT ctsh.cm_payment_fk
+          FROM cm_trans_status_history ctsh
+         WHERE ctsh.cm_trans_status_history_pk = ?),
+       (select max(cm_payment_pk)
+          from 
+               cm_trans_status_history tsh,
+               cm_payment_transaction_xref x,
+               cm_payment                  p
+        
+         where x.cm_transaction_fk = ? 
+           and cm_payment_pk       = x.cm_payment_fk
+           and x.cm_transaction_fk = tsh.cm_transaction_fk
+           and p.sys_create_time >= status_start_date 
+           and p.sys_create_time  &lt; status_end_date
+           and tsh.status_start_date &lt;= ?              
+           and (payment_status_code = ? or
+               tsh.cm_transaction_status_code = ?)))
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>CM_TRANSACTION_PK</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>transactionstatus_id</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>CM_TRANSACTION_PK</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>MMCT_TRANS_STATUS_DATE</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>MMCT_TRANS_STATUS_CODE</name>
+        <type>String</type>
+      </field>
+      <field>
+        <name>MMCT_TRANS_STATUS_CODE</name>
+        <type>String</type>
+      </field>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>481</xloc>
+      <yloc>613</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get CM Payment Info 2</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>SELECT CM_PAYMENT_TYPE_CODE MMCT_PMT_pmt_TYPE_CODE,
+       CS_REPORT.GET_LOOKUP_CODE('CMPAYMENTTYPE',
+                                 CM_PAYMENT_TYPE_CODE,
+                                 'LONG') MMCT_PMT_pmt_TYPE_DESC,
+       PAYMENT_NUMBER MMCT_PMT_NUMBER,
+       PAYMENT_STATUS_CODE MMCT_PMT_pmt_STATUS_CODE,
+       CS_REPORT.GET_LOOKUP_CODE('CMPAYMENTSTAT',
+                                 PAYMENT_STATUS_CODE,
+                                 'LONG') MMCT_PMT_pmt_STATUS_DESC,
+       trunc(PAYMENT_STATUS_DATE) MMCT_PMT_STATUS_DATE,
+       PAYMENT_AMOUNT MMCT_PMT_AMOUNT,
+       PAYEE_NAME MMCT_PMT_PAYEE_NAME,
+       PAYEE_ACCOUNT_NO MMCT_PMT_PAYEE_BNK_ACCT_NO,
+       PAYEE_ROUTING_NO MMCT_PMT_PAYEE_BNK_RTE_NO,
+       PAYMENT_REQUEST_DATE MMCT_PMT_REQUEST_DATE,
+       trunc(PAYMENT_CUT_DATE) MMCT_PMT_CUT_DATE,
+       trunc(PAYMENT_ACCEPTED_DATE) MMCT_PMT_ACCEPT_DATE,
+       ADDR1 MMCT_PMT_ADDR1,
+       ADDR2 MMCT_PMT_ADDR2,
+       CITY MMCT_PMT_CITY,
+       STATE MMCT_PMT_STATE,
+       replace(rtrim(ltrim(zip)),' ','-') MMCT_PMT_ZIP,
+       COUNTRY MMCT_PMT_COUNTRY,
+       BANK_ACCOUNT_NO MMCT_PMT_BNK_ACCT_NO,
+       STOPVOID_REASON MMCT_PMT_STOPVOID_REASON,
+       STOPVOID_ACTION MMCT_PMT_STOPVOID_ACTION,
+       REISSUE_B MMCT_PMT_REISSUED,
+       p.sys_update_time pmt_update_time
+  FROM CM_PAYMENT P,
+       CM_PAYMENT_TRANSACTION_XREF X
+ where x.cm_transaction_fk = ?
+   and x.cm_payment_fk = p.cm_payment_pk
+   and p.cm_payment_pk = 
+       (select max(cm_payment_pk)
+          from 
+               cm_trans_status_history tsh,
+               cm_payment_transaction_xref x,
+               cm_payment                  p
+        
+         where x.cm_transaction_fk = ? 
+           and cm_payment_pk       = x.cm_payment_fk
+           and x.cm_transaction_fk = tsh.cm_transaction_fk
+           and p.sys_create_time >= status_start_date 
+           and p.sys_create_time  &lt; status_end_date
+           and tsh.status_start_date &lt;= ?              
+           and (payment_status_code = ? or
+               tsh.cm_transaction_status_code = ?))
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>CM_TRANSACTION_PK</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>CM_TRANSACTION_PK</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>MMCT_TRANS_STATUS_DATE</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>MMCT_TRANS_STATUS_CODE</name>
+        <type>String</type>
+      </field>
+      <field>
+        <name>MMCT_TRANS_STATUS_CODE</name>
+        <type>String</type>
+      </field>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>552</xloc>
+      <yloc>512</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get Change Eff Date</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>select greatest(nvl(?,?),nvl(?,?),nvl(?,?),nvl(?,?)) ct_changeEffectiveDate
+from dual</sql>
+    <outer_join>N</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>INV_UPDATE_TIME</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>lo_date</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>BATCH_UPDATE_TIME</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>lo_date</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>TXN_UPDATE_TIME</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>lo_date</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>PMT_UPDATE_TIME</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>lo_date</name>
+        <type>Date</type>
+      </field>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>648</xloc>
+      <yloc>496</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get Feature Uniqueids</name>
+    <type>DBProc</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <procedure>dw_cm_stage.get_feature_key</procedure>
+    <lookup>
+      <arg>
+        <name>CLAIM_PK</name>
+        <direction>IN</direction>
+        <type>Number</type>
+      </arg>
+      <arg>
+        <name>CLAIM_INSURED_PK</name>
+        <direction>IN</direction>
+        <type>Number</type>
+      </arg>
+      <arg>
+        <name>CLAIMANT_FK</name>
+        <direction>IN</direction>
+        <type>Number</type>
+      </arg>
+      <arg>
+        <name>COVERAGE_INSURED_XREF_PK</name>
+        <direction>IN</direction>
+        <type>Number</type>
+      </arg>
+      <arg>
+        <name>feature_key</name>
+        <direction>OUT</direction>
+        <type>String</type>
+      </arg>
+      <arg>
+        <name>claim_key</name>
+        <direction>OUT</direction>
+        <type>String</type>
+      </arg>
+    </lookup>
+    <result>
+      <name/>
+      <type>String</type>
+    </result>
+    <auto_commit>Y</auto_commit>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>648</xloc>
+      <yloc>613</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get Invoice Info</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>SELECT t.invoice_no mmct_invoice_no,
+       t.invoice_date mmct_invoice_date,
+       t.invoice_amt mmct_invoice_amt,
+       'CM_TRANSACTION' mmct_invoice_source,
+       coalesce(payee_name,cs_get_client_name(t.entity_payee_fk)) mmct_payee_name,
+       client_id mmct_payee_uniqueid,
+       to_date(NULL) mmct_invoice_due_date,
+       to_date(NULL) mmct_invoice_receive_date,
+       to_date(NULL) mmct_invoice_accounting_date,
+       to_char(NULL) mmct_invoice_cost_type_code,
+       to_char(null) mmct_invoice_cost_type_desc,
+       to_number(null) mmct_invoice_qty,
+       to_number(null) mmct_invoice_denied_amt,
+       to_number(null) mmct_invoice_sequence_no,
+       to_char(NULL) mmct_invioce_invoicer_uniqueid,
+       to_char(null) mmct_invoicer_name,
+       to_date(null) inv_update_time
+  FROM cm_transaction t,
+       entity e
+ WHERE cm_transaction_pk = ?
+   AND t.cm_invoice_fk IS NULL
+   AND t.invoice_no    IS NOT NULL
+   AND t.entity_payee_fk = e.entity_pk(+)
+UNION
+SELECT i.invoice_no mmct_invoice_no,
+       i.invoice_date mmct_invoice_date,
+       i.invoice_amt mmct_invoice_amt,
+       'CM_INVOICE' mmct_invoice_source,
+       coalesce(i.invoicer_name,t.payee_name,
+       cs_get_client_name(t.entity_payee_fk)) mmct_payee_name,
+       ep.client_id mmct_payee_uniqueid,
+       i.due_date mmct_invoice_due_date,
+       i.receive_date mmct_invoice_receive_date,
+       i.accounting_date mmct_invoice_accounting_date,
+       i.cm_cost_type_code mmct_invoice_cost_type_code,
+       i.cm_cost_type_code mmct_invoice_cost_type_desc,
+       i.total_quantity mmct_invoice_qty,
+       i.denied_amt mmct_invoice_denied_amt,
+       i.cm_invoice_seq_no mmct_invoice_sequence_no,
+       ei.client_id mmct_invioce_invoicer_uniqueid,
+       invoicer_name mmct_invoicer_name,
+        i.sys_update_time inv_update_time
+  FROM cm_transaction t,
+       cm_invoice i,
+       entity ei,
+       entity ep
+ WHERE cm_transaction_pk = ?
+   AND t.cm_invoice_fk IS NOT NULL
+   AND t.cm_invoice_fk = i.cm_invoice_pk
+   AND i.entity_fk = ei.entity_pk
+   AND t.entity_payee_fk = ep.entity_pk(+)
+union
+SELECT t.invoice_no mmct_invoice_no,
+       t.invoice_date mmct_invoice_date,
+       t.invoice_amt mmct_invoice_amt,
+       'CM_TRANSACTION' mmct_invoice_source,
+       coalesce(payee_name,cs_get_client_name(t.entity_payee_fk)) mmct_payee_name,
+       client_id mmct_payee_uniqueid,
+       to_date(NULL) mmct_invoice_due_date,
+       to_date(NULL) mmct_invoice_receive_date,
+       to_date(NULL) mmct_invoice_accounting_date,
+       to_char(NULL) mmct_invoice_cost_type_code,
+       to_char(null) mmct_invoice_cost_type_desc,
+       to_number(null) mmct_invoice_qty,
+       to_number(null) mmct_invoice_denied_amt,
+       to_number(null) mmct_invoice_sequence_no,
+       to_char(NULL) mmct_invioce_invoicer_uniqueid,
+       to_char(null) mmct_invoicer_name,
+       to_date(null) inv_update_time
+  FROM dw_cm_transaction_hist t,
+       entity e
+ WHERE dw_cm_transaction_Hist_pk = ?
+   AND t.cm_invoice_fk IS NULL
+   AND t.invoice_no    IS NOT NULL
+   AND t.entity_payee_fk = e.entity_pk(+)
+UNION
+SELECT i.invoice_no mmct_invoice_no,
+       i.invoice_date mmct_invoice_date,
+       i.invoice_amt mmct_invoice_amt,
+       'CM_INVOICE' mmct_invoice_source,
+       coalesce(i.invoicer_name,t.payee_name,
+       cs_get_client_name(t.entity_payee_fk)) mmct_payee_name,
+       ep.client_id mmct_payee_uniqueid,
+       i.due_date mmct_invoice_due_date,
+       i.receive_date mmct_invoice_receive_date,
+       i.accounting_date mmct_invoice_accounting_date,
+       i.cm_cost_type_code mmct_invoice_cost_type_code,
+       i.cm_cost_type_code mmct_invoice_cost_type_desc,
+       i.total_quantity mmct_invoice_qty,
+       i.denied_amt mmct_invoice_denied_amt,
+       i.cm_invoice_seq_no mmct_invoice_sequence_no,
+       ei.client_id mmct_invioce_invoicer_uniqueid,
+       invoicer_name mmct_invoicer_name,
+        i.sys_update_time inv_update_time
+  FROM dw_cm_transaction_hist t,
+       cm_invoice i,
+       entity ei,
+       entity ep
+ WHERE dw_cm_transaction_hist_pk = ?
+   AND t.cm_invoice_fk IS NOT NULL
+   AND t.cm_invoice_fk = i.cm_invoice_pk
+   AND i.entity_fk = ei.entity_pk
+   AND t.entity_payee_fk = ep.entity_pk(+)
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>KEY_FOR_INV_BATCH_INFO</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>KEY_FOR_INV_BATCH_INFO</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>KEY_FOR_INV_BATCH_INFO</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>KEY_FOR_INV_BATCH_INFO</name>
+        <type>Number</type>
+      </field>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>306</xloc>
+      <yloc>39</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get Property Vars</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>version_number</name>
+        <variable>${G_VERSION_NUMBER}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>lo_date</name>
+        <variable>${G_DEFAULT_DATE}</variable>
+        <type>Date</type>
+        <format>MM/dd/yyyy</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>154</xloc>
+      <yloc>265</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get claim trans data</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>-- Create dummy record for claim w/no txns so the claim can show up in WH
+SELECT to_number(null) key_for_inv_batch_info,
+        claim_pk ct_sequence,
+       'TXN'||claim_pk                ||
+       'CIX'||coverage_insured_xref_pk||
+       'CMT'||claimant_fk             ||
+       'DET'||claim_pk claimTransaction_uniqueid,
+       'DUMMY' ct_typeCode,
+       to_char(null) mmct_pmt_type_code,
+       'DUMMY' ct_subtypeCode,
+       to_char(null) mmct_pmt_type_desc,
+       0 ct_amount,
+       'DUMMY' mmct_trans_status_code,
+       to_date(null) mmct_trans_approved_date,  
+       'DUMMY' mmct_cost_type_code,
+       'Dummy' mmct_cost_type_desc,
+       claim_pk cm_transaction_pk,
+       'Dummy transaction for claim w/o transactions' mmct_comments,
+       to_char(null) mmct_cpt_code1,
+       to_char(null) mmct_cpt_code2,
+       to_char(null)  mmct_cpt_code3,
+       to_char(null) mmct_cpt_code4,
+       to_number(null) mmct_rate,
+       to_number(null) mmct_quantity,
+       cix.coverage_fk,
+       cix.risk_fk,
+       cix.policy_term_fk,
+       cix.policy_fk,
+       claim_pk,
+       claim_insured_pk,
+       claimant_fk,
+       to_char(null) payee_uniqueID,
+       claim_pk MMCT_TRANSACTION_UNQIUEID,
+       0 mmct_trans_amt,
+       to_char(null) mmct_payee_tax_id,
+       to_char(null) mmct_payee_tax_id_type,
+       coverage_insured_xref_pk,
+       'DUMMY' mmct_trans_status_code,
+       'Dummy' mmct_trans_status_desc,
+       cix.sys_update_time mmct_trans_status_date,
+       cix.sys_update_time ct_transactionDate,
+       cix.sys_update_time ct_accountingdate,
+       cix.sys_update_time txn_update_time,
+       'I'  ct_transactionflag,
+       cix.sys_update_time mmct_trans_date,
+       'DUMMY' mmct_trans_category,
+       cix.sys_create_time mmct_sys_create_time,
+       cix.sys_update_Time mmct_sys_update_time,
+       cix.sys_updated_by mmct_sys_updated_by,
+       cix.sys_created_by mmct_sys_created_by,
+       to_number(null) TRANSACTIONSTATUS_ID
+from claim c,
+     claimant_coverage_xref ccx,
+     coverage_insured_xref cix,
+     claim_insured ci
+where ccx.coverage_insured_xref_fk = ?
+  and c.claim_pk                   = ccx.claim_fk
+  and ccx.coverage_insured_xref_fk = cix.coverage_insured_xref_pk
+  and cix.claim_insured_fk         = ci.claim_insured_pk
+  and cix.sys_create_time          > ?
+  and ?                            = 'DUMMY'
+union
+-- Get the normal data from the regular, non history tables...
+--   This could be an onset to an offset or just a change to the transaction data                
+SELECT t.cm_transaction_pk key_for_inf_batch_info,
+        cm_transaction_detail_pk ct_sequence,
+       'TXN'||cm_transaction_pk       ||
+       'CIX'||coverage_insured_xref_pk||
+       'CMT'||claimant_pk             ||
+       'DET'||cm_transaction_detail_pk claimTransaction_uniqueid,
+       td.cm_transaction_type_code ct_typeCode,
+       t.cm_payment_type_code mmct_pmt_type_code,
+       tc.cm_cost_type_code ct_subtypeCode,
+       cm_report.get_desc('CM_PAYMENT_TYPE_CODE',t.cm_payment_type_code,'LONG') mmct_pmt_type_desc,
+       nvl(td.amount,0) ct_amount,
+       -- Jma 7/7/2015
+       --td.trans_status_code mmct_trans_status_code,
+       ctsh.cm_transaction_status_code mmct_trans_status_code,
+       t.approved_date mmct_trans_approved_date,  
+       tc.cm_cost_type_code mmct_cost_type_code,
+       ctc.long_description mmct_cost_type_desc,
+       cm_transaction_pk,
+       t.comments mmct_comments,
+       t.cpt_code1 mmct_cpt_code1,
+       t.cpt_code2 mmct_cpt_code2,
+       t.cpt_code3 mmct_cpt_code3,
+       t.cpt_code4 mmct_cpt_code4,
+       t.rate mmct_rate,
+       t.quantity mmct_quantity,
+       cix.coverage_fk,
+       cix.risk_fk,
+       cix.policy_term_fk,
+       cix.policy_fk,
+       source_record_fk claim_pk,
+       claim_insured_pk,
+       claimant_pk,
+       e.client_id payee_uniqueID,
+       td.cm_transaction_fk MMCT_TRANSACTION_UNQIUEID,
+       nvl(trans_amt,0) mmct_trans_amt,
+       nvl(e.federal_tax_id,social_security_number) mmct_payee_tax_id,
+       t.tax_id_type mmct_payee_tax_id_type,
+       coverage_insured_xref_pk,
+       -- t.sys_update_Time ct_changeEffectiveDate,
+       -- Jma 7/7/2015
+       ctsh.cm_transaction_status_code mmct_trans_status_code,
+       cm_report.get_desc('CM_TRANSACTION_STATUS_CODE',ctsh.cm_transaction_status_code,'LONG') mmct_trans_status_desc,
+       ctsh.status_start_date mmct_trans_status_date,
+       t.trans_date ct_transactionDate,
+       t.accounting_date ct_accountingdate,
+       -- Jma 7/24/2015
+       ctsh.status_start_date txn_update_time,
+       ? ct_transactionflag,
+       t.trans_date mmct_trans_date,
+       (CASE
+         WHEN NVL(tc.recovery_b,'N')   = 'Y' THEN
+           'RECOVERY'
+         WHEN NVL(tc.paid_b,'N')       = 'Y' THEN
+           'PAYMENT'
+         WHEN NVL(tc.reserve_b,'N')    = 'Y' THEN
+           'RESERVE'
+         WHEN NVL(tc.deductible_b,'N') = 'Y' THEN
+           'DEDUCTIBLE'
+         WHEN tc.cm_cost_type_code = 'DEDUCTIBLE' THEN
+           'DEDUCTIBLE'  
+         ELSE  
+           'OTHER'
+       END) mmct_trans_category,
+       t.sys_create_time mmct_sys_create_time,
+       t.sys_update_Time mmct_sys_update_time,
+       t.sys_updated_by mmct_sys_updated_by,
+       t.sys_created_by mmct_sys_created_by,
+       /* Sometimes the cm_transaction has the date trunced so a direct compare to status_start_date will fail */
+       -- Jma 7/7/2015
+       /*(select max(cm_trans_status_history_pk)
+          from cm_trans_status_history ctsh
+         where ctsh.cm_transaction_fk   = t.cm_transaction_pk
+           and trunc(trans_status_date) = trunc(ctsh.status_start_date)
+           and t.trans_status_code      = ctsh.cm_transaction_status_code) transactionstatus_id*/
+       ctsh.cm_trans_status_history_pk transactionstatus_id
+  FROM cm_transaction_detail td,
+       cm_transaction t,
+-- Jma 7/7/2015
+       cm_trans_status_history ctsh,
+       claimant clmt,
+       coverage_insured_xref cix,
+       claim_insured ci,
+       cm_transaction_type_code tc,
+       cm_cost_type_code ctc ,
+       entity e
+WHERE td.cm_transaction_fk        = t.cm_transaction_pk
+  AND td.claimant_fk              = clmt.CLAIMANT_PK
+  AND ctsh.cm_transaction_fk      = t.cm_transaction_pk
+  AND td.COVERAGE_INSURED_XREF_FK = cix.coverage_insured_xref_pk
+  AND cix.claim_insured_fk        = ci.claim_insured_pk  
+  AND t.cm_transaction_type_code  = tc.cm_transaction_type_code  
+  AND tc.cm_cost_type_code        = ctc.cm_cost_type_code 
+  and t.entity_payee_fk           = e.entity_pk(+)
+  and td.cm_transaction_detail_pk = ?
+  and ?                           in('I','U','N')
+  and ctsh.cm_trans_status_history_pk = ?
+union
+-- This will pick up deletes that have had no other offset action during the period
+--     , any other offsets during the period will be picked up in the other unions...
+SELECT  t.cm_transaction_pk key_for_inv_batch_info,
+        td.cm_transaction_detail_fk ct_sequence,
+       'TXN'||t.cm_transaction_pk     ||
+       'CIX'||coverage_insured_xref_pk||
+       'CMT'||claimant_pk             ||
+       'DET'||td.cm_transaction_detail_fk claimTransaction_uniqueid,
+       td.cm_transaction_type_code ct_typeCode,
+       t.cm_payment_type_code mmct_pmt_type_code,
+       tc.cm_cost_type_code ct_subtypeCode,
+       cm_report.get_desc('CM_PAYMENT_TYPE_CODE',t.cm_payment_type_code,'LONG')mmct_pmt_type_desc,
+       nvl(td.amount,0) ct_amount,
+       td.trans_status_code mmct_trans_status_code,
+       t.approved_date mmct_trans_approved_date,  
+       tc.cm_cost_type_code mmct_cost_type_code,
+       ctc.long_description mmct_cost_type_desc,
+       t.cm_transaction_pk cm_transaction_pk,
+       t.comments mmct_comments,
+       t.cpt_code1 mmct_cpt_code1,
+       t.cpt_code2 mmct_cpt_code2,
+       t.cpt_code3 mmct_cpt_code3,
+       t.cpt_code4 mmct_cpt_code4,
+       t.rate mmct_rate,
+       t.quantity mmct_quantity,
+       cix.coverage_fk,
+       cix.risk_fk,
+       cix.policy_term_fk,
+       cix.policy_fk,
+       source_record_fk claim_pk,
+       claim_insured_pk,
+       claimant_pk,
+       e.client_id payee_uniqueID,
+       td.cm_transaction_fk MMCT_TRANSACTION_UNQIUEID,
+       nvl(trans_amt,0) mmct_trans_amt,
+       nvl(e.federal_tax_id,social_security_number) mmct_payee_tax_id,
+       t.tax_id_type mmct_payee_tax_id_type,
+       coverage_insured_xref_pk,
+       t.trans_status_code mmct_trans_status_code,
+       cm_report.get_desc('CM_TRANSACTION_STATUS_CODE',t.trans_status_code,'LONG') mmct_trans_status_desc,
+       t.trans_status_date mmct_trans_status_date,
+       t.trans_date ct_transactionDate,
+       t.accounting_date ct_accountingdate,
+       td.sys_update_time txn_update_time,
+       'D' ct_transactionflag,
+       t.trans_date mmct_trans_date,
+       (CASE
+         WHEN NVL(tc.paid_b,'N')       = 'Y' THEN
+           'PAYMENT'
+         WHEN NVL(tc.reserve_b,'N')    = 'Y' THEN
+           'RESERVE'
+         WHEN NVL(tc.recovery_b,'N')   = 'Y' THEN
+           'RECOVERY'
+         WHEN NVL(tc.deductible_b,'N') = 'Y' THEN
+           'DEDUCTIBLE'
+         WHEN tc.cm_cost_type_code = 'DEDUCTIBLE' THEN
+           'DEDUCTIBLE'  
+         ELSE  
+           'OTHER'
+       END) mmct_trans_category,
+       t.sys_create_time mmct_sys_create_time,
+       t.sys_update_Time mmct_sys_update_time,
+       t.sys_updated_by mmct_sys_updated_by,
+       t.sys_created_by mmct_sys_created_by,
+       to_number(null) TRANSACTIONSTATUS_ID
+  FROM dw_cm_transaction_detail_hist td,
+       cm_transaction t,
+       claimant clmt,
+       coverage_insured_xref cix,
+       claim_insured ci,
+       cm_transaction_type_code tc,
+       cm_cost_type_code ctc ,
+       entity e
+WHERE td.cm_transaction_fk        = t.cm_transaction_pk
+  AND td.claimant_fk              = clmt.CLAIMANT_PK
+  AND td.COVERAGE_INSURED_XREF_FK = cix.coverage_insured_xref_pk
+  AND cix.claim_insured_fk        = ci.claim_insured_pk  
+  AND t.cm_transaction_type_code  = tc.cm_transaction_type_code  
+  AND tc.cm_cost_type_code        = ctc.cm_cost_type_code 
+  and t.entity_payee_fk           = e.entity_pk(+)
+  and td.cm_transaction_detail_fk         = ?
+  AND td.action                   = 'D'
+  and 'DDET'                      = ?    
+union
+-- This will pick up deletes where the coverage has been deleted
+SELECT  t.cm_transaction_pk key_for_inv_batch_info,
+        td.cm_transaction_detail_fk ct_sequence,
+       'TXN'||t.cm_transaction_pk     ||
+       'CIX'||td.coverage_insured_xref_fk||
+       'CMT'||claimant_pk             ||
+       'DET'||td.cm_transaction_detail_fk claimTransaction_uniqueid,
+       td.cm_transaction_type_code ct_typeCode,
+       t.cm_payment_type_code mmct_pmt_type_code,
+       tc.cm_cost_type_code ct_subtypeCode,
+       cm_report.get_desc('CM_PAYMENT_TYPE_CODE',t.cm_payment_type_code,'LONG')mmct_pmt_type_desc,
+       nvl(td.amount,0) ct_amount,
+       td.trans_status_code mmct_trans_status_code,
+       t.approved_date mmct_trans_approved_date,  
+       tc.cm_cost_type_code mmct_cost_type_code,
+       ctc.long_description mmct_cost_type_desc,
+       t.cm_transaction_pk cm_transaction_pk,
+       t.comments mmct_comments,
+       t.cpt_code1 mmct_cpt_code1,
+       t.cpt_code2 mmct_cpt_code2,
+       t.cpt_code3 mmct_cpt_code3,
+       t.cpt_code4 mmct_cpt_code4,
+       t.rate mmct_rate,
+       t.quantity mmct_quantity,
+       cix.coverage_fk,
+       cix.risk_fk,
+       cix.policy_term_fk,
+       cix.policy_fk,
+       source_record_fk claim_pk,
+       claim_insured_pk,
+       claimant_pk,
+       e.client_id payee_uniqueID,
+       td.cm_transaction_fk MMCT_TRANSACTION_UNQIUEID,
+       nvl(trans_amt,0) mmct_trans_amt,
+       nvl(e.federal_tax_id,social_security_number) mmct_payee_tax_id,
+       t.tax_id_type mmct_payee_tax_id_type,
+       td.coverage_insured_xref_fk,
+       t.trans_status_code mmct_trans_status_code,
+       cm_report.get_desc('CM_TRANSACTION_STATUS_CODE',t.trans_status_code,'LONG') mmct_trans_status_desc,
+       t.trans_status_date mmct_trans_status_date,
+       t.trans_date ct_transactionDate,
+       t.accounting_date ct_accountingdate,
+       td.sys_update_time txn_update_time,
+       'D' ct_transactionflag,
+       t.trans_date mmct_trans_date,
+       (CASE
+         WHEN NVL(tc.paid_b,'N')       = 'Y' THEN
+           'PAYMENT'
+         WHEN NVL(tc.reserve_b,'N')    = 'Y' THEN
+           'RESERVE'
+         WHEN NVL(tc.recovery_b,'N')   = 'Y' THEN
+           'RECOVERY'
+         WHEN NVL(tc.deductible_b,'N') = 'Y' THEN
+           'DEDUCTIBLE'
+         WHEN tc.cm_cost_type_code = 'DEDUCTIBLE' THEN
+           'DEDUCTIBLE'  
+         ELSE  
+           'OTHER'
+       END) mmct_trans_category,
+       t.sys_create_time mmct_sys_create_time,
+       t.sys_update_Time mmct_sys_update_time,
+       t.sys_updated_by mmct_sys_updated_by,
+       t.sys_created_by mmct_sys_created_by,
+       to_number(null) TRANSACTIONSTATUS_ID
+  FROM dw_cm_transaction_detail_hist td,
+       cm_transaction t,
+       claimant clmt,
+       dw_coverage_insured_xref_hist cix,
+       claim_insured ci,
+       cm_transaction_type_code tc,
+       cm_cost_type_code ctc ,
+       entity e
+WHERE td.cm_transaction_fk        = t.cm_transaction_pk
+  AND td.claimant_fk              = clmt.CLAIMANT_PK
+  AND td.COVERAGE_INSURED_XREF_FK = cix.coverage_insured_xref_fk
+  AND cix.claim_insured_fk        = ci.claim_insured_pk  
+  AND t.cm_transaction_type_code  = tc.cm_transaction_type_code  
+  AND tc.cm_cost_type_code        = ctc.cm_cost_type_code 
+  and t.entity_payee_fk           = e.entity_pk(+)
+  and td.cm_transaction_detail_fk         = ?
+  AND td.action                   = 'D'
+  and 'DDET'                      = ?   
+  and  td.sys_update_time         > ?
+union
+-- This will pick up deletes that have had no other offset action during the period
+--     , any other offsets during the period will be picked up in the other unions...
+SELECT  t.cm_transaction_fk key_for_inv_batch_info,
+        td.cm_transaction_detail_fk ct_sequence,
+       'TXN'||t.cm_transaction_fk     ||
+       'CIX'||coverage_insured_xref_pk||
+       'CMT'||claimant_pk             ||
+       'DET'||td.cm_transaction_detail_fk claimTransaction_uniqueid,
+       td.cm_transaction_type_code ct_typeCode,
+       t.cm_payment_type_code mmct_pmt_type_code,
+       tc.cm_cost_type_code ct_subtypeCode,
+       cm_report.get_desc('CM_PAYMENT_TYPE_CODE',t.cm_payment_type_code,'LONG')mmct_pmt_type_desc,
+       nvl(td.amount,0) ct_amount,
+       td.trans_status_code mmct_trans_status_code,
+       t.approved_date mmct_trans_approved_date,  
+       tc.cm_cost_type_code mmct_cost_type_code,
+       ctc.long_description mmct_cost_type_desc,
+       t.cm_transaction_fk cm_transaction_pk,
+       t.comments mmct_comments,
+       t.cpt_code1 mmct_cpt_code1,
+       t.cpt_code2 mmct_cpt_code2,
+       t.cpt_code3 mmct_cpt_code3,
+       t.cpt_code4 mmct_cpt_code4,
+       t.rate mmct_rate,
+       t.quantity mmct_quantity,
+       cix.coverage_fk,
+       cix.risk_fk,
+       cix.policy_term_fk,
+       cix.policy_fk,
+       source_record_fk claim_pk,
+       claim_insured_pk,
+       claimant_pk,
+       e.client_id payee_uniqueID,
+       td.cm_transaction_fk MMCT_TRANSACTION_UNQIUEID,
+       nvl(trans_amt,0) mmct_trans_amt,
+       nvl(e.federal_tax_id,social_security_number) mmct_payee_tax_id,
+       t.tax_id_type mmct_payee_tax_id_type,
+       coverage_insured_xref_pk,
+       t.trans_status_code mmct_trans_status_code,
+       cm_report.get_desc('CM_TRANSACTION_STATUS_CODE',t.trans_status_code,'LONG') mmct_trans_status_desc,
+       t.trans_status_date mmct_trans_status_date,
+       t.trans_date ct_transactionDate,
+       t.accounting_date ct_accountingdate,
+       td.sys_update_time txn_update_time,
+       'D' ct_transactionflag,
+       t.trans_date mmct_trans_date,
+       (CASE
+         WHEN NVL(tc.paid_b,'N')       = 'Y' THEN
+           'PAYMENT'
+         WHEN NVL(tc.reserve_b,'N')    = 'Y' THEN
+           'RESERVE'
+         WHEN NVL(tc.recovery_b,'N')   = 'Y' THEN
+           'RECOVERY'
+         WHEN NVL(tc.deductible_b,'N') = 'Y' THEN
+           'DEDUCTIBLE'
+         WHEN tc.cm_cost_type_code = 'DEDUCTIBLE' THEN
+           'DEDUCTIBLE'  
+         ELSE  
+           'OTHER'
+       END) mmct_trans_category,
+       t.sys_create_time mmct_sys_create_time,
+       t.sys_update_Time mmct_sys_update_time,
+       t.sys_updated_by mmct_sys_updated_by,
+       t.sys_created_by mmct_sys_created_by,
+       to_number(null) TRANSACTIONSTATUS_ID
+  FROM dw_cm_transaction_detail_hist td,
+       dw_cm_transaction_hist t,
+       claimant clmt,
+       coverage_insured_xref cix,
+       claim_insured ci,
+       cm_transaction_type_code tc,
+       cm_cost_type_code ctc ,
+       entity e
+WHERE td.cm_transaction_fk        = t.cm_transaction_fk
+  AND td.claimant_fk              = clmt.CLAIMANT_PK
+  AND td.COVERAGE_INSURED_XREF_FK = cix.coverage_insured_xref_pk
+  AND cix.claim_insured_fk        = ci.claim_insured_pk  
+  AND t.cm_transaction_type_code  = tc.cm_transaction_type_code  
+  AND tc.cm_cost_type_code        = ctc.cm_cost_type_code 
+  and t.entity_payee_fk           = e.entity_pk(+)
+  and td.cm_transaction_detail_fk         = ?
+  AND td.action                   = 'D'
+  and t.action                    = 'D'
+  and 'DDET'                      = ?                         
+ </sql>
+    <outer_join>N</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>CM_TRANSACTION_DETAIL_PK</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>LAST_REFRESH_START_TIME</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>TYP</name>
+        <type>String</type>
+      </field>
+      <field>
+        <name>TYP</name>
+        <type>String</type>
+      </field>
+      <field>
+        <name>CM_TRANSACTION_DETAIL_PK</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>TYP</name>
+        <type>String</type>
+      </field>
+      <field>
+        <name>CM_TRANS_STATUS_HISTORY_PK</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>CM_TRANSACTION_DETAIL_PK</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>TYP</name>
+        <type>String</type>
+      </field>
+      <field>
+        <name>CM_TRANSACTION_DETAIL_PK</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>TYP</name>
+        <type>String</type>
+      </field>
+      <field>
+        <name>LAST_REFRESH_START_TIME</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>CM_TRANSACTION_DETAIL_PK</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>TYP</name>
+        <type>String</type>
+      </field>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>306</xloc>
+      <yloc>343</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get keys </name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>select cm_transaction_detail_pk,
+       source_record_fk,
+       cm_transaction_fk,
+       cm_trans_status_history_pk,
+       min(typ) typ  -- D and I take precedence over U
+from(
+SELECT 'N' typ,
+       cm_transaction_detail_pk ,    -- If batch is changed, get all txns tied to it
+       d.cm_transaction_fk,
+       source_Record_fk,
+       ctsh.cm_trans_status_history_pk
+  FROM cm_batch b,
+       cm_transaction t,
+       cm_transaction_detail d,
+       cm_trans_status_history ctsh
+ WHERE b.sys_update_time > ?
+   AND b.cm_batch_pk = t.cm_batch_fk
+   and t.cm_transaction_pk = d.cm_transaction_detail_pk
+   and t.cm_transaction_pk = ctsh.cm_transaction_fk
+   and t.sys_update_time &lt;= ?
+UNION
+SELECT 'N' typ,
+       cm_transaction_detail_pk,    -- If invoice changed, get all txns tied to it
+       t.source_record_fk,
+       t.cm_transaction_pk,
+       ctsh.cm_trans_status_history_pk
+  FROM cm_invoice i,
+       cm_transaction t,
+       cm_transaction_detail d,
+       cm_trans_status_history ctsh
+WHERE i.sys_update_time > ?
+  AND i.cm_invoice_pk = t.cm_invoice_fk
+  and t.cm_transaction_pk = d.cm_transaction_fk
+  and t.cm_transaction_pk = ctsh.cm_transaction_fk
+  and t.sys_update_time &lt;= ?
+UNION
+SELECT 'N' typ,
+       cm_transaction_pk,    -- If the invoice batch changed, get all txns tied to it
+       t.source_record_fk,
+       t.cm_transaction_pk,
+       ctsh.cm_trans_status_history_pk
+  FROM cm_invoice_batch ib,
+       cm_invoice i,
+       cm_transaction t,
+       cm_transaction_detail d,
+       cm_trans_status_history ctsh
+ WHERE ib.sys_update_time > ?
+   AND ib.cm_invoice_batch_pk = i.cm_invoice_batch_fk
+   AND i.cm_invoice_pk = t.cm_invoice_fk
+   and t.cm_transaction_pk = d.cm_transaction_fk
+   and t.cm_transaction_pk = ctsh.cm_transaction_fk
+   and t.sys_update_time &lt;= ?
+UNION
+SELECT 'N' typ,
+       cm_transaction_pk,    -- If the payment changed, get all txns tied to it
+       source_record_fk,
+       t.cm_transaction_pk,
+       ctsh.cm_trans_status_history_pk
+  FROM cm_payment p,
+       cm_payment_transaction_xref x,
+       cm_transaction t,
+       cm_transaction_detail d,
+       cm_trans_status_history ctsh
+ WHERE p.sys_update_time > ?
+   AND p.cm_payment_pk = x.cm_payment_fk
+   AND x.cm_transaction_fk = t.cm_transaction_pk 
+   and t.cm_transaction_pk = d.cm_transaction_fk
+   and t.cm_transaction_pk = ctsh.cm_transaction_fk
+   and t.sys_update_time &lt;= ?
+UNION
+SELECT 'U' typ,
+       cm_transaction_detail_pk,    -- if the txn status changed 
+-- Jma 7/7/2015 
+-- Change to join cm_tans_status_history table, so if the transaction status is
+-- changed multiple times in one day, we populate records for each of the status change.   
+       source_record_fk,
+       t.cm_transaction_pk,
+       ctsh.cm_trans_status_history_pk 
+  FROM cm_transaction t,
+       cm_transaction_detail d,
+       cm_trans_status_history ctsh
+ WHERE d.sys_update_time   > ?
+   and d.sys_create_time  &lt;= ?
+   and t.cm_transaction_pk = d.cm_transaction_fk
+   and ctsh.cm_transaction_fk = d.cm_transaction_fk
+-- Jma 8/25/2017
+-- Change to check ctsh.sys_create_time, only get the new transaction status record
+-- created after last refresh. Otherwise it would extract record for last transaction status as well.
+   and ctsh.sys_create_time > ?
+UNION
+SELECT 'I' typ,
+       cm_transaction_detail_pk,    -- if the txn was created after the last DW run 
+       source_record_fk,
+       d.cm_transaction_fk,
+       ctsh.cm_trans_status_history_pk
+  FROM cm_transaction t,
+       cm_transaction_detail d,
+-- Jma 7/22/2015 
+-- Change to join cm_tans_status_history table, so if the transaction status is
+-- changed multiple times in one day, we populate records for each of the status change.  
+       cm_trans_status_history ctsh
+ WHERE d.sys_create_time > ?
+   and d.cm_transaction_fk = t.cm_Transaction_pk   
+   and ctsh.cm_transaction_fk = d.cm_transaction_fk
+union  -- Get dummy records where cix was created since last run, but no detail recs
+select 'DUMMY' typ,
+       coverage_insured_xref_pk cm_transaction_detail_pk,
+       coverage_insured_xref_pk source_record_fk,
+       coverage_insured_xref_pk cm_transaction_pk,
+       coverage_insured_xref_pk cm_trans_status_history_pk
+  from claim c,
+       entity_role er,
+       claim_insured ci,
+       coverage_insured_xref cix
+ where cix.sys_create_time  > ?
+   and cix.claim_insured_fk = ci.claim_insured_pk
+   and ci.entity_role_fk    = er.entity_role_pk
+   and not exists(select 'x'
+                    from cm_transaction_detail d
+                   where cix.coverage_insured_xref_pk = d.coverage_insured_xref_fk)
+union 
+-- Jma 08/03/2017 Issue 187342
+-- Add following union for update made to transaction detail record without change of trans status
+SELECT 'U' typ,
+       cm_transaction_detail_pk,    
+       source_record_fk cm_transaction_fk,
+       t.cm_transaction_pk source_Record_fk,
+       (SELECT max(ctsh.cm_trans_status_history_pk)  
+       FROM   cm_trans_status_history ctsh
+       WHERE  ctsh.cm_transaction_fk = d.cm_transaction_fk
+       AND    ctsh.cm_transaction_status_code = d.trans_status_code
+       AND    ctsh.status_start_date = t.trans_status_date) cm_trans_status_history_pk
+  FROM cm_transaction t,
+       cm_transaction_detail d
+ WHERE d.sys_update_time   > ?
+   and d.sys_create_time  &lt;= ?
+   and t.cm_transaction_pk = d.cm_transaction_fk
+   AND NOT EXISTS 
+          (SELECT 1 
+           FROM   cm_trans_status_history ctsh1 
+           WHERE  ctsh1.cm_transaction_fk = t.cm_transaction_pk
+           AND    ctsh1.sys_create_time > ?) 
+)
+group by cm_transaction_detail_pk,source_record_fk,cm_transaction_fk, cm_trans_status_history_pk
+UNION                   -- get deleted dtl txns that were created before the last DW run
+SELECT cm_transaction_detail_fk cm_transaction_detail_pk,
+       to_number(null),
+       d.cm_transaction_fk cm_transaction_pk,
+	   NULL cm_trans_status_history_pk,
+       'DDET' typ
+  FROM dw_cm_transaction_detail_hist d
+ WHERE d.action = 'D'
+   and d.sys_update_time > ?
+   AND d.sys_create_time &lt;= ?
+</sql>
+    <outer_join>N</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>LAST_REFRESH_START_TIME</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>LAST_REFRESH_START_TIME</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>LAST_REFRESH_START_TIME</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>LAST_REFRESH_START_TIME</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>LAST_REFRESH_START_TIME</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>LAST_REFRESH_START_TIME</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>LAST_REFRESH_START_TIME</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>LAST_REFRESH_START_TIME</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>LAST_REFRESH_START_TIME</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>LAST_REFRESH_START_TIME</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>LAST_REFRESH_START_TIME</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>LAST_REFRESH_START_TIME</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>LAST_REFRESH_START_TIME</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>LAST_REFRESH_START_TIME</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>LAST_REFRESH_START_TIME</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>LAST_REFRESH_START_TIME</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>LAST_REFRESH_START_TIME</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>LAST_REFRESH_START_TIME</name>
+        <type>Date</type>
+      </field>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>306</xloc>
+      <yloc>614</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>If field value is null</name>
+    <type>IfNull</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <replaceAllByValue/>
+    <replaceAllMask/>
+    <selectFields>N</selectFields>
+    <selectValuesType>Y</selectValuesType>
+    <setEmptyStringAll>N</setEmptyStringAll>
+    <valuetypes>
+      <valuetype>
+        <name>Date</name>
+        <value>${G_DEFAULT_DATE}</value>
+        <mask>MM/dd/yyyy</mask>
+        <set_type_empty_string>N</set_type_empty_string>
+      </valuetype>
+    </valuetypes>
+    <fields>
+      </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>154</xloc>
+      <yloc>190</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Load refresh date</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>4SBI_Staging</connection>
+    <sql>SELECT
+  MAX(CURRENT_REFRESH_DATE) CURRENT_REFRESH_DATE
+, MAX(CURRENT_REFRESH_DATE) LOADDATE
+, MAX(LAST_REFRESH_START_TIME) LAST_REFRESH_START_TIME
+FROM DW_REFRESH_DATE
+
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>154</xloc>
+      <yloc>39</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sequence (stgclaimtransaction_id)</name>
+    <type>Sequence</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <valuename>STGCLAIMTRANSACTION_ID</valuename>
+    <use_database>N</use_database>
+    <connection/>
+    <schema/>
+    <seqname>SEQ_</seqname>
+    <use_counter>Y</use_counter>
+    <counter_name/>
+    <start_at>${MAX_STGCLAIMTRANSACTION_ID}</start_at>
+    <increment_by>1</increment_by>
+    <max_value>999999999999999999</max_value>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>648</xloc>
+      <yloc>343</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Switch/Case - CM_PAYMENT_FK</name>
+    <type>SwitchCase</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fieldname>result</fieldname>
+    <use_contains>N</use_contains>
+    <case_value_type>String</case_value_type>
+    <case_value_format/>
+    <case_value_decimal/>
+    <case_value_group/>
+    <default_target_step>Get CM Payment Info 2</default_target_step>
+    <cases>
+      <case>
+        <value>Y</value>
+        <target_step>Get CM Payment Info</target_step>
+      </case>
+    </cases>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>481</xloc>
+      <yloc>451</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>get batch info</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>SELECT b.cm_batch_no mmct_batch_no,
+       b.cm_batch_type mmct_batch_type_code,
+       cm_report.get_desc('CM_BATCH_TYPE_CODE',b.cm_batch_type,'LONG') mmct_batch_type_desc,
+       b.batch_status mmct_batch_status_code,
+       cs_report.get_lookup_code('CM_BATCH_STATUS',b.batch_status,'LONG') mmct_batch_status_desc,
+       b.entry_date mmct_batch_entry_date,
+       b.accounting_date mmct_batch_accounting_date,
+       b.approval_date mmct_batch_approval_date,
+       b.approved_by mmct_batch_approved_by,
+       b.branch_office mmct_batch_branch_office_code,
+       cs_report.get_lookup_code('BRANCHOFF',b.branch_office,'LONG') mmct_batch_branch_office_desc,
+       b.total_amount mmct_batch_tot_amt,
+       b.total_quantity mmct_batch_tot_qty,
+       to_number(NULL) mmct_batch_inv_qty,
+       'CM_BATCH' mmct_batch_source,
+       b.sys_update_time batch_update_time
+FROM cm_batch b,
+     cm_transaction t
+WHERE cm_batch_fk IS NOt NULL
+AND   t.cm_transaction_pk = ?
+AND b.cm_batch_pk = t.cm_batch_fk
+UNION
+sELECT ib.batch_no mmct_batch_no,
+       ib.batch_type mmct_batch_type_code,
+       cm_report.get_desc('CM_BATCH_TYPE_CODE',ib.batch_type,'LONG') mmct_batch_type_desc,
+       ib.batch_status mmct_batch_status,
+       cs_report.get_lookup_code('CM_BATCH_STATUS',ib.batch_status,'LONG') mmct_batch_status_desc,
+       ib.entry_date mmct_batch_entry_date,
+       ib.accounting_date mmct_batch_accounting_date,
+       ib.approval_date mmct_batch_approval_date,
+       ib.approved_by mmct_batch_approved_by,
+       ib.branch_office mmct_branch_office_code,
+       cs_report.get_lookup_code('BRANCHOFF',ib.branch_office,'LONG') mmct_branch_office_desc,
+       ib.total_amount mmct_batch_tot_amt,
+       to_number(NULL) mmct_batch_tot_qty,
+       ib.invoice_count mmct_batch_inv_qty,
+       'CM_INVOICE_BATCH' mmct_batch_source,
+       ib.sys_update_time batch_update_time
+FROM cm_transaction t,
+     cm_invoice_batch ib,
+     cm_invoice i
+WHERE cm_transaction_pk = ?
+AND t.cm_invoice_fk       = i.cm_invoice_pk
+AND i.cm_invoice_batch_fk = ib.cm_invoice_batch_pk
+union
+SELECT b.cm_batch_no mmct_batch_no,
+       b.cm_batch_type mmct_batch_type_code,
+       cm_report.get_desc('CM_BATCH_TYPE_CODE',b.cm_batch_type,'LONG') mmct_batch_type_desc,
+       b.batch_status mmct_batch_status_code,
+       cs_report.get_lookup_code('CM_BATCH_STATUS',b.batch_status,'LONG') mmct_batch_status_desc,
+       b.entry_date mmct_batch_entry_date,
+       b.accounting_date mmct_batch_accounting_date,
+       b.approval_date mmct_batch_approval_date,
+       b.approved_by mmct_batch_approved_by,
+       b.branch_office mmct_batch_branch_office_code,
+       cs_report.get_lookup_code('BRANCHOFF',b.branch_office,'LONG') mmct_batch_branch_office_desc,
+       b.total_amount mmct_batch_tot_amt,
+       b.total_quantity mmct_batch_tot_qty,
+       to_number(NULL) mmct_batch_inv_qty,
+       'CM_BATCH' mmct_batch_source,
+       b.sys_update_time batch_update_time
+FROM cm_batch b,
+     dw_cm_transaction_hist t
+WHERE cm_batch_fk IS NOt NULL
+AND   t.dw_cm_transaction_hist_pk = ?
+AND   b.cm_batch_pk = t.cm_batch_fk
+UNION
+sELECT ib.batch_no mmct_batch_no,
+       ib.batch_type mmct_batch_type_code,
+       cm_report.get_desc('CM_BATCH_TYPE_CODE',ib.batch_type,'LONG') mmct_batch_type_desc,
+       ib.batch_status mmct_batch_status,
+       cs_report.get_lookup_code('CM_BATCH_STATUS',ib.batch_status,'LONG') mmct_batch_status_desc,
+       ib.entry_date mmct_batch_entry_date,
+       ib.accounting_date mmct_batch_accounting_date,
+       ib.approval_date mmct_batch_approval_date,
+       ib.approved_by mmct_batch_approved_by,
+       ib.branch_office mmct_branch_office_code,
+       cs_report.get_lookup_code('BRANCHOFF',ib.branch_office,'LONG') mmct_branch_office_desc,
+       ib.total_amount mmct_batch_tot_amt,
+       to_number(NULL) mmct_batch_tot_qty,
+       ib.invoice_count mmct_batch_inv_qty,
+       'CM_INVOICE_BATCH' mmct_batch_source,
+       ib.sys_update_time batch_update_time
+FROM dw_cm_transaction_hist t,
+     cm_invoice_batch ib,
+     cm_invoice i
+WHERE dw_cm_transaction_hist_pk = ?
+AND t.cm_invoice_fk       = i.cm_invoice_pk
+AND i.cm_invoice_batch_fk = ib.cm_invoice_batch_pk
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>KEY_FOR_INV_BATCH_INFO</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>KEY_FOR_INV_BATCH_INFO</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>KEY_FOR_INV_BATCH_INFO</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>KEY_FOR_INV_BATCH_INFO</name>
+        <type>Number</type>
+      </field>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>306</xloc>
+      <yloc>190</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>get coverage base</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>select coverage_base_Record_fk
+from coverage
+where coverage_pk = ?
+union
+select cm_coverage_pk coverage_base_record_fk
+  from cm_coverage
+where cm_coverage_pk = ?
+union
+select ?
+  from dual
+ where not exists(select 'x'
+                    from cm_coverage c
+                   where cm_coverage_pk = ?)
+  and not exists(select 'x'
+                   from coverage
+                  where coverage_pk = ?)</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>COVERAGE_FK</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>COVERAGE_FK</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>COVERAGE_FK</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>COVERAGE_FK</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>COVERAGE_FK</name>
+        <type>Number</type>
+      </field>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>481</xloc>
+      <yloc>360</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>get risk base</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>select risk_base_Record_fk
+from risk
+where risk_pk = ?
+union
+select cm_risk_pk risk_base_record_fk
+  from cm_risk
+where cm_risk_pk = ?
+union
+select ?
+  from dual
+ where not exists(select 'x'
+                    from risk
+                   where risk_pk = ?)
+   and not exists(select 'x'
+                    from cm_risk
+                   where cm_risk_pk = ?)</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>RISK_FK</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>RISK_FK</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>RISK_FK</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>RISK_FK</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>RISK_FK</name>
+        <type>Number</type>
+      </field>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>481</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>get term base  fk</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>select term_base_record_fk
+ from policy_term_history pth,
+      policy p
+where pth.policy_term_history_pk = ?
+and   pth.policy_fk = p.policy_pk
+union
+select 0
+  from cm_policy
+where cm_policy_pk = ?
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>POLICY_TERM_FK</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>POLICY_FK</name>
+        <type>Number</type>
+      </field>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>481</xloc>
+      <yloc>190</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step_error_handling>
+  </step_error_handling>
+  <slave-step-copy-partition-distribution>
+  </slave-step-copy-partition-distribution>
+  <slave_transformation>N</slave_transformation>
+</transformation>

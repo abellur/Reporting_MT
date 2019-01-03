@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:39 EST 2019
+file.title=TR_DIM_CLAIMPIAADATA
+description=This transformation is created to load data from STG_CLAIMPIAADATA to DIM_CLAIMPIAAD_DATA
+title=TR_DIM_CLAIMPIAADATA
+file.description=This transformation is created to load data from STG_CLAIMPIAADATA to DIM_CLAIMPIAAD_DATA

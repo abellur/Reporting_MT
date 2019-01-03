@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:59 EST 2019
+file.title=JB_Load_Legacy
+description=Load legacy data to staging tables.
+title=JB_Load_Legacy
+file.description=Load legacy data to staging tables.

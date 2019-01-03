@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:57 EST 2019
+file.title=TR_Update_Commission_Payment_Data
+description=Update FACT_FINANCIALTRANSACTION for commission payment data.
+title=TR_Update_Commission_Payment_Data
+file.description=Update FACT_FINANCIALTRANSACTION for commission payment data.

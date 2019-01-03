@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:59 EST 2019
+file.title=TR_Copy_Convert_Coverage_To_Stg_Coverage
+description=Copy data from Stg_Coverage_Convert to Stg_Coverage
+title=TR_Copy_Convert_Coverage_To_Stg_Coverage
+file.description=Copy data from Stg_Coverage_Convert to Stg_Coverage

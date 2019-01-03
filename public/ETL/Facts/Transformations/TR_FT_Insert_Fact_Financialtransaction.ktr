@@ -1,0 +1,961 @@
+<transformation>
+  <info>
+    <name>TR_FT_Insert_Fact_Financialtransaction</name>
+    <description>Transformation to insert data into Fact_Financialsummary table.</description>
+    <extended_description/>
+    <trans_version/>
+    <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
+    <directory>/public/ETL/Facts/Transformations</directory>
+    <parameters>
+    </parameters>
+    <log>
+      <trans-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <size_limit_lines/>
+        <interval/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STATUS</id>
+          <enabled>Y</enabled>
+          <name>STATUS</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+          <subject/>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>STARTDATE</id>
+          <enabled>Y</enabled>
+          <name>STARTDATE</name>
+        </field>
+        <field>
+          <id>ENDDATE</id>
+          <enabled>Y</enabled>
+          <name>ENDDATE</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>DEPDATE</id>
+          <enabled>Y</enabled>
+          <name>DEPDATE</name>
+        </field>
+        <field>
+          <id>REPLAYDATE</id>
+          <enabled>Y</enabled>
+          <name>REPLAYDATE</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>Y</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+        <field>
+          <id>EXECUTING_SERVER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_SERVER</name>
+        </field>
+        <field>
+          <id>EXECUTING_USER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_USER</name>
+        </field>
+        <field>
+          <id>CLIENT</id>
+          <enabled>N</enabled>
+          <name>CLIENT</name>
+        </field>
+      </trans-log-table>
+      <perf-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <interval/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>SEQ_NR</id>
+          <enabled>Y</enabled>
+          <name>SEQ_NR</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>INPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>INPUT_BUFFER_ROWS</name>
+        </field>
+        <field>
+          <id>OUTPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>OUTPUT_BUFFER_ROWS</name>
+        </field>
+      </perf-log-table>
+      <channel-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>LOGGING_OBJECT_TYPE</id>
+          <enabled>Y</enabled>
+          <name>LOGGING_OBJECT_TYPE</name>
+        </field>
+        <field>
+          <id>OBJECT_NAME</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_NAME</name>
+        </field>
+        <field>
+          <id>OBJECT_COPY</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_COPY</name>
+        </field>
+        <field>
+          <id>REPOSITORY_DIRECTORY</id>
+          <enabled>Y</enabled>
+          <name>REPOSITORY_DIRECTORY</name>
+        </field>
+        <field>
+          <id>FILENAME</id>
+          <enabled>Y</enabled>
+          <name>FILENAME</name>
+        </field>
+        <field>
+          <id>OBJECT_ID</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_ID</name>
+        </field>
+        <field>
+          <id>OBJECT_REVISION</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_REVISION</name>
+        </field>
+        <field>
+          <id>PARENT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>PARENT_CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>ROOT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>ROOT_CHANNEL_ID</name>
+        </field>
+      </channel-log-table>
+      <step-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>N</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+      </step-log-table>
+      <metrics-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_DATE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_CODE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_CODE</name>
+        </field>
+        <field>
+          <id>METRICS_DESCRIPTION</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DESCRIPTION</name>
+        </field>
+        <field>
+          <id>METRICS_SUBJECT</id>
+          <enabled>Y</enabled>
+          <name>METRICS_SUBJECT</name>
+        </field>
+        <field>
+          <id>METRICS_TYPE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_TYPE</name>
+        </field>
+        <field>
+          <id>METRICS_VALUE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_VALUE</name>
+        </field>
+      </metrics-log-table>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+      <slaveserver>
+        <name>4Sight BI - PDI Server</name>
+        <hostname>10.0.0.21</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>joe</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Carte 1</name>
+        <hostname>localhost</hostname>
+        <port>9081</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>DI Server</name>
+        <hostname>localhost</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>joe</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_DEV</name>
+        <hostname>magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>shota</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_SERVER</name>
+        <hostname>http://magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>shota</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_TEST</name>
+        <hostname>magspentahotest</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO</name>
+        <hostname>magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO_BTS</name>
+        <hostname>129.144.25.104</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO_DEV</name>
+        <hostname>magspentahodev</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Master</name>
+        <hostname>localhost</hostname>
+        <port>8081</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SERVER1</name>
+        <hostname>LOCALHOST</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SLAVE ONE</name>
+        <hostname>192.168.2.101</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4a418bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SLAVE TWO</name>
+        <hostname>192.168.2.101</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave1</name>
+        <hostname>localhost</hostname>
+        <port>8082</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave2</name>
+        <hostname>localhost</hostname>
+        <port>8083</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave3</name>
+        <hostname>localhost</hostname>
+        <port>8084</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>local DIS</name>
+        <hostname>localhost</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>magspentahodev</name>
+        <hostname>magspentahodev</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+    </slaveservers>
+    <clusterschemas>
+      <clusterschema>
+        <name>4sbi_admin</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+        </slaveservers>
+      </clusterschema>
+      <clusterschema>
+        <name>ClusterSchema</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+          <name>Slave3</name>
+          <name>Slave2</name>
+          <name>Slave1</name>
+          <name>Master</name>
+        </slaveservers>
+      </clusterschema>
+      <clusterschema>
+        <name>cluster A</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+          <name>Carte 1</name>
+          <name>local DIS</name>
+        </slaveservers>
+      </clusterschema>
+    </clusterschemas>
+    <created_user>admin</created_user>
+    <created_date>2018/10/12 15:35:44.960</created_date>
+    <modified_user>-</modified_user>
+    <modified_date>2017/08/01 15:55:47.100</modified_date>
+    <key_for_session_key/>
+    <is_key_private>N</is_key_private>
+  </info>
+  <notepads>
+  </notepads>
+  <connection>
+    <name>4SBI_DataWarehouse</name>
+    <server>${G_DW_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_DW_DB_NAME}</database>
+    <port>${G_DW_DB_PORT}</port>
+    <username>${G_DW_DB_USERNAME}</username>
+    <password>${G_DW_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_DW_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_DW_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_DW_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <order>
+    <hop>
+      <from>Insert Into Fact_Financialtransaction</from>
+      <to>Write to log</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <step>
+    <name>Insert Into Fact_Financialtransaction</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>4SBI_DataWarehouse</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>Y</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>ALTER TABLE Fact_Financialtransaction NOLOGGING;
+
+INSERT ${insertHint} INTO Fact_Financialtransaction
+
+
+SELECT t.sk_recordnum + ${MAX_FINANCIALTRANSACTION_ID} FINANCIALTRANSACTION_ID,
+       nvl(to_number(to_char(t.ft_accountingdate,'yyyymmdd')),'19000101') ACCOUNTINGDATE_ID,
+	   t.effectivedate_id,
+	   0 product_id,
+	   nvl(tc.transactionissuingcompany_id,${UNK_COMPANY_ID})  transactionissuingcompany_id,
+	   nvl(vbc.billingcompany_id,${UNK_COMPANY_ID}) billingcompany_id,
+	   nvl(NVL2(dp1.sk_recordnum,dp1.policy_id,dp2.policy_id),${UNK_POLICY_ID}) policy_id,
+	   nvl(NVL2(dpe1.sk_recordnum,dpe1.policyextension_id,dpe2.policyextension_id),
+           ${UNK_POLICYEXTENSION_ID}) policyextension_id,
+	   nvl(sp.policyeffectivedate_id,19000101) policyeffectivedate_id,
+       nvl(sp.policyexpirationdate_id,19000101) policyexpirationdate_id,
+	   t.bookeffectivedate_id,
+       t.bookexpirationdate_id,
+	   nvl(ftr.financialtransactionext_id,${UNK_FINANCIALTRANSACTIONEXTENSION_ID}) financialtransactionext_id,
+	   nvl(dt.territory_id,${UNK_TERRITORY_ID}) territory_id,
+	   nvl(dc.coverage_id,${UNK_COVERAGE_ID}) coverage_id,
+	   nvl(dce.coverageextension_id,${UNK_COVERAGEEXTENSION_ID}) coverageextension_id,
+	   nvl(t.coverageeffectivedate_id,19000101) coverageeffectivedate_id,
+       nvl(t.coverageexpirationdate_id,19000101) coverageexpirationdate_id,
+	   nvl(dcr.coveredrisk_id,${UNK_COVEREDRISK_ID}) PRIMARYRISK_ID,
+       nvl(dcre.primaryriskextension_id,${UNK_COVEREDRISKEXTENSION_ID}) primaryriskextension_id,
+	   nvl(dcs.classification_id,${UNK_CLASSIFICATION_ID}) classification_id,
+	   nvl(dcm.claim_id,${UNK_CLAIM_ID}) claim_id,
+	   nvl(fi.firstinsured_id,${UNK_INSURED_ID}) firstinsured_id,
+	   nvl(duw.underwriter_id,${UNK_UNDERWRITER_ID}) underwriter_id,
+	   nvl(prd.producer_id,${UNK_PRODUCER_ID}) producer_id,
+       nvl(sprd.subproducer_id,${UNK_PRODUCER_ID}) subproducer_id,
+	   nvl(vah.accountholder_id,${UNK_ACCOUNTHOLDER_ID}) accountholder_id,
+	   t.duedate_id,
+	   t.invoicedate_id,
+       t.agingstartdate_id,
+	   nvl(va1.account1_id,${UNK_ACCOUNT_ID}) account1_id,
+       nvl(vae1.account1extension_id,${UNK_ACCOUNT_ID}) account1extension_id,
+       ${UNK_ACCOUNT_ID} account2_id,
+       ${UNK_ACCOUNT_ID} account2extension_id,
+	   nvl(dsa.subaccount_id,${UNK_SUBACCOUNT_ID}) subaccount_id,
+	   t.invoicetransactionstatus_id,
+	   nvl(t.financialterms_id,${UNK_FINANCIALTERMS_ID}) financialterms_id,
+	   nvl(t.financialtransactiontype_id,${UNK_FINANCIALTRANSACTIONTYPE_ID}) financialtransactiontype_id,
+	   nvl(bat.batch_id,${UNK_BATCH_ID}) batch_id,
+       nvl(dpd.paymentdetail_id,${UNK_PAYMENTDETAIL_ID}) paymentdetail_id,
+       nvl(t.financialgroup_id,${UNK_FINANCIALGROUP_ID}) financialgroup_id,
+	   nvl(t.transactionbasis_id,${UNK_TRANSACTIONBASIS_ID}) transactionbasis_id,
+       nvl(t.invoice_id,${UNK_INVOICE_ID}) invoice_id,     
+       nvl(fpt.policytransaction_id,0) policytransaction_id,
+       nvl(fct.claimtransaction_id,0) claimtransaction_id,
+	   nvl(t.ft_sequence,0) ft_sequence,
+       NVL(n.policyneworrenewal,'Unknown') policyneworrenewal,
+       NVL(t.originaltransactioncode,'Unknown') originaltransactioncode,
+	   nvl(t.ft_referencenumber,0) ft_referencenumber,
+	   NVL(t.transaction_source,'Unknown') transaction_source,
+       NVL(t.ft_status,' ') ft_status,
+	   nvl(t.ft_installmentnumber,0) ft_installmentnumber,
+       nvl(t.ft_baseamount,0) ft_baseamount,
+       nvl(t.ft_amount,0) ft_amount,
+       t.account1_uniqueid,
+       t.loaddate,
+       -- Issue 178595, add unknown commission payment ID as default value, 
+       --               and set default commission payment amount to be 0.
+       0, 
+       0,
+       -- Issue 187138, add financial accounting date
+       GREATEST(t.effectivedate_id,nvl(to_number(to_char(t.ft_accountingdate,'yyyymmdd')),'19000101')) financialaccountingdate_id
+FROM   tmp_ftt_lkup_transissuecompany tc,
+       tmp_ftt_lkup_producer          prd,
+       tmp_ftt_lkup_subproducer       sprd,
+       tmp_ftt_lkup_firstinsured      fi,
+       tmp_ftt_lkup_coveredrisk       dcr,
+       tmp_ftt_lkup_coveredriskext    dcre,
+       tmp_ftt_lkup_territory         dt,
+       tmp_ftt_lkup_dim_coverage      dc,
+       tmp_ftt_lkup_dim_policy1       dp1,
+       tmp_ftt_lkup_dim_policy2       dp2,
+       tmp_ftt_lkup_underwriter       duw,
+       tmp_ftt_lkup_classification    dcs,
+       tmp_ftt_lkup_coverageext       dce,
+       tmp_ftt_lkup_dim_policyext1    dpe1,
+       tmp_ftt_lkup_dim_policyext2    dpe2,
+       tmp_ftt_lkup_ftransext         ftr,
+       tmp_ftt_lkup_claim             dcm,
+       tmp_ftt_lkup_billcomp          vbc,
+       tmp_ftt_lkup_accthldr          vah,
+       tmp_ftt_lkup_account1          va1,
+       tmp_ftt_lkup_accountext1       vae1,
+       tmp_ftt_lkup_subaccount        dsa,
+       tmp_ftt_lkup_batch             bat,
+       tmp_ftt_lkup_paymentdetail     dpd,
+       tmp_ftt_lkup_poltrans          fpt,
+       tmp_ftt_lkup_clmtrans          fct,
+       tmp_ftt_lkup_newrenewal        n,
+       tmp_ftt_lkup_stg_policy        sp,
+       tmp_ftt_trans_detail_1         t
+WHERE  1 = 1
+AND    t.sk_recordnum = tc.sk_recordnum(+)
+AND    t.sk_recordnum = prd.sk_recordnum(+)      
+AND    t.sk_recordnum = sprd.sk_recordnum(+)
+AND    t.sk_recordnum = fi.sk_recordnum(+)
+AND    t.sk_recordnum = dcr.sk_recordnum(+)
+AND    t.sk_recordnum = dcre.sk_recordnum(+)
+AND    t.sk_recordnum = dt.sk_recordnum(+)
+AND    t.sk_recordnum = dc.sk_recordnum(+)
+AND    t.sk_recordnum = dp1.sk_recordnum(+)
+AND    t.sk_recordnum = dp2.sk_recordnum(+)
+AND    t.sk_recordnum = duw.sk_recordnum(+)
+AND    t.sk_recordnum = dcs.sk_recordnum(+)
+AND    t.sk_recordnum = dce.sk_recordnum(+)
+AND    t.sk_recordnum = dpe1.sk_recordnum(+)
+AND    t.sk_recordnum = dpe2.sk_recordnum(+)
+AND    t.sk_recordnum = ftr.sk_recordnum(+)
+AND    t.sk_recordnum = dcm.sk_recordnum(+)
+AND    t.sk_recordnum = vbc.sk_recordnum(+)
+AND    t.sk_recordnum = vah.sk_recordnum(+)
+AND    t.sk_recordnum = va1.sk_recordnum(+)
+AND    t.sk_recordnum = vae1.sk_recordnum(+)
+AND    t.sk_recordnum = dsa.sk_recordnum(+)
+AND    t.sk_recordnum = bat.sk_recordnum(+)
+AND    t.sk_recordnum = dpd.sk_recordnum(+)
+AND    t.sk_recordnum = fpt.sk_recordnum(+)
+AND    t.sk_recordnum = fct.sk_recordnum(+)
+AND    t.sk_recordnum = n.sk_recordnum(+)
+AND    t.sk_recordnum = sp.sk_recordnum(+);
+
+commit;</sql>
+    <set_params>N</set_params>
+    <insert_field>insert_count</insert_field>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>126</xloc>
+      <yloc>135</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Write to log</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>5</limitRowsNumber>
+    <logmessage>Insert data into Fact_Financialtransaction.</logmessage>
+    <fields>
+      <field>
+        <name>insert_count</name>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>298</xloc>
+      <yloc>135</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step_error_handling>
+  </step_error_handling>
+  <slave-step-copy-partition-distribution>
+  </slave-step-copy-partition-distribution>
+  <slave_transformation>N</slave_transformation>
+</transformation>

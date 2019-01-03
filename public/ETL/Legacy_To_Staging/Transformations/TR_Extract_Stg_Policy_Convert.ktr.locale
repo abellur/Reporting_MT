@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:00 EST 2019
+file.title=TR_Extract_Stg_Policy_Convert
+description=Load policy data to STG_Policy_Convert table.
+title=TR_Extract_Stg_Policy_Convert
+file.description=Load policy data to STG_Policy_Convert table.

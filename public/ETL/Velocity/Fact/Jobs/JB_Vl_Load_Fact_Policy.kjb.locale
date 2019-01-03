@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:24 EST 2019
+file.title=JB_Vl_Load_Fact_Policy
+description=Load Velocity data to FACT_POLICY table.
+title=JB_Vl_Load_Fact_Policy
+file.description=Load Velocity data to FACT_POLICY table.

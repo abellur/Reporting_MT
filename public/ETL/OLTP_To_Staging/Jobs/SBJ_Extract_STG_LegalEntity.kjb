@@ -1,0 +1,2339 @@
+<job>
+  <name>SBJ_Extract_STG_LegalEntity</name>
+  <description>Load entity data to STG_LEGALENTITY table during full refresh.</description>
+  <extended_description>09/10/2018 rfu #187857 improve the performance of load stg_legalentity.</extended_description>
+  <job_version/>
+  <job_status>0</job_status>
+  <directory>/public/ETL/OLTP_To_Staging/Jobs</directory>
+  <created_user>-</created_user>
+  <created_date>2018/10/01 16:14:45.730</created_date>
+  <modified_user>-</modified_user>
+  <modified_date>2018/10/02 10:57:35.574</modified_date>
+  <parameters>
+    </parameters>
+  <connection>
+    <name>4SBI_Staging</name>
+    <server>${G_STAGING_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_STAGING_DB_NAME}</database>
+    <port>${G_STAGING_DB_PORT}</port>
+    <username>${G_STAGING_DB_USERNAME}</username>
+    <password>${G_STAGING_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_STAGING_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_STAGING_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_STAGING_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>Delphi_OLTP</name>
+    <server>${G_OLTP_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_OLTP_DB_NAME}</database>
+    <port>${G_OLTP_DB_PORT}</port>
+    <username>${G_OLTP_DB_USERNAME}</username>
+    <password>${G_OLTP_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_OLTP_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_OLTP_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_OLTP_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <slaveservers>
+    <slaveserver>
+      <name>4Sight BI - PDI Server</name>
+      <hostname>10.0.0.21</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>joe</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Carte 1</name>
+      <hostname>localhost</hostname>
+      <port>9081</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>DI Server</name>
+      <hostname>localhost</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>joe</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_DEV</name>
+      <hostname>magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>shota</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_SERVER</name>
+      <hostname>http://magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>shota</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_TEST</name>
+      <hostname>magspentahotest</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO</name>
+      <hostname>magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO_BTS</name>
+      <hostname>129.144.25.104</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO_DEV</name>
+      <hostname>magspentahodev</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Master</name>
+      <hostname>localhost</hostname>
+      <port>8081</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SERVER1</name>
+      <hostname>LOCALHOST</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SLAVE ONE</name>
+      <hostname>192.168.2.101</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4a418bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SLAVE TWO</name>
+      <hostname>192.168.2.101</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave1</name>
+      <hostname>localhost</hostname>
+      <port>8082</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave2</name>
+      <hostname>localhost</hostname>
+      <port>8083</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave3</name>
+      <hostname>localhost</hostname>
+      <port>8084</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>local DIS</name>
+      <hostname>localhost</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>magspentahodev</name>
+      <hostname>magspentahodev</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+  </slaveservers>
+  <job-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <size_limit_lines/>
+    <interval/>
+    <timeout_days/>
+    <field>
+      <id>ID_JOB</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>JOBNAME</name>
+    </field>
+    <field>
+      <id>STATUS</id>
+      <enabled>Y</enabled>
+      <name>STATUS</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>STARTDATE</id>
+      <enabled>Y</enabled>
+      <name>STARTDATE</name>
+    </field>
+    <field>
+      <id>ENDDATE</id>
+      <enabled>Y</enabled>
+      <name>ENDDATE</name>
+    </field>
+    <field>
+      <id>LOGDATE</id>
+      <enabled>Y</enabled>
+      <name>LOGDATE</name>
+    </field>
+    <field>
+      <id>DEPDATE</id>
+      <enabled>Y</enabled>
+      <name>DEPDATE</name>
+    </field>
+    <field>
+      <id>REPLAYDATE</id>
+      <enabled>Y</enabled>
+      <name>REPLAYDATE</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>Y</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>EXECUTING_SERVER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_SERVER</name>
+    </field>
+    <field>
+      <id>EXECUTING_USER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_USER</name>
+    </field>
+    <field>
+      <id>START_JOB_ENTRY</id>
+      <enabled>N</enabled>
+      <name>START_JOB_ENTRY</name>
+    </field>
+    <field>
+      <id>CLIENT</id>
+      <enabled>N</enabled>
+      <name>CLIENT</name>
+    </field>
+  </job-log-table>
+  <jobentry-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>TRANSNAME</name>
+    </field>
+    <field>
+      <id>JOBENTRYNAME</id>
+      <enabled>Y</enabled>
+      <name>STEPNAME</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>RESULT</id>
+      <enabled>Y</enabled>
+      <name>RESULT</name>
+    </field>
+    <field>
+      <id>NR_RESULT_ROWS</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_ROWS</name>
+    </field>
+    <field>
+      <id>NR_RESULT_FILES</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_FILES</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>N</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>COPY_NR</id>
+      <enabled>N</enabled>
+      <name>COPY_NR</name>
+    </field>
+  </jobentry-log-table>
+  <channel-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>LOGGING_OBJECT_TYPE</id>
+      <enabled>Y</enabled>
+      <name>LOGGING_OBJECT_TYPE</name>
+    </field>
+    <field>
+      <id>OBJECT_NAME</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_NAME</name>
+    </field>
+    <field>
+      <id>OBJECT_COPY</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_COPY</name>
+    </field>
+    <field>
+      <id>REPOSITORY_DIRECTORY</id>
+      <enabled>Y</enabled>
+      <name>REPOSITORY_DIRECTORY</name>
+    </field>
+    <field>
+      <id>FILENAME</id>
+      <enabled>Y</enabled>
+      <name>FILENAME</name>
+    </field>
+    <field>
+      <id>OBJECT_ID</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_ID</name>
+    </field>
+    <field>
+      <id>OBJECT_REVISION</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_REVISION</name>
+    </field>
+    <field>
+      <id>PARENT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>PARENT_CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>ROOT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>ROOT_CHANNEL_ID</name>
+    </field>
+  </channel-log-table>
+  <checkpoint-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <max_nr_retries/>
+    <run_retry_period/>
+    <namespace_parameter/>
+    <save_parameters>Y</save_parameters>
+    <save_result_rows>Y</save_result_rows>
+    <save_result_files>Y</save_result_files>
+    <field>
+      <id>ID_JOB_RUN</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB_RUN</name>
+    </field>
+    <field>
+      <id>ID_JOB</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>JOBNAME</name>
+    </field>
+    <field>
+      <id>NAMESPACE</id>
+      <enabled>Y</enabled>
+      <name>NAMESPACE</name>
+    </field>
+    <field>
+      <id>CHECKPOINT_NAME</id>
+      <enabled>Y</enabled>
+      <name>CHECKPOINT_NAME</name>
+    </field>
+    <field>
+      <id>CHECKPOINT_COPYNR</id>
+      <enabled>Y</enabled>
+      <name>CHECKPOINT_COPYNR</name>
+    </field>
+    <field>
+      <id>ATTEMPT_NR</id>
+      <enabled>Y</enabled>
+      <name>ATTEMPT_NR</name>
+    </field>
+    <field>
+      <id>JOB_RUN_START_DATE</id>
+      <enabled>Y</enabled>
+      <name>JOB_RUN_START_DATE</name>
+    </field>
+    <field>
+      <id>LOGDATE</id>
+      <enabled>Y</enabled>
+      <name>LOGDATE</name>
+    </field>
+    <field>
+      <id>RESULT_XML</id>
+      <enabled>Y</enabled>
+      <name>RESULT_XML</name>
+    </field>
+    <field>
+      <id>PARAMETER_XML</id>
+      <enabled>Y</enabled>
+      <name>PARAMETER_XML</name>
+    </field>
+  </checkpoint-log-table>
+  <pass_batchid>N</pass_batchid>
+  <shared_objects_file/>
+  <entries>
+    <entry>
+      <name>Create table dw_tmp_sle_params</name>
+      <description/>
+      <type>SQL</type>
+      <sql>--get dw parameter from config table
+CREATE TABLE dw_tmp_sle_params PCTFREE 0 NOLOGGING AS 
+SELECT decode(dw_staging_util.get_dw_parameter('ENT_ADDR_TYPE'),
+                    'PRIMARY','Y',
+                    dw_staging_util.get_dw_parameter('ENT_ADDR_TYPE')) ent_addr_type,
+             decode(dw_staging_util.get_dw_parameter('ENT_PHONE_TYPE'),
+                    'PRIMARY','Y',
+                    dw_staging_util.get_dw_parameter('ENT_PHONE_TYPE')) ent_phone_type,
+             dw_staging_util.get_dw_parameter('ENT_FAX_TYPE') ent_fax_type,
+             dw_staging_util.get_dw_parameter('ENT_MOBILE_TYPE') ent_mobile_type,
+             dw_staging_util.get_dw_parameter('COUNTY_DESC_TYPE') county_desc_type,
+             nvl(dw_staging_util.get_dw_parameter('ENT_PERS_NAME_FORMAT'),'^L^, ^F^ ^M^') person_name_format,
+             nvl(dw_staging_util.get_dw_parameter('ENT_ORG_NAME_FORMAT'),'^O^') org_name_format 
+FROM dual;
+
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>457</xloc>
+      <yloc>122</yloc>
+    </entry>
+    <entry>
+      <name>Create table dw_tmp_sle_drive</name>
+      <description/>
+      <type>SQL</type>
+      <sql>-- get the entity for all cases
+CREATE TABLE dw_tmp_sle_drive PCTFREE 0 NOLOGGING AS
+select entity_pk,
+       cast (null as number) role_or_class_pk,
+       'E' PROCESS_FLAG
+  from entity
+ where not exists
+       (select 1 
+        from   entity_role er
+        where  er.entity_fk = entity_pk)
+   and not exists
+       (select 1 
+        from   entity_class ec
+        where  ec.entity_fk = entity_pk)
+UNION
+select entity_pk, 
+       cast (entity_class_pk as number) role_or_class_pk,
+       'EC' process_flag
+  from entity_class ec,
+       entity e
+ WHERE 1 = 1  
+   and ec.entity_fk = e.entity_pk
+UNION
+select entity_pk, 
+       cast (entity_role_pk as number) role_or_class_pk,
+       'ER' process_flag
+  from entity_role er,
+       entity e
+ WHERE 1 = 1
+   and er.entity_fk = e.entity_pk
+;
+
+</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1078</xloc>
+      <yloc>276</yloc>
+    </entry>
+    <entry>
+      <name>Create table dw_tmp_sle_ec_w_a</name>
+      <description/>
+      <type>SQL</type>
+      <sql>CREATE TABLE dw_tmp_sle_ec_w_a PCTFREE 0 NOLOGGING AS
+-- This part returns Entity class based data where we have an address for the entity 
+SELECT e.entity_pk lenty_number,
+       e.client_id legalEntity_uniqueID,
+       e.title lenty_jobTitle,
+       NVL(NVL(e.FIRST_NAME,e.DBA_NAME),' ') lenty_name1,
+       NVL(e.LAST_NAME,e.ORGANIZATION_NAME) lenty_name2,
+       e.web_address1 lenty_website,
+       e.email_address1 lenty_email,
+       ec.entity_class_code lenty_role,
+       ec.entity_sub_class_code ,       
+       lc.short_description lenty_typeshortdesc,
+       lc.Long_Description lenty_typeDescription,
+       e.date_of_birth lenty_DOB,
+       e.gender lenty_gender,
+       e.marital_status lenty_maritalStatus,
+       NVL(e.FEDERAL_TAX_ID,e.SOCIAL_SECURITY_NUMBER) lenty_feinSsn,
+       e.middle_name mmlenty_middle_name,
+       e.very_long_name mmlenty_long_name,
+       e.prefix_name mmlenty_prefix,
+       e.suffix_name mmlenty_suffix,
+       e.char1 mmlenty_char1,
+       e.char2 mmlenty_char2,
+       e.char3 mmlenty_char3,
+       e.char4 mmlenty_char4,
+       e.char5 mmlenty_char5,
+       e.num1 mmlenty_num1,
+       e.num2 mmlenty_num2,
+       e.num3 mmlenty_num3,
+       trunc(e.date1) mmlenty_date1,
+       trunc(e.date2) mmlenty_date2,
+       trunc(e.date3) mmlenty_date3,
+       a.address_pk,
+       a.address_type_code,
+       a.source_record_fk,
+       a.source_table_name,
+       a.address_name,
+       a.address_line1 lenty_address1,
+       a.address_line2 lenty_address2,
+       a.address_line3 lenty_address3,
+       a.city lenty_city,
+       a.county_code,
+       a.state_code lenty_state,
+       NVL2(a.ZIP_PLUS_FOUR,a.ZIPCODE||'-'||a.ZIP_PLUS_FOUR,a.ZIPCODE) lenty_postalCode,
+       a.country_code lenty_country,
+       TRUNC(least(e.Sys_Update_Time, nvl(a.sys_update_time,to_date('1/1/1900','mm/dd/yyyy')))) entity_sys_update_time,
+       e.entity_formatted_name mmlenty_formatted_name,
+       e.Very_Important_Person_b,
+       e.LENTY_TELEPHONE,
+       e.LENTY_FAX,
+       e.LENTY_MOBILE,
+       e.legalentity_parentunique_id
+  FROM dw_tmp_sle_ent_with_phone e, entity_class ec, lookup_code lc, address a, dw_tmp_sle_drive1 t
+ WHERE e.entity_pk = ec.entity_fk
+   AND lc.code = ec.entity_class_code
+   AND lc.lookup_type_code = 'ENTITY_CLASS_CODE'
+   AND a.source_record_fk(+)  = t.entity_pk
+   and e.entity_pk = t.entity_pk
+   AND t.role_or_class_pk = ec.entity_class_pk
+   and a.address_pk(+) = t.address_pk
+;
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>234</xloc>
+      <yloc>276</yloc>
+    </entry>
+    <entry>
+      <name>START</name>
+      <description/>
+      <type>SPECIAL</type>
+      <start>Y</start>
+      <dummy>N</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>81</xloc>
+      <yloc>122</yloc>
+    </entry>
+    <entry>
+      <name>If exists dw_tmp_sle_params</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>dw_tmp_sle_params</tablename>
+      <schemaname/>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>234</xloc>
+      <yloc>121</yloc>
+    </entry>
+    <entry>
+      <name>Drop dw_tmp_sle_params</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table dw_tmp_sle_params purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>344</xloc>
+      <yloc>47</yloc>
+    </entry>
+    <entry>
+      <name>If exists dw_tmp_sle_ent_with_name</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>dw_tmp_sle_ent_with_name</tablename>
+      <schemaname/>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>641</xloc>
+      <yloc>122</yloc>
+    </entry>
+    <entry>
+      <name>Drop dw_tmp_sle_ent_with_name</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table dw_tmp_sle_ent_with_name purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>738</xloc>
+      <yloc>47</yloc>
+    </entry>
+    <entry>
+      <name>Create table dw_tmp_sle_ent_with_name</name>
+      <description/>
+      <type>SQL</type>
+      <sql>--get telephone number, fax number and mobile phone number
+CREATE TABLE dw_tmp_sle_ent_with_name PCTFREE 0 NOLOGGING AS
+SELECT cs_get_client_name_formatted(e.entity_pk,t.person_name_format,t.org_name_format) entity_formatted_name,
+       DW_STAGING_UTIL.get_phone_numbers(e.entity_pk,
+                               t.ent_phone_type,
+                               t.ent_fax_type    ,
+                               t.ent_mobile_type,
+                               t.ent_addr_type) as phone_number,
+       e.*
+FROM   entity e, dw_tmp_sle_params t;
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>853</xloc>
+      <yloc>122</yloc>
+    </entry>
+    <entry>
+      <name>If exists dw_tmp_sle_drive</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>dw_tmp_sle_drive</tablename>
+      <schemaname/>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1290</xloc>
+      <yloc>276</yloc>
+    </entry>
+    <entry>
+      <name>Drop dw_tmp_sle_drive</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table dw_tmp_sle_drive purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1175</xloc>
+      <yloc>205</yloc>
+    </entry>
+    <entry>
+      <name>Create table dw_tmp_sle_drive1</name>
+      <description/>
+      <type>SQL</type>
+      <sql>--get address information for all entities
+CREATE TABLE dw_tmp_sle_drive1 PCTFREE 0 NOLOGGING AS
+WITH a AS
+     (SELECT a1.ADDRESS_PK,
+             a1.SOURCE_RECORD_FK
+        FROM address a1,
+             dw_tmp_sle_params x
+       WHERE a1.SOURCE_TABLE_NAME = 'ENTITY'
+         AND (a1.primary_address_b = x.ent_addr_type 
+          OR a1.address_type_code = x.ent_addr_type)
+        and a1.ADDRESS_PK= (
+        select max(a2.ADDRESS_PK)
+        from address a2
+         WHERE a2.SOURCE_TABLE_NAME = 'ENTITY'
+         AND (a2.primary_address_b = x.ent_addr_type 
+          OR a2.address_type_code = x.ent_addr_type)
+         and  a2.SOURCE_RECORD_FK=a1.SOURCE_RECORD_FK) 
+          ),
+     y AS
+     (SELECT a.address_pk,
+             t.*
+        FROM dw_tmp_sle_drive t, 
+             a
+       WHERE a.source_record_fk(+) = t.entity_pk) 
+SELECT ROWNUM sk,
+       y.*
+FROM   y
+;</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>671</xloc>
+      <yloc>276</yloc>
+    </entry>
+    <entry>
+      <name>If exists dw_tmp_sle_drive1</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>dw_tmp_sle_drive1</tablename>
+      <schemaname/>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>897</xloc>
+      <yloc>276</yloc>
+    </entry>
+    <entry>
+      <name>Drop dw_tmp_sle_drive1</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table dw_tmp_sle_drive1 purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>781</xloc>
+      <yloc>205</yloc>
+    </entry>
+    <entry>
+      <name>If exists dw_tmp_sle_ec_w_a</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>dw_tmp_sle_ec_w_a</tablename>
+      <schemaname/>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>472</xloc>
+      <yloc>276</yloc>
+    </entry>
+    <entry>
+      <name>Drop dw_tmp_sle_ec_w_a</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table dw_tmp_sle_ec_w_a purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>350</xloc>
+      <yloc>205</yloc>
+    </entry>
+    <entry>
+      <name>Create table dw_tmp_sle_er_w_a</name>
+      <description/>
+      <type>SQL</type>
+      <sql>CREATE TABLE dw_tmp_sle_er_w_a PCTFREE 0 NOLOGGING AS
+-- This part returns Entity role based data where we have address for the entity, 
+-- Exclude CLAIM entity role data
+SELECT e.entity_pk lenty_number,
+       e.client_id legalEntity_uniqueID,
+       e.title lenty_jobTitle,
+       NVL(NVL(e.FIRST_NAME,e.DBA_NAME),' ') lenty_name1,
+       NVL(e.LAST_NAME,e.ORGANIZATION_NAME) lenty_name2,
+       e.web_address1 lenty_website,
+       e.email_address1 lenty_email,
+       er.role_type_code lenty_role,
+       er.entity_sub_class_code ,       
+       lc.short_description lenty_typeshortdesc,
+       lc.Long_Description lenty_typeDescription,
+       e.date_of_birth lenty_DOB,
+       e.gender lenty_gender,
+       e.marital_status lenty_maritalStatus,
+       NVL(e.FEDERAL_TAX_ID,e.SOCIAL_SECURITY_NUMBER) lenty_feinSsn,
+       e.middle_name mmlenty_middle_name,
+       e.very_long_name mmlenty_long_name,
+       e.prefix_name mmlenty_prefix,
+       e.suffix_name mmlenty_suffix,
+       e.char1 mmlenty_char1,
+       e.char2 mmlenty_char2,
+       e.char3 mmlenty_char3,
+       e.char4 mmlenty_char4,
+       e.char5 mmlenty_char5,
+       e.num1 mmlenty_num1,
+       e.num2 mmlenty_num2,
+       e.num3 mmlenty_num3,
+       trunc(e.date1) mmlenty_date1,
+       trunc(e.date2) mmlenty_date2,
+       trunc(e.date3) mmlenty_date3,
+       a.address_pk,
+       a.address_type_code,
+       a.source_record_fk,
+       a.source_table_name,
+       a.address_name,
+       a.address_line1,
+       a.address_line2,
+       a.address_line3,
+       a.city,
+       a.county_code,
+       upper(substr(a.state_code,1,2)) state_code,
+       NVL2(a.ZIP_PLUS_FOUR,a.ZIPCODE||'-'||a.ZIP_PLUS_FOUR,a.ZIPCODE) zipcode,
+       a.country_code,                
+       TRUNC(least(e.Sys_Update_Time, nvl(a.sys_update_time,to_date('1/1/1900','mm/dd/yyyy')))) entity_sys_update_time,
+       e.entity_formatted_name mmlenty_formatted_name,
+       e.Very_Important_Person_b,
+       e.LENTY_TELEPHONE,
+       e.LENTY_FAX,
+       e.LENTY_MOBILE,
+       e.legalentity_parentunique_id
+  FROM dw_tmp_sle_ent_with_phone e, entity_role er, lookup_code lc, address a, dw_tmp_sle_drive1 t
+ WHERE e.entity_pk = er.entity_fk
+   AND lc.code = er.role_type_code
+   AND lc.lookup_type_code = 'ROLE_TYPE_CODE'
+   AND er.source_table_name &lt;&gt; 'CLAIM'
+   AND a.source_record_fk(+) = t.entity_pk
+   and e.entity_pk = t.entity_pk
+   AND t.role_or_class_pk = er.entity_role_pk
+   and a.address_pk(+) = t.address_pk
+;
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>447</xloc>
+      <yloc>401</yloc>
+    </entry>
+    <entry>
+      <name>If exists dw_tmp_sle_er_w_a</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>dw_tmp_sle_er_w_a</tablename>
+      <schemaname/>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>235</xloc>
+      <yloc>401</yloc>
+    </entry>
+    <entry>
+      <name>Drop dw_tmp_sle_er_w_a</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table dw_tmp_sle_er_w_a purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>332</xloc>
+      <yloc>350</yloc>
+    </entry>
+    <entry>
+      <name>Create table dw_tmp_sle_er_w_a1</name>
+      <description/>
+      <type>SQL</type>
+      <sql>CREATE TABLE dw_tmp_sle_er_w_a1 PCTFREE 0 NOLOGGING AS
+-- This part returns Entity role based data where we have address for the entity, 
+-- Only CLAIM entity role data
+SELECT e.entity_pk lenty_number,
+       e.client_id legalEntity_uniqueID,
+       e.title lenty_jobTitle,
+       NVL(NVL(e.FIRST_NAME,e.DBA_NAME),' ') lenty_name1,
+       NVL(e.LAST_NAME,e.ORGANIZATION_NAME) lenty_name2,
+       e.web_address1 lenty_website,
+       e.email_address1 lenty_email,
+       er.role_type_code lenty_role,
+       er.entity_sub_class_code ,       
+       lc.short_description lenty_typeshortdesc,
+       lc.Long_Description lenty_typeDescription,
+       e.date_of_birth lenty_DOB,
+       e.gender lenty_gender,
+       e.marital_status lenty_maritalStatus,
+       NVL(e.FEDERAL_TAX_ID,e.SOCIAL_SECURITY_NUMBER) lenty_feinSsn,
+       e.middle_name mmlenty_middle_name,
+       e.very_long_name mmlenty_long_name,
+       e.prefix_name mmlenty_prefix,
+       e.suffix_name mmlenty_suffix,
+       e.char1 mmlenty_char1,
+       e.char2 mmlenty_char2,
+       e.char3 mmlenty_char3,
+       e.char4 mmlenty_char4,
+       e.char5 mmlenty_char5,
+       e.num1 mmlenty_num1,
+       e.num2 mmlenty_num2,
+       e.num3 mmlenty_num3,
+       trunc(e.date1) mmlenty_date1,
+       trunc(e.date2) mmlenty_date2,
+       trunc(e.date3) mmlenty_date3,
+       a.address_pk,
+       a.address_type_code,
+       a.source_record_fk,
+       a.source_table_name,
+       a.address_name,
+       a.address_line1,
+       a.address_line2,
+       a.address_line3,
+       a.city,
+       a.county_code,
+       upper(substr(a.state_code,1,2)) state_code,
+       NVL2(a.ZIP_PLUS_FOUR,a.ZIPCODE||'-'||a.ZIP_PLUS_FOUR,a.ZIPCODE) zipcode,
+       a.country_code,                         
+       TRUNC(least(e.Sys_Update_Time, er.Sys_Update_Time, nvl(er.effective_from_date,to_date('1/1/1900','mm/dd/yyyy')))) entity_sys_update_time,
+       e.entity_formatted_name mmlenty_formatted_name,
+       e.Very_Important_Person_b,
+       e.LENTY_TELEPHONE,
+       e.LENTY_FAX,
+       e.LENTY_MOBILE,
+       e.legalentity_parentunique_id
+  FROM dw_tmp_sle_ent_with_phone e, entity_role er, 
+       address a, claim_participant_code lc, dw_tmp_sle_drive1 t
+ WHERE e.entity_pk = er.entity_fk
+   AND lc.claim_participant_code = er.role_type_code
+   AND er.source_table_name = 'CLAIM'
+   AND a.source_record_fk(+) = t.entity_pk
+   and e.entity_pk = t.entity_pk
+   AND t.role_or_class_pk = er.entity_role_pk
+   and a.address_pk(+) = t.address_pk
+;</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>813</xloc>
+      <yloc>403</yloc>
+    </entry>
+    <entry>
+      <name>If exists dw_tmp_sle_er_w_a1</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>dw_tmp_sle_er_w_a1</tablename>
+      <schemaname/>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>623</xloc>
+      <yloc>401</yloc>
+    </entry>
+    <entry>
+      <name>Drop dw_tmp_sle_er_w_a1</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table dw_tmp_sle_er_w_a1 purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>712</xloc>
+      <yloc>337</yloc>
+    </entry>
+    <entry>
+      <name>Create table dw_tmp_sle_e_w_n</name>
+      <description/>
+      <type>SQL</type>
+      <sql>CREATE TABLE dw_tmp_sle_e_w_n PCTFREE 0 NOLOGGING AS
+-- This part returns Entity based data where we have no address for the entity or an entity role or entity class
+SELECT e.entity_pk lenty_number,
+       e.client_id legalEntity_uniqueID,
+       e.title lenty_jobTitle,
+       NVL(NVL(e.FIRST_NAME,e.DBA_NAME),' ') lenty_name1,
+       NVL(e.LAST_NAME,e.ORGANIZATION_NAME) lenty_name2,
+       e.web_address1 lenty_website,
+       e.email_address1 lenty_email,
+       'UNKNOWN' lenty_role,
+       cast(null as varchar2(50)) entity_sub_class_code ,       
+       'Unknown' lenty_typeshortdesc,
+       'Unknown' lenty_typeDescription,
+       e.date_of_birth lenty_DOB,
+       e.gender lenty_gender,
+       e.marital_status lenty_maritalStatus,
+       NVL(e.FEDERAL_TAX_ID,e.SOCIAL_SECURITY_NUMBER) lenty_feinSsn,
+       e.middle_name mmlenty_middle_name,
+       e.very_long_name mmlenty_long_name,
+       e.prefix_name mmlenty_prefix,
+       e.suffix_name mmlenty_suffix,
+       e.char1 mmlenty_char1,
+       e.char2 mmlenty_char2,
+       e.char3 mmlenty_char3,
+       e.char4 mmlenty_char4,
+       e.char5 mmlenty_char5,
+       e.num1 mmlenty_num1,
+       e.num2 mmlenty_num2,
+       e.num3 mmlenty_num3,
+       trunc(e.date1) mmlenty_date1,
+       trunc(e.date2) mmlenty_date2,
+       trunc(e.date3) mmlenty_date3,
+       cast(null as number) address_pk,
+       cast(null as varchar2(50)) address_type_code,
+        cast(null as number) source_record_fk,
+       cast(null as varchar2(50)) source_table_name,
+       cast(null as varchar2(50)) address_name,
+       cast(null as varchar2(50))lenty_address1,
+       cast(null as varchar2(50)) lenty_address2,
+       cast(null as varchar2(50)) lenty_address3,
+       cast(null as varchar2(50)) lenty_city,
+       cast(null as varchar2(50)) county_code,
+       cast(null as varchar2(50)) lenty_state,
+       cast(null as varchar2(50)) lenty_postalCode,
+       cast(null as varchar2(50)) lenty_country,               
+       TRUNC(e.Sys_Update_Time) entity_sys_update_time,
+       e.entity_formatted_name mmlenty_formatted_name,
+       e.Very_Important_Person_b,
+       e.LENTY_TELEPHONE,
+       e.LENTY_FAX,
+       e.LENTY_MOBILE,
+       e.legalentity_parentunique_id
+  FROM dw_tmp_sle_ent_with_phone e, dw_tmp_sle_params t
+ WHERE  1=1
+   and not exists (select 'x'
+                   from address a
+                   where a.source_record_fk=e.entity_pk
+                       and (a.primary_address_b =  t.ent_addr_type or
+                            a.address_type_code = t.ent_addr_type)
+                   )   
+   and not exists(select 'x'
+                    from entity_role er
+                   where e.entity_pk = er.entity_fk)
+   and not exists(select 'x'
+                    from entity_class ec
+                   where ec.entity_fk = e.entity_pk)
+;</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1210</xloc>
+      <yloc>402</yloc>
+    </entry>
+    <entry>
+      <name>If exists dw_tmp_sle_e_w_n</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>dw_tmp_sle_e_w_n</tablename>
+      <schemaname/>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>992</xloc>
+      <yloc>401</yloc>
+    </entry>
+    <entry>
+      <name>Drop dw_tmp_sle_e_w_n</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table dw_tmp_sle_e_w_n purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1044</xloc>
+      <yloc>346</yloc>
+    </entry>
+    <entry>
+      <name>Create table dw_tmp_sle_e_w_n1</name>
+      <description/>
+      <type>SQL</type>
+      <sql>CREATE TABLE dw_tmp_sle_e_w_n1 PCTFREE 0 NOLOGGING AS
+SELECT e.entity_pk lenty_number,
+       e.client_id legalEntity_uniqueID,
+       e.title lenty_jobTitle,
+       NVL(NVL(e.FIRST_NAME,e.DBA_NAME),' ') lenty_name1,
+       NVL(e.LAST_NAME,e.ORGANIZATION_NAME) lenty_name2,
+       e.web_address1 lenty_website,
+       e.email_address1 lenty_email,
+       'UNKNOWN' lenty_role,
+       cast(null as varchar2(50)) entity_sub_class_code ,       
+       'Unknown' lenty_typeshortdesc,
+       'Unknown' lenty_typeDescription,
+       e.date_of_birth lenty_DOB,
+       e.gender lenty_gender,
+       e.marital_status lenty_maritalStatus,
+       NVL(e.FEDERAL_TAX_ID,e.SOCIAL_SECURITY_NUMBER) lenty_feinSsn,
+       e.middle_name mmlenty_middle_name,
+       e.very_long_name mmlenty_long_name,
+       e.prefix_name mmlenty_prefix,
+       e.suffix_name mmlenty_suffix,
+       e.char1 mmlenty_char1,
+       e.char2 mmlenty_char2,
+       e.char3 mmlenty_char3,
+       e.char4 mmlenty_char4,
+       e.char5 mmlenty_char5,
+       e.num1 mmlenty_num1,
+       e.num2 mmlenty_num2,
+       e.num3 mmlenty_num3,
+       trunc(e.date1) mmlenty_date1,
+       trunc(e.date2) mmlenty_date2,
+       trunc(e.date3) mmlenty_date3,
+       a.address_pk,
+       a.address_type_code,
+       a.source_record_fk,
+       a.source_table_name,
+       a.address_name,
+       a.address_line1,
+       a.address_line2,
+       a.address_line3,
+       a.city,
+       a.county_code,
+       upper(substr(a.state_code,1,2)) state_code,
+       NVL2(a.ZIP_PLUS_FOUR,a.ZIPCODE||'-'||a.ZIP_PLUS_FOUR,a.ZIPCODE) zipcode,
+       a.country_code,                
+       TRUNC(greatest(e.Sys_Update_Time, nvl(a.sys_update_time,to_date('1/1/1900','mm/dd/yyyy')))) entity_sys_update_time,
+       e.entity_formatted_name mmlenty_formatted_name,
+       e.Very_Important_Person_b,
+       e.LENTY_TELEPHONE,
+       e.LENTY_FAX,
+       e.LENTY_MOBILE,
+       e.legalentity_parentunique_id
+  FROM dw_tmp_sle_ent_with_phone e, address a,dw_tmp_sle_params t
+ WHERE 1=1
+   AND a.source_record_fk(+) = e.entity_pk
+   and a.address_pk = (select max(address_pk)
+                         from address a1
+                        where a1.source_record_fk = e.entity_pk
+                          and (a1.primary_address_b =  t.ent_addr_type or
+                               a1.address_type_code =  t.ent_addr_type))
+   and not exists(select 'x'
+                    from entity_role er
+                   where e.entity_pk = er.entity_fk)
+   and not exists(select 'x'
+                    from entity_class ec
+                   where ec.entity_fk = e.entity_pk)
+;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1009</xloc>
+      <yloc>575</yloc>
+    </entry>
+    <entry>
+      <name>If exists dw_tmp_sle_e_w_n1</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>dw_tmp_sle_e_w_n1</tablename>
+      <schemaname/>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1212</xloc>
+      <yloc>576</yloc>
+    </entry>
+    <entry>
+      <name>Drop dw_tmp_sle_e_w_n1</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table dw_tmp_sle_e_w_n1 purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1081</xloc>
+      <yloc>499</yloc>
+    </entry>
+    <entry>
+      <name>Create table dw_tmp_sle_drive2</name>
+      <description/>
+      <type>SQL</type>
+      <sql>--combine the all entities
+CREATE TABLE dw_tmp_sle_drive2 NOLOGGING PCTFREE 0 AS
+SELECT * 
+FROM   dw_tmp_sle_ec_w_a
+UNION
+SELECT * 
+FROM   dw_tmp_sle_er_w_a
+UNION
+SELECT * 
+FROM   dw_tmp_sle_er_w_a1
+union 
+select *
+from dw_tmp_sle_e_w_n 
+union 
+select *
+from
+dw_tmp_sle_e_w_n1 
+;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>649</xloc>
+      <yloc>578</yloc>
+    </entry>
+    <entry>
+      <name>If exists dw_tmp_sle_drive2</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>dw_tmp_sle_drive2</tablename>
+      <schemaname/>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>832</xloc>
+      <yloc>576</yloc>
+    </entry>
+    <entry>
+      <name>Drop dw_tmp_sle_drive2</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table dw_tmp_sle_drive2 purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>719</xloc>
+      <yloc>499</yloc>
+    </entry>
+    <entry>
+      <name>Create table dw_tmp_sle_drive3</name>
+      <description/>
+      <type>SQL</type>
+      <sql>CREATE TABLE dw_tmp_sle_drive3 NOLOGGING PCTFREE 0 AS
+select lenty_number,
+       legalEntity_uniqueID,
+       lenty_jobTitle,
+       lenty_name1,
+       lenty_name2,
+       lenty_website,
+       lenty_email,
+       lenty_role as lenty_type,
+       case 
+          when lenty_role= 'EXAMINER' then 
+              'ADJUSTER'
+          when lenty_role= 'ISSUECOMP' then 
+              'COMPANY'
+          when lenty_role= 'POLHOLDER' then 
+               'INSURED'
+          when LENTY_ROLE = 'AGENT' then 
+               'PRODUCER'
+          when LENTY_ROLE ='BROKER' then 
+               'PRODUCER'
+          when  LENTY_ROLE ='AGENCY' then 
+              'PRODUCER'
+          else 
+              lenty_role
+       end as lenty_role , 
+       --  entity_sub_class_code ,       
+       lenty_typeshortdesc,
+       lenty_typeDescription,
+       lenty_DOB,
+       lenty_gender,
+       lenty_maritalStatus,
+       lenty_feinSsn,
+       mmlenty_middle_name,
+       mmlenty_long_name,
+       mmlenty_prefix,
+       mmlenty_suffix,
+       mmlenty_char1,
+       mmlenty_char2,
+       mmlenty_char3,
+       mmlenty_char4,
+       mmlenty_char5,
+       mmlenty_num1,
+       mmlenty_num2,
+       mmlenty_num3,
+       mmlenty_date1,
+       mmlenty_date2,
+       mmlenty_date3,
+       address_pk,
+       address_type_code,
+       source_record_fk,
+       source_table_name,
+       address_name,
+       lenty_address1,
+       lenty_address2,
+       lenty_address3,
+       lenty_city,
+       cc.short_description as LENTY_COUNTY ,
+       lenty_state,
+       lenty_postalCode,       
+       lenty_country,       
+       mmlenty_formatted_name,
+       Very_Important_Person_b,
+       LENTY_TELEPHONE,
+       LENTY_FAX,
+       LENTY_MOBILE,
+       legalentity_parentunique_id as legalentity_parentuniqueid ,
+       min(entity_sys_update_time) as min_sys_update_time
+  from dw_tmp_sle_drive2 d,County_Code cc 
+  where d.county_code =cc.code(+)
+ group by lenty_number,
+          legalEntity_uniqueID,
+          lenty_jobTitle,
+          lenty_name1,
+          lenty_name2,
+          lenty_website,
+          lenty_email,
+          case 
+          when lenty_role= 'EXAMINER' then 
+              'ADJUSTER'
+          when lenty_role= 'ISSUECOMP' then 
+              'COMPANY'
+          when lenty_role= 'POLHOLDER' then 
+               'INSURED'
+          when LENTY_ROLE = 'AGENT' then 
+               'PRODUCER'
+          when LENTY_ROLE ='BROKER' then 
+               'PRODUCER'
+          when  LENTY_ROLE ='AGENCY' then 
+              'PRODUCER'
+          else 
+              lenty_role
+          end  ,
+          lenty_role,
+          --   entity_sub_class_code ,       
+          lenty_typeshortdesc,
+          lenty_typeDescription,
+          lenty_DOB,
+          lenty_gender,
+          lenty_maritalStatus,
+          lenty_feinSsn,
+          mmlenty_middle_name,
+          mmlenty_long_name,
+          mmlenty_prefix,
+          mmlenty_suffix,
+          mmlenty_char1,
+          mmlenty_char2,
+          mmlenty_char3,
+          mmlenty_char4,
+          mmlenty_char5,
+          mmlenty_num1,
+          mmlenty_num2,
+          mmlenty_num3,
+          mmlenty_date1,
+          mmlenty_date2,
+          mmlenty_date3,
+          address_pk,
+          address_type_code,
+          source_record_fk,
+          source_table_name,
+          address_name,
+          lenty_address1,
+          lenty_address2,
+          lenty_address3,
+          lenty_city,
+          cc.short_description,
+          lenty_state,
+          lenty_postalCode,
+           lenty_country,
+          mmlenty_formatted_name,
+          Very_Important_Person_b,
+          LENTY_TELEPHONE,
+          LENTY_FAX,
+           LENTY_MOBILE,
+          legalentity_parentunique_id
+;</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>312</xloc>
+      <yloc>578</yloc>
+    </entry>
+    <entry>
+      <name>If exists dw_tmp_sle_drive3</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>dw_tmp_sle_drive3</tablename>
+      <schemaname/>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>481</xloc>
+      <yloc>578</yloc>
+    </entry>
+    <entry>
+      <name>Drop dw_tmp_sle_drive3</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table dw_tmp_sle_drive3 purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>395</xloc>
+      <yloc>503</yloc>
+    </entry>
+    <entry>
+      <name>Insert into stg_legalentity</name>
+      <description/>
+      <type>SQL</type>
+      <sql>insert /*+ append */
+into stg_legalentity
+  select rownum,
+         '3.0LENTY',
+         'OASIS',
+         sysdate,
+         legalEntity_uniqueID,
+         lenty_role,
+         lenty_name1,
+         LEGALENTITY_PARENTUNIQUEID,
+         LENTY_TYPE,
+         LENTY_TYPEDESCRIPTION,
+         null /*LENTY_AFFILIATENUMBER*/,
+         null /*LENTY_AFFILIATENAME*/,
+         LENTY_NUMBER,
+         LENTY_NAME2,
+         LENTY_DOB,
+         null /*LENTY_OCCUPATION*/,
+         LENTY_GENDER,
+         LENTY_MARITALSTATUS,
+         LENTY_ADDRESS1,
+         LENTY_ADDRESS2,
+         LENTY_ADDRESS3,
+         LENTY_COUNTY,
+         LENTY_CITY,
+         LENTY_STATE,
+         LENTY_POSTALCODE,
+         LENTY_COUNTRY,
+         LENTY_TELEPHONE,
+         LENTY_FAX,
+         LENTY_MOBILE,
+         LENTY_EMAIL,
+         LENTY_WEBSITE,
+         null,
+         null,
+         null,
+         LENTY_FEINSSN,
+         null,
+         LENTY_JOBTITLE,
+         min_sys_update_time,
+         null,
+         null,
+         null,
+         null,
+         MMLENTY_MIDDLE_NAME,
+         MMLENTY_LONG_NAME,
+         MMLENTY_PREFIX,
+         MMLENTY_SUFFIX,
+         MMLENTY_CHAR1,
+         MMLENTY_CHAR2,
+         MMLENTY_CHAR3,
+         MMLENTY_CHAR4,
+         MMLENTY_CHAR5,
+         MMLENTY_NUM1,
+         MMLENTY_NUM2,
+         MMLENTY_NUM3,
+         MMLENTY_DATE1,
+         MMLENTY_DATE2,
+         MMLENTY_DATE3,
+         MMLENTY_FORMATTED_NAME,
+         Very_Important_Person_b,
+         ${sql_loadDate} as loaddate
+    from dw_tmp_sle_drive3@oltp;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>158</xloc>
+      <yloc>579</yloc>
+    </entry>
+    <entry>
+      <name>If exists dw_tmp_sle_ent_with_phone</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>dw_tmp_sle_ent_with_phone</tablename>
+      <schemaname/>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1074</xloc>
+      <yloc>122</yloc>
+    </entry>
+    <entry>
+      <name>Drop dw_tmp_sle_ent_with_phone</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table dw_tmp_sle_ent_with_phone purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1171</xloc>
+      <yloc>47</yloc>
+    </entry>
+    <entry>
+      <name>Create table dw_tmp_sle_ent_with_phone</name>
+      <description/>
+      <type>SQL</type>
+      <sql>--get telephone number, fax number and mobile phone number
+CREATE TABLE dw_tmp_sle_ent_with_phone PCTFREE 0 NOLOGGING AS
+SELECT e.*,
+       substr(e.phone_number,instr(e.phone_number,'phone^')+6,  instr(e.phone_number,'fax^')-instr(e.phone_number,'phone^')-6) as LENTY_TELEPHONE,
+       substr(e.phone_number,instr(e.phone_number,'fax^')+4,  instr(e.phone_number,'mob^')-instr(e.phone_number,'fax^')-4) as LENTY_FAX,
+       substr(e.phone_number,instr(e.phone_number,'mob^')+4) as LENTY_MOBILE,
+       (select entmgr.client_id 
+        from   entity entmgr,
+               entity ent,
+               claims_staff cs,
+               claims_staff csmgr
+        where  ent.entity_pk              = cs.entity_fk
+          and  cs.manager_claims_staff_fk = csmgr.claims_staff_pk
+          and  csmgr.entity_fk            = entmgr.entity_pk
+          and  ent.client_id=e.client_id
+          and  rownum=1
+       ) as legalentity_parentunique_id
+FROM   dw_tmp_sle_ent_with_name e;
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>Delphi_OLTP</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1286</xloc>
+      <yloc>122</yloc>
+    </entry>
+  </entries>
+  <hops>
+    <hop>
+      <from>START</from>
+      <to>If exists dw_tmp_sle_params</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>If exists dw_tmp_sle_params</from>
+      <to>Drop dw_tmp_sle_params</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop dw_tmp_sle_params</from>
+      <to>Create table dw_tmp_sle_params</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists dw_tmp_sle_params</from>
+      <to>Create table dw_tmp_sle_params</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create table dw_tmp_sle_params</from>
+      <to>If exists dw_tmp_sle_ent_with_name</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists dw_tmp_sle_ent_with_name</from>
+      <to>Drop dw_tmp_sle_ent_with_name</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop dw_tmp_sle_ent_with_name</from>
+      <to>Create table dw_tmp_sle_ent_with_name</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists dw_tmp_sle_ent_with_name</from>
+      <to>Create table dw_tmp_sle_ent_with_name</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists dw_tmp_sle_drive</from>
+      <to>Drop dw_tmp_sle_drive</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop dw_tmp_sle_drive</from>
+      <to>Create table dw_tmp_sle_drive</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists dw_tmp_sle_drive</from>
+      <to>Create table dw_tmp_sle_drive</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create table dw_tmp_sle_drive</from>
+      <to>If exists dw_tmp_sle_drive1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists dw_tmp_sle_drive1</from>
+      <to>Drop dw_tmp_sle_drive1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop dw_tmp_sle_drive1</from>
+      <to>Create table dw_tmp_sle_drive1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists dw_tmp_sle_drive1</from>
+      <to>Create table dw_tmp_sle_drive1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create table dw_tmp_sle_drive1</from>
+      <to>If exists dw_tmp_sle_ec_w_a</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists dw_tmp_sle_ec_w_a</from>
+      <to>Drop dw_tmp_sle_ec_w_a</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop dw_tmp_sle_ec_w_a</from>
+      <to>Create table dw_tmp_sle_ec_w_a</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists dw_tmp_sle_ec_w_a</from>
+      <to>Create table dw_tmp_sle_ec_w_a</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create table dw_tmp_sle_ec_w_a</from>
+      <to>If exists dw_tmp_sle_er_w_a</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists dw_tmp_sle_er_w_a</from>
+      <to>Drop dw_tmp_sle_er_w_a</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop dw_tmp_sle_er_w_a</from>
+      <to>Create table dw_tmp_sle_er_w_a</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists dw_tmp_sle_er_w_a</from>
+      <to>Create table dw_tmp_sle_er_w_a</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create table dw_tmp_sle_er_w_a</from>
+      <to>If exists dw_tmp_sle_er_w_a1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists dw_tmp_sle_er_w_a1</from>
+      <to>Drop dw_tmp_sle_er_w_a1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop dw_tmp_sle_er_w_a1</from>
+      <to>Create table dw_tmp_sle_er_w_a1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists dw_tmp_sle_er_w_a1</from>
+      <to>Create table dw_tmp_sle_er_w_a1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create table dw_tmp_sle_er_w_a1</from>
+      <to>If exists dw_tmp_sle_e_w_n</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists dw_tmp_sle_e_w_n</from>
+      <to>Drop dw_tmp_sle_e_w_n</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop dw_tmp_sle_e_w_n</from>
+      <to>Create table dw_tmp_sle_e_w_n</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists dw_tmp_sle_e_w_n</from>
+      <to>Create table dw_tmp_sle_e_w_n</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create table dw_tmp_sle_e_w_n</from>
+      <to>If exists dw_tmp_sle_e_w_n1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists dw_tmp_sle_e_w_n1</from>
+      <to>Drop dw_tmp_sle_e_w_n1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop dw_tmp_sle_e_w_n1</from>
+      <to>Create table dw_tmp_sle_e_w_n1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists dw_tmp_sle_e_w_n1</from>
+      <to>Create table dw_tmp_sle_e_w_n1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create table dw_tmp_sle_e_w_n1</from>
+      <to>If exists dw_tmp_sle_drive2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists dw_tmp_sle_drive2</from>
+      <to>Drop dw_tmp_sle_drive2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop dw_tmp_sle_drive2</from>
+      <to>Create table dw_tmp_sle_drive2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists dw_tmp_sle_drive2</from>
+      <to>Create table dw_tmp_sle_drive2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create table dw_tmp_sle_drive2</from>
+      <to>If exists dw_tmp_sle_drive3</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists dw_tmp_sle_drive3</from>
+      <to>Drop dw_tmp_sle_drive3</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop dw_tmp_sle_drive3</from>
+      <to>Create table dw_tmp_sle_drive3</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists dw_tmp_sle_drive3</from>
+      <to>Create table dw_tmp_sle_drive3</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create table dw_tmp_sle_drive3</from>
+      <to>Insert into stg_legalentity</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create table dw_tmp_sle_ent_with_name</from>
+      <to>If exists dw_tmp_sle_ent_with_phone</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists dw_tmp_sle_ent_with_phone</from>
+      <to>Drop dw_tmp_sle_ent_with_phone</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop dw_tmp_sle_ent_with_phone</from>
+      <to>Create table dw_tmp_sle_ent_with_phone</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists dw_tmp_sle_ent_with_phone</from>
+      <to>Create table dw_tmp_sle_ent_with_phone</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create table dw_tmp_sle_ent_with_phone</from>
+      <to>If exists dw_tmp_sle_drive</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+  </hops>
+  <notepads>
+  </notepads>
+  <attributes>
+    <group>
+      <name>JobRestart</name>
+      <attribute>
+        <key>UniqueConnections</key>
+        <value>N</value>
+      </attribute>
+    </group>
+  </attributes>
+</job>

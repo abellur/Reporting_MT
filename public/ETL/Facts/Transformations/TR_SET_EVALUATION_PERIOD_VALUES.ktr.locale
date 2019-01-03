@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:56 EST 2019
+file.title=TR_SET_EVALUATION_PERIOD_VALUES
+description=Sets the date values for the period being evaluated (loaded into the summary tables)
+title=TR_SET_EVALUATION_PERIOD_VALUES
+file.description=Sets the date values for the period being evaluated (loaded into the summary tables)

@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:57 EST 2019
+file.title=TR_SET_UNKNOWN_VARIABLES
+description=Gets the ID's of unknown records (default records) and put them into variables in memory
+title=TR_SET_UNKNOWN_VARIABLES
+file.description=Gets the ID's of unknown records (default records) and put them into variables in memory

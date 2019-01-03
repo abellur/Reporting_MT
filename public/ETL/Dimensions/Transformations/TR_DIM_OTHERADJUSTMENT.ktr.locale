@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:41 EST 2019
+file.title=TR_DIM_OTHERADJUSTMENT
+description=This is the transformation to load data from STG_OTHER_ADJUSTMENT to DIM_OTHER_ADJUSTMENT
+title=TR_DIM_OTHERADJUSTMENT
+file.description=This is the transformation to load data from STG_OTHER_ADJUSTMENT to DIM_OTHER_ADJUSTMENT

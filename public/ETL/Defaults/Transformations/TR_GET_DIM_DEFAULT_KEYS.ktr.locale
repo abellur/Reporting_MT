@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:34 EST 2019
+file.title=TR_GET_DIM_DEFAULT_KEYS
+description=Gets the max id for the different dimension keys
+title=TR_GET_DIM_DEFAULT_KEYS
+file.description=Gets the max id for the different dimension keys

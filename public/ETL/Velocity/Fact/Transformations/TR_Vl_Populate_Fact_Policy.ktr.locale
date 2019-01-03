@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:26 EST 2019
+file.title=TR_Vl_Populate_Fact_Policy
+description=Transformation to insert data to FACT_POLICY table.
+title=TR_Vl_Populate_Fact_Policy
+file.description=Transformation to insert data to FACT_POLICY table.

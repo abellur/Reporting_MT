@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:38 EST 2019
+file.title=TR_LOAD_MAG_COV_LOB_MAPPING
+description=Load data from ETL spreadsheet to MAG_COVERAGE_MAPPING table.
+title=TR_LOAD_MAG_COV_LOB_MAPPING
+file.description=Load data from ETL spreadsheet to MAG_COVERAGE_MAPPING table.

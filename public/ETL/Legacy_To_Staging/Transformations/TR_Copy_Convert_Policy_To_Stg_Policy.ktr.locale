@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:59 EST 2019
+file.title=TR_Copy_Convert_Policy_To_Stg_Policy
+description=Copy data from Stg_Policy_Convert to Stg_Policy
+title=TR_Copy_Convert_Policy_To_Stg_Policy
+file.description=Copy data from Stg_Policy_Convert to Stg_Policy

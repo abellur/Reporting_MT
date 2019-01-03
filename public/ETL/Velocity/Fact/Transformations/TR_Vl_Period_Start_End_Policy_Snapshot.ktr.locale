@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:26 EST 2019
+file.title=TR_Vl_Period_Start_End_Policy_Snapshot
+description=Determines the starting (minimum) date and ending (maximum) date from the staging data.
+title=TR_Vl_Period_Start_End_Policy_Snapshot
+file.description=Determines the starting (minimum) date and ending (maximum) date from the staging data.

@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:47 EST 2019
+file.title=JB_Load_Policy_Summary_Facts
+description=Loads the summary fact tables (FACT_POLICYTRANSACTION, FACT_POLICYCOVERAGE, FACT_POLICY)
+title=JB_Load_Policy_Summary_Facts
+file.description=Loads the summary fact tables (FACT_POLICYTRANSACTION, FACT_POLICYCOVERAGE, FACT_POLICY)

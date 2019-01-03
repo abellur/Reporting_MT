@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:41 EST 2019
+file.title=TR_DIM_POLICYEXTENSION_SCD2_Insert
+description=Loads the DIM_POLICYEXTENSION table.
+title=TR_DIM_POLICYEXTENSION_SCD2_Insert
+file.description=Loads the DIM_POLICYEXTENSION table.

@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:03 EST 2019
+file.title=SBJ_SFT_Create_Drive_Tables
+description=Job to create temp tables used for STG_FINANCIALTRANSACTION load.
+title=SBJ_SFT_Create_Drive_Tables
+file.description=Job to create temp tables used for STG_FINANCIALTRANSACTION load.

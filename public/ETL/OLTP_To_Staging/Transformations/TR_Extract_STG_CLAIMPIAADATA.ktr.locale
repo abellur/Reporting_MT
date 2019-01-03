@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:07 EST 2019
+file.title=TR_Extract_STG_CLAIMPIAADATA
+description=Extract data from PIAA_DATA to STG_CLAIMPIAADATA
+title=TR_Extract_STG_CLAIMPIAADATA
+file.description=Extract data from PIAA_DATA to STG_CLAIMPIAADATA

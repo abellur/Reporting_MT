@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:59 EST 2019
+file.title=TR_Extract_Stg_Coverage_Convert
+description=Load convert coverage data to STG_Coverage_Convert
+title=TR_Extract_Stg_Coverage_Convert
+file.description=Load convert coverage data to STG_Coverage_Convert

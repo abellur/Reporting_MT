@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:55 EST 2019
+file.title=TR_PERIOD_START_END
+description=Determines the starting (minimum) date and ending (maximum) date from the staging data.
+title=TR_PERIOD_START_END
+file.description=Determines the starting (minimum) date and ending (maximum) date from the staging data.

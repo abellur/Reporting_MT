@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:19 EST 2019
+file.title=JB_Load_VL_Dimension_Tables_Wc
+description=Job to load WC specific data into dimension tables.
+title=JB_Load_VL_Dimension_Tables_Wc
+file.description=Job to load WC specific data into dimension tables.

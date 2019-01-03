@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:14 EST 2019
+file.title=TR_Gather_Stg_Table_Stats
+description=Transform to gather statistics for staging tables
+title=TR_Gather_Stg_Table_Stats
+file.description=Transform to gather statistics for staging tables

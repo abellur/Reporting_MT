@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:28 EST 2019
+file.title=TR_Populate_Rpt_Pending_Pas_Transaction
+description=Transformation to populate pending PAS system transaction data to RPT_PAS_PENDING_TRANSACTION table.
+title=TR_Populate_Rpt_Pending_Pas_Transaction
+file.description=Transformation to populate pending PAS system transaction data to RPT_PAS_PENDING_TRANSACTION table.

@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:54 EST 2019
+file.title=TR_FC_OSR_Insert_Fact_Claim_OSR
+description=Transformation to insert data into Fact_Claim_OSR
+title=TR_FC_OSR_Insert_Fact_Claim_OSR
+file.description=Transformation to insert data into Fact_Claim_OSR

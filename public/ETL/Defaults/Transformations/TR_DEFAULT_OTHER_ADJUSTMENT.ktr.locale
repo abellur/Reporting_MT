@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:30 EST 2019
+file.title=TR_DEFAULT_OTHER_ADJUSTMENT
+description=Transformation to load default record to DIM_OTHER_ADJUSTMENT table
+title=TR_DEFAULT_OTHER_ADJUSTMENT
+file.description=Transformation to load default record to DIM_OTHER_ADJUSTMENT table

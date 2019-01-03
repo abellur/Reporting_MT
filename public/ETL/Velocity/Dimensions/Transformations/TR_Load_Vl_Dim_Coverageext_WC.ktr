@@ -1,0 +1,2948 @@
+<transformation>
+  <info>
+    <name>TR_Load_Vl_Dim_Coverageext_WC</name>
+    <description/>
+    <extended_description/>
+    <trans_version/>
+    <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
+    <directory>/public/ETL/Velocity/Dimensions/Transformations</directory>
+    <parameters>
+    </parameters>
+    <log>
+      <trans-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <size_limit_lines/>
+        <interval/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STATUS</id>
+          <enabled>Y</enabled>
+          <name>STATUS</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+          <subject/>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>STARTDATE</id>
+          <enabled>Y</enabled>
+          <name>STARTDATE</name>
+        </field>
+        <field>
+          <id>ENDDATE</id>
+          <enabled>Y</enabled>
+          <name>ENDDATE</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>DEPDATE</id>
+          <enabled>Y</enabled>
+          <name>DEPDATE</name>
+        </field>
+        <field>
+          <id>REPLAYDATE</id>
+          <enabled>Y</enabled>
+          <name>REPLAYDATE</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>Y</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+        <field>
+          <id>EXECUTING_SERVER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_SERVER</name>
+        </field>
+        <field>
+          <id>EXECUTING_USER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_USER</name>
+        </field>
+        <field>
+          <id>CLIENT</id>
+          <enabled>N</enabled>
+          <name>CLIENT</name>
+        </field>
+      </trans-log-table>
+      <perf-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <interval/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>SEQ_NR</id>
+          <enabled>Y</enabled>
+          <name>SEQ_NR</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>INPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>INPUT_BUFFER_ROWS</name>
+        </field>
+        <field>
+          <id>OUTPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>OUTPUT_BUFFER_ROWS</name>
+        </field>
+      </perf-log-table>
+      <channel-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>LOGGING_OBJECT_TYPE</id>
+          <enabled>Y</enabled>
+          <name>LOGGING_OBJECT_TYPE</name>
+        </field>
+        <field>
+          <id>OBJECT_NAME</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_NAME</name>
+        </field>
+        <field>
+          <id>OBJECT_COPY</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_COPY</name>
+        </field>
+        <field>
+          <id>REPOSITORY_DIRECTORY</id>
+          <enabled>Y</enabled>
+          <name>REPOSITORY_DIRECTORY</name>
+        </field>
+        <field>
+          <id>FILENAME</id>
+          <enabled>Y</enabled>
+          <name>FILENAME</name>
+        </field>
+        <field>
+          <id>OBJECT_ID</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_ID</name>
+        </field>
+        <field>
+          <id>OBJECT_REVISION</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_REVISION</name>
+        </field>
+        <field>
+          <id>PARENT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>PARENT_CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>ROOT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>ROOT_CHANNEL_ID</name>
+        </field>
+      </channel-log-table>
+      <step-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>N</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+      </step-log-table>
+      <metrics-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_DATE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_CODE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_CODE</name>
+        </field>
+        <field>
+          <id>METRICS_DESCRIPTION</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DESCRIPTION</name>
+        </field>
+        <field>
+          <id>METRICS_SUBJECT</id>
+          <enabled>Y</enabled>
+          <name>METRICS_SUBJECT</name>
+        </field>
+        <field>
+          <id>METRICS_TYPE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_TYPE</name>
+        </field>
+        <field>
+          <id>METRICS_VALUE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_VALUE</name>
+        </field>
+      </metrics-log-table>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+      <slaveserver>
+        <name>4Sight BI - PDI Server</name>
+        <hostname>10.0.0.21</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>joe</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Carte 1</name>
+        <hostname>localhost</hostname>
+        <port>9081</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>DI Server</name>
+        <hostname>localhost</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>joe</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_DEV</name>
+        <hostname>magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>shota</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_SERVER</name>
+        <hostname>http://magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>shota</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_TEST</name>
+        <hostname>magspentahotest</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO</name>
+        <hostname>magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO_BTS</name>
+        <hostname>129.144.25.104</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO_DEV</name>
+        <hostname>magspentahodev</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Master</name>
+        <hostname>localhost</hostname>
+        <port>8081</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SERVER1</name>
+        <hostname>LOCALHOST</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SLAVE ONE</name>
+        <hostname>192.168.2.101</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4a418bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SLAVE TWO</name>
+        <hostname>192.168.2.101</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave1</name>
+        <hostname>localhost</hostname>
+        <port>8082</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave2</name>
+        <hostname>localhost</hostname>
+        <port>8083</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave3</name>
+        <hostname>localhost</hostname>
+        <port>8084</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>local DIS</name>
+        <hostname>localhost</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>magspentahodev</name>
+        <hostname>magspentahodev</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+    </slaveservers>
+    <clusterschemas>
+      <clusterschema>
+        <name>4sbi_admin</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+        </slaveservers>
+      </clusterschema>
+      <clusterschema>
+        <name>ClusterSchema</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+          <name>Slave3</name>
+          <name>Slave2</name>
+          <name>Slave1</name>
+          <name>Master</name>
+        </slaveservers>
+      </clusterschema>
+      <clusterschema>
+        <name>cluster A</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+          <name>Carte 1</name>
+          <name>local DIS</name>
+        </slaveservers>
+      </clusterschema>
+    </clusterschemas>
+    <created_user>admin</created_user>
+    <created_date>2018/10/12 15:40:05.476</created_date>
+    <modified_user>-</modified_user>
+    <modified_date>2017/06/07 13:54:57.758</modified_date>
+    <key_for_session_key/>
+    <is_key_private>N</is_key_private>
+  </info>
+  <notepads>
+  </notepads>
+  <connection>
+    <name>Velocity_DW</name>
+    <server>${G_VELOCITY_DW_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_VELOCITY_DW_NAME}</database>
+    <port>${G_VELOCITY_DW_PORT}</port>
+    <username>${G_VELOCITY_DW_USERNAME}</username>
+    <password>${G_VELOCITY_DW_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_VELOCITY_DW_DATA}</data_tablespace>
+    <index_tablespace>${G_VELOCITY_DW_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_VELOCITY_DW_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>Velocity_Staging</name>
+    <server>${G_VELOCITY_STG_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_VELOCITY_STG_DB_NAME}</database>
+    <port>${G_VELOCITY_STG_DB_PORT}</port>
+    <username>${G_VELOCITY_STG_DB_USERNAME}</username>
+    <password>${G_VELOCITY_STG_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_VELOCITY_STG_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_VELOCITY_STG_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_VELOCITY_STG_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <order>
+    <hop>
+      <from>Get System Info</from>
+      <to>Default Nulls</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Load Velocity PAS Coverageext_WC Data</from>
+      <to>Get System Info</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Database lookup Cov Ext ID</from>
+      <to>Dimension lookup/update(Dim_Coverageext_WC)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Default Nulls</from>
+      <to>Database lookup Cov Ext ID</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <step>
+    <name>Database lookup Cov Ext ID</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Velocity_DW</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>DIM_COVERAGEEXTENSION</table>
+      <orderby>record_version desc</orderby>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>GUID</name>
+        <field>COVERAGE_GUID</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>REFRESH_ID</name>
+        <field>REFRESH_ID</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>POLICYVERSION_UNIQUEID</name>
+        <field>POLICYVERSION_UNIQUEID</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>COVERAGEEXTENSION_ID</name>
+        <rename>COVERAGEEXTENSION_ID</rename>
+        <default>0</default>
+        <type>Number</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>616</xloc>
+      <yloc>163</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Default Nulls</name>
+    <type>IfNull</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <replaceAllByValue>${G_DEFAULT_TEXT}</replaceAllByValue>
+    <replaceAllMask/>
+    <selectFields>N</selectFields>
+    <selectValuesType>Y</selectValuesType>
+    <setEmptyStringAll>N</setEmptyStringAll>
+    <valuetypes>
+      <valuetype>
+        <name>Number</name>
+        <value>${G_DEFAULT_NUMBER}</value>
+        <mask/>
+        <set_type_empty_string>N</set_type_empty_string>
+      </valuetype>
+      <valuetype>
+        <name>String</name>
+        <value>${G_DEFAULT_TEXT}</value>
+        <mask/>
+        <set_type_empty_string>N</set_type_empty_string>
+      </valuetype>
+      <valuetype>
+        <name>Date</name>
+        <value>${G_DEFAULT_DATE}</value>
+        <mask>MM/dd/yyyy</mask>
+        <set_type_empty_string>N</set_type_empty_string>
+      </valuetype>
+      <valuetype>
+        <name>Integer</name>
+        <value>${G_DEFAULT_NUMBER}</value>
+        <mask/>
+        <set_type_empty_string>N</set_type_empty_string>
+      </valuetype>
+      <valuetype>
+        <name>BigNumber</name>
+        <value>${G_DEFAULT_NUMBER}</value>
+        <mask/>
+        <set_type_empty_string>N</set_type_empty_string>
+      </valuetype>
+    </valuetypes>
+    <fields>
+      </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>452</xloc>
+      <yloc>163</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dimension lookup/update(Dim_Coverageext_WC)</name>
+    <type>DimensionLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <schema/>
+    <table>Dim_Coverageext_WC</table>
+    <connection>Velocity_DW</connection>
+    <commit>5000</commit>
+    <update>Y</update>
+    <fields>
+      <key>
+        <name>COVERAGE_UNIQUEID</name>
+        <lookup>COVERAGE_UNIQUEID</lookup>
+      </key>
+      <date>
+        <name>CHANGE_EFFECTIVE_DATE</name>
+        <from>VALID_FROMDATE</from>
+        <to>VALID_TODATE</to>
+      </date>
+      <field>
+        <name>SOURCE_SYSTEM</name>
+        <lookup>SOURCE_SYSTEM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>REFRESH_ID</name>
+        <lookup>REFRESH_ID</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>sys_date_etl</name>
+        <lookup>LOADDATE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name/>
+        <lookup>CURRENT_RECORD_IND</lookup>
+        <update>LastVersion</update>
+      </field>
+      <field>
+        <name>TRANSACTION_UNIQUEID</name>
+        <lookup>TRANSACTION_UNIQUEID</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>POLICYVERSION_UNIQUEID</name>
+        <lookup>POLICYVERSION_UNIQUEID</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>ARATE</name>
+        <lookup>ARATE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>ARATECLASSCODEINDICATOR</name>
+        <lookup>ARATECLASSCODEINDICATOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>ACTSTATEADMIRALTYCODEINDICATOR</name>
+        <lookup>ACTSTATEADMIRALTYCODEINDICATOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>ACTSTATEFELACODEINDICATOR</name>
+        <lookup>ACTSTATEFELACODEINDICATOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>ACTSTATEPREMIUM</name>
+        <lookup>ACTSTATEPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>ACTUSLHADMIRALTYCODEINDICATOR</name>
+        <lookup>ACTUSLHADMIRALTYCODEINDICATOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>ACTUSLHFELACODEINDICATOR</name>
+        <lookup>ACTUSLHFELACODEINDICATOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>ACTUSLHPREMIUM</name>
+        <lookup>ACTUSLHPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>ADDEFFECTIVEDT</name>
+        <lookup>ADDEFFECTIVEDT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>ADMIRALTYBASISPREMIUM</name>
+        <lookup>ADMIRALTYBASISPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>ADMIRALTYCLASSCODEINDICATOR</name>
+        <lookup>ADMIRALTYCLASSCODEINDICATOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>ADMINCLIMMINPREM</name>
+        <lookup>ADMINCLIMMINPREM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>ADMIRALTYINCRLIMITSPREMIUM</name>
+        <lookup>ADMIRALTYINCRLIMITSPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>ADMIRALTYMINIMUMPREMIUM</name>
+        <lookup>ADMIRALTYMINIMUMPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>ADMIRALTYPREMIUM</name>
+        <lookup>ADMIRALTYPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>ADMPROG1CLSCDIND</name>
+        <lookup>ADMPROG1CLSCDIND</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>ADMPROG2STCLSCDIND</name>
+        <lookup>ADMPROG2STCLSCDIND</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>ADMPROG2USLHCLSCDIND</name>
+        <lookup>ADMPROG2USLHCLSCDIND</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>ADMIRALTYSPLITLIMITSFACTOR</name>
+        <lookup>ADMIRALTYSPLITLIMITSFACTOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>ADVANCEPREMIUM</name>
+        <lookup>ADVANCEPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>AGGREGATELIMITBASISPREMIUM</name>
+        <lookup>AGGREGATELIMITBASISPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>ALLAREASCONTRACTPRICE</name>
+        <lookup>ALLAREASCONTRACTPRICE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>ANNUALPREMIUM</name>
+        <lookup>ANNUALPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>APPARATUSTABLE2</name>
+        <lookup>APPARATUSTABLE2</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>APPARATUSTABLE3</name>
+        <lookup>APPARATUSTABLE3</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>ATHLETICTEAMSRATE</name>
+        <lookup>ATHLETICTEAMSRATE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>AVERAGEPERCENTAGEDISCOUNT</name>
+        <lookup>AVERAGEPERCENTAGEDISCOUNT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>BASISPREMIUM</name>
+        <lookup>BASISPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>BASISPREMIUMFORMINIMUMPREMIUM</name>
+        <lookup>BASISPREMIUMFORMINIMUMPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>CHANGEEFFECTIVEDT</name>
+        <lookup>CHANGEEFFECTIVEDT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>CHANGEPREMIUM</name>
+        <lookup>CHANGEPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>CHANGEPREMIUMPRORATED</name>
+        <lookup>CHANGEPREMIUMPRORATED</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>CHARGE</name>
+        <lookup>CHARGE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>CLASSCODE</name>
+        <lookup>CLASSCODE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>CLASSCODEBASERATE</name>
+        <lookup>CLASSCODEBASERATE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>CLASSCODEBYCLASSCODEPREMIUM</name>
+        <lookup>CLASSCODEBYCLASSCODEPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>CLSCDCOALMINENONRATABLERATE</name>
+        <lookup>CLSCDCOALMINENONRATABLERATE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>CLASSCODEPREMIUM</name>
+        <lookup>CLASSCODEPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>CLASSCODEPREMIUMFORCLASSCODE</name>
+        <lookup>CLASSCODEPREMIUMFORCLASSCODE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>CLASSCODERATE</name>
+        <lookup>CLASSCODERATE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>CLASSCODERATEATHLETICTEAMSRATE</name>
+        <lookup>CLASSCODERATEATHLETICTEAMSRATE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>CLASSCODESUBCLASSIFICATION</name>
+        <lookup>CLASSCODESUBCLASSIFICATION</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>CLASSDESCRIPTION</name>
+        <lookup>CLASSDESCRIPTION</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>COALBASISPREMIUM</name>
+        <lookup>COALBASISPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>COALMINECLASSCODEINDICATOR</name>
+        <lookup>COALMINECLASSCODEINDICATOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>COALMINEDISEASECHARGECODE</name>
+        <lookup>COALMINEDISEASECHARGECODE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>COALMINEDISEASECHARGERATE</name>
+        <lookup>COALMINEDISEASECHARGERATE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>COALPREMIUM</name>
+        <lookup>COALPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>CONSTRUCTIONCLASSCODEINDICATOR</name>
+        <lookup>CONSTRUCTIONCLASSCODEINDICATOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>CONTRACTPRICERATIO</name>
+        <lookup>CONTRACTPRICERATIO</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>CONTRACTINGCLASSCODEINDICATOR</name>
+        <lookup>CONTRACTINGCLASSCODEINDICATOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>COV1BASERATE</name>
+        <lookup>COV1BASERATE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>COV2BASERATE</name>
+        <lookup>COV2BASERATE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>COVERAGEADDDT</name>
+        <lookup>COVERAGEADDDT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>COVERAGEONPOLICYINDICATOR</name>
+        <lookup>COVERAGEONPOLICYINDICATOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>DEDUCTIBLEFACTOR</name>
+        <lookup>DEDUCTIBLEFACTOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>DISEASECHARGELOADING</name>
+        <lookup>DISEASECHARGELOADING</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>DISEASECHARGELOADINGSELECTION</name>
+        <lookup>DISEASECHARGELOADINGSELECTION</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>DISEASECLASSCODES</name>
+        <lookup>DISEASECLASSCODES</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>DISEASEEACHEMPLOYEELIMIT</name>
+        <lookup>DISEASEEACHEMPLOYEELIMIT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>DISEASELOADING</name>
+        <lookup>DISEASELOADING</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>DISEASELOADINGRATE</name>
+        <lookup>DISEASELOADINGRATE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>DISEASEPOLICYLIMIT</name>
+        <lookup>DISEASEPOLICYLIMIT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>DRUGFREEFACTOR</name>
+        <lookup>DRUGFREEFACTOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>DRUGFREEXMLREQUEST</name>
+        <lookup>DRUGFREEXMLREQUEST</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>EACHACCIDENTLIMIT</name>
+        <lookup>EACHACCIDENTLIMIT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>EARNEDINFULLINDICATOR</name>
+        <lookup>EARNEDINFULLINDICATOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>EFFECTIVE</name>
+        <lookup>EFFECTIVE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>EFFECTIVEDT</name>
+        <lookup>EFFECTIVEDT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>EVALUATEDPREMIUM</name>
+        <lookup>EVALUATEDPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>EXPERIENCEMOD</name>
+        <lookup>EXPERIENCEMOD</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>EXPERIENCEMODFACTOR</name>
+        <lookup>EXPERIENCEMODFACTOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>EXPERIENCEMODXMLREQUEST</name>
+        <lookup>EXPERIENCEMODXMLREQUEST</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>EXPIRATION</name>
+        <lookup>EXPIRATION</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>EXPIRATIONDT</name>
+        <lookup>EXPIRATIONDT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FELABASISPREMIUM</name>
+        <lookup>FELABASISPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FELACLASSCODEINDICATOR</name>
+        <lookup>FELACLASSCODEINDICATOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FELAGROUP2CLASSCODEINDICATOR</name>
+        <lookup>FELAGROUP2CLASSCODEINDICATOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FELAMINIMUMPREMIUM</name>
+        <lookup>FELAMINIMUMPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FELAPROG1CLASSCODEINDICATOR</name>
+        <lookup>FELAPROG1CLASSCODEINDICATOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FELAPROG2STCLSCDIND</name>
+        <lookup>FELAPROG2STCLSCDIND</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FELAPROG2USLHCLSCDIND</name>
+        <lookup>FELAPROG2USLHCLSCDIND</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FELASPLITLIMITSFACTOR</name>
+        <lookup>FELASPLITLIMITSFACTOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FACTOR</name>
+        <lookup>FACTOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FEDERALCOALPREMIUM</name>
+        <lookup>FEDERALCOALPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FDEMPLIBACTINCLIMMINPREM</name>
+        <lookup>FDEMPLIBACTINCLIMMINPREM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FEDERALPREMIUM</name>
+        <lookup>FEDERALPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FEDERALRATE</name>
+        <lookup>FEDERALRATE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FEEINDICATOR</name>
+        <lookup>FEEINDICATOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FINALCLASSCODERATE</name>
+        <lookup>FINALCLASSCODERATE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FINALMINIMUMPREMIUM</name>
+        <lookup>FINALMINIMUMPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FINALRATE</name>
+        <lookup>FINALRATE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FIREPROTECTIONCONTRACTSPREMIUM</name>
+        <lookup>FIREPROTECTIONCONTRACTSPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FIRST10000PREMIUM</name>
+        <lookup>FIRST10000PREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FIRSTAMOUNT</name>
+        <lookup>FIRSTAMOUNT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FIRSTMINIMUMPREMIUM</name>
+        <lookup>FIRSTMINIMUMPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FIRSTMULTISTATEPREMIUM</name>
+        <lookup>FIRSTMULTISTATEPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FIRSTPCT</name>
+        <lookup>FIRSTPCT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FIRSTPREMIUM</name>
+        <lookup>FIRSTPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FIRSTPREMIUMBASE</name>
+        <lookup>FIRSTPREMIUMBASE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FIRSTRATEPREMIUM</name>
+        <lookup>FIRSTRATEPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FLATCHARGE</name>
+        <lookup>FLATCHARGE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FLATCHARGEPREMIUM</name>
+        <lookup>FLATCHARGEPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FORMNAME</name>
+        <lookup>FORMNAME</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FORMNUMBER</name>
+        <lookup>FORMNUMBER</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>FULLBASISPREMIUM</name>
+        <lookup>FULLBASISPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>HAZARDGROUP</name>
+        <lookup>HAZARDGROUP</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>HIGHESTDEDUCTIBLEFACTOR</name>
+        <lookup>HIGHESTDEDUCTIBLEFACTOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>HIGHESTDEDUCTIBLEPREMIUM</name>
+        <lookup>HIGHESTDEDUCTIBLEPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>HIGHESTMINIMUMPREMIUM</name>
+        <lookup>HIGHESTMINIMUMPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>HOMEAREACONTRACTPRICE</name>
+        <lookup>HOMEAREACONTRACTPRICE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>HOMEAREAPREMIUM</name>
+        <lookup>HOMEAREAPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>ID</name>
+        <lookup>ID</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>INCRLIMITSBALANCETOMINPREMIUM</name>
+        <lookup>INCRLIMITSBALANCETOMINPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>INCRLIMITSFACTOR</name>
+        <lookup>INCRLIMITSFACTOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>INCRLIMITSMINPREMIUM</name>
+        <lookup>INCRLIMITSMINPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>INCRLIMITSPERCENT</name>
+        <lookup>INCRLIMITSPERCENT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>INCRLIMITSPREMIUM</name>
+        <lookup>INCRLIMITSPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>INDEMNITYDEDUCTIBLEFACTOR</name>
+        <lookup>INDEMNITYDEDUCTIBLEFACTOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>LCM</name>
+        <lookup>LCM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>LIMIT</name>
+        <lookup>LIMIT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>LOSSCONSTANTPREMIUM</name>
+        <lookup>LOSSCONSTANTPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>LOSSCOSTEFFECTIVEDATE</name>
+        <lookup>LOSSCOSTEFFECTIVEDATE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>LOSSCOSTMULTIPLIER</name>
+        <lookup>LOSSCOSTMULTIPLIER</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>LOSSELIMINATIONRATIO</name>
+        <lookup>LOSSELIMINATIONRATIO</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>MANAGEDCAREFACTOR</name>
+        <lookup>MANAGEDCAREFACTOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>MANAGEDCAREXMLREQUEST</name>
+        <lookup>MANAGEDCAREXMLREQUEST</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>MANUALPREMIUM</name>
+        <lookup>MANUALPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>MEDICALDEDUCTIBLEFACTOR</name>
+        <lookup>MEDICALDEDUCTIBLEFACTOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>MINPREMIUM</name>
+        <lookup>MINPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>MINIMUMEARNEDPREMIUM</name>
+        <lookup>MINIMUMEARNEDPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>MINIMUMPAYROLLAMOUNT</name>
+        <lookup>MINIMUMPAYROLLAMOUNT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>MINIMUMPREMIUM</name>
+        <lookup>MINIMUMPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>MODIFIED</name>
+        <lookup>MODIFIED</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NEGOTIATEDDEDUCTIBLEFACTOR</name>
+        <lookup>NEGOTIATEDDEDUCTIBLEFACTOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NEXT1550000PREMIUM</name>
+        <lookup>NEXT1550000PREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NEXT1550000PREMIUMDISCOUNT</name>
+        <lookup>NEXT1550000PREMIUMDISCOUNT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NEXT1550000PREMIUMDISCOUNTPCT</name>
+        <lookup>NEXT1550000PREMIUMDISCOUNTPCT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NEXT190000PREMIUM</name>
+        <lookup>NEXT190000PREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NEXT190000PREMIUMDISCOUNT</name>
+        <lookup>NEXT190000PREMIUMDISCOUNT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NEXT190000PREMIUMDISCOUNTPCT</name>
+        <lookup>NEXT190000PREMIUMDISCOUNTPCT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NEXT1AMOUNT</name>
+        <lookup>NEXT1AMOUNT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NEXT1MULTISTATEPREMIUM</name>
+        <lookup>NEXT1MULTISTATEPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NEXT1MULTISTATEPREMIUMBASE</name>
+        <lookup>NEXT1MULTISTATEPREMIUMBASE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NEXT1PCT</name>
+        <lookup>NEXT1PCT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NEXT1PREMIUM</name>
+        <lookup>NEXT1PREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NEXT1PREMIUMBASE</name>
+        <lookup>NEXT1PREMIUMBASE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NEXT2AMOUNT</name>
+        <lookup>NEXT2AMOUNT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NEXT2MULTISTATEPREMIUM</name>
+        <lookup>NEXT2MULTISTATEPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NEXT2MULTISTATEPREMIUMBASE</name>
+        <lookup>NEXT2MULTISTATEPREMIUMBASE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NEXT2PCT</name>
+        <lookup>NEXT2PCT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NEXT2PREMIUM</name>
+        <lookup>NEXT2PREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NEXT2PREMIUMBASE</name>
+        <lookup>NEXT2PREMIUMBASE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NONADMWATERCVGIND</name>
+        <lookup>NONADMWATERCVGIND</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NONCOALPREMIUM</name>
+        <lookup>NONCOALPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NONFEDERALPREMIUM</name>
+        <lookup>NONFEDERALPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NONPAYROLLPREMIUM</name>
+        <lookup>NONPAYROLLPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NONPAYROLLRATE</name>
+        <lookup>NONPAYROLLRATE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NONPAYROLLTOTALMANUALPREMIUM</name>
+        <lookup>NONPAYROLLTOTALMANUALPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NONPERCAPITAVALUE</name>
+        <lookup>NONPERCAPITAVALUE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NONPRORATEDPREMIUM</name>
+        <lookup>NONPRORATEDPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NONRATABLEPREMIUM</name>
+        <lookup>NONRATABLEPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NONRATABLECLASSCODE</name>
+        <lookup>NONRATABLECLASSCODE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NONRATABLECLASSCODEINDICATOR</name>
+        <lookup>NONRATABLECLASSCODEINDICATOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NONRATABLEELEMENTRATE</name>
+        <lookup>NONRATABLEELEMENTRATE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NONRATABLEFEDERALODCODE</name>
+        <lookup>NONRATABLEFEDERALODCODE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NONRATABLEMINEPREMIUM</name>
+        <lookup>NONRATABLEMINEPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NONRATABLEMINERATE</name>
+        <lookup>NONRATABLEMINERATE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NONRATABLESTATEODCODE</name>
+        <lookup>NONRATABLESTATEODCODE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NUMBERFULLTIMEEMPLOYEES</name>
+        <lookup>NUMBERFULLTIMEEMPLOYEES</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NUMBEROFAMBULANCES</name>
+        <lookup>NUMBEROFAMBULANCES</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NUMBEROFEMPLOYEES</name>
+        <lookup>NUMBEROFEMPLOYEES</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NUMBEROFFIREPROTECTIONCONTACTS</name>
+        <lookup>NUMBEROFFIREPROTECTIONCONTACTS</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NUMBEROFFIREPROTECTIONCONTPREM</name>
+        <lookup>NUMBEROFFIREPROTECTIONCONTPREM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NUMBEROFHAZARDOUSMATERIALSEAMS</name>
+        <lookup>NUMBEROFHAZARDOUSMATERIALSEAMS</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NUMBEROFLOCATIONS</name>
+        <lookup>NUMBEROFLOCATIONS</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NUMBEROFSTUDENTS</name>
+        <lookup>NUMBEROFSTUDENTS</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NUMBEROFWEEKSINTHEPROGRAM</name>
+        <lookup>NUMBEROFWEEKSINTHEPROGRAM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NUMBERPARTTIMEEMPLOYEES</name>
+        <lookup>NUMBERPARTTIMEEMPLOYEES</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>NUMBERSTUDENTWEEKS</name>
+        <lookup>NUMBERSTUDENTWEEKS</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>OFFSHOREINCRLIMITSFACTOR</name>
+        <lookup>OFFSHOREINCRLIMITSFACTOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>OFFSHOREINCRLIMITSPREMIUM</name>
+        <lookup>OFFSHOREINCRLIMITSPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>OFFSHORELIMITSFACTOR</name>
+        <lookup>OFFSHORELIMITSFACTOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>OILPREMIUM</name>
+        <lookup>OILPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>OUTSIDEAREAPREMIUM</name>
+        <lookup>OUTSIDEAREAPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>OVER1750000PREMIUM</name>
+        <lookup>OVER1750000PREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>OVER1750000PREMIUMDISCOUNT</name>
+        <lookup>OVER1750000PREMIUMDISCOUNT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>OVER1750000PREMIUMDISCOUNTPCT</name>
+        <lookup>OVER1750000PREMIUMDISCOUNTPCT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>OVERAMOUNT</name>
+        <lookup>OVERAMOUNT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>OVERMULTISTATEPREMIUM</name>
+        <lookup>OVERMULTISTATEPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>OVERMULTISTATEPREMIUMBASE</name>
+        <lookup>OVERMULTISTATEPREMIUMBASE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>OVERPCT</name>
+        <lookup>OVERPCT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>OVERPREMIUM</name>
+        <lookup>OVERPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>OVERPREMIUMBASE</name>
+        <lookup>OVERPREMIUMBASE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>OVERRIDEPREMIUM</name>
+        <lookup>OVERRIDEPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PARTIALDISEASEADJUSTMENT</name>
+        <lookup>PARTIALDISEASEADJUSTMENT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PAYROLL</name>
+        <lookup>PAYROLL</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PAYROLLPREMIUM</name>
+        <lookup>PAYROLLPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PAYROLLTERRITORY1</name>
+        <lookup>PAYROLLTERRITORY1</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PAYROLLTERRITORY2</name>
+        <lookup>PAYROLLTERRITORY2</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PAYROLLTERRITORY3</name>
+        <lookup>PAYROLLTERRITORY3</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PERCAPITAVALUE</name>
+        <lookup>PERCAPITAVALUE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PERCORDRATE</name>
+        <lookup>PERCORDRATE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>POLICYTERMPREMIUM</name>
+        <lookup>POLICYTERMPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>POSTARDPREMIUM</name>
+        <lookup>POSTARDPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>POSTARDPREMIUMPRORATED</name>
+        <lookup>POSTARDPREMIUMPRORATED</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PREARDBASISPREMIUM</name>
+        <lookup>PREARDBASISPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PREARDFIRSTPREMIUMBASE</name>
+        <lookup>PREARDFIRSTPREMIUMBASE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PREARDFULLBASISPREMIUM</name>
+        <lookup>PREARDFULLBASISPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PREARDINCRLIMITSPREMIUM</name>
+        <lookup>PREARDINCRLIMITSPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PREARDNEXT1PREMIUM</name>
+        <lookup>PREARDNEXT1PREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PREARDNEXT1PREMIUMBASE</name>
+        <lookup>PREARDNEXT1PREMIUMBASE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PREARDNEXT2PREMIUM</name>
+        <lookup>PREARDNEXT2PREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PREARDNEXT2PREMIUMBASE</name>
+        <lookup>PREARDNEXT2PREMIUMBASE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PREARDOVERPREMIUM</name>
+        <lookup>PREARDOVERPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PREARDOVERPREMIUMBASE</name>
+        <lookup>PREARDOVERPREMIUMBASE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PREARDPREMIUM</name>
+        <lookup>PREARDPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PREARDSUBJECTPAYROLL</name>
+        <lookup>PREARDSUBJECTPAYROLL</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PREMIUM</name>
+        <lookup>PREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PREMIUMBASIS</name>
+        <lookup>PREMIUMBASIS</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PREMFORBALTOPOLMINPREM</name>
+        <lookup>PREMFORBALTOPOLMINPREM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PREMIUMHEADER</name>
+        <lookup>PREMIUMHEADER</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PREMIUMINDICATOR</name>
+        <lookup>PREMIUMINDICATOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PREMIUMSUBJECTTOEXPERIENCEMOD</name>
+        <lookup>PREMIUMSUBJECTTOEXPERIENCEMOD</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PRIORID</name>
+        <lookup>PRIORID</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PRIORPREMIUM</name>
+        <lookup>PRIORPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PRIORRATEDT</name>
+        <lookup>PRIORRATEDT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PRORATEFACTOR</name>
+        <lookup>PRORATEFACTOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PRORATEFACTORPOSTARD</name>
+        <lookup>PRORATEFACTORPOSTARD</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PRORATEINDICATOR</name>
+        <lookup>PRORATEINDICATOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PRORATEDCHANGEPREMIUM</name>
+        <lookup>PRORATEDCHANGEPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PRORATEDMINIMUMPREMIUM</name>
+        <lookup>PRORATEDMINIMUMPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PRORATEDNUMBERFULLTIMEEMPES</name>
+        <lookup>PRORATEDNUMBERFULLTIMEEMPES</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PRORATEDNUMBERPARTTIMEEMPES</name>
+        <lookup>PRORATEDNUMBERPARTTIMEEMPES</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PRORATEDPAYROLL</name>
+        <lookup>PRORATEDPAYROLL</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PRORATEDPREMIUM</name>
+        <lookup>PRORATEDPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PRORATEDPRIORPREMIUM</name>
+        <lookup>PRORATEDPRIORPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PUREPERCENTAGEDISCOUNT</name>
+        <lookup>PUREPERCENTAGEDISCOUNT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>RATE</name>
+        <lookup>RATE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>RATE2</name>
+        <lookup>RATE2</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>RATE3</name>
+        <lookup>RATE3</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>RATEDT</name>
+        <lookup>RATEDT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>SCHEDULEMOD</name>
+        <lookup>SCHEDULEMOD</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>SCHEDULEMODFACTOR</name>
+        <lookup>SCHEDULEMODFACTOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>SCHEDULEMODXMLREQUEST</name>
+        <lookup>SCHEDULEMODXMLREQUEST</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>SERVICERESPONSE</name>
+        <lookup>SERVICERESPONSE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>SHORTRATEFACTOR</name>
+        <lookup>SHORTRATEFACTOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>SHORTRATEINDICATOR</name>
+        <lookup>SHORTRATEINDICATOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>SHORTRATEPENALTY</name>
+        <lookup>SHORTRATEPENALTY</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>SPECIFICMINPREMIUMINDICATOR</name>
+        <lookup>SPECIFICMINPREMIUMINDICATOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>STANDARDEXCEPTIONCLASSCODES</name>
+        <lookup>STANDARDEXCEPTIONCLASSCODES</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>STDEXCEPTIONMINPREM</name>
+        <lookup>STDEXCEPTIONMINPREM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>STATECOALPREMIUM</name>
+        <lookup>STATECOALPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>STATEPREMIUM</name>
+        <lookup>STATEPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>STATERATE</name>
+        <lookup>STATERATE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>STATERATIO</name>
+        <lookup>STATERATIO</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>SUBJECTPAYROLL</name>
+        <lookup>SUBJECTPAYROLL</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>SUPPLEMENTALDISEASELOADING</name>
+        <lookup>SUPPLEMENTALDISEASELOADING</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>SUPPLEMENTARYDISEASEADJUSTMENT</name>
+        <lookup>SUPPLEMENTARYDISEASEADJUSTMENT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>SUPPLEMENTARYDISEASECODE</name>
+        <lookup>SUPPLEMENTARYDISEASECODE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>SUPPLEMENTARYDISEASETYPE</name>
+        <lookup>SUPPLEMENTARYDISEASETYPE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>TAXINDICATOR</name>
+        <lookup>TAXINDICATOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>TERMFACTORINDICATOR</name>
+        <lookup>TERMFACTORINDICATOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>TERRITORY</name>
+        <lookup>TERRITORY</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>TOTEMPLIABINCLIMPREM</name>
+        <lookup>TOTEMPLIABINCLIMPREM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>TOTALEXPENSECONSTANTPREMIUM</name>
+        <lookup>TOTALEXPENSECONSTANTPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>TOTALINCRLIMITSCOVERAGEPREMIUM</name>
+        <lookup>TOTALINCRLIMITSCOVERAGEPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>TOTMANPREMFORBASISPREM</name>
+        <lookup>TOTMANPREMFORBASISPREM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>TOTMANPREMFORFULLBASISPREM</name>
+        <lookup>TOTMANPREMFORFULLBASISPREM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>TOTALPAYROLL</name>
+        <lookup>TOTALPAYROLL</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>TOTALPREMIUM</name>
+        <lookup>TOTALPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>TOTALPRORATEDCHANGEPREMIUM</name>
+        <lookup>TOTALPRORATEDCHANGEPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>TOTSUBPREMFORBASISPREM</name>
+        <lookup>TOTSUBPREMFORBASISPREM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>TUBERCULOSISRATE</name>
+        <lookup>TUBERCULOSISRATE</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>USLHADJUSTMENT</name>
+        <lookup>USLHADJUSTMENT</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>USLHCLASSCODEINDICATOR</name>
+        <lookup>USLHCLASSCODEINDICATOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>USLHPERCENTFACTOR</name>
+        <lookup>USLHPERCENTFACTOR</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>UNITNUMBER</name>
+        <lookup>UNITNUMBER</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>VERSIONEDID</name>
+        <lookup>VERSIONEDID</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>VOLAMBEACHADDPREM</name>
+        <lookup>VOLAMBEACHADDPREM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>VOLAMBEACHADDRATEPREM</name>
+        <lookup>VOLAMBEACHADDRATEPREM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>VOLUNTEERAMBULANCESPREMIUM</name>
+        <lookup>VOLUNTEERAMBULANCESPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>VOLFFADDPREM</name>
+        <lookup>VOLFFADDPREM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>VOLFFBASEPREM</name>
+        <lookup>VOLFFBASEPREM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>VOLFFOUTBASEPREM</name>
+        <lookup>VOLFFOUTBASEPREM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>VOLFFOUTPOP</name>
+        <lookup>VOLFFOUTPOP</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>VOLFFOUTPOPADDPREM</name>
+        <lookup>VOLFFOUTPOPADDPREM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>VOLFFOUTPOPBASEADDPREM</name>
+        <lookup>VOLFFOUTPOPBASEADDPREM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>VOLFFOUTPOPTRUNCATED</name>
+        <lookup>VOLFFOUTPOPTRUNCATED</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>VOLFFOUTPREM</name>
+        <lookup>VOLFFOUTPREM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>VOLFFPOP</name>
+        <lookup>VOLFFPOP</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>VOLFFPOPADDPREM</name>
+        <lookup>VOLFFPOPADDPREM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>VOLFFPOPBASEADDPREM</name>
+        <lookup>VOLFFPOPBASEADDPREM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>VOLFFPOPTRUNCATED</name>
+        <lookup>VOLFFPOPTRUNCATED</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>VOLUNTEERFIREFIGHTERSPREMIUM</name>
+        <lookup>VOLUNTEERFIREFIGHTERSPREMIUM</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>CREATEDBY</name>
+        <lookup>CREATEDBY</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>CREATEDON</name>
+        <lookup>CREATEDON</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>GUID</name>
+        <lookup>GUID</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>OID</name>
+        <lookup>OID</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>PARENTID</name>
+        <lookup>PARENTID</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>REFID</name>
+        <lookup>REFID</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>SOURCEREFID</name>
+        <lookup>SOURCEREFID</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>UPDATEDBY</name>
+        <lookup>UPDATEDBY</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>UPDATEDON</name>
+        <lookup>UPDATEDON</lookup>
+        <update>Insert</update>
+      </field>
+      <field>
+        <name>COVERAGEEXTENSION_ID</name>
+        <lookup>COVERAGEEXTENSION_ID</lookup>
+        <update>Insert</update>
+      </field>
+      <return>
+        <name>WCCOVERAGEEXTENSION_ID</name>
+        <rename/>
+        <creation_method>tablemax</creation_method>
+        <use_autoinc>N</use_autoinc>
+        <version>RECORD_VERSION</version>
+      </return>
+    </fields>
+    <sequence/>
+    <min_year>1900</min_year>
+    <max_year>3000</max_year>
+    <cache_size>-1</cache_size>
+    <preload_cache>N</preload_cache>
+    <use_start_date_alternative>N</use_start_date_alternative>
+    <start_date_alternative>none</start_date_alternative>
+    <start_date_field_name/>
+    <useBatch>N</useBatch>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>852</xloc>
+      <yloc>163</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get System Info</name>
+    <type>SystemInfo</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>sys_date_etl</name>
+        <type>system date (fixed)</type>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>328</xloc>
+      <yloc>163</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Load Velocity PAS Coverageext_WC Data</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Velocity_Staging</connection>
+    <sql>select distinct vscaw.coverage_uniqueid      coverage_uniqueid,
+       vscaw.transaction_uniqueid            transaction_uniqueid,
+       vspv.policyversion_uniqueid           policyversion_uniqueid,
+       vst.accounting_date                   change_effective_date,
+       vscaw.arate                           arate,
+       vscaw.arateclasscodeindicator         arateclasscodeindicator,
+       vscaw.actstateadmiraltycodeindicator  actstateadmiraltycodeindicator,
+       vscaw.actstatefelacodeindicator       actstatefelacodeindicator,
+       vscaw.actstatepremium                 actstatepremium,
+       vscaw.actuslhadmiraltycodeindicator   actuslhadmiraltycodeindicator,
+       vscaw.actuslhfelacodeindicator        actuslhfelacodeindicator,
+       vscaw.actuslhpremium                  actuslhpremium,
+       vscaw.addeffectivedt                  addeffectivedt,
+       vscaw.admiraltybasispremium           admiraltybasispremium,
+       vscaw.admiraltyclasscodeindicator     admiraltyclasscodeindicator,
+       vscaw.adminclimminprem                adminclimminprem,
+       vscaw.admiraltyincrlimitspremium      admiraltyincrlimitspremium,
+       vscaw.admiraltyminimumpremium         admiraltyminimumpremium,
+       vscaw.admiraltypremium                admiraltypremium,
+       vscaw.admprog1clscdind                admprog1clscdind,
+       vscaw.admprog2stclscdind              admprog2stclscdind,
+       vscaw.admprog2uslhclscdind            admprog2uslhclscdind,
+       vscaw.admiraltysplitlimitsfactor      admiraltysplitlimitsfactor,
+       vscaw.advancepremium                  advancepremium,
+       vscaw.aggregatelimitbasispremium      aggregatelimitbasispremium,
+       vscaw.allareascontractprice           allareascontractprice,
+       vscaw.annualpremium                   annualpremium,
+       vscaw.apparatustable2                 apparatustable2,
+       vscaw.apparatustable3                 apparatustable3,
+       vscaw.athleticteamsrate               athleticteamsrate,
+       vscaw.averagepercentagediscount       averagepercentagediscount,
+       vscaw.basispremium                    basispremium,
+       vscaw.basispremiumforminimumpremium   basispremiumforminimumpremium,
+       vscaw.changeeffectivedt               changeeffectivedt,
+       vscaw.changepremium                   changepremium,
+       vscaw.changepremiumprorated           changepremiumprorated,
+       vscaw.charge                          charge,
+       vscaw.classcode                       classcode,
+       vscaw.classcodebaserate               classcodebaserate,
+       vscaw.classcodebyclasscodepremium     classcodebyclasscodepremium,
+       vscaw.clscdcoalminenonratablerate     clscdcoalminenonratablerate,
+       vscaw.classcodepremium                classcodepremium,
+       vscaw.classcodepremiumforclasscode    classcodepremiumforclasscode,
+       vscaw.classcoderate                   classcoderate,
+       vscaw.classcoderateathleticteamsrate  classcoderateathleticteamsrate,
+       vscaw.classcodesubclassification      classcodesubclassification,
+       vscaw.classdescription                classdescription,
+       vscaw.coalbasispremium                coalbasispremium,
+       vscaw.coalmineclasscodeindicator      coalmineclasscodeindicator,
+       vscaw.coalminediseasechargecode       coalminediseasechargecode,
+       vscaw.coalminediseasechargerate       coalminediseasechargerate,
+       vscaw.coalpremium                     coalpremium,
+       vscaw.constructionclasscodeindicator  constructionclasscodeindicator,
+       vscaw.contractpriceratio              contractpriceratio,
+       vscaw.contractingclasscodeindicator   contractingclasscodeindicator,
+       vscaw.cov1baserate                    cov1baserate,
+       vscaw.cov2baserate                    cov2baserate,
+       vscaw.coverageadddt                   coverageadddt,
+       vscaw.coverageonpolicyindicator       coverageonpolicyindicator,
+       vscaw.deductiblefactor                deductiblefactor,
+       vscaw.diseasechargeloading            diseasechargeloading,
+       vscaw.diseasechargeloadingselection   diseasechargeloadingselection,
+       vscaw.diseaseclasscodes               diseaseclasscodes,
+       vscaw.diseaseeachemployeelimit        diseaseeachemployeelimit,
+       vscaw.diseaseloading                  diseaseloading,
+       vscaw.diseaseloadingrate              diseaseloadingrate,
+       vscaw.diseasepolicylimit              diseasepolicylimit,
+       vscaw.drugfreefactor                  drugfreefactor,
+       vscaw.drugfreexmlrequest              drugfreexmlrequest,
+       vscaw.eachaccidentlimit               eachaccidentlimit,
+       vscaw.earnedinfullindicator           earnedinfullindicator,
+       vscaw.effective                       effective,
+       vscaw.effectivedt                     effectivedt,
+       vscaw.evaluatedpremium                evaluatedpremium,
+       vscaw.experiencemod                   experiencemod,
+       vscaw.experiencemodfactor             experiencemodfactor,
+       vscaw.experiencemodxmlrequest         experiencemodxmlrequest,
+       vscaw.expiration                      expiration,
+       vscaw.expirationdt                    expirationdt,
+       vscaw.felabasispremium                felabasispremium,
+       vscaw.felaclasscodeindicator          felaclasscodeindicator,
+       vscaw.felagroup2classcodeindicator    felagroup2classcodeindicator,
+       vscaw.felaminimumpremium              felaminimumpremium,
+       vscaw.felaprog1classcodeindicator     felaprog1classcodeindicator,
+       vscaw.felaprog2stclscdind             felaprog2stclscdind,
+       vscaw.felaprog2uslhclscdind           felaprog2uslhclscdind,
+       vscaw.felasplitlimitsfactor           felasplitlimitsfactor,
+       vscaw.factor                          factor,
+       vscaw.federalcoalpremium              federalcoalpremium,
+       vscaw.fdemplibactinclimminprem        fdemplibactinclimminprem,
+       vscaw.federalpremium                  federalpremium,
+       vscaw.federalrate                     federalrate,
+       vscaw.feeindicator                    feeindicator,
+       vscaw.finalclasscoderate              finalclasscoderate,
+       vscaw.finalminimumpremium             finalminimumpremium,
+       vscaw.finalrate                       finalrate,
+       vscaw.fireprotectioncontractspremium  fireprotectioncontractspremium,
+       vscaw.first10000premium               first10000premium,
+       vscaw.firstamount                     firstamount,
+       vscaw.firstminimumpremium             firstminimumpremium,
+       vscaw.firstmultistatepremium          firstmultistatepremium,
+       vscaw.firstpct                        firstpct,
+       vscaw.firstpremium                    firstpremium,
+       vscaw.firstpremiumbase                firstpremiumbase,
+       vscaw.firstratepremium                firstratepremium,
+       vscaw.flatcharge                      flatcharge,
+       vscaw.flatchargepremium               flatchargepremium,
+       vscaw.formname                        formname,
+       vscaw.formnumber                      formnumber,
+       vscaw.fullbasispremium                fullbasispremium,
+       vscaw.hazardgroup                     hazardgroup,
+       vscaw.highestdeductiblefactor         highestdeductiblefactor,
+       vscaw.highestdeductiblepremium        highestdeductiblepremium,
+       vscaw.highestminimumpremium           highestminimumpremium,
+       vscaw.homeareacontractprice           homeareacontractprice,
+       vscaw.homeareapremium                 homeareapremium,
+       vscaw.id                              id,
+       vscaw.incrlimitsbalancetominpremium   incrlimitsbalancetominpremium,
+       vscaw.incrlimitsfactor                incrlimitsfactor,
+       vscaw.incrlimitsminpremium            incrlimitsminpremium,
+       vscaw.incrlimitspercent               incrlimitspercent,
+       vscaw.incrlimitspremium               incrlimitspremium,
+       vscaw.indemnitydeductiblefactor       indemnitydeductiblefactor,
+       vscaw.lcm                             lcm,
+       vscaw.limit                           limit,
+       vscaw.lossconstantpremium             lossconstantpremium,
+       vscaw.losscosteffectivedate           losscosteffectivedate,
+       vscaw.losscostmultiplier              losscostmultiplier,
+       vscaw.losseliminationratio            losseliminationratio,
+       vscaw.managedcarefactor               managedcarefactor,
+       vscaw.managedcarexmlrequest           managedcarexmlrequest,
+       vscaw.manualpremium                   manualpremium,
+       vscaw.medicaldeductiblefactor         medicaldeductiblefactor,
+       vscaw.minpremium                      minpremium,
+       vscaw.minimumearnedpremium            minimumearnedpremium,
+       vscaw.minimumpayrollamount            minimumpayrollamount,
+       vscaw.minimumpremium                  minimumpremium,
+       vscaw.modified                        modified,
+       vscaw.negotiateddeductiblefactor      negotiateddeductiblefactor,
+       vscaw.next1550000premium              next1550000premium,
+       vscaw.next1550000premiumdiscount      next1550000premiumdiscount,
+       vscaw.next1550000premiumdiscountpct   next1550000premiumdiscountpct,
+       vscaw.next190000premium               next190000premium,
+       vscaw.next190000premiumdiscount       next190000premiumdiscount,
+       vscaw.next190000premiumdiscountpct    next190000premiumdiscountpct,
+       vscaw.next1amount                     next1amount,
+       vscaw.next1multistatepremium          next1multistatepremium,
+       vscaw.next1multistatepremiumbase      next1multistatepremiumbase,
+       vscaw.next1pct                        next1pct,
+       vscaw.next1premium                    next1premium,
+       vscaw.next1premiumbase                next1premiumbase,
+       vscaw.next2amount                     next2amount,
+       vscaw.next2multistatepremium          next2multistatepremium,
+       vscaw.next2multistatepremiumbase      next2multistatepremiumbase,
+       vscaw.next2pct                        next2pct,
+       vscaw.next2premium                    next2premium,
+       vscaw.next2premiumbase                next2premiumbase,
+       vscaw.nonadmwatercvgind               nonadmwatercvgind,
+       vscaw.noncoalpremium                  noncoalpremium,
+       vscaw.nonfederalpremium               nonfederalpremium,
+       vscaw.nonpayrollpremium               nonpayrollpremium,
+       vscaw.nonpayrollrate                  nonpayrollrate,
+       vscaw.nonpayrolltotalmanualpremium    nonpayrolltotalmanualpremium,
+       vscaw.nonpercapitavalue               nonpercapitavalue,
+       vscaw.nonproratedpremium              nonproratedpremium,
+       vscaw.nonratablepremium               nonratablepremium,
+       vscaw.nonratableclasscode             nonratableclasscode,
+       vscaw.nonratableclasscodeindicator    nonratableclasscodeindicator,
+       vscaw.nonratableelementrate           nonratableelementrate,
+       vscaw.nonratablefederalodcode         nonratablefederalodcode,
+       vscaw.nonratableminepremium           nonratableminepremium,
+       vscaw.nonratableminerate              nonratableminerate,
+       vscaw.nonratablestateodcode           nonratablestateodcode,
+       vscaw.numberfulltimeemployees         numberfulltimeemployees,
+       vscaw.numberofambulances              numberofambulances,
+       vscaw.numberofemployees               numberofemployees,
+       vscaw.numberoffireprotectioncontacts  numberoffireprotectioncontacts,
+       vscaw.numberoffireprotectioncontprem  numberoffireprotectioncontprem,
+       vscaw.numberofhazardousmaterialseams  numberofhazardousmaterialseams,
+       vscaw.numberoflocations               numberoflocations,
+       vscaw.numberofstudents                numberofstudents,
+       vscaw.numberofweeksintheprogram       numberofweeksintheprogram,
+       vscaw.numberparttimeemployees         numberparttimeemployees,
+       vscaw.numberstudentweeks              numberstudentweeks,
+       vscaw.offshoreincrlimitsfactor        offshoreincrlimitsfactor,
+       vscaw.offshoreincrlimitspremium       offshoreincrlimitspremium,
+       vscaw.offshorelimitsfactor            offshorelimitsfactor,
+       vscaw.oilpremium                      oilpremium,
+       vscaw.outsideareapremium              outsideareapremium,
+       vscaw.over1750000premium              over1750000premium,
+       vscaw.over1750000premiumdiscount      over1750000premiumdiscount,
+       vscaw.over1750000premiumdiscountpct   over1750000premiumdiscountpct,
+       vscaw.overamount                      overamount,
+       vscaw.overmultistatepremium           overmultistatepremium,
+       vscaw.overmultistatepremiumbase       overmultistatepremiumbase,
+       vscaw.overpct                         overpct,
+       vscaw.overpremium                     overpremium,
+       vscaw.overpremiumbase                 overpremiumbase,
+       vscaw.overridepremium                 overridepremium,
+       vscaw.partialdiseaseadjustment        partialdiseaseadjustment,
+       vscaw.payroll                         payroll,
+       vscaw.payrollpremium                  payrollpremium,
+       vscaw.payrollterritory1               payrollterritory1,
+       vscaw.payrollterritory2               payrollterritory2,
+       vscaw.payrollterritory3               payrollterritory3,
+       vscaw.percapitavalue                  percapitavalue,
+       vscaw.percordrate                     percordrate,
+       vscaw.policytermpremium               policytermpremium,
+       vscaw.postardpremium                  postardpremium,
+       vscaw.postardpremiumprorated          postardpremiumprorated,
+       vscaw.preardbasispremium              preardbasispremium,
+       vscaw.preardfirstpremiumbase          preardfirstpremiumbase,
+       vscaw.preardfullbasispremium          preardfullbasispremium,
+       vscaw.preardincrlimitspremium         preardincrlimitspremium,
+       vscaw.preardnext1premium              preardnext1premium,
+       vscaw.preardnext1premiumbase          preardnext1premiumbase,
+       vscaw.preardnext2premium              preardnext2premium,
+       vscaw.preardnext2premiumbase          preardnext2premiumbase,
+       vscaw.preardoverpremium               preardoverpremium,
+       vscaw.preardoverpremiumbase           preardoverpremiumbase,
+       vscaw.preardpremium                   preardpremium,
+       vscaw.preardsubjectpayroll            preardsubjectpayroll,
+       vscaw.premium                         premium,
+       vscaw.premiumbasis                    premiumbasis,
+       vscaw.premforbaltopolminprem          premforbaltopolminprem,
+       vscaw.premiumheader                   premiumheader,
+       vscaw.premiumindicator                premiumindicator,
+       vscaw.premiumsubjecttoexperiencemod   premiumsubjecttoexperiencemod,
+       vscaw.priorid                         priorid,
+       vscaw.priorpremium                    priorpremium,
+       vscaw.priorratedt                     priorratedt,
+       vscaw.proratefactor                   proratefactor,
+       vscaw.proratefactorpostard            proratefactorpostard,
+       vscaw.prorateindicator                prorateindicator,
+       vscaw.proratedchangepremium           proratedchangepremium,
+       vscaw.proratedminimumpremium          proratedminimumpremium,
+       vscaw.proratednumberfulltimeempes     proratednumberfulltimeempes,
+       vscaw.proratednumberparttimeempes     proratednumberparttimeempes,
+       vscaw.proratedpayroll                 proratedpayroll,
+       vscaw.proratedpremium                 proratedpremium,
+       vscaw.proratedpriorpremium            proratedpriorpremium,
+       vscaw.purepercentagediscount          purepercentagediscount,
+       vscaw.rate                            rate,
+       vscaw.rate2                           rate2,
+       vscaw.rate3                           rate3,
+       vscaw.ratedt                          ratedt,
+       vscaw.schedulemod                     schedulemod,
+       vscaw.schedulemodfactor               schedulemodfactor,
+       vscaw.schedulemodxmlrequest           schedulemodxmlrequest,
+       vscaw.serviceresponse                 serviceresponse,
+       vscaw.shortratefactor                 shortratefactor,
+       vscaw.shortrateindicator              shortrateindicator,
+       vscaw.shortratepenalty                shortratepenalty,
+       vscaw.specificminpremiumindicator     specificminpremiumindicator,
+       vscaw.standardexceptionclasscodes     standardexceptionclasscodes,
+       vscaw.stdexceptionminprem             stdexceptionminprem,
+       vscaw.statecoalpremium                statecoalpremium,
+       vscaw.statepremium                    statepremium,
+       vscaw.staterate                       staterate,
+       vscaw.stateratio                      stateratio,
+       vscaw.subjectpayroll                  subjectpayroll,
+       vscaw.supplementaldiseaseloading      supplementaldiseaseloading,
+       vscaw.supplementarydiseaseadjustment  supplementarydiseaseadjustment,
+       vscaw.supplementarydiseasecode        supplementarydiseasecode,
+       vscaw.supplementarydiseasetype        supplementarydiseasetype,
+       vscaw.taxindicator                    taxindicator,
+       vscaw.termfactorindicator             termfactorindicator,
+       vscaw.territory                       territory,
+       vscaw.totempliabinclimprem            totempliabinclimprem,
+       vscaw.totalexpenseconstantpremium     totalexpenseconstantpremium,
+       vscaw.totalincrlimitscoveragepremium  totalincrlimitscoveragepremium,
+       vscaw.totmanpremforbasisprem          totmanpremforbasisprem,
+       vscaw.totmanpremforfullbasisprem      totmanpremforfullbasisprem,
+       vscaw.totalpayroll                    totalpayroll,
+       vscaw.totalpremium                    totalpremium,
+       vscaw.totalproratedchangepremium      totalproratedchangepremium,
+       vscaw.totsubpremforbasisprem          totsubpremforbasisprem,
+       vscaw.tuberculosisrate                tuberculosisrate,
+       vscaw.uslhadjustment                  uslhadjustment,
+       vscaw.uslhclasscodeindicator          uslhclasscodeindicator,
+       vscaw.uslhpercentfactor               uslhpercentfactor,
+       vscaw.unitnumber                      unitnumber,
+       vscaw.versionedid                     versionedid,
+       vscaw.volambeachaddprem               volambeachaddprem,
+       vscaw.volambeachaddrateprem           volambeachaddrateprem,
+       vscaw.volunteerambulancespremium      volunteerambulancespremium,
+       vscaw.volffaddprem                    volffaddprem,
+       vscaw.volffbaseprem                   volffbaseprem,
+       vscaw.volffoutbaseprem                volffoutbaseprem,
+       vscaw.volffoutpop                     volffoutpop,
+       vscaw.volffoutpopaddprem              volffoutpopaddprem,
+       vscaw.volffoutpopbaseaddprem          volffoutpopbaseaddprem,
+       vscaw.volffoutpoptruncated            volffoutpoptruncated,
+       vscaw.volffoutprem                    volffoutprem,
+       vscaw.volffpop                        volffpop,
+       vscaw.volffpopaddprem                 volffpopaddprem,
+       vscaw.volffpopbaseaddprem             volffpopbaseaddprem,
+       vscaw.volffpoptruncated               volffpoptruncated,
+       vscaw.volunteerfirefighterspremium    volunteerfirefighterspremium,
+       vscaw.createdby                       createdby,
+       vscaw.createdon                       createdon,
+       vscaw.guid                            guid,
+       vscaw.oid                             oid,
+       vscaw.parentid                        parentid,
+       vscaw.refid                           refid,
+       vscaw.sourcerefid                     sourcerefid,
+       vscaw.updatedby                       updatedby,
+       vscaw.updatedon                       updatedon,
+       vscaw.refresh_id,
+       '${G_VL_SOURCE_SYSTEM}' source_system
+  FROM vl_stg_coverage_wc vscaw
+  INNER JOIN vl_stg_transaction vst
+  ON vscaw.transaction_uniqueid = vst.transaction_uniqueid
+  LEFT JOIN vl_stg_policyversion vspv
+  ON vscaw.policyversion_uniqueid = vspv.policyversion_uniqueid
+  AND vscaw.transaction_uniqueid = vspv.transaction_uniqueid
+  WHERE 1=1
+  AND vscaw.refresh_id = ${vl_refresh_id}</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>154</xloc>
+      <yloc>163</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step_error_handling>
+  </step_error_handling>
+  <slave-step-copy-partition-distribution>
+  </slave-step-copy-partition-distribution>
+  <slave_transformation>N</slave_transformation>
+</transformation>

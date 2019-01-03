@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:17 EST 2019
+file.title=JB_Validation
+description=Job to validation the data populated to DW
+title=JB_Validation
+file.description=Job to validation the data populated to DW

@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:12 EST 2019
+file.title=TR_Extract_Stg_Component_Irregular
+description=This is the transformation to load irregular component data into Stg_Component table.
+title=TR_Extract_Stg_Component_Irregular
+file.description=This is the transformation to load irregular component data into Stg_Component table.

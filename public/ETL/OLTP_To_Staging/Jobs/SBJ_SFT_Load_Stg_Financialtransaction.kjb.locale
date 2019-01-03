@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:04 EST 2019
+file.title=SBJ_SFT_Load_Stg_Financialtransaction
+description=Load data to Stg_Financialtransaction table by using temp tables.
+title=SBJ_SFT_Load_Stg_Financialtransaction
+file.description=Load data to Stg_Financialtransaction table by using temp tables.

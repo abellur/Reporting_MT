@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:54 EST 2019
+file.title=TR_GATHER_SCHEMA_STATS
+description=Call dbms_stats.gather_schema_stats procedure to get latest schema statistics
+title=TR_GATHER_SCHEMA_STATS
+file.description=Call dbms_stats.gather_schema_stats procedure to get latest schema statistics

@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:05 EST 2019
+file.title=TR_EXTRACT_STG_OTHERADJUSTMENT
+description=This is the transformation to load other premium adjustment data to STG_OTHER_ADJUSTMENT table. Such as Fee, Tax, Manuscript etc.
+title=TR_EXTRACT_STG_OTHERADJUSTMENT
+file.description=This is the transformation to load other premium adjustment data to STG_OTHER_ADJUSTMENT table. Such as Fee, Tax, Manuscript etc.

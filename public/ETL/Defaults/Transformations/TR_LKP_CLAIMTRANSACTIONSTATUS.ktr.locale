@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:34 EST 2019
+file.title=TR_LKP_CLAIMTRANSACTIONSTATUS
+description=Loads the claim transaction status lookup table
+title=TR_LKP_CLAIMTRANSACTIONSTATUS
+file.description=Loads the claim transaction status lookup table

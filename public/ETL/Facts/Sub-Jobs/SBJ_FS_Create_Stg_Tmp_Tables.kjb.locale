@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:48 EST 2019
+file.title=SBJ_FS_Create_Stg_Tmp_Tables
+description=Create temp lookup tables for Stg_Coverage, Stg_Policy and Stg_Account
+title=SBJ_FS_Create_Stg_Tmp_Tables
+file.description=Create temp lookup tables for Stg_Coverage, Stg_Policy and Stg_Account

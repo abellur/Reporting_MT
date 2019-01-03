@@ -1,0 +1,4400 @@
+<job>
+  <name>JB_FPC_FACT_POLICYCOVERAGE_LOOP</name>
+  <description>Load data to Fact_PolicyCoverage table.</description>
+  <extended_description>Date       By    Description
+02/25/2016 Jma   Issue #169151 and #168860.
+01/26/2018 Jma   Issue #178603. Merge some job entries to prevent getting memory error in Pentaho 8.0</extended_description>
+  <job_version/>
+  <job_status>0</job_status>
+  <directory>/public/ETL/Facts</directory>
+  <created_user>-</created_user>
+  <created_date>2014/06/23 16:46:00.133</created_date>
+  <modified_user>admin</modified_user>
+  <modified_date>2018/11/14 14:12:57.371</modified_date>
+  <parameters>
+    </parameters>
+  <connection>
+    <name>4SBI_DataWarehouse</name>
+    <server>${G_DW_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_DW_DB_NAME}</database>
+    <port>${G_DW_DB_PORT}</port>
+    <username>${G_DW_DB_USERNAME}</username>
+    <password>${G_DW_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_DW_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_DW_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_DW_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>4SBI_Staging</name>
+    <server>${G_STAGING_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_STAGING_DB_NAME}</database>
+    <port>${G_STAGING_DB_PORT}</port>
+    <username>${G_STAGING_DB_USERNAME}</username>
+    <password>${G_STAGING_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_STAGING_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_STAGING_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_STAGING_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>DW_Log_Link</name>
+    <server>${G_LOG_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_LOG_DB_NAME}</database>
+    <port>${G_LOG_DB_PORT}</port>
+    <username>${G_LOG_DB_USERNAME}</username>
+    <password>${G_LOG_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_LOG_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_LOG_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_LOG_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <slaveservers>
+    <slaveserver>
+      <name>4Sight BI - PDI Server</name>
+      <hostname>10.0.0.21</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>joe</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Carte 1</name>
+      <hostname>localhost</hostname>
+      <port>9081</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>DI Server</name>
+      <hostname>localhost</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>joe</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_DEV</name>
+      <hostname>magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>shota</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_SERVER</name>
+      <hostname>http://magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>shota</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_TEST</name>
+      <hostname>magspentahotest</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO</name>
+      <hostname>magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO_BTS</name>
+      <hostname>129.144.25.104</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO_DEV</name>
+      <hostname>magspentahodev</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Master</name>
+      <hostname>localhost</hostname>
+      <port>8081</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SERVER1</name>
+      <hostname>LOCALHOST</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SLAVE ONE</name>
+      <hostname>192.168.2.101</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4a418bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SLAVE TWO</name>
+      <hostname>192.168.2.101</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave1</name>
+      <hostname>localhost</hostname>
+      <port>8082</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave2</name>
+      <hostname>localhost</hostname>
+      <port>8083</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave3</name>
+      <hostname>localhost</hostname>
+      <port>8084</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>local DIS</name>
+      <hostname>localhost</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>magspentahodev</name>
+      <hostname>magspentahodev</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+  </slaveservers>
+  <job-log-table>
+    <connection>DW_Log_Link</connection>
+    <schema/>
+    <table>${G_DB_JOB_LOG_TABLE}</table>
+    <size_limit_lines/>
+    <interval/>
+    <timeout_days>${G_DB_LOG_TIMEOUT_DAY}</timeout_days>
+    <field>
+      <id>ID_JOB</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>JOBNAME</name>
+    </field>
+    <field>
+      <id>STATUS</id>
+      <enabled>Y</enabled>
+      <name>STATUS</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>STARTDATE</id>
+      <enabled>Y</enabled>
+      <name>STARTDATE</name>
+    </field>
+    <field>
+      <id>ENDDATE</id>
+      <enabled>Y</enabled>
+      <name>ENDDATE</name>
+    </field>
+    <field>
+      <id>LOGDATE</id>
+      <enabled>Y</enabled>
+      <name>LOGDATE</name>
+    </field>
+    <field>
+      <id>DEPDATE</id>
+      <enabled>Y</enabled>
+      <name>DEPDATE</name>
+    </field>
+    <field>
+      <id>REPLAYDATE</id>
+      <enabled>Y</enabled>
+      <name>REPLAYDATE</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>Y</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>EXECUTING_SERVER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_SERVER</name>
+    </field>
+    <field>
+      <id>EXECUTING_USER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_USER</name>
+    </field>
+    <field>
+      <id>START_JOB_ENTRY</id>
+      <enabled>N</enabled>
+      <name>START_JOB_ENTRY</name>
+    </field>
+    <field>
+      <id>CLIENT</id>
+      <enabled>N</enabled>
+      <name>CLIENT</name>
+    </field>
+  </job-log-table>
+  <jobentry-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>TRANSNAME</name>
+    </field>
+    <field>
+      <id>JOBENTRYNAME</id>
+      <enabled>Y</enabled>
+      <name>STEPNAME</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>RESULT</id>
+      <enabled>Y</enabled>
+      <name>RESULT</name>
+    </field>
+    <field>
+      <id>NR_RESULT_ROWS</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_ROWS</name>
+    </field>
+    <field>
+      <id>NR_RESULT_FILES</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_FILES</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>N</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>COPY_NR</id>
+      <enabled>N</enabled>
+      <name>COPY_NR</name>
+    </field>
+  </jobentry-log-table>
+  <channel-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>LOGGING_OBJECT_TYPE</id>
+      <enabled>Y</enabled>
+      <name>LOGGING_OBJECT_TYPE</name>
+    </field>
+    <field>
+      <id>OBJECT_NAME</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_NAME</name>
+    </field>
+    <field>
+      <id>OBJECT_COPY</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_COPY</name>
+    </field>
+    <field>
+      <id>REPOSITORY_DIRECTORY</id>
+      <enabled>Y</enabled>
+      <name>REPOSITORY_DIRECTORY</name>
+    </field>
+    <field>
+      <id>FILENAME</id>
+      <enabled>Y</enabled>
+      <name>FILENAME</name>
+    </field>
+    <field>
+      <id>OBJECT_ID</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_ID</name>
+    </field>
+    <field>
+      <id>OBJECT_REVISION</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_REVISION</name>
+    </field>
+    <field>
+      <id>PARENT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>PARENT_CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>ROOT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>ROOT_CHANNEL_ID</name>
+    </field>
+  </channel-log-table>
+  <checkpoint-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <max_nr_retries/>
+    <run_retry_period/>
+    <namespace_parameter/>
+    <save_parameters/>
+    <save_result_rows/>
+    <save_result_files/>
+    <field>
+      <id>ID_JOB_RUN</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB_RUN</name>
+    </field>
+    <field>
+      <id>ID_JOB</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>JOBNAME</name>
+    </field>
+    <field>
+      <id>NAMESPACE</id>
+      <enabled>Y</enabled>
+      <name>NAMESPACE</name>
+    </field>
+    <field>
+      <id>CHECKPOINT_NAME</id>
+      <enabled>Y</enabled>
+      <name>CHECKPOINT_NAME</name>
+    </field>
+    <field>
+      <id>CHECKPOINT_COPYNR</id>
+      <enabled>Y</enabled>
+      <name>CHECKPOINT_COPYNR</name>
+    </field>
+    <field>
+      <id>ATTEMPT_NR</id>
+      <enabled>Y</enabled>
+      <name>ATTEMPT_NR</name>
+    </field>
+    <field>
+      <id>JOB_RUN_START_DATE</id>
+      <enabled>Y</enabled>
+      <name>JOB_RUN_START_DATE</name>
+    </field>
+    <field>
+      <id>LOGDATE</id>
+      <enabled>Y</enabled>
+      <name>LOGDATE</name>
+    </field>
+    <field>
+      <id>RESULT_XML</id>
+      <enabled>Y</enabled>
+      <name>RESULT_XML</name>
+    </field>
+    <field>
+      <id>PARAMETER_XML</id>
+      <enabled>Y</enabled>
+      <name>PARAMETER_XML</name>
+    </field>
+  </checkpoint-log-table>
+  <pass_batchid>N</pass_batchid>
+  <shared_objects_file/>
+  <entries>
+    <entry>
+      <name>START</name>
+      <description/>
+      <type>SPECIAL</type>
+      <start>Y</start>
+      <dummy>N</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>26</xloc>
+      <yloc>96</yloc>
+    </entry>
+    <entry>
+      <name>JB_FPC_GEN_MONTH</name>
+      <description/>
+      <type>JOB</type>
+      <specification_method>rep_name</specification_method>
+      <job_object_id/>
+      <filename/>
+      <jobname>JB_FPC_GEN_MONTH</jobname>
+      <directory>/public/ETL/Facts</directory>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Nothing</loglevel>
+      <slave_server_name/>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <expand_remote_job>N</expand_remote_job>
+      <create_parent_folder>N</create_parent_folder>
+      <pass_export>N</pass_export>
+      <run_configuration/>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <set_append_logfile>N</set_append_logfile>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>173</xloc>
+      <yloc>96</yloc>
+    </entry>
+    <entry>
+      <name>JB_FPC_Insert_FACT_POLICYCOVERAGE</name>
+      <description/>
+      <type>JOB</type>
+      <specification_method>rep_name</specification_method>
+      <job_object_id/>
+      <filename/>
+      <jobname>JB_FPC_Insert_FACT_POLICYCOVERAGE</jobname>
+      <directory>/public/ETL/Facts</directory>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Nothing</loglevel>
+      <slave_server_name/>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <expand_remote_job>N</expand_remote_job>
+      <create_parent_folder>N</create_parent_folder>
+      <pass_export>N</pass_export>
+      <run_configuration/>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <set_append_logfile>N</set_append_logfile>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>481</xloc>
+      <yloc>212</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_fpc_wk</name>
+      <description/>
+      <type>SQL</type>
+      <sql>-- Get all transactions we need to process for this time period from TMP_FPC_WK_UNION1 and TMP_FPC_WK_UNION2 tables.
+create table TMP_FPC_WK nologging pctfree 0 tablespace ${G_STAGING_DB_DATA} as
+select /*+ use_hash(u m) */
+    rownum sk_fpc_wk,
+    u.*, 
+    0 MAN_WRTN_PREM_AMT,
+    0 ORIG_WRTN_PREM_AMT,
+    to_date('1900-01-01 00:00:00','yyyy-mm-dd hh24:mi:ss') defaultDate,
+    m.periodMonth,
+    m.month_id	,
+    m.periodStartDate,
+    m.periodEndDate,
+    m.sql_periodEndDate,
+    m.sql_periodStartDate,
+    m.sql_periodEndDate_id,
+    m.sql_periodStartDate_id
+--  
+from
+(
+	SELECT * from tmp_fpc_wk_union1
+	UNION
+	SELECT * from tmp_fpc_wk_union2
+) u
+,tmp_fpc_genmonths m
+where u.sk_period = m.sk_period
+;
+
+
+create unique index tmp_fpc_wk_uix1 on tmp_fpc_wk (sk_fpc_wk) nologging tablespace ${G_STAGING_DB_INDEX};
+
+
+create index tmp_fpc_wk_ix1 on tmp_fpc_wk (sk_period) nologging tablespace ${G_STAGING_DB_INDEX};
+
+
+create index tmp_fpc_wk_ix2 on tmp_fpc_wk (policy_id) nologging tablespace ${G_STAGING_DB_INDEX};
+
+create index tmp_fpc_wk_ix3 on tmp_fpc_wk (pol_uniqueid) nologging pctfree 0 tablespace ${G_STAGING_DB_INDEX};
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>381</xloc>
+      <yloc>96</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_fpc_maxmonth_id</name>
+      <description/>
+      <type>SQL</type>
+      <sql>-- Get a given coverage/component's latest premium data from previous monthly snapshots in FACT_POLICYCOVERAGE.
+create table tmp_fpc_maxmonth_id nologging PCTFREE 0
+tablespace ${G_STAGING_DB_DATA}
+as
+with max_temp as
+(
+select *
+from (SELECT /*+ index(f inc_fpc_helper_idx) */ f.factpolicycoverage_id,
+             f.month_id,
+             f.policy_id,
+             F.COVERAGEEXTENSION_ID, 
+             F.COVEREDRISK_ID, 
+             F.COMPONENT_ID, 
+             F.OTHERADJUSTMENT_ID,
+             row_number() over  
+                          (partition by v.pol_uniqueid, 
+                                        dce.cov_uniqueid, 
+                                        dcr.cvrsk_uniqueid, 
+                                        dcm.component_uniqueid,  
+                                        doa.otheradjustment_uniqueid  
+                                        order by f.month_id desc)  pick1        
+          FROM FACT_POLICYCOVERAGE F,
+               TMP_FPC_PERIOD M,
+               (select distinct dp.policy_id, dp.pol_uniqueid
+                  from tmp_Fpc_wk w, 
+                       dim_policy dp
+                 where dp.pol_uniqueid = w.pol_uniqueid) v,
+               Dim_Coverageextension dce,
+               Dim_Coveredrisk dcr,
+               Dim_Component dcm,
+               Dim_Other_Adjustment doa
+         WHERE f.MONTH_ID    &lt; M.SK_STARTMONTH
+           and 1 = 1
+           AND f.policy_id = v.policy_id
+           AND f.coverageextension_id = dce.coverageextension_id
+           AND f.coveredrisk_id = dcr.coveredrisk_id
+           AND f.component_id = dcm.component_id
+           AND f.otheradjustment_id = doa.otheradjustment_id)
+ where pick1 = 1)
+select /*+ index(f inc_fpc_helper_idx) */ 
+       F.POLICY_ID, 
+       F.COVERAGEEXTENSION_ID, 
+       F.COVEREDRISK_ID, 
+       F.COMPONENT_ID, 
+       F.OTHERADJUSTMENT_ID, 
+       F.MONTH_ID, 
+       SUM(NVL(F.COMM_AMT_YTD, 0)) COMM_AMT_YTD, 
+       SUM(NVL(F.COMM_AMT_ITD, 0)) COMM_AMT_ITD, 
+       SUM(NVL(F.WRTN_PREM_AMT_YTD, 0)) WRTN_PREM_AMT_YTD, 
+       SUM(NVL(F.WRTN_PREM_AMT_ITD, 0)) WRTN_PREM_AMT_ITD, 
+       SUM(NVL(F.MAN_WRTN_PREM_AMT_YTD, 0)) MAN_WRTN_PREM_AMT_YTD, 
+       SUM(NVL(F.MAN_WRTN_PREM_AMT_ITD, 0)) MAN_WRTN_PREM_AMT_ITD, 
+       SUM(NVL(F.ORIG_WRTN_PREM_AMT_YTD, 0)) ORIG_WRTN_PREM_AMT_YTD, 
+       SUM(NVL(F.ORIG_WRTN_PREM_AMT_ITD, 0)) ORIG_WRTN_PREM_AMT_ITD, 
+       SUM(NVL(F.TERM_PREM_AMT_YTD, 0)) TERM_PREM_AMT_YTD, 
+       SUM(NVL(F.TERM_PREM_AMT_ITD, 0)) TERM_PREM_AMT_ITD, 
+       SUM(NVL(F.EARNED_PREM_AMT_YTD, 0)) EARNED_PREM_AMT_YTD, 
+       SUM(NVL(F.EARNED_PREM_AMT_ITD, 0)) EARNED_PREM_AMT_ITD, 
+       SUM(NVL(F.ENDORSE_PREM_AMT_YTD, 0)) ENDORSE_PREM_AMT_YTD, 
+       SUM(NVL(F.ENDORSE_PREM_AMT_ITD, 0)) ENDORSE_PREM_AMT_ITD, 
+       SUM(NVL(F.AUDIT_PREM_AMT_YTD, 0)) AUDIT_PREM_AMT_YTD, 
+       SUM(NVL(F.AUDIT_PREM_AMT_ITD, 0)) AUDIT_PREM_AMT_ITD, 
+       SUM(NVL(F.CNCL_PREM_AMT_YTD, 0)) CNCL_PREM_AMT_YTD, 
+       SUM(NVL(F.CNCL_PREM_AMT_ITD, 0)) CNCL_PREM_AMT_ITD, 
+       SUM(NVL(F.REIN_PREM_AMT_YTD, 0)) REIN_PREM_AMT_YTD, 
+       SUM(NVL(F.REIN_PREM_AMT_ITD, 0)) REIN_PREM_AMT_ITD, 
+       SUM(NVL(F.TAXES_AMT_YTD, 0)) TAXES_AMT_YTD, 
+       SUM(NVL(F.TAXES_AMT_ITD, 0)) TAXES_AMT_ITD, 
+       SUM(NVL(F.FEES_AMT_YTD, 0)) FEES_AMT_YTD, 
+       SUM(NVL(F.FEES_AMT_ITD, 0)) FEES_AMT_ITD, 
+       SUM(NVL(F.LOSS_PD_AMT_YTD, 0)) LOSS_PD_AMT_YTD, 
+       SUM(NVL(F.LOSS_PD_AMT_ITD, 0)) LOSS_PD_AMT_ITD, 
+       SUM(NVL(F.LOSS_RSRV_CHNG_AMT_YTD, 0)) LOSS_RSRV_CHNG_AMT_YTD, 
+       SUM(NVL(F.LOSS_RSRV_CHNG_AMT_ITD, 0)) LOSS_RSRV_CHNG_AMT_ITD, 
+       SUM(NVL(F.ALC_EXP_PD_AMT_YTD, 0)) ALC_EXP_PD_AMT_YTD, 
+       SUM(NVL(F.ALC_EXP_PD_AMT_ITD, 0)) ALC_EXP_PD_AMT_ITD, 
+       SUM(NVL(F.ALC_EXP_RSRV_CHNG_AMT_YTD, 0)) ALC_EXP_RSRV_CHNG_AMT_YTD, 
+       SUM(NVL(F.ALC_EXP_RSRV_CHNG_AMT_ITD, 0)) ALC_EXP_RSRV_CHNG_AMT_ITD, 
+       sUM(NVL(F.UALC_EXP_PD_AMT_YTD, 0)) UALC_EXP_PD_AMT_YTD, 
+       SUM(NVL(F.UALC_EXP_PD_AMT_ITD, 0)) UALC_EXP_PD_AMT_ITD, 
+       SUM(NVL(F.UALC_EXP_RSRV_CHNG_AMT_YTD, 0)) UALC_EXP_RSRV_CHNG_AMT_YTD, 
+       SUM(NVL(F.UALC_EXP_RSRV_CHNG_AMT_ITD, 0)) UALC_EXP_RSRV_CHNG_AMT_ITD, 
+       SUM(NVL(F.SALVAGE_CHNG_AMT_YTD, 0)) SALVAGE_CHNG_AMT_YTD, 
+       SUM(NVL(F.SALVAGE_CHNG_AMT_ITD, 0)) SALVAGE_CHNG_AMT_ITD, 
+       SUM(NVL(F.SUBRO_CHNG_AMT_YTD, 0)) SUBRO_CHNG_AMT_YTD, 
+       SUM(NVL(F.SUBRO_CHNG_AMT_ITD, 0)) SUBRO_CHNG_AMT_ITD, 
+       SUM(NVL(F.USR_DEF_AMT_YTD1, 0)) USR_DEF_AMT_YTD1, 
+       SUM(NVL(F.USR_DEF_AMT_ITD1, 0)) USR_DEF_AMT_ITD1, 
+       SUM(NVL(F.USR_DEF_AMT_YTD2, 0)) USR_DEF_AMT_YTD2, 
+       SUM(NVL(F.USR_DEF_AMT_ITD2, 0)) USR_DEF_AMT_ITD2, 
+       SUM(NVL(F.USR_DEF_AMT_YTD3, 0)) USR_DEF_AMT_YTD3, 
+       SUM(NVL(F.USR_DEF_AMT_ITD3, 0)) USR_DEF_AMT_ITD3, 
+       SUM(NVL(F.USR_DEF_AMT_YTD4, 0)) USR_DEF_AMT_YTD4, 
+       SUM(NVL(F.USR_DEF_AMT_ITD4, 0)) USR_DEF_AMT_ITD4, 
+       SUM(NVL(F.USR_DEF_AMT_YTD5, 0)) USR_DEF_AMT_YTD5, 
+       SUM(NVL(F.USR_DEF_AMT_ITD5, 0)) USR_DEF_AMT_ITD5
+  FROM max_temp h,
+       fact_policycoverage f 
+ WHERE h.MONTH_ID             = F.MONTH_ID
+   and h.policy_id            = f.policy_id
+   and h.COVERAGEEXTENSION_ID = F.COVERAGEEXTENSION_ID
+   and h.COVEREDRISK_ID       = f.COVEREDRISK_ID
+   and h.otheradjustment_id   = f.otheradjustment_id
+   and h.COMPONENT_ID         = F.COMPONENT_ID
+ GROUP BY F.POLICY_ID, 
+          F.COVERAGEEXTENSION_ID, 
+          F.COVEREDRISK_ID, 
+          F.COMPONENT_ID, 
+          F.OTHERADJUSTMENT_ID, 
+          F.MONTH_ID;
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>575</xloc>
+      <yloc>96</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_fpc_prior_YTD_ITD</name>
+      <description/>
+      <type>SQL</type>
+      <sql>-- Add policy/risk/coverage/component uniqueid data.
+create table tmp_fpc_prior_YTD_ITD nologging PCTFREE 0
+tablespace ${G_STAGING_DB_DATA}
+as
+SELECT dp.pol_uniqueid,
+       dr.cvrsk_uniqueid,
+       dc.cov_uniqueid,
+       dcm.component_uniqueid,
+       doa.otheradjustment_uniqueid,
+       fp.*
+FROM   tmp_fpc_maxmonth_id   fp,
+       dim_policy            dp,
+       dim_coverageextension dc,
+       dim_coveredrisk       dr,
+       -- JMA 10/02/2014 
+       dim_component        dcm,
+       dim_other_adjustment doa
+WHERE  fp.policy_id = dp.policy_id
+AND    fp.coverageextension_id = dc.coverageextension_id
+AND    fp.coveredrisk_id = dr.coveredrisk_id
+AND    fp.component_id = dcm.component_id
+AND    fp.otheradjustment_id = doa.otheradjustment_id
+;
+
+
+create index tmp_fpc_prior_YTD_ITD_ix1 on tmp_fpc_prior_YTD_ITD
+(
+POL_UNIQUEID,  
+CVRSK_UNIQUEID,  
+COV_UNIQUEID,
+COMPONENT_UNIQUEID,
+OTHERADJUSTMENT_UNIQUEID
+)
+nologging
+tablespace ${G_STAGING_DB_INDEX}
+;
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>684</xloc>
+      <yloc>24</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_fpc_polcancel_lkup</name>
+      <description/>
+      <type>SQL</type>
+      <sql>-- Add policy cancellation data if applicable.
+create table tmp_fpc_polcancel_lkup  nologging PCTFREE 0 tablespace ${G_STAGING_DB_DATA}
+as
+SELECT f.*,
+       to_date('1900/01/01 00:00:00','YYYY/MM/DD hh24:MI:SS') default_date,
+       transactioneffectivedate tmp_earnfromdate,
+       --f.COVERAGEEXPIRATIONDATE tmp_earntodate,
+       --Jma 10/02/2014 replace COVERAGEEXPIRATIONDATE with tmp_earntodate
+       CASE WHEN otheradjustexpirationdate &lt;&gt; TO_DATE('1/1/1900','mm/dd/yyyy') THEN
+              otheradjustexpirationdate
+            WHEN componentexpirationdate &lt;&gt; TO_DATE('1/1/1900','mm/dd/yyyy') THEN
+              componentexpirationdate
+            ELSE 
+              coverageexpirationdate
+       END tmp_earntodate,
+       0 earnedPremium,
+       0 unearnedPremium,
+       NVL(pc.can_trans_cd,'UNK') can_trans_cd,
+       NVL(pc.can_eff_date,to_date('30000101','YYYYMMDD')) can_eff_date
+FROM   tmp_fpc_wk f,
+       tmp_fpc_polcancel pc
+WHERE  f.policy_id = pc.policy_id(+);</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>479</xloc>
+      <yloc>24</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_fpc_calc_prems</name>
+      <description/>
+      <type>SQL</type>
+      <sql>-- Call function to calculate written premium and earned premium data.
+create table tmp_fpc_calc_prem1  nologging pctfree 0
+tablespace ${G_STAGING_DB_DATA}
+as
+SELECT f.*,
+       func_calc_earned_unearned_prem(f.transactioneffectivedate,
+                                      --f.COVERAGEEXPIRATIONDATE ,
+                                      --Jma 10/02/2014 replace COVERAGEEXPIRATIONDATE with tmp_earntodate
+                                      f.tmp_earntodate,
+                                      --
+                                      f.earnfrom_date,
+                                      f.earnto_date,
+                                      f.mmcov_coverage_segment_code,
+                                      f.periodstartdate,
+                                      f.periodenddate,
+                                      f.amount,
+                                      f.accountingdate,
+                                      f.earningstype, 
+                                      f.prem_type) calc_results
+--EarnedPrem:  0000000000.00|UnearnedPrem:  0000000000.00|NewAmount:  0000000000.00
+FROM tmp_fpc_polcancel_lkup f
+;
+
+
+-- Split written premium, earned premium and unearned premium.
+create table tmp_fpc_calc_prem2 nologging 
+tablespace ${G_STAGING_DB_DATA}
+as
+SELECT f.sk_fpc_wk,
+       f.sk_period,
+       f.accountingdate,
+       f.newamount                     amount,
+       f.can_eff_date,
+       f.can_trans_cd,
+       f.class_id,
+       f.commission_amount,
+       f.company_id,
+       f.cov_uniqueid,
+       f.component_uniqueid,
+       f.otheradjustment_uniqueid,
+       f.coverage_id,
+       f.coverageeffectivedate,
+       f.coverageeffectivedate_id,
+       f.coverageexpirationdate,
+       f.coverageexpirationdate_id,
+       f.coveredrisk_id,
+       f.coveredriskextension_id,
+       f.coveredrisklocation_id,
+       f.deductible_id,
+       f.default_date,
+       f.defaultdate,
+       f.earnedpremamount              earnedpremium,
+       f.earnfrom_date,
+       f.earningstype,
+       f.earnto_date,
+       f.effectivedate_id,
+       f.firstinsured_id,
+       f.firstotherinterest_id,
+       f.limit_id,
+       f.man_wrtn_prem_amt,
+       f.mmcov_coverage_segment_code,
+       f.month_id,
+       f.org_pol_expdate,
+       f.orig_wrtn_prem_amt,
+       f.periodenddate,
+       f.periodmonth,
+       f.periodstartdate,
+       f.pol_uniqueid,
+       f.policy_id,
+       f.policyeffectivedate_id,
+       f.policyexpirationdate_id,
+       f.policyextension_id,
+       f.policytransactionextension_id,
+       f.producer_id,
+       f.product_id,
+       f.prsk_uniqueid,
+       f.secondinsured_id,
+       f.secondotherinterest_id,
+       f.sql_periodenddate,
+       f.sql_periodenddate_id,
+       f.sql_periodstartdate,
+       f.sql_periodstartdate_id,
+       f.territory_id,
+       f.thirdinsured_id,
+       f.tmp_earnfromdate,
+       f.tmp_earntodate,
+       f.trans_code,
+       f.transactioneffectivedate,
+       f.transactiontype_id,
+       f.underwriter_id,
+       f.unearnedpremamount            unearnedpremium,
+       f.prem_type,
+       -- Jma 02/09/2017 Add following fields for VL merge
+       f.OFFERINGCOMPANY_ID,
+       f.POLICYUNIT_ID,
+       f.POLICYVERSION_ID,
+       f.AGENT_ID,
+       f.LOCATION_ID,
+       f.CLASSIFICATIONEXTENSION_ID,
+       f.STATE_ID,
+       f.LOB_ID,
+       --195574
+       f.policyneworrenewal
+       -- End update
+  FROM (SELECT f.*,
+               to_number(substr(f.calc_results, 13, 14)) earnedpremamount,
+               to_number(substr(f.calc_results, 42, 14)) unearnedpremamount,
+               to_number(substr(f.calc_results, 68, 14)) newamount
+          FROM tmp_fpc_calc_prem1 f) f;
+
+
+-- Check if the premium changes are processed in current period.
+create table tmp_fpc_calc_prem3 nologging 
+tablespace ${G_STAGING_DB_DATA}
+as
+SELECT f.sk_fpc_wk,
+       f.sk_period,
+       f.accountingdate,
+       f.new_amount                    amount,
+       f.can_eff_date,
+       f.can_trans_cd,
+       f.class_id,
+       f.new_commission                commission_amount,
+       f.company_id,
+       f.cov_uniqueid,
+       f.component_uniqueid,
+       f.otheradjustment_uniqueid,
+       f.coverage_id,
+       f.coverageeffectivedate,
+       f.coverageeffectivedate_id,
+       f.coverageexpirationdate,
+       f.coverageexpirationdate_id,
+       f.coveredrisk_id,
+       f.coveredriskextension_id,
+       f.coveredrisklocation_id,
+       f.deductible_id,
+       f.default_date,
+       f.defaultdate,
+       f.earnedpremium,
+       f.earnfrom_date,
+       f.earningstype,
+       f.earnto_date,
+       f.effectivedate_id,
+       f.firstinsured_id,
+       f.firstotherinterest_id,
+       f.limit_id,
+       f.man_wrtn_prem_amt,
+       f.mmcov_coverage_segment_code,
+       f.month_id,
+       f.org_pol_expdate,
+       f.orig_wrtn_prem_amt,
+       f.periodenddate,
+       f.periodmonth,
+       f.periodstartdate,
+       f.pol_uniqueid,
+       f.policy_id,
+       f.policyeffectivedate_id,
+       f.policyexpirationdate_id,
+       f.policyextension_id,
+       f.policytransactionextension_id,
+       f.producer_id,
+       f.product_id,
+       f.prsk_uniqueid,
+       f.secondinsured_id,
+       f.secondotherinterest_id,
+       f.sql_periodenddate,
+       f.sql_periodenddate_id,
+       f.sql_periodstartdate,
+       f.sql_periodstartdate_id,
+       f.territory_id,
+       f.thirdinsured_id,
+       f.tmp_earnfromdate,
+       f.tmp_earntodate,
+       f.trans_code,
+       f.transactioneffectivedate,
+       f.transactiontype_id,
+       f.underwriter_id,
+       f.unearnedpremium,
+       f.prem_type,
+       -- Jma 02/09/2017 Add following fields for VL merge
+       f.OFFERINGCOMPANY_ID,
+       f.POLICYUNIT_ID,
+       f.POLICYVERSION_ID,
+       f.AGENT_ID,
+       f.LOCATION_ID,
+       f.CLASSIFICATIONEXTENSION_ID,
+       f.STATE_ID,
+       f.LOB_ID,
+       --195574
+       f.policyneworrenewal
+       -- End update
+  FROM (SELECT f.*,
+               CASE
+                 WHEN f.accountingdate &lt; f.periodstartdate AND
+                      f.transactioneffectivedate &lt; f.periodstartdate THEN 0
+                 ELSE f.amount
+               END new_amount,
+               CASE
+                 WHEN f.accountingdate &lt; f.periodstartdate AND
+                      f.transactioneffectivedate &lt; f.periodstartdate THEN 0
+                 ELSE f.commission_amount
+               END new_commission
+          FROM tmp_fpc_calc_prem2 f) f
+;
+
+-- Add mapping for additional premium buckets.
+create table tmp_fpc_calc_prem4 nologging tablespace ${G_STAGING_DB_DATA} as
+SELECT f.sk_fpc_wk,
+       f.sk_period,
+       f.accountingdate,
+       f.amount,
+       f.can_eff_date,
+       f.can_trans_cd,
+       f.class_id,
+       f.commission_amount,
+       f.company_id,
+       f.cov_uniqueid,
+       f.component_uniqueid,
+       f.otheradjustment_uniqueid,
+       f.coverage_id,
+       f.coverageeffectivedate,
+       f.coverageeffectivedate_id,
+       f.coverageexpirationdate,
+       f.coverageexpirationdate_id,
+       f.coveredrisk_id,
+       f.coveredriskextension_id,
+       f.coveredrisklocation_id,
+       f.deductible_id,
+       f.default_date,
+       f.defaultdate,
+       f.earnedpremium,
+       f.earnfrom_date,
+       f.earningstype,
+       f.earnto_date,
+       f.effectivedate_id,
+       f.firstinsured_id,
+       f.firstotherinterest_id,
+       f.limit_id,
+       f.man_wrtn_prem_amt,
+       f.mmcov_coverage_segment_code,
+       f.month_id,
+       f.org_pol_expdate,
+       f.orig_wrtn_prem_amt,
+       f.periodenddate,
+       f.periodmonth,
+       f.periodstartdate,
+       f.pol_uniqueid,
+       f.policy_id,
+       f.policyeffectivedate_id,
+       f.policyexpirationdate_id,
+       f.policyextension_id,
+       f.policytransactionextension_id,
+       f.producer_id,
+       f.product_id,
+       f.prsk_uniqueid,
+       f.secondinsured_id,
+       f.secondotherinterest_id,
+       f.sql_periodenddate,
+       f.sql_periodenddate_id,
+       f.sql_periodstartdate,
+       f.sql_periodstartdate_id,
+       f.territory_id,
+       f.thirdinsured_id,
+       f.tmp_earnfromdate,
+       f.tmp_earntodate,
+       f.trans_code,
+       f.transactioneffectivedate,
+       f.transactiontype_id,
+       f.underwriter_id,
+       f.unearnedpremium,
+       0 term_prem_amt,
+       ${G_DECIMAL_PLACE} v_decimal_place,
+       CASE
+         WHEN f.prem_type = 'REGPREM' THEN f.amount
+         ELSE 0
+       END written_amt,
+       -- Always populate non premium charges to USD1 column.
+       -- This is because all existing customer has this configure.
+       -- In the future, we should use new feature added in #164413
+       -- to map coverage premium to a summary bucket.
+       CASE
+         WHEN f.prem_type = 'PCFPREM' THEN f.amount
+         ELSE 0
+       END usd1_amt,
+       CASE
+         WHEN f.trans_code = 'USD2' THEN f.amount
+         ELSE 0
+       END usd2_amt,
+       CASE
+         WHEN f.trans_code = 'USD3' THEN f.amount     
+         ELSE 0
+       END usd3_amt,
+       CASE
+         WHEN f.trans_code = 'USD4' THEN f.amount     
+         ELSE 0
+       END usd4_amt,
+       CASE
+         WHEN f.trans_code = 'USD5' THEN f.amount     
+         ELSE 0
+       END usd5_amt,
+       CASE
+         WHEN f.trans_code = 'AD' THEN f.amount
+         ELSE 0
+       END audit_prem_amt,
+       CASE
+         WHEN f.prem_type = 'TAX' THEN f.amount
+         ELSE 0
+       END taxes_amt,
+       CASE
+         WHEN f.prem_type = 'FEE' THEN f.amount
+         ELSE 0
+       END fees_amt,
+       CASE
+         WHEN f.prem_type = 'PCFPREM' AND f.trans_code = 'EN' THEN f.amount
+         ELSE 0
+       END endorse_prem_amt,
+       CASE
+         WHEN f.prem_type = 'PCFPREM' AND f.trans_code IN ('CM', 'CF', 'CS') THEN
+          f.amount
+         ELSE
+          0
+       END cncl_prem_amt,
+       CASE
+         WHEN f.prem_type = 'PCFPREM' AND f.trans_code = 'RI' THEN f.amount
+         ELSE 0
+       END rein_prem_amt,
+       -- Jma 02/09/2017 Add following fields for VL merge
+       f.OFFERINGCOMPANY_ID,
+       f.POLICYUNIT_ID,
+       f.POLICYVERSION_ID,
+       f.AGENT_ID,
+       f.LOCATION_ID,
+       f.CLASSIFICATIONEXTENSION_ID,
+       f.STATE_ID,
+       f.LOB_ID,
+       --195574
+       f.policyneworrenewal
+       -- End update
+  FROM tmp_fpc_calc_prem3 f
+;
+
+-- Group premium data by policy term/risk/coverage/component and add rounded result.
+create table tmp_fpc_calc_prem5 nologging tablespace ${G_STAGING_DB_DATA} as
+SELECT m.sk_period,
+       m.pol_uniqueid,
+       m.cov_uniqueid,
+       m.prsk_uniqueid,
+       m.component_uniqueid,
+       m.otheradjustment_uniqueid,
+       m.firstotherinterest_id,
+       m.secondotherinterest_id,
+       m.month_id,
+       -- Jma 02/09/2017 Add following fields for VL merge
+       m.OFFERINGCOMPANY_ID,
+       m.POLICYUNIT_ID,
+       m.POLICYVERSION_ID,
+       m.AGENT_ID,
+       m.LOCATION_ID,
+       m.CLASSIFICATIONEXTENSION_ID,
+       m.STATE_ID,
+       m.LOB_ID,
+       -- End update
+       m.periodstartdate,
+       m.periodenddate,
+       m.sql_periodenddate,
+       m.sql_periodstartdate,
+       m.v_decimal_place,
+       m.amount,
+       m.audit_prem_amt,
+       m.cncl_prem_amt,
+       m.commission_amount,
+       m.earnedpremium,
+       round(m.earnedpremium, m.v_decimal_place) earnedpremium_round,
+       m.endorse_prem_amt,
+       m.fees_amt,
+       m.man_wrtn_prem_amt,
+       m.orig_wrtn_prem_amt,
+       m.rein_prem_amt,
+       m.taxes_amt,
+       m.term_prem_amt,
+       m.unearnedpremium,
+       round(m.written_amt, m.v_decimal_place) -
+       round(m.earnedpremium, m.v_decimal_place) unearnedpremium_round,
+       m.usd1_amt,
+       m.usd2_amt,
+       m.usd3_amt,
+       m.usd4_amt,
+       m.usd5_amt,
+       m.written_amt,
+       round(m.written_amt, m.v_decimal_place) v_written_amt,
+       m.policyneworrenewal
+  FROM (SELECT sk_period,
+               pol_uniqueid,
+               cov_uniqueid,
+               prsk_uniqueid,
+               component_uniqueid,
+               otheradjustment_uniqueid,
+               firstotherinterest_id,
+               secondotherinterest_id,
+               month_id,
+               periodstartdate,
+               periodenddate,
+               sql_periodenddate,
+               sql_periodstartdate,
+               v_decimal_place,
+               -- Jma 02/09/2017 Add following fields for VL merge
+               OFFERINGCOMPANY_ID,
+               POLICYUNIT_ID,
+               POLICYVERSION_ID,
+               AGENT_ID,
+               LOCATION_ID,
+               CLASSIFICATIONEXTENSION_ID,
+               STATE_ID,
+               LOB_ID, 
+               --195574
+               policyneworrenewal,
+               -- End update
+               SUM(amount) amount,
+               SUM(audit_prem_amt) audit_prem_amt,
+               SUM(cncl_prem_amt) cncl_prem_amt,
+               SUM(commission_amount) commission_amount,
+               SUM(earnedpremium) earnedpremium,
+               SUM(endorse_prem_amt) endorse_prem_amt,
+               SUM(fees_amt) fees_amt,
+               SUM(man_wrtn_prem_amt) man_wrtn_prem_amt,
+               SUM(orig_wrtn_prem_amt) orig_wrtn_prem_amt,
+               SUM(rein_prem_amt) rein_prem_amt,
+               SUM(taxes_amt) taxes_amt,
+               SUM(term_prem_amt) term_prem_amt,
+               SUM(unearnedpremium) unearnedpremium,
+               SUM(usd1_amt) usd1_amt,
+               SUM(usd2_amt) usd2_amt,
+               SUM(usd3_amt) usd3_amt,
+               SUM(usd4_amt) usd4_amt,
+               SUM(usd5_amt) usd5_amt,
+               SUM(written_amt) written_amt
+          FROM tmp_fpc_calc_prem4
+         GROUP BY sk_period,
+                  pol_uniqueid,
+                  cov_uniqueid,
+                  prsk_uniqueid,
+                  component_uniqueid,
+                  otheradjustment_uniqueid,
+                  firstotherinterest_id,
+                  secondotherinterest_id,
+                  month_id,
+                  periodstartdate,
+                  periodenddate,
+                  sql_periodenddate,
+                  sql_periodstartdate,
+                  v_decimal_place,
+                  -- Jma 02/09/2017 Add following fields for VL merge
+                  OFFERINGCOMPANY_ID,
+                  POLICYUNIT_ID,
+                  POLICYVERSION_ID,
+                  AGENT_ID,
+                  LOCATION_ID,
+                  CLASSIFICATIONEXTENSION_ID,
+                  STATE_ID,
+                  LOB_ID,
+                  policyneworrenewal
+                  -- End update
+               ) m;
+
+-- Add latest transaction log PK for each policy term based on the data in work table tmp_fpc_maxtrans_wk.
+create table tmp_fpc_calc_prem6 nologging tablespace ${G_STAGING_DB_DATA} as
+SELECT f.sk_period,
+       f.pol_uniqueid,
+       f.cov_uniqueid,
+       f.prsk_uniqueid,
+       f.component_uniqueid,
+       f.otheradjustment_uniqueid,
+       f.firstotherinterest_id,
+       f.secondotherinterest_id,
+       f.month_id,
+       f.periodstartdate,
+       f.periodenddate,
+       f.sql_periodenddate,
+       f.sql_periodstartdate,
+       f.v_decimal_place,
+       f.amount,
+       f.audit_prem_amt,
+       f.cncl_prem_amt,
+       f.commission_amount,
+       f.earnedpremium,
+       f.earnedpremium_round,
+       f.endorse_prem_amt,
+       f.fees_amt,
+       f.man_wrtn_prem_amt,
+       f.orig_wrtn_prem_amt,
+       f.rein_prem_amt,
+       f.taxes_amt,
+       f.term_prem_amt,
+       f.unearnedpremium,
+       f.unearnedpremium_round,
+       f.usd1_amt,
+       f.usd2_amt,
+       f.usd3_amt,
+       f.usd4_amt,
+       f.usd5_amt,
+       f.written_amt,
+       f.v_written_amt,
+       -- Jma 02/09/2017 Add following fields for VL merge
+       f.OFFERINGCOMPANY_ID,
+       f.POLICYUNIT_ID,
+       f.POLICYVERSION_ID,
+       f.AGENT_ID,
+       f.LOCATION_ID,
+       f.CLASSIFICATIONEXTENSION_ID,
+       f.STATE_ID,
+       f.LOB_ID,
+       -- End update
+       nvl(x.max_pt_sequence, 0) max_pt_sequence,
+       --195574
+       f.policyneworrenewal
+  FROM tmp_fpc_calc_prem5 f, tmp_fpc_maxtrans_wk x
+ WHERE f.pol_uniqueid = x.policy_uniqueid(+)
+   AND f.sk_period = x.sk_period(+);
+
+
+-- Create this table to get proper data from STG_POLICY table, it will be used to lookup POLICY_ID from DIM_POLICY/DIM_POLICYEXTENSION tables.
+create table tmp_fpc_lkup_stg_policy1 nologging tablespace ${G_STAGING_DB_DATA} as
+SELECT /*+ ordered */ 
+       smt.sk_period, 
+       smt.sql_periodEndDate, 
+       sp1.Policy_UniqueID, 
+       MAX(sp1.Pt_Sequence) max_pt_sequence
+FROM   tmp_fpc_maxtrans_wk smt,
+	   Stg_Policy         sp1 
+WHERE  sp1.Policy_UniqueID                       = smt.Policy_UniqueID
+AND    sp1.Pt_Sequence                          &lt;= smt.Max_Pt_Sequence
+AND    sp1.Pol_ChangeEffectiveDate              &lt;= smt.sql_periodEndDate
+AND    TRUNC(sp1.Pol_TransactionAccountingDate) &lt;= smt.sql_periodEndDate
+GROUP  BY smt.sk_period, smt.sql_periodEndDate, sp1.Policy_UniqueID
+;
+
+-- Create this table to get proper data from STG_POLICY table, it will be used to lookup POLICY_ID from DIM_POLICY/DIM_POLICYEXTENSION tables.
+create table tmp_fpc_lkup_stg_policy2 nologging tablespace ${G_STAGING_DB_DATA}
+as
+SELECT sp.sk_period,
+       sp.product_uniqueid,
+       sp.company_uniqueid,
+       sp.producer_uniqueid,
+       sp.subproducer_uniqueid,
+       sp.underwriter_uniqueid,
+       sp.firstinsured_uniqueid,
+       sp.secondinsured_uniqueid,
+       sp.thirdinsured_uniqueid,
+       sp.pol_effectivedate,
+       sp.pol_expirationdate,
+       sp.policy_uniqueid
+FROM   (SELECT /*+ ordered */
+               b.policy_uniqueid,
+               b.sql_periodenddate,
+               sp.stgpolicy_id,
+               row_number() over(PARTITION BY b.policy_uniqueid, b.sql_periodenddate 
+                                 ORDER BY sp.stgpolicy_id DESC) pick1,
+               b.sk_period,
+               sp.product_uniqueid,
+               sp.company_uniqueid,
+               sp.producer_uniqueid,
+               sp.subproducer_uniqueid,
+               sp.underwriter_uniqueid,
+               sp.firstinsured_uniqueid,
+               sp.secondinsured_uniqueid,
+               sp.thirdinsured_uniqueid,
+               sp.pol_effectivedate,
+               sp.pol_expirationdate,
+               sp.pol_changeeffectivedate,
+               sp.pol_transactionaccountingdate
+        FROM   tmp_fpc_lkup_stg_policy1 b, stg_policy sp
+        WHERE  -- 165147
+               sp.pt_sequence &lt;= b.max_pt_sequence
+        AND    sp.policy_uniqueid = b.policy_uniqueid
+        AND    sp.pol_changeeffectivedate &lt;= b.sql_periodenddate
+        AND    trunc(sp.pol_transactionaccountingdate) &lt;= b.sql_periodenddate) sp
+WHERE  sp.pick1 = 1;
+
+-- Add following logic to deal with bad policy data.
+INSERT /*+ APPEND */ INTO tmp_fpc_lkup_stg_policy2
+WITH x AS 
+    (SELECT *
+     FROM   tmp_fpc_lkup_stg_policy1 smt 
+     WHERE  NOT EXISTS (SELECT 1 FROM tmp_fpc_lkup_stg_policy2 t 
+                        WHERE t.sk_period = smt.sk_period AND t.policy_uniqueid = smt.policy_uniqueid))
+SELECT sp.sk_period,
+       sp.product_uniqueid,
+       sp.company_uniqueid,
+       sp.producer_uniqueid,
+       sp.subproducer_uniqueid,
+       sp.underwriter_uniqueid,
+       sp.firstinsured_uniqueid,
+       sp.secondinsured_uniqueid,
+       sp.thirdinsured_uniqueid,
+       sp.pol_effectivedate,
+       sp.pol_expirationdate,
+       sp.policy_uniqueid
+FROM   (SELECT b.policy_uniqueid,
+               b.sql_periodenddate,
+               sp.stgpolicy_id,
+               row_number() over(PARTITION BY b.policy_uniqueid, b.sql_periodenddate 
+                                 ORDER BY sp.stgpolicy_id DESC) pick1,
+               b.sk_period,
+               sp.product_uniqueid,
+               sp.company_uniqueid,
+               sp.producer_uniqueid,
+               sp.subproducer_uniqueid,
+               sp.underwriter_uniqueid,
+               sp.firstinsured_uniqueid,
+               sp.secondinsured_uniqueid,
+               sp.thirdinsured_uniqueid,
+               sp.pol_effectivedate,
+               sp.pol_expirationdate,
+               sp.pol_changeeffectivedate,
+               sp.pol_transactionaccountingdate
+        FROM   x b, stg_policy sp
+        WHERE  -- 165147
+               sp.pt_sequence &lt;= b.max_pt_sequence
+        AND    sp.policy_uniqueid = b.policy_uniqueid) sp
+WHERE  sp.pick1 = 1;
+
+-- Add data retreived from STG_POLICY table.
+create table tmp_fpc_calc_prem7 nologging tablespace ${G_STAGING_DB_DATA} as
+SELECT rownum sk_recordnum,
+       f.sk_period,
+       f.pol_uniqueid,
+       f.cov_uniqueid,
+       f.prsk_uniqueid,
+       f.component_uniqueid,
+       f.otheradjustment_uniqueid,
+       f.firstotherinterest_id,
+       f.secondotherinterest_id,
+       f.month_id,
+       f.periodstartdate,
+       f.periodenddate,
+       f.sql_periodenddate,
+       f.sql_periodstartdate,
+       f.v_decimal_place,
+       f.amount,
+       f.audit_prem_amt,
+       f.cncl_prem_amt,
+       f.commission_amount,
+       f.earnedpremium,
+       f.earnedpremium_round,
+       f.endorse_prem_amt,
+       f.fees_amt,
+       f.man_wrtn_prem_amt,
+       f.orig_wrtn_prem_amt,
+       f.rein_prem_amt,
+       f.taxes_amt,
+       f.term_prem_amt,
+       f.unearnedpremium,
+       f.unearnedpremium_round,
+       f.usd1_amt,
+       f.usd2_amt,
+       f.usd3_amt,
+       f.usd4_amt,
+       f.usd5_amt,
+       f.written_amt,
+       f.v_written_amt,
+       f.max_pt_sequence,
+       l.product_uniqueid,
+       l.company_uniqueid,
+       l.producer_uniqueid,
+       l.subproducer_uniqueid,
+       l.underwriter_uniqueid,
+       l.firstinsured_uniqueid,
+       l.secondinsured_uniqueid,
+       l.thirdinsured_uniqueid,
+       l.pol_effectivedate,
+       l.pol_expirationdate,
+       -- Jma 02/09/2017 Add following fields for VL merge
+       f.OFFERINGCOMPANY_ID,
+       f.POLICYUNIT_ID,
+       f.POLICYVERSION_ID,
+       f.AGENT_ID,
+       f.LOCATION_ID,
+       f.CLASSIFICATIONEXTENSION_ID,
+       f.STATE_ID,
+       f.LOB_ID,
+       --195574
+       f.policyneworrenewal
+       -- End update
+  FROM tmp_fpc_calc_prem6 f, tmp_fpc_lkup_stg_policy2 l
+ WHERE f.sk_period = l.sk_period(+)
+   AND f.pol_uniqueid = l.policy_uniqueid(+);
+
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_DataWarehouse</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>796</xloc>
+      <yloc>96</yloc>
+    </entry>
+    <entry>
+      <name>Calculate YTD ITD</name>
+      <description/>
+      <type>SQL</type>
+      <sql>-- Calculate YTD/ITD amounts
+DECLARE
+
+  TYPE tb_array IS TABLE OF tmp_fpc_calc_prem11%ROWTYPE INDEX BY BINARY_INTEGER;
+
+  vtb_prem tb_array;
+
+  TYPE tb_array2 IS TABLE OF NUMBER INDEX BY BINARY_INTEGER;
+
+  vtb_earnedprem tb_array2;
+
+  v_count                      PLS_INTEGER;
+  v_alc_exp_pd_amt_itd         NUMBER(15, 2) := 0.00;
+  v_alc_exp_pd_amt_ytd         NUMBER(15, 2) := 0.00;
+  v_alc_exp_rsrv_chng_amt_itd  NUMBER(15, 2) := 0.00;
+  v_alc_exp_rsrv_chng_amt_ytd  NUMBER(15, 2) := 0.00;
+  v_audit_prem_amt_itd         NUMBER(15, 2) := 0.00;
+  v_audit_prem_amt_ytd         NUMBER(15, 2) := 0.00;
+  v_cncl_prem_amt_itd          NUMBER(15, 2) := 0.00;
+  v_cncl_prem_amt_ytd          NUMBER(15, 2) := 0.00;
+  v_comm_amt_itd               NUMBER(15, 2) := 0.00;
+  v_comm_amt_ytd               NUMBER(15, 2) := 0.00;
+  v_earned_prem_amt_itd        NUMBER(15, 2) := 0.00;
+  v_earned_prem_amt_ytd        NUMBER(15, 2) := 0.00;
+  v_endorse_prem_amt_itd       NUMBER(15, 2) := 0.00;
+  v_endorse_prem_amt_ytd       NUMBER(15, 2) := 0.00;
+  v_fees_amt_itd               NUMBER(15, 2) := 0.00;
+  v_fees_amt_ytd               NUMBER(15, 2) := 0.00;
+  v_loss_pd_amt_itd            NUMBER(15, 2) := 0.00;
+  v_loss_pd_amt_ytd            NUMBER(15, 2) := 0.00;
+  v_loss_rsrv_chng_amt_itd     NUMBER(15, 2) := 0.00;
+  v_loss_rsrv_chng_amt_ytd     NUMBER(15, 2) := 0.00;
+  v_man_wrtn_prem_amt_itd      NUMBER(15, 2) := 0.00;
+  v_rein_prem_amt_itd          NUMBER(15, 2) := 0.00;
+  v_rein_prem_amt_ytd          NUMBER(15, 2) := 0.00;
+  v_salvage_chng_amt_itd       NUMBER(15, 2) := 0.00;
+  v_salvage_chng_amt_ytd       NUMBER(15, 2) := 0.00;
+  v_subro_chng_amt_itd         NUMBER(15, 2) := 0.00;
+  v_subro_chng_amt_ytd         NUMBER(15, 2) := 0.00;
+  v_taxes_amt_itd              NUMBER(15, 2) := 0.00;
+  v_taxes_amt_ytd              NUMBER(15, 2) := 0.00;
+  v_ualc_exp_pd_amt_itd        NUMBER(15, 2) := 0.00;
+  v_ualc_exp_pd_amt_ytd        NUMBER(15, 2) := 0.00;
+  v_ualc_exp_rsrv_chng_amt_itd NUMBER(15, 2) := 0.00;
+  v_ualc_exp_rsrv_chng_amt_ytd NUMBER(15, 2) := 0.00;
+  v_usd_itd_1                  NUMBER(15, 2) := 0.00;
+  v_usd_itd_2                  NUMBER(15, 2) := 0.00;
+  v_usd_itd_3                  NUMBER(15, 2) := 0.00;
+  v_usd_itd_4                  NUMBER(15, 2) := 0.00;
+  v_usd_itd_5                  NUMBER(15, 2) := 0.00;
+  v_usd_ytd_1                  NUMBER(15, 2) := 0.00;
+  v_usd_ytd_2                  NUMBER(15, 2) := 0.00;
+  v_usd_ytd_3                  NUMBER(15, 2) := 0.00;
+  v_usd_ytd_4                  NUMBER(15, 2) := 0.00;
+  v_usd_ytd_5                  NUMBER(15, 2) := 0.00;
+  v_wrtn_prem_amt_itd          NUMBER(15, 2) := 0.00;
+  v_wrtn_prem_amt_ytd          NUMBER(15, 2) := 0.00;
+  v_earned_prem_new            NUMBER(15, 2) := 0.00;
+
+  v_ix PLS_INTEGER := 0;
+
+  -- commit size
+  v_commitsize PLS_INTEGER := 1000;
+
+  v_commitcount PLS_INTEGER := 0;
+  v_sk          PLS_INTEGER := 0;
+
+BEGIN
+
+  SELECT MAX(factpolicycoverage_id) INTO v_sk FROM fact_policycoverage;
+
+  v_sk := nvl(v_sk, 0);
+
+  FOR i IN 0 .. 19 LOOP
+  
+    v_ix := 0;
+    -- split the load into 20 batches so we will not get Oracle running out 
+    -- of memory error.
+    FOR r IN (SELECT *
+                FROM tmp_fpc_calc_prem11
+               WHERE MOD(recordgroupnum, 20) = i
+               ORDER BY pol_uniqueid,
+                        cov_uniqueid,
+                        prsk_uniqueid,
+                        component_uniqueid,
+                        otheradjustment_uniqueid,
+                        month_id) LOOP
+      v_ix := v_ix + 1;
+      vtb_prem(v_ix).sk_recordnum := r.sk_recordnum;
+      vtb_prem(v_ix).sk_period := r.sk_period;
+      vtb_prem(v_ix).recordgroupnum := r.recordgroupnum;
+      vtb_prem(v_ix).pol_uniqueid := r.pol_uniqueid;
+      vtb_prem(v_ix).cov_uniqueid := r.cov_uniqueid;
+      vtb_prem(v_ix).prsk_uniqueid := r.prsk_uniqueid;
+      vtb_prem(v_ix).month_id := r.month_id;
+      vtb_prem(v_ix).priormonth_id := r.priormonth_id;
+      vtb_prem(v_ix).sql_periodenddate := r.sql_periodenddate;
+      vtb_prem(v_ix).sql_periodstartdate := r.sql_periodstartdate;
+      vtb_prem(v_ix).periodmonth := r.periodmonth;
+      vtb_prem(v_ix).periodenddate := r.periodenddate;
+      vtb_prem(v_ix).periodstartdate := r.periodstartdate;
+      vtb_prem(v_ix).cov_expirationdate := r.cov_expirationdate;
+      vtb_prem(v_ix).cov_expired_in_curr_month_flg := r.cov_expired_in_curr_month_flg;
+      vtb_prem(v_ix).cov_expirationdate_m1d := r.cov_expirationdate_m1d;
+      vtb_prem(v_ix).audit_prem_amt := r.audit_prem_amt;
+      vtb_prem(v_ix).cncl_prem_amt := r.cncl_prem_amt;
+      vtb_prem(v_ix).commission_amount := r.commission_amount;
+      vtb_prem(v_ix).earnedpremium_round := r.earnedpremium_round;
+    
+      -- JMA 9/25/2014 Update to add component and otheradjustment fields.
+      vtb_prem(v_ix).component_uniqueid := r.component_uniqueid;
+      vtb_prem(v_ix).otheradjustment_uniqueid := r.otheradjustment_uniqueid;
+    
+      vtb_earnedprem(v_ix) := 0.00;
+    
+      vtb_prem(v_ix).endorse_prem_amt := r.endorse_prem_amt;
+      vtb_prem(v_ix).fees_amt := r.fees_amt;
+      vtb_prem(v_ix).man_wrtn_prem_amt := r.man_wrtn_prem_amt;
+      vtb_prem(v_ix).orig_wrtn_prem_amt := r.orig_wrtn_prem_amt;
+      vtb_prem(v_ix).rein_prem_amt := r.rein_prem_amt;
+      vtb_prem(v_ix).taxes_amt := r.taxes_amt;
+      vtb_prem(v_ix).term_prem_amt := r.term_prem_amt;
+      vtb_prem(v_ix).usd1_amt := r.usd1_amt;
+      vtb_prem(v_ix).usd2_amt := r.usd2_amt;
+      vtb_prem(v_ix).usd3_amt := r.usd3_amt;
+      vtb_prem(v_ix).usd4_amt := r.usd4_amt;
+      vtb_prem(v_ix).usd5_amt := r.usd5_amt;
+      vtb_prem(v_ix).v_written_amt := r.v_written_amt;
+      vtb_prem(v_ix).unearnedpremium_round := r.unearnedpremium_round;
+      vtb_prem(v_ix).alc_exp_pd_amt := r.alc_exp_pd_amt;
+      vtb_prem(v_ix).alc_exp_rsrv_chng_amt := r.alc_exp_rsrv_chng_amt;
+      vtb_prem(v_ix).loss_pd_amt := r.loss_pd_amt;
+      vtb_prem(v_ix).loss_rsrv_chng_amt := r.loss_rsrv_chng_amt;
+      vtb_prem(v_ix).ualc_exp_pd_amt := r.ualc_exp_pd_amt;
+      vtb_prem(v_ix).ualc_exp_rsrv_chng_amt := r.ualc_exp_rsrv_chng_amt;
+      vtb_prem(v_ix).subro_chng_amt := r.subro_chng_amt;
+      vtb_prem(v_ix).salvage_chng_amt := r.salvage_chng_amt;
+      vtb_prem(v_ix).p_comm_amt_ytd := r.p_comm_amt_ytd;
+      vtb_prem(v_ix).p_comm_amt_itd := r.p_comm_amt_itd;
+      vtb_prem(v_ix).p_wrtn_prem_amt_ytd := r.p_wrtn_prem_amt_ytd;
+      vtb_prem(v_ix).p_wrtn_prem_amt_itd := r.p_wrtn_prem_amt_itd;
+      vtb_prem(v_ix).p_man_wrtn_prem_amt_ytd := r.p_man_wrtn_prem_amt_ytd;
+      vtb_prem(v_ix).p_man_wrtn_prem_amt_itd := r.p_man_wrtn_prem_amt_itd;
+      vtb_prem(v_ix).p_orig_wrtn_prem_amt_ytd := r.p_orig_wrtn_prem_amt_ytd;
+      vtb_prem(v_ix).p_orig_wrtn_prem_amt_itd := r.p_orig_wrtn_prem_amt_itd;
+      vtb_prem(v_ix).p_term_prem_amt_ytd := r.p_term_prem_amt_ytd;
+      vtb_prem(v_ix).p_term_prem_amt_itd := r.p_term_prem_amt_itd;
+      vtb_prem(v_ix).p_earned_prem_amt_ytd := r.p_earned_prem_amt_ytd;
+      vtb_prem(v_ix).p_earned_prem_amt_itd := r.p_earned_prem_amt_itd;
+      vtb_prem(v_ix).p_endorse_prem_amt_ytd := r.p_endorse_prem_amt_ytd;
+      vtb_prem(v_ix).p_endorse_prem_amt_itd := r.p_endorse_prem_amt_itd;
+      vtb_prem(v_ix).p_audit_prem_amt_ytd := r.p_audit_prem_amt_ytd;
+      vtb_prem(v_ix).p_audit_prem_amt_itd := r.p_audit_prem_amt_itd;
+      vtb_prem(v_ix).p_cncl_prem_amt_ytd := r.p_cncl_prem_amt_ytd;
+      vtb_prem(v_ix).p_cncl_prem_amt_itd := r.p_cncl_prem_amt_itd;
+      vtb_prem(v_ix).p_rein_prem_amt_ytd := r.p_rein_prem_amt_ytd;
+      vtb_prem(v_ix).p_rein_prem_amt_itd := r.p_rein_prem_amt_itd;
+      vtb_prem(v_ix).p_taxes_amt_ytd := r.p_taxes_amt_ytd;
+      vtb_prem(v_ix).p_taxes_amt_itd := r.p_taxes_amt_itd;
+      vtb_prem(v_ix).p_fees_amt_ytd := r.p_fees_amt_ytd;
+      vtb_prem(v_ix).p_fees_amt_itd := r.p_fees_amt_itd;
+      vtb_prem(v_ix).p_loss_pd_amt_ytd := r.p_loss_pd_amt_ytd;
+      vtb_prem(v_ix).p_loss_pd_amt_itd := r.p_loss_pd_amt_itd;
+      vtb_prem(v_ix).p_loss_rsrv_chng_amt_ytd := r.p_loss_rsrv_chng_amt_ytd;
+      vtb_prem(v_ix).p_loss_rsrv_chng_amt_itd := r.p_loss_rsrv_chng_amt_itd;
+      vtb_prem(v_ix).p_alc_exp_pd_amt_ytd := r.p_alc_exp_pd_amt_ytd;
+      vtb_prem(v_ix).p_alc_exp_pd_amt_itd := r.p_alc_exp_pd_amt_itd;
+      vtb_prem(v_ix).p_alc_exp_rsrv_chng_amt_ytd := r.p_alc_exp_rsrv_chng_amt_ytd;
+      vtb_prem(v_ix).p_alc_exp_rsrv_chng_amt_itd := r.p_alc_exp_rsrv_chng_amt_itd;
+      vtb_prem(v_ix).p_ualc_exp_pd_amt_ytd := r.p_ualc_exp_pd_amt_ytd;
+      vtb_prem(v_ix).p_ualc_exp_pd_amt_itd := r.p_ualc_exp_pd_amt_itd;
+      vtb_prem(v_ix).p_ualc_exp_rsrv_chng_amt_ytd := r.p_ualc_exp_rsrv_chng_amt_ytd;
+      vtb_prem(v_ix).p_ualc_exp_rsrv_chng_amt_itd := r.p_ualc_exp_rsrv_chng_amt_itd;
+      vtb_prem(v_ix).p_salvage_chng_amt_ytd := r.p_salvage_chng_amt_ytd;
+      vtb_prem(v_ix).p_salvage_chng_amt_itd := r.p_salvage_chng_amt_itd;
+      vtb_prem(v_ix).p_subro_chng_amt_ytd := r.p_subro_chng_amt_ytd;
+      vtb_prem(v_ix).p_subro_chng_amt_itd := r.p_subro_chng_amt_itd;
+      vtb_prem(v_ix).p_usr_def_amt_ytd1 := r.p_usr_def_amt_ytd1;
+      vtb_prem(v_ix).p_usr_def_amt_itd1 := r.p_usr_def_amt_itd1;
+      vtb_prem(v_ix).p_usr_def_amt_ytd2 := r.p_usr_def_amt_ytd2;
+      vtb_prem(v_ix).p_usr_def_amt_itd2 := r.p_usr_def_amt_itd2;
+      vtb_prem(v_ix).p_usr_def_amt_ytd3 := r.p_usr_def_amt_ytd3;
+      vtb_prem(v_ix).p_usr_def_amt_itd3 := r.p_usr_def_amt_itd3;
+      vtb_prem(v_ix).p_usr_def_amt_ytd4 := r.p_usr_def_amt_ytd4;
+      vtb_prem(v_ix).p_usr_def_amt_itd4 := r.p_usr_def_amt_itd4;
+      vtb_prem(v_ix).p_usr_def_amt_ytd5 := r.p_usr_def_amt_ytd5;
+      vtb_prem(v_ix).p_usr_def_amt_itd5 := r.p_usr_def_amt_itd5;
+      vtb_prem(v_ix).n_comm_amt_ytd := r.n_comm_amt_ytd;
+      vtb_prem(v_ix).n_comm_amt_itd := r.n_comm_amt_itd;
+      vtb_prem(v_ix).n_wrtn_prem_amt_ytd := r.n_wrtn_prem_amt_ytd;
+      vtb_prem(v_ix).n_wrtn_prem_amt_itd := r.n_wrtn_prem_amt_itd;
+      vtb_prem(v_ix).n_man_wrtn_prem_amt_ytd := r.n_man_wrtn_prem_amt_ytd;
+      vtb_prem(v_ix).n_man_wrtn_prem_amt_itd := r.n_man_wrtn_prem_amt_itd;
+      vtb_prem(v_ix).n_orig_wrtn_prem_amt_ytd := r.n_orig_wrtn_prem_amt_ytd;
+      vtb_prem(v_ix).n_orig_wrtn_prem_amt_itd := r.n_orig_wrtn_prem_amt_itd;
+      vtb_prem(v_ix).n_term_prem_amt_ytd := r.n_term_prem_amt_ytd;
+      vtb_prem(v_ix).n_term_prem_amt_itd := r.n_term_prem_amt_itd;
+      vtb_prem(v_ix).n_earned_prem_amt_ytd := r.n_earned_prem_amt_ytd;
+      vtb_prem(v_ix).n_earned_prem_amt_itd := r.n_earned_prem_amt_itd;
+      vtb_prem(v_ix).n_endorse_prem_amt_ytd := r.n_endorse_prem_amt_ytd;
+      vtb_prem(v_ix).n_endorse_prem_amt_itd := r.n_endorse_prem_amt_itd;
+      vtb_prem(v_ix).n_audit_prem_amt_ytd := r.n_audit_prem_amt_ytd;
+      vtb_prem(v_ix).n_audit_prem_amt_itd := r.n_audit_prem_amt_itd;
+      vtb_prem(v_ix).n_cncl_prem_amt_ytd := r.n_cncl_prem_amt_ytd;
+      vtb_prem(v_ix).n_cncl_prem_amt_itd := r.n_cncl_prem_amt_itd;
+      vtb_prem(v_ix).n_rein_prem_amt_ytd := r.n_rein_prem_amt_ytd;
+      vtb_prem(v_ix).n_rein_prem_amt_itd := r.n_rein_prem_amt_itd;
+      vtb_prem(v_ix).n_taxes_amt_ytd := r.n_taxes_amt_ytd;
+      vtb_prem(v_ix).n_taxes_amt_itd := r.n_taxes_amt_itd;
+      vtb_prem(v_ix).n_fees_amt_ytd := r.n_fees_amt_ytd;
+      vtb_prem(v_ix).n_fees_amt_itd := r.n_fees_amt_itd;
+      vtb_prem(v_ix).n_loss_pd_amt_ytd := r.n_loss_pd_amt_ytd;
+      vtb_prem(v_ix).n_loss_pd_amt_itd := r.n_loss_pd_amt_itd;
+      vtb_prem(v_ix).n_loss_rsrv_chng_amt_ytd := r.n_loss_rsrv_chng_amt_ytd;
+      vtb_prem(v_ix).n_loss_rsrv_chng_amt_itd := r.n_loss_rsrv_chng_amt_itd;
+      vtb_prem(v_ix).n_alc_exp_pd_amt_ytd := r.n_alc_exp_pd_amt_ytd;
+      vtb_prem(v_ix).n_alc_exp_pd_amt_itd := r.n_alc_exp_pd_amt_itd;
+      vtb_prem(v_ix).n_alc_exp_rsrv_chng_amt_ytd := r.n_alc_exp_rsrv_chng_amt_ytd;
+      vtb_prem(v_ix).n_alc_exp_rsrv_chng_amt_itd := r.n_alc_exp_rsrv_chng_amt_itd;
+      vtb_prem(v_ix).n_ualc_exp_pd_amt_ytd := r.n_ualc_exp_pd_amt_ytd;
+      vtb_prem(v_ix).n_ualc_exp_pd_amt_itd := r.n_ualc_exp_pd_amt_itd;
+      vtb_prem(v_ix).n_ualc_exp_rsrv_chng_amt_ytd := r.n_ualc_exp_rsrv_chng_amt_ytd;
+      vtb_prem(v_ix).n_ualc_exp_rsrv_chng_amt_itd := r.n_ualc_exp_rsrv_chng_amt_itd;
+      vtb_prem(v_ix).n_salvage_chng_amt_ytd := r.n_salvage_chng_amt_ytd;
+      vtb_prem(v_ix).n_salvage_chng_amt_itd := r.n_salvage_chng_amt_itd;
+      vtb_prem(v_ix).n_subro_chng_amt_ytd := r.n_subro_chng_amt_ytd;
+      vtb_prem(v_ix).n_subro_chng_amt_itd := r.n_subro_chng_amt_itd;
+      vtb_prem(v_ix).n_usr_def_amt_ytd1 := r.n_usr_def_amt_ytd1;
+      vtb_prem(v_ix).n_usr_def_amt_itd1 := r.n_usr_def_amt_itd1;
+      vtb_prem(v_ix).n_usr_def_amt_ytd2 := r.n_usr_def_amt_ytd2;
+      vtb_prem(v_ix).n_usr_def_amt_itd2 := r.n_usr_def_amt_itd2;
+      vtb_prem(v_ix).n_usr_def_amt_ytd3 := r.n_usr_def_amt_ytd3;
+      vtb_prem(v_ix).n_usr_def_amt_itd3 := r.n_usr_def_amt_itd3;
+      vtb_prem(v_ix).n_usr_def_amt_ytd4 := r.n_usr_def_amt_ytd4;
+      vtb_prem(v_ix).n_usr_def_amt_itd4 := r.n_usr_def_amt_itd4;
+      vtb_prem(v_ix).n_usr_def_amt_ytd5 := r.n_usr_def_amt_ytd5;
+      vtb_prem(v_ix).n_usr_def_amt_itd5 := r.n_usr_def_amt_itd5;
+      -- 10/26/2017 add previous YTD number's month year and current month year
+      vtb_prem(v_ix).current_mon_year := r.current_mon_year;
+      vtb_prem(v_ix).previous_ytd_mon_year := r.previous_ytd_mon_year;
+    END LOOP;
+  
+    FOR v_ix IN 1 .. vtb_prem.count LOOP
+    
+      -- If coverage expires in current month,use the total coverage written premium minus piror month ITD earned premium as current
+      -- month earned premium 
+      IF vtb_prem(v_ix).cov_expired_in_curr_month_flg = 'Y' THEN
+        v_earned_prem_new := vtb_prem(v_ix).p_wrtn_prem_amt_itd + vtb_prem(v_ix)
+                             .v_written_amt - vtb_prem(v_ix)
+                             .p_earned_prem_amt_itd;
+      ELSE
+        v_earned_prem_new := vtb_prem(v_ix).earnedpremium_round;
+      END IF;
+    
+      vtb_earnedprem(v_ix) := v_earned_prem_new;
+
+      -- 10/26/2017 
+      -- Check if previous YTD number is from the same year as current month,
+      -- if yes, then we add previous YTD number to current month YTD    
+      IF ((vtb_prem(v_ix).periodmonth = 1) OR 
+          (vtb_prem(v_ix).current_mon_year &lt;&gt; vtb_prem(v_ix).previous_ytd_mon_year)) THEN
+        v_comm_amt_ytd               := vtb_prem(v_ix).commission_amount;
+        v_wrtn_prem_amt_ytd          := vtb_prem(v_ix).v_written_amt;
+        v_earned_prem_amt_ytd        := v_earned_prem_new;
+        v_endorse_prem_amt_ytd       := vtb_prem(v_ix).endorse_prem_amt;
+        v_audit_prem_amt_ytd         := vtb_prem(v_ix).audit_prem_amt;
+        v_cncl_prem_amt_ytd          := vtb_prem(v_ix).cncl_prem_amt;
+        v_rein_prem_amt_ytd          := vtb_prem(v_ix).rein_prem_amt;
+        v_fees_amt_ytd               := vtb_prem(v_ix).fees_amt;
+        v_taxes_amt_ytd              := vtb_prem(v_ix).taxes_amt;
+        v_alc_exp_pd_amt_ytd         := vtb_prem(v_ix).alc_exp_pd_amt;
+        v_alc_exp_rsrv_chng_amt_ytd  := vtb_prem(v_ix).alc_exp_rsrv_chng_amt;
+        v_loss_pd_amt_ytd            := vtb_prem(v_ix).loss_pd_amt;
+        v_loss_rsrv_chng_amt_ytd     := vtb_prem(v_ix).loss_rsrv_chng_amt;
+        v_salvage_chng_amt_ytd       := vtb_prem(v_ix).salvage_chng_amt;
+        v_subro_chng_amt_ytd         := vtb_prem(v_ix).subro_chng_amt;
+        v_ualc_exp_pd_amt_ytd        := vtb_prem(v_ix).ualc_exp_pd_amt;
+        v_ualc_exp_rsrv_chng_amt_ytd := vtb_prem(v_ix)
+                                        .ualc_exp_rsrv_chng_amt;
+        v_usd_ytd_1                  := vtb_prem(v_ix).usd1_amt;
+        v_usd_ytd_2                  := vtb_prem(v_ix).usd2_amt;
+        v_usd_ytd_3                  := vtb_prem(v_ix).usd3_amt;
+        v_usd_ytd_4                  := vtb_prem(v_ix).usd4_amt;
+        v_usd_ytd_5                  := vtb_prem(v_ix).usd5_amt;
+      ELSE
+        -- add previous to current working variables
+        v_comm_amt_ytd               := vtb_prem(v_ix).p_comm_amt_ytd + vtb_prem(v_ix)
+                                        .commission_amount;
+        v_wrtn_prem_amt_ytd          := vtb_prem(v_ix).p_wrtn_prem_amt_ytd + vtb_prem(v_ix)
+                                        .v_written_amt;
+        v_earned_prem_amt_ytd        := vtb_prem(v_ix).p_earned_prem_amt_ytd +
+                                         v_earned_prem_new;
+        v_endorse_prem_amt_ytd       := vtb_prem(v_ix).p_endorse_prem_amt_ytd + vtb_prem(v_ix)
+                                        .endorse_prem_amt;
+        v_audit_prem_amt_ytd         := vtb_prem(v_ix).p_audit_prem_amt_ytd + vtb_prem(v_ix)
+                                        .audit_prem_amt;
+        v_cncl_prem_amt_ytd          := vtb_prem(v_ix).p_cncl_prem_amt_ytd + vtb_prem(v_ix)
+                                        .cncl_prem_amt;
+        v_rein_prem_amt_ytd          := vtb_prem(v_ix).p_rein_prem_amt_ytd + vtb_prem(v_ix)
+                                        .rein_prem_amt;
+        v_fees_amt_ytd               := vtb_prem(v_ix).p_fees_amt_ytd + vtb_prem(v_ix)
+                                        .fees_amt;
+        v_taxes_amt_ytd              := vtb_prem(v_ix).p_taxes_amt_ytd + vtb_prem(v_ix)
+                                        .taxes_amt;
+        v_alc_exp_pd_amt_ytd         := vtb_prem(v_ix).p_alc_exp_pd_amt_ytd + vtb_prem(v_ix)
+                                        .alc_exp_pd_amt;
+        v_alc_exp_rsrv_chng_amt_ytd  := vtb_prem(v_ix).p_alc_exp_rsrv_chng_amt_ytd + vtb_prem(v_ix)
+                                        .alc_exp_rsrv_chng_amt;
+        v_loss_pd_amt_ytd            := vtb_prem(v_ix).p_loss_pd_amt_ytd + vtb_prem(v_ix)
+                                        .loss_pd_amt;
+        v_loss_rsrv_chng_amt_ytd     := vtb_prem(v_ix).p_loss_rsrv_chng_amt_ytd + vtb_prem(v_ix)
+                                        .loss_rsrv_chng_amt;
+        v_salvage_chng_amt_ytd       := vtb_prem(v_ix).p_salvage_chng_amt_ytd + vtb_prem(v_ix)
+                                        .salvage_chng_amt;
+        v_subro_chng_amt_ytd         := vtb_prem(v_ix).p_subro_chng_amt_ytd + vtb_prem(v_ix)
+                                        .subro_chng_amt;
+        v_ualc_exp_pd_amt_ytd        := vtb_prem(v_ix).p_ualc_exp_pd_amt_ytd + vtb_prem(v_ix)
+                                        .ualc_exp_pd_amt;
+        v_ualc_exp_rsrv_chng_amt_ytd := vtb_prem(v_ix)
+                                        .p_ualc_exp_rsrv_chng_amt_ytd + vtb_prem(v_ix)
+                                        .ualc_exp_rsrv_chng_amt;
+        v_usd_ytd_1                  := vtb_prem(v_ix).p_usr_def_amt_ytd1 + vtb_prem(v_ix)
+                                        .usd1_amt;
+        v_usd_ytd_2                  := vtb_prem(v_ix).p_usr_def_amt_ytd2 + vtb_prem(v_ix)
+                                        .usd2_amt;
+        v_usd_ytd_3                  := vtb_prem(v_ix).p_usr_def_amt_ytd3 + vtb_prem(v_ix)
+                                        .usd3_amt;
+        v_usd_ytd_4                  := vtb_prem(v_ix).p_usr_def_amt_ytd4 + vtb_prem(v_ix)
+                                        .usd4_amt;
+        v_usd_ytd_5                  := vtb_prem(v_ix).p_usr_def_amt_ytd5 + vtb_prem(v_ix)
+                                        .usd5_amt;
+      END IF;
+    
+      -- Calculate ITD
+      v_comm_amt_itd               := vtb_prem(v_ix).p_comm_amt_itd + vtb_prem(v_ix)
+                                      .commission_amount;
+      v_wrtn_prem_amt_itd          := vtb_prem(v_ix).p_wrtn_prem_amt_itd + vtb_prem(v_ix)
+                                      .v_written_amt;
+      v_earned_prem_amt_itd        := vtb_prem(v_ix).p_earned_prem_amt_itd +
+                                       v_earned_prem_new;
+      v_endorse_prem_amt_itd       := vtb_prem(v_ix).p_endorse_prem_amt_itd + vtb_prem(v_ix)
+                                      .endorse_prem_amt;
+      v_audit_prem_amt_itd         := vtb_prem(v_ix).p_audit_prem_amt_itd + vtb_prem(v_ix)
+                                      .audit_prem_amt;
+      v_cncl_prem_amt_itd          := vtb_prem(v_ix).p_cncl_prem_amt_itd + vtb_prem(v_ix)
+                                      .cncl_prem_amt;
+      v_rein_prem_amt_itd          := vtb_prem(v_ix).p_rein_prem_amt_itd + vtb_prem(v_ix)
+                                      .rein_prem_amt;
+      v_fees_amt_itd               := vtb_prem(v_ix).p_fees_amt_itd + vtb_prem(v_ix)
+                                      .fees_amt;
+      v_taxes_amt_itd              := vtb_prem(v_ix).p_taxes_amt_itd + vtb_prem(v_ix)
+                                      .taxes_amt;
+      v_alc_exp_pd_amt_itd         := vtb_prem(v_ix).p_alc_exp_pd_amt_itd + vtb_prem(v_ix)
+                                      .alc_exp_pd_amt;
+      v_alc_exp_rsrv_chng_amt_itd  := vtb_prem(v_ix).p_alc_exp_rsrv_chng_amt_itd + vtb_prem(v_ix)
+                                      .alc_exp_rsrv_chng_amt;
+      v_loss_pd_amt_itd            := vtb_prem(v_ix).p_loss_pd_amt_itd + vtb_prem(v_ix)
+                                      .loss_pd_amt;
+      v_loss_rsrv_chng_amt_itd     := vtb_prem(v_ix).p_loss_rsrv_chng_amt_itd + vtb_prem(v_ix)
+                                      .loss_rsrv_chng_amt;
+      v_salvage_chng_amt_itd       := vtb_prem(v_ix).p_salvage_chng_amt_itd + vtb_prem(v_ix)
+                                      .salvage_chng_amt;
+      v_subro_chng_amt_itd         := vtb_prem(v_ix).p_subro_chng_amt_itd + vtb_prem(v_ix)
+                                      .subro_chng_amt;
+      v_ualc_exp_pd_amt_itd        := vtb_prem(v_ix).p_ualc_exp_pd_amt_itd + vtb_prem(v_ix)
+                                      .ualc_exp_pd_amt;
+      v_ualc_exp_rsrv_chng_amt_itd := vtb_prem(v_ix).p_ualc_exp_rsrv_chng_amt_itd + vtb_prem(v_ix)
+                                      .ualc_exp_rsrv_chng_amt;
+      v_usd_itd_1                  := vtb_prem(v_ix).p_usr_def_amt_itd1 + vtb_prem(v_ix)
+                                      .usd1_amt;
+      v_usd_itd_2                  := vtb_prem(v_ix).p_usr_def_amt_itd2 + vtb_prem(v_ix)
+                                      .usd2_amt;
+      v_usd_itd_3                  := vtb_prem(v_ix).p_usr_def_amt_itd3 + vtb_prem(v_ix)
+                                      .usd3_amt;
+      v_usd_itd_4                  := vtb_prem(v_ix).p_usr_def_amt_itd4 + vtb_prem(v_ix)
+                                      .usd4_amt;
+      v_usd_itd_5                  := vtb_prem(v_ix).p_usr_def_amt_itd5 + vtb_prem(v_ix)
+                                      .usd5_amt;
+    
+      vtb_prem(v_ix).n_comm_amt_itd := v_comm_amt_itd;
+      vtb_prem(v_ix).n_wrtn_prem_amt_itd := v_wrtn_prem_amt_itd;
+      vtb_prem(v_ix).n_earned_prem_amt_itd := v_earned_prem_amt_itd;
+      vtb_prem(v_ix).n_endorse_prem_amt_itd := v_endorse_prem_amt_itd;
+      vtb_prem(v_ix).n_audit_prem_amt_itd := v_audit_prem_amt_itd;
+      vtb_prem(v_ix).n_cncl_prem_amt_itd := v_cncl_prem_amt_itd;
+      vtb_prem(v_ix).n_rein_prem_amt_itd := v_rein_prem_amt_itd;
+      vtb_prem(v_ix).n_fees_amt_itd := v_fees_amt_itd;
+      vtb_prem(v_ix).n_taxes_amt_itd := v_taxes_amt_itd;
+      vtb_prem(v_ix).n_alc_exp_pd_amt_itd := v_alc_exp_pd_amt_itd;
+      vtb_prem(v_ix).n_alc_exp_rsrv_chng_amt_itd := v_alc_exp_rsrv_chng_amt_itd;
+      vtb_prem(v_ix).n_loss_pd_amt_itd := v_loss_pd_amt_itd;
+      vtb_prem(v_ix).n_loss_rsrv_chng_amt_itd := v_loss_rsrv_chng_amt_itd;
+      vtb_prem(v_ix).n_salvage_chng_amt_itd := v_salvage_chng_amt_itd;
+      vtb_prem(v_ix).n_subro_chng_amt_itd := v_subro_chng_amt_itd;
+      vtb_prem(v_ix).n_ualc_exp_pd_amt_itd := v_ualc_exp_pd_amt_itd;
+      vtb_prem(v_ix).n_ualc_exp_rsrv_chng_amt_itd := v_ualc_exp_rsrv_chng_amt_itd;
+      vtb_prem(v_ix).n_usr_def_amt_itd1 := v_usd_itd_1;
+      vtb_prem(v_ix).n_usr_def_amt_itd2 := v_usd_itd_2;
+      vtb_prem(v_ix).n_usr_def_amt_itd3 := v_usd_itd_3;
+      vtb_prem(v_ix).n_usr_def_amt_itd4 := v_usd_itd_4;
+      vtb_prem(v_ix).n_usr_def_amt_itd5 := v_usd_itd_5;
+    
+      -- set new values in current row
+    
+      vtb_prem(v_ix).n_comm_amt_ytd := v_comm_amt_ytd;
+      vtb_prem(v_ix).n_wrtn_prem_amt_ytd := v_wrtn_prem_amt_ytd;
+      vtb_prem(v_ix).n_earned_prem_amt_ytd := v_earned_prem_amt_ytd;
+      vtb_prem(v_ix).n_endorse_prem_amt_ytd := v_endorse_prem_amt_ytd;
+      vtb_prem(v_ix).n_audit_prem_amt_ytd := v_audit_prem_amt_ytd;
+      vtb_prem(v_ix).n_cncl_prem_amt_ytd := v_cncl_prem_amt_ytd;
+      vtb_prem(v_ix).n_rein_prem_amt_ytd := v_rein_prem_amt_ytd;
+      vtb_prem(v_ix).n_fees_amt_ytd := v_fees_amt_ytd;
+      vtb_prem(v_ix).n_taxes_amt_ytd := v_taxes_amt_ytd;
+      vtb_prem(v_ix).n_alc_exp_pd_amt_ytd := v_alc_exp_pd_amt_ytd;
+      vtb_prem(v_ix).n_alc_exp_rsrv_chng_amt_ytd := v_alc_exp_rsrv_chng_amt_ytd;
+      vtb_prem(v_ix).n_loss_pd_amt_ytd := v_loss_pd_amt_ytd;
+      vtb_prem(v_ix).n_loss_rsrv_chng_amt_ytd := v_loss_rsrv_chng_amt_ytd;
+      vtb_prem(v_ix).n_salvage_chng_amt_ytd := v_salvage_chng_amt_ytd;
+      vtb_prem(v_ix).n_subro_chng_amt_ytd := v_subro_chng_amt_ytd;
+      vtb_prem(v_ix).n_ualc_exp_pd_amt_ytd := v_ualc_exp_pd_amt_ytd;
+      vtb_prem(v_ix).n_ualc_exp_rsrv_chng_amt_ytd := v_ualc_exp_rsrv_chng_amt_ytd;
+      vtb_prem(v_ix).n_usr_def_amt_ytd1 := v_usd_ytd_1;
+      vtb_prem(v_ix).n_usr_def_amt_ytd2 := v_usd_ytd_2;
+      vtb_prem(v_ix).n_usr_def_amt_ytd3 := v_usd_ytd_3;
+      vtb_prem(v_ix).n_usr_def_amt_ytd4 := v_usd_ytd_4;
+      vtb_prem(v_ix).n_usr_def_amt_ytd5 := v_usd_ytd_5;
+    
+      dbms_output.put_line('vtb_prem(v_ix).N_WRTN_PREM_AMT_YTD ' ||
+                           to_char(vtb_prem(v_ix).n_wrtn_prem_amt_ytd));
+    
+      -- if same record group (by POL_UNIQUEID,COV_UNIQUEID,PRSK_UNIQUEID) set new values as prev values in next row
+      IF v_ix &lt; vtb_prem.count THEN
+        IF (vtb_prem(v_ix)
+           .recordgroupnum = vtb_prem(v_ix + 1).recordgroupnum) THEN
+          vtb_prem(v_ix + 1).p_comm_amt_ytd := v_comm_amt_ytd;
+          vtb_prem(v_ix + 1).p_wrtn_prem_amt_ytd := v_wrtn_prem_amt_ytd;
+          vtb_prem(v_ix + 1).p_earned_prem_amt_ytd := v_earned_prem_amt_ytd;
+          vtb_prem(v_ix + 1).p_endorse_prem_amt_ytd := v_endorse_prem_amt_ytd;
+          vtb_prem(v_ix + 1).p_audit_prem_amt_ytd := v_audit_prem_amt_ytd;
+          vtb_prem(v_ix + 1).p_cncl_prem_amt_ytd := v_cncl_prem_amt_ytd;
+          vtb_prem(v_ix + 1).p_rein_prem_amt_ytd := v_rein_prem_amt_ytd;
+          vtb_prem(v_ix + 1).p_fees_amt_ytd := v_fees_amt_ytd;
+          vtb_prem(v_ix + 1).p_taxes_amt_ytd := v_taxes_amt_ytd;
+          vtb_prem(v_ix + 1).p_alc_exp_pd_amt_ytd := v_alc_exp_pd_amt_ytd;
+          vtb_prem(v_ix + 1).p_alc_exp_rsrv_chng_amt_ytd := v_alc_exp_rsrv_chng_amt_ytd;
+          vtb_prem(v_ix + 1).p_loss_pd_amt_ytd := v_loss_pd_amt_ytd;
+          vtb_prem(v_ix + 1).p_loss_rsrv_chng_amt_ytd := v_loss_rsrv_chng_amt_ytd;
+          vtb_prem(v_ix + 1).p_salvage_chng_amt_ytd := v_salvage_chng_amt_ytd;
+          vtb_prem(v_ix + 1).p_subro_chng_amt_ytd := v_subro_chng_amt_ytd;
+          vtb_prem(v_ix + 1).p_ualc_exp_pd_amt_ytd := v_ualc_exp_pd_amt_ytd;
+          vtb_prem(v_ix + 1).p_ualc_exp_rsrv_chng_amt_ytd := v_ualc_exp_rsrv_chng_amt_ytd;
+          vtb_prem(v_ix + 1).p_usr_def_amt_ytd1 := v_usd_ytd_1;
+          vtb_prem(v_ix + 1).p_usr_def_amt_ytd2 := v_usd_ytd_2;
+          vtb_prem(v_ix + 1).p_usr_def_amt_ytd3 := v_usd_ytd_3;
+          vtb_prem(v_ix + 1).p_usr_def_amt_ytd4 := v_usd_ytd_4;
+          vtb_prem(v_ix + 1).p_usr_def_amt_ytd5 := v_usd_ytd_5;
+          --
+          vtb_prem(v_ix + 1).p_comm_amt_itd := v_comm_amt_itd;
+          vtb_prem(v_ix + 1).p_wrtn_prem_amt_itd := v_wrtn_prem_amt_itd;
+          vtb_prem(v_ix + 1).p_earned_prem_amt_itd := v_earned_prem_amt_itd;
+          vtb_prem(v_ix + 1).p_endorse_prem_amt_itd := v_endorse_prem_amt_itd;
+          vtb_prem(v_ix + 1).p_audit_prem_amt_itd := v_audit_prem_amt_itd;
+          vtb_prem(v_ix + 1).p_cncl_prem_amt_itd := v_cncl_prem_amt_itd;
+          vtb_prem(v_ix + 1).p_rein_prem_amt_itd := v_rein_prem_amt_itd;
+          vtb_prem(v_ix + 1).p_fees_amt_itd := v_fees_amt_itd;
+          vtb_prem(v_ix + 1).p_taxes_amt_itd := v_taxes_amt_itd;
+          vtb_prem(v_ix + 1).p_alc_exp_pd_amt_itd := v_alc_exp_pd_amt_itd;
+          vtb_prem(v_ix + 1).p_alc_exp_rsrv_chng_amt_itd := v_alc_exp_rsrv_chng_amt_itd;
+          vtb_prem(v_ix + 1).p_loss_pd_amt_itd := v_loss_pd_amt_itd;
+          vtb_prem(v_ix + 1).p_loss_rsrv_chng_amt_itd := v_loss_rsrv_chng_amt_itd;
+          vtb_prem(v_ix + 1).p_salvage_chng_amt_itd := v_salvage_chng_amt_itd;
+          vtb_prem(v_ix + 1).p_subro_chng_amt_itd := v_subro_chng_amt_itd;
+          vtb_prem(v_ix + 1).p_ualc_exp_pd_amt_itd := v_ualc_exp_pd_amt_itd;
+          vtb_prem(v_ix + 1).p_ualc_exp_rsrv_chng_amt_itd := v_ualc_exp_rsrv_chng_amt_itd;
+          vtb_prem(v_ix + 1).p_usr_def_amt_itd1 := v_usd_itd_1;
+          vtb_prem(v_ix + 1).p_usr_def_amt_itd2 := v_usd_itd_2;
+          vtb_prem(v_ix + 1).p_usr_def_amt_itd3 := v_usd_itd_3;
+          vtb_prem(v_ix + 1).p_usr_def_amt_itd4 := v_usd_itd_4;
+          vtb_prem(v_ix + 1).p_usr_def_amt_itd5 := v_usd_itd_5;
+        END IF;
+      END IF;
+    
+    END LOOP;
+  
+    -- write out results
+  
+    --execute immediate 'truncate table tmp_fpc_calc_prem12';
+  
+    FOR v_ix IN 1 .. vtb_prem.count LOOP
+    
+      dbms_output.put_line('Group# ' ||
+                           to_char(vtb_prem(v_ix).recordgroupnum) || ' : ' || vtb_prem(v_ix)
+                           .cov_uniqueid || ' : ' ||
+                           to_char(vtb_prem(v_ix).month_id));
+    
+      v_commitcount := v_commitcount + 1;
+    
+      v_sk := v_sk + 1;
+    
+      INSERT INTO tmp_fpc_calc_prem12
+        (sk,
+         sk_recordnum,
+         sk_period,
+         recordgroupnum,
+         pol_uniqueid,
+         cov_uniqueid,
+         prsk_uniqueid,
+         -- JMA 9/25/2014
+         component_uniqueid,
+         otheradjustment_uniqueid,
+         --
+         month_id,
+         priormonth_id,
+         sql_periodenddate,
+         sql_periodstartdate,
+         periodmonth,
+         periodenddate,
+         periodstartdate,
+         cov_expirationdate,
+         cov_expired_in_curr_month_flg,
+         cov_expirationdate_m1d,
+         audit_prem_amt,
+         cncl_prem_amt,
+         commission_amount,
+         --
+         earnedpremium_round,
+         earnedpremium_new,
+         --
+         endorse_prem_amt,
+         fees_amt,
+         man_wrtn_prem_amt,
+         orig_wrtn_prem_amt,
+         rein_prem_amt,
+         taxes_amt,
+         term_prem_amt,
+         usd1_amt,
+         usd2_amt,
+         usd3_amt,
+         usd4_amt,
+         usd5_amt,
+         v_written_amt,
+         alc_exp_pd_amt,
+         alc_exp_rsrv_chng_amt,
+         loss_pd_amt,
+         loss_rsrv_chng_amt,
+         ualc_exp_pd_amt,
+         ualc_exp_rsrv_chng_amt,
+         subro_chng_amt,
+         salvage_chng_amt,
+         p_comm_amt_ytd,
+         p_comm_amt_itd,
+         p_wrtn_prem_amt_ytd,
+         p_wrtn_prem_amt_itd,
+         p_man_wrtn_prem_amt_ytd,
+         p_man_wrtn_prem_amt_itd,
+         p_orig_wrtn_prem_amt_ytd,
+         p_orig_wrtn_prem_amt_itd,
+         p_term_prem_amt_ytd,
+         p_term_prem_amt_itd,
+         p_earned_prem_amt_ytd,
+         p_earned_prem_amt_itd,
+         p_endorse_prem_amt_ytd,
+         p_endorse_prem_amt_itd,
+         p_audit_prem_amt_ytd,
+         p_audit_prem_amt_itd,
+         p_cncl_prem_amt_ytd,
+         p_cncl_prem_amt_itd,
+         p_rein_prem_amt_ytd,
+         p_rein_prem_amt_itd,
+         p_taxes_amt_ytd,
+         p_taxes_amt_itd,
+         p_fees_amt_ytd,
+         p_fees_amt_itd,
+         p_loss_pd_amt_ytd,
+         p_loss_pd_amt_itd,
+         p_loss_rsrv_chng_amt_ytd,
+         p_loss_rsrv_chng_amt_itd,
+         p_alc_exp_pd_amt_ytd,
+         p_alc_exp_pd_amt_itd,
+         p_alc_exp_rsrv_chng_amt_ytd,
+         p_alc_exp_rsrv_chng_amt_itd,
+         p_ualc_exp_pd_amt_ytd,
+         p_ualc_exp_pd_amt_itd,
+         p_ualc_exp_rsrv_chng_amt_ytd,
+         p_ualc_exp_rsrv_chng_amt_itd,
+         p_salvage_chng_amt_ytd,
+         p_salvage_chng_amt_itd,
+         p_subro_chng_amt_ytd,
+         p_subro_chng_amt_itd,
+         p_usr_def_amt_ytd1,
+         p_usr_def_amt_itd1,
+         p_usr_def_amt_ytd2,
+         p_usr_def_amt_itd2,
+         p_usr_def_amt_ytd3,
+         p_usr_def_amt_itd3,
+         p_usr_def_amt_ytd4,
+         p_usr_def_amt_itd4,
+         p_usr_def_amt_ytd5,
+         p_usr_def_amt_itd5,
+         n_comm_amt_ytd,
+         n_comm_amt_itd,
+         n_wrtn_prem_amt_ytd,
+         n_wrtn_prem_amt_itd,
+         n_man_wrtn_prem_amt_ytd,
+         n_man_wrtn_prem_amt_itd,
+         n_orig_wrtn_prem_amt_ytd,
+         n_orig_wrtn_prem_amt_itd,
+         n_term_prem_amt_ytd,
+         n_term_prem_amt_itd,
+         n_earned_prem_amt_ytd,
+         n_earned_prem_amt_itd,
+         n_endorse_prem_amt_ytd,
+         n_endorse_prem_amt_itd,
+         n_audit_prem_amt_ytd,
+         n_audit_prem_amt_itd,
+         n_cncl_prem_amt_ytd,
+         n_cncl_prem_amt_itd,
+         n_rein_prem_amt_ytd,
+         n_rein_prem_amt_itd,
+         n_taxes_amt_ytd,
+         n_taxes_amt_itd,
+         n_fees_amt_ytd,
+         n_fees_amt_itd,
+         n_loss_pd_amt_ytd,
+         n_loss_pd_amt_itd,
+         n_loss_rsrv_chng_amt_ytd,
+         n_loss_rsrv_chng_amt_itd,
+         n_alc_exp_pd_amt_ytd,
+         n_alc_exp_pd_amt_itd,
+         n_alc_exp_rsrv_chng_amt_ytd,
+         n_alc_exp_rsrv_chng_amt_itd,
+         n_ualc_exp_pd_amt_ytd,
+         n_ualc_exp_pd_amt_itd,
+         n_ualc_exp_rsrv_chng_amt_ytd,
+         n_ualc_exp_rsrv_chng_amt_itd,
+         n_salvage_chng_amt_ytd,
+         n_salvage_chng_amt_itd,
+         n_subro_chng_amt_ytd,
+         n_subro_chng_amt_itd,
+         n_usr_def_amt_ytd1,
+         n_usr_def_amt_itd1,
+         n_usr_def_amt_ytd2,
+         n_usr_def_amt_itd2,
+         n_usr_def_amt_ytd3,
+         n_usr_def_amt_itd3,
+         n_usr_def_amt_ytd4,
+         n_usr_def_amt_itd4,
+         n_usr_def_amt_ytd5,
+         n_usr_def_amt_itd5,
+         unearnedpremium_round,
+         previous_ytd_mon_year,
+         current_mon_year)
+      VALUES
+        (v_sk,
+         vtb_prem(v_ix).sk_recordnum,
+         vtb_prem(v_ix).sk_period,
+         vtb_prem(v_ix).recordgroupnum,
+         vtb_prem(v_ix).pol_uniqueid,
+         vtb_prem(v_ix).cov_uniqueid,
+         vtb_prem(v_ix).prsk_uniqueid,
+         -- JMA 9/25/2014
+         vtb_prem(v_ix).component_uniqueid,
+         vtb_prem(v_ix).otheradjustment_uniqueid,
+         --
+         vtb_prem(v_ix).month_id,
+         vtb_prem(v_ix).priormonth_id,
+         vtb_prem(v_ix).sql_periodenddate,
+         vtb_prem(v_ix).sql_periodstartdate,
+         vtb_prem(v_ix).periodmonth,
+         vtb_prem(v_ix).periodenddate,
+         vtb_prem(v_ix).periodstartdate,
+         vtb_prem(v_ix).cov_expirationdate,
+         vtb_prem(v_ix).cov_expired_in_curr_month_flg,
+         vtb_prem(v_ix).cov_expirationdate_m1d,
+         vtb_prem(v_ix).audit_prem_amt,
+         vtb_prem(v_ix).cncl_prem_amt,
+         vtb_prem(v_ix).commission_amount,
+         --
+         vtb_prem(v_ix).earnedpremium_round,
+         vtb_earnedprem(v_ix),
+         --
+         vtb_prem(v_ix).endorse_prem_amt,
+         vtb_prem(v_ix).fees_amt,
+         vtb_prem(v_ix).man_wrtn_prem_amt,
+         vtb_prem(v_ix).orig_wrtn_prem_amt,
+         vtb_prem(v_ix).rein_prem_amt,
+         vtb_prem(v_ix).taxes_amt,
+         vtb_prem(v_ix).term_prem_amt,
+         vtb_prem(v_ix).usd1_amt,
+         vtb_prem(v_ix).usd2_amt,
+         vtb_prem(v_ix).usd3_amt,
+         vtb_prem(v_ix).usd4_amt,
+         vtb_prem(v_ix).usd5_amt,
+         vtb_prem(v_ix).v_written_amt,
+         vtb_prem(v_ix).alc_exp_pd_amt,
+         vtb_prem(v_ix).alc_exp_rsrv_chng_amt,
+         vtb_prem(v_ix).loss_pd_amt,
+         vtb_prem(v_ix).loss_rsrv_chng_amt,
+         vtb_prem(v_ix).ualc_exp_pd_amt,
+         vtb_prem(v_ix).ualc_exp_rsrv_chng_amt,
+         vtb_prem(v_ix).subro_chng_amt,
+         vtb_prem(v_ix).salvage_chng_amt,
+         vtb_prem(v_ix).p_comm_amt_ytd,
+         vtb_prem(v_ix).p_comm_amt_itd,
+         vtb_prem(v_ix).p_wrtn_prem_amt_ytd,
+         vtb_prem(v_ix).p_wrtn_prem_amt_itd,
+         vtb_prem(v_ix).p_man_wrtn_prem_amt_ytd,
+         vtb_prem(v_ix).p_man_wrtn_prem_amt_itd,
+         vtb_prem(v_ix).p_orig_wrtn_prem_amt_ytd,
+         vtb_prem(v_ix).p_orig_wrtn_prem_amt_itd,
+         vtb_prem(v_ix).p_term_prem_amt_ytd,
+         vtb_prem(v_ix).p_term_prem_amt_itd,
+         vtb_prem(v_ix).p_earned_prem_amt_ytd,
+         vtb_prem(v_ix).p_earned_prem_amt_itd,
+         vtb_prem(v_ix).p_endorse_prem_amt_ytd,
+         vtb_prem(v_ix).p_endorse_prem_amt_itd,
+         vtb_prem(v_ix).p_audit_prem_amt_ytd,
+         vtb_prem(v_ix).p_audit_prem_amt_itd,
+         vtb_prem(v_ix).p_cncl_prem_amt_ytd,
+         vtb_prem(v_ix).p_cncl_prem_amt_itd,
+         vtb_prem(v_ix).p_rein_prem_amt_ytd,
+         vtb_prem(v_ix).p_rein_prem_amt_itd,
+         vtb_prem(v_ix).p_taxes_amt_ytd,
+         vtb_prem(v_ix).p_taxes_amt_itd,
+         vtb_prem(v_ix).p_fees_amt_ytd,
+         vtb_prem(v_ix).p_fees_amt_itd,
+         vtb_prem(v_ix).p_loss_pd_amt_ytd,
+         vtb_prem(v_ix).p_loss_pd_amt_itd,
+         vtb_prem(v_ix).p_loss_rsrv_chng_amt_ytd,
+         vtb_prem(v_ix).p_loss_rsrv_chng_amt_itd,
+         vtb_prem(v_ix).p_alc_exp_pd_amt_ytd,
+         vtb_prem(v_ix).p_alc_exp_pd_amt_itd,
+         vtb_prem(v_ix).p_alc_exp_rsrv_chng_amt_ytd,
+         vtb_prem(v_ix).p_alc_exp_rsrv_chng_amt_itd,
+         vtb_prem(v_ix).p_ualc_exp_pd_amt_ytd,
+         vtb_prem(v_ix).p_ualc_exp_pd_amt_itd,
+         vtb_prem(v_ix).p_ualc_exp_rsrv_chng_amt_ytd,
+         vtb_prem(v_ix).p_ualc_exp_rsrv_chng_amt_itd,
+         vtb_prem(v_ix).p_salvage_chng_amt_ytd,
+         vtb_prem(v_ix).p_salvage_chng_amt_itd,
+         vtb_prem(v_ix).p_subro_chng_amt_ytd,
+         vtb_prem(v_ix).p_subro_chng_amt_itd,
+         vtb_prem(v_ix).p_usr_def_amt_ytd1,
+         vtb_prem(v_ix).p_usr_def_amt_itd1,
+         vtb_prem(v_ix).p_usr_def_amt_ytd2,
+         vtb_prem(v_ix).p_usr_def_amt_itd2,
+         vtb_prem(v_ix).p_usr_def_amt_ytd3,
+         vtb_prem(v_ix).p_usr_def_amt_itd3,
+         vtb_prem(v_ix).p_usr_def_amt_ytd4,
+         vtb_prem(v_ix).p_usr_def_amt_itd4,
+         vtb_prem(v_ix).p_usr_def_amt_ytd5,
+         vtb_prem(v_ix).p_usr_def_amt_itd5,
+         vtb_prem(v_ix).n_comm_amt_ytd,
+         vtb_prem(v_ix).n_comm_amt_itd,
+         vtb_prem(v_ix).n_wrtn_prem_amt_ytd,
+         vtb_prem(v_ix).n_wrtn_prem_amt_itd,
+         vtb_prem(v_ix).n_man_wrtn_prem_amt_ytd,
+         vtb_prem(v_ix).n_man_wrtn_prem_amt_itd,
+         vtb_prem(v_ix).n_orig_wrtn_prem_amt_ytd,
+         vtb_prem(v_ix).n_orig_wrtn_prem_amt_itd,
+         vtb_prem(v_ix).n_term_prem_amt_ytd,
+         vtb_prem(v_ix).n_term_prem_amt_itd,
+         vtb_prem(v_ix).n_earned_prem_amt_ytd,
+         vtb_prem(v_ix).n_earned_prem_amt_itd,
+         vtb_prem(v_ix).n_endorse_prem_amt_ytd,
+         vtb_prem(v_ix).n_endorse_prem_amt_itd,
+         vtb_prem(v_ix).n_audit_prem_amt_ytd,
+         vtb_prem(v_ix).n_audit_prem_amt_itd,
+         vtb_prem(v_ix).n_cncl_prem_amt_ytd,
+         vtb_prem(v_ix).n_cncl_prem_amt_itd,
+         vtb_prem(v_ix).n_rein_prem_amt_ytd,
+         vtb_prem(v_ix).n_rein_prem_amt_itd,
+         vtb_prem(v_ix).n_taxes_amt_ytd,
+         vtb_prem(v_ix).n_taxes_amt_itd,
+         vtb_prem(v_ix).n_fees_amt_ytd,
+         vtb_prem(v_ix).n_fees_amt_itd,
+         vtb_prem(v_ix).n_loss_pd_amt_ytd,
+         vtb_prem(v_ix).n_loss_pd_amt_itd,
+         vtb_prem(v_ix).n_loss_rsrv_chng_amt_ytd,
+         vtb_prem(v_ix).n_loss_rsrv_chng_amt_itd,
+         vtb_prem(v_ix).n_alc_exp_pd_amt_ytd,
+         vtb_prem(v_ix).n_alc_exp_pd_amt_itd,
+         vtb_prem(v_ix).n_alc_exp_rsrv_chng_amt_ytd,
+         vtb_prem(v_ix).n_alc_exp_rsrv_chng_amt_itd,
+         vtb_prem(v_ix).n_ualc_exp_pd_amt_ytd,
+         vtb_prem(v_ix).n_ualc_exp_pd_amt_itd,
+         vtb_prem(v_ix).n_ualc_exp_rsrv_chng_amt_ytd,
+         vtb_prem(v_ix).n_ualc_exp_rsrv_chng_amt_itd,
+         vtb_prem(v_ix).n_salvage_chng_amt_ytd,
+         vtb_prem(v_ix).n_salvage_chng_amt_itd,
+         vtb_prem(v_ix).n_subro_chng_amt_ytd,
+         vtb_prem(v_ix).n_subro_chng_amt_itd,
+         vtb_prem(v_ix).n_usr_def_amt_ytd1,
+         vtb_prem(v_ix).n_usr_def_amt_itd1,
+         vtb_prem(v_ix).n_usr_def_amt_ytd2,
+         vtb_prem(v_ix).n_usr_def_amt_itd2,
+         vtb_prem(v_ix).n_usr_def_amt_ytd3,
+         vtb_prem(v_ix).n_usr_def_amt_itd3,
+         vtb_prem(v_ix).n_usr_def_amt_ytd4,
+         vtb_prem(v_ix).n_usr_def_amt_itd4,
+         vtb_prem(v_ix).n_usr_def_amt_ytd5,
+         vtb_prem(v_ix).n_usr_def_amt_itd5,
+         vtb_prem(v_ix).n_wrtn_prem_amt_itd - vtb_prem(v_ix).n_earned_prem_amt_itd,
+         vtb_prem(v_ix).previous_ytd_mon_year,
+         vtb_prem(v_ix).current_mon_year);
+    
+      IF (v_commitcount = v_commitsize) THEN
+        COMMIT;
+        v_commitcount := 0;
+      END IF;
+    
+    END LOOP;
+  
+    COMMIT;
+  
+    vtb_prem.delete;
+    vtb_earnedprem.delete;
+  
+  END LOOP;
+END;
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>T</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>994</xloc>
+      <yloc>212</yloc>
+    </entry>
+    <entry>
+      <name>Create FPC Helper Tables</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_fpc_get_stg_coverage1
+nologging 
+tablespace ${G_STAGING_DB_DATA}
+as
+select
+	sc.sk_RecordNum,
+	sc.cov_type,
+	sc.cov_code,
+	sc.cov_name,
+	sc.cov_subcode,
+	sc.cov_subcodename,
+	sc.cov_effectivedate,
+	sc.cov_expirationdate,
+	sc.cov_classcode,
+	sc.cov_classcodename,
+	sc.cov_classsubcode,
+	sc.cov_classsubcodename,
+	sc.cov_deductible1,
+	sc.cov_deductible1type,
+    sc.cov_deductible2,
+	sc.cov_deductible2type,
+	sc.cov_limit1,
+	sc.cov_limit1type,
+	sc.cov_limit2,
+	sc.cov_limit2type
+from
+(
+	select 
+	row_number() over (partition by sc.sk_RecordNum order by sc.stgcoverage_id desc) pick1,
+	sc.*
+	from
+	(
+		select /*+ use_hash(sc p) */
+            sc.stgcoverage_id,
+			sc.cov_type,
+			sc.cov_code,
+			sc.cov_name,
+			sc.cov_subcode,
+			sc.cov_subcodename,
+			sc.cov_effectivedate,
+			sc.cov_expirationdate,
+			sc.cov_classcode,
+			sc.cov_classcodename,
+			sc.cov_classsubcode,
+			sc.cov_classsubcodename,
+			sc.cov_deductible1,
+			sc.cov_deductible1type,
+            sc.cov_deductible2,
+	        sc.cov_deductible2type,
+			sc.cov_limit1,
+			sc.cov_limit1type,
+			sc.cov_limit2,
+			sc.cov_limit2type,
+			p.sk_RecordNum,
+			case when sc.cov_effectivedate &lt; p.POL_EXPIRATIONDATE then 1 else 0 end +
+		    case when sc.cov_effectivedate &lt;= p.POL_EXPIRATIONDATE and sc.mmcov_coverage_segment_code = 'TAIL' then 1 else 0 end +
+		    case when sc.cov_effectivedate &lt;= p.POL_EXPIRATIONDATE and p.POL_EXPIRATIONDATE = p.POL_EFFECTIVEDATE then 1 else 0 end +
+		    case when sc.cov_effectivedate &lt;= p.POL_EXPIRATIONDATE AND sc.cov_effectivedate = sc.cov_expirationdate then 1 else 0 end rule_flg
+		from 
+		     stg_coverage sc,
+		     tmp_fpc_calc_prem7 p
+		where sc.coverage_uniqueid = p.cov_uniqueid
+		and sc.pt_sequence &lt;= p.max_pt_sequence
+        and sc.policy_uniqueid = p.pol_uniqueid
+		and sc.cov_transactioneffectivedate &lt;= p.sql_periodEndDate
+		and trunc(sc.cov_transactionaccountingdate) &lt;= p.sql_periodEndDate
+	) sc
+	where sc.rule_flg > 0
+) sc
+where sc.pick1 = 1
+;
+
+create table tmp_fpc_get_stg_coverage2
+nologging 
+tablespace ${G_STAGING_DB_DATA}
+as
+SELECT sc.sk_RecordNum,
+ 	sc.cov_type,
+       sc.cov_code,
+       sc.cov_name,
+       sc.cov_subcode,
+       sc.cov_subcodename,
+       sc.cov_effectivedate,
+       sc.cov_expirationdate,
+       sc.cov_classcode,
+       sc.cov_classcodename,
+       sc.cov_classsubcode,
+       sc.cov_classsubcodename,
+       sc.cov_deductible1,
+       sc.cov_deductible1type,
+       sc.cov_deductible2,
+       sc.cov_deductible2type,
+       sc.cov_limit1,
+       sc.cov_limit1type,
+       sc.cov_limit2,
+       sc.cov_limit2type
+FROM   
+(
+	SELECT sc.sk_RecordNum,
+		sc.cov_type,
+	       sc.cov_code,
+	       sc.cov_name,
+	       sc.cov_subcode,
+	       sc.cov_subcodename,
+	       sc.cov_effectivedate,
+	       sc.cov_expirationdate,
+	       sc.cov_classcode,
+	       sc.cov_classcodename,
+	       sc.cov_classsubcode,
+	       sc.cov_classsubcodename,
+	       sc.cov_deductible1,
+	       sc.cov_deductible1type,
+	       sc.cov_deductible2,
+	       sc.cov_deductible2type,
+	       sc.cov_limit1,
+	       sc.cov_limit1type,
+	       sc.cov_limit2,
+	       sc.cov_limit2type,
+	       row_number() over (partition by sc.sk_RecordNum ORDER  BY sc.stgcoverage_id DESC) pick1
+	from
+	(
+		SELECT p.sk_RecordNum,
+               sc.stgcoverage_id,
+			   sc.cov_type,
+		       sc.cov_code,
+		       sc.cov_name,
+		       sc.cov_subcode,
+		       sc.cov_subcodename,
+		       sc.cov_effectivedate,
+		       sc.cov_expirationdate,
+		       sc.cov_classcode,
+		       sc.cov_classcodename,
+		       sc.cov_classsubcode,
+		       sc.cov_classsubcodename,
+		       sc.cov_deductible1,
+		       sc.cov_deductible1type,
+		       sc.cov_deductible2,
+		       sc.cov_deductible2type,
+		       sc.cov_limit1,
+		       sc.cov_limit1type,
+		       sc.cov_limit2,
+		       sc.cov_limit2type,
+		       sc.pt_sequence,
+		       case when sc.cov_effectivedate &lt; p.POL_EXPIRATIONDATE then 1 else 0 end +
+		       case when sc.cov_effectivedate &lt;= p.POL_EXPIRATIONDATE and sc.mmcov_coverage_segment_code = 'TAIL' then 1 else 0 end +
+		       case when sc.cov_effectivedate &lt;= p.POL_EXPIRATIONDATE and p.POL_EXPIRATIONDATE = p.POL_EFFECTIVEDATE then 1 else 0 end +
+		       case when sc.cov_effectivedate &lt;= p.POL_EXPIRATIONDATE AND sc.cov_effectivedate = sc.cov_expirationdate then 1 else 0 end + 
+               -- JMA 09/19/2014 Add following line to deal with special case that future effective coverage is linking to expired policy term
+               CASE WHEN sc.cov_effectivedate > p.pol_expirationdate AND trunc(sc.cov_transactionaccountingdate) &lt;= p.sql_periodEndDate THEN 1 ELSE 0 END rule_flg
+		FROM   STG_COVERAGE sc,tmp_fpc_calc_prem7 p
+		WHERE  sc.coverage_uniqueid = p.COV_UNIQUEID
+		AND	   sc.pt_sequence &lt;= p.MAX_PT_SEQUENCE
+		AND    trunc(sc.cov_transactionaccountingdate) &lt;= p.sql_periodEndDate
+	) sc
+	where sc.rule_flg > 0
+) sc
+WHERE  sc.pick1 = 1
+;
+
+-- Add logic to deal with policy bad data.
+INSERT /*+ APPEND */ INTO tmp_fpc_get_stg_coverage2
+WITH x AS 
+    (SELECT *
+     FROM   tmp_fpc_calc_prem7 p 
+     WHERE  NOT EXISTS (SELECT 1 FROM tmp_fpc_get_stg_coverage2 t 
+                        WHERE t.sk_recordnum = p.sk_recordnum))
+SELECT sc.sk_RecordNum,
+       sc.cov_type,
+       sc.cov_code,
+       sc.cov_name,
+       sc.cov_subcode,
+       sc.cov_subcodename,
+       sc.cov_effectivedate,
+       sc.cov_expirationdate,
+       sc.cov_classcode,
+       sc.cov_classcodename,
+       sc.cov_classsubcode,
+       sc.cov_classsubcodename,
+       sc.cov_deductible1,
+       sc.cov_deductible1type,
+       sc.cov_deductible2,
+       sc.cov_deductible2type,
+       sc.cov_limit1,
+       sc.cov_limit1type,
+       sc.cov_limit2,
+       sc.cov_limit2type
+FROM   
+(
+  SELECT sc.sk_RecordNum,
+         sc.cov_type,
+         sc.cov_code,
+         sc.cov_name,
+         sc.cov_subcode,
+         sc.cov_subcodename,
+         sc.cov_effectivedate,
+         sc.cov_expirationdate,
+         sc.cov_classcode,
+         sc.cov_classcodename,
+         sc.cov_classsubcode,
+         sc.cov_classsubcodename,
+         sc.cov_deductible1,
+         sc.cov_deductible1type,
+         sc.cov_deductible2,
+         sc.cov_deductible2type,
+         sc.cov_limit1,
+         sc.cov_limit1type,
+         sc.cov_limit2,
+         sc.cov_limit2type,
+         row_number() over (partition by sc.sk_RecordNum ORDER  BY sc.stgcoverage_id DESC) pick1
+  from
+  (
+    SELECT p.sk_RecordNum,
+           sc.stgcoverage_id,
+           sc.cov_type,
+           sc.cov_code,
+           sc.cov_name,
+           sc.cov_subcode,
+           sc.cov_subcodename,
+           sc.cov_effectivedate,
+           sc.cov_expirationdate,
+           sc.cov_classcode,
+           sc.cov_classcodename,
+           sc.cov_classsubcode,
+           sc.cov_classsubcodename,
+           sc.cov_deductible1,
+           sc.cov_deductible1type,
+           sc.cov_deductible2,
+           sc.cov_deductible2type,
+           sc.cov_limit1,
+           sc.cov_limit1type,
+           sc.cov_limit2,
+           sc.cov_limit2type,
+           sc.pt_sequence,
+           case when sc.cov_effectivedate &lt; p.POL_EXPIRATIONDATE then 1 else 0 end +
+           case when sc.cov_effectivedate &lt;= p.POL_EXPIRATIONDATE and sc.mmcov_coverage_segment_code = 'TAIL' then 1 else 0 end +
+           case when sc.cov_effectivedate &lt;= p.POL_EXPIRATIONDATE and p.POL_EXPIRATIONDATE = p.POL_EFFECTIVEDATE then 1 else 0 end +
+           case when sc.cov_effectivedate &lt;= p.POL_EXPIRATIONDATE AND sc.cov_effectivedate = sc.cov_expirationdate then 1 else 0 end + 
+               -- JMA 09/19/2014 Add following line to deal with special case that future effective coverage is linking to expired policy term
+               CASE WHEN sc.cov_effectivedate > p.pol_expirationdate AND trunc(sc.cov_transactionaccountingdate) &lt;= p.sql_periodEndDate THEN 1 ELSE 0 END rule_flg
+    FROM   STG_COVERAGE sc, x p
+    WHERE  sc.coverage_uniqueid = p.COV_UNIQUEID
+    AND    sc.pt_sequence &lt;= p.MAX_PT_SEQUENCE
+  ) sc
+  where sc.rule_flg > 0
+) sc
+WHERE  sc.pick1 = 1
+;
+
+
+create table tmp_fpc_get_stg_component1
+nologging pctfree 0
+tablespace ${G_STAGING_DB_DATA}
+as
+SELECT sk_RecordNum,
+       com_effectivedate,
+       com_expirationdate,
+       pt_sequence
+FROM  (
+SELECT p.sk_RecordNum,
+       sc.com_effectivedate,
+       sc.com_expirationdate,
+       sc.pt_sequence,
+       row_number() OVER (PARTITION BY p.sk_RecordNum ORDER BY sc.stgcomponent_id DESC) pick1
+FROM   stg_component sc,
+       tmp_fpc_calc_prem7 p
+WHERE  sc.component_uniqueid = p.component_uniqueid
+AND    sc.pt_sequence &lt;= p.MAX_PT_SEQUENCE
+AND    sc.com_transactioneffectivedate &lt;= p.sql_periodenddate
+AND    trunc(sc.com_transactionaccountingdate) &lt;= p.sql_periodenddate
+AND    ((sc.com_effectivedate &lt; p.pol_expirationdate) OR
+        (sc.com_effectivedate &lt;= p.pol_expirationdate AND p.pol_expirationdate = p.pol_effectivedate) OR
+        (sc.com_effectivedate &lt;= p.pol_expirationdate AND sc.com_effectivedate = sc.com_expirationdate))
+)
+WHERE  pick1 = 1
+;
+
+create table tmp_fpc_get_stg_component2
+nologging pctfree 0
+tablespace ${G_STAGING_DB_DATA}
+as
+SELECT sk_RecordNum,
+       com_effectivedate,
+       com_expirationdate,
+       pt_sequence
+FROM  (
+SELECT p.sk_RecordNum,
+       sc.com_effectivedate,
+       sc.com_expirationdate,
+       sc.pt_sequence,
+       row_number() OVER (PARTITION BY p.sk_RecordNum ORDER BY sc.stgcomponent_id DESC) pick1
+FROM   stg_component sc,
+       tmp_fpc_calc_prem7 p
+WHERE  sc.component_uniqueid = p.component_uniqueid
+AND    sc.pt_sequence &lt;= p.MAX_PT_SEQUENCE
+AND    trunc(sc.com_transactionaccountingdate) &lt;= p.sql_periodenddate
+AND    ((sc.com_effectivedate &lt; p.pol_expirationdate) OR
+        (sc.com_effectivedate &lt;= p.pol_expirationdate AND p.pol_expirationdate = p.pol_effectivedate) OR
+        (sc.com_effectivedate &lt;= p.pol_expirationdate AND sc.com_effectivedate = sc.com_expirationdate) OR
+        (sc.com_effectivedate > p.pol_expirationdate AND sc.com_transactionaccountingdate &lt;= p.sql_periodEndDate))
+)
+WHERE  pick1 = 1
+;
+
+-- Add logic to deal with bad policy data.
+INSERT INTO tmp_fpc_get_stg_component2
+WITH x AS 
+    (SELECT *
+     FROM   tmp_fpc_calc_prem7 p 
+     WHERE  p.component_uniqueid NOT IN ('0','1')
+     AND    NOT EXISTS (SELECT 1 FROM tmp_fpc_get_stg_component2 t 
+                        WHERE t.sk_recordnum = p.sk_recordnum))
+SELECT sk_RecordNum,
+       com_effectivedate,
+       com_expirationdate,
+       pt_sequence
+FROM  (
+SELECT p.sk_RecordNum,
+       sc.com_effectivedate,
+       sc.com_expirationdate,
+       sc.pt_sequence,
+       row_number() OVER (PARTITION BY p.sk_RecordNum ORDER BY sc.stgcomponent_id DESC) pick1
+FROM   stg_component sc,
+       x p
+WHERE  sc.component_uniqueid = p.component_uniqueid
+AND    sc.pt_sequence &lt;= p.MAX_PT_SEQUENCE
+)
+WHERE  pick1 = 1
+;
+
+create table tmp_fpc_get_stg_otheradjust1
+nologging pctfree 0
+tablespace ${G_STAGING_DB_DATA}
+as
+SELECT sk_RecordNum,
+       othradjustment_effectivedate,
+       othradjustment_expirationdate,
+       pt_sequence
+FROM  (
+SELECT p.sk_RecordNum,
+       sc.othradjustment_effectivedate,
+       sc.othradjustment_expirationdate,
+       sc.pt_sequence,
+		   row_number() OVER (PARTITION BY p.sk_RecordNum ORDER BY sc.stgotheradjustment_id DESC) pick1
+FROM   stg_other_adjustment sc,
+       tmp_fpc_calc_prem7 p
+WHERE  sc.otheradjustment_uniqueid = p.otheradjustment_uniqueid
+AND	   sc.pt_sequence &lt;= p.MAX_PT_SEQUENCE
+AND    sc.transactioneffectivedate &lt;= p.sql_periodenddate
+AND    trunc(sc.transactionaccountingdate) &lt;= p.sql_periodenddate
+AND    ((sc.othradjustment_effectivedate &lt; p.pol_expirationdate) OR
+        (sc.othradjustment_effectivedate &lt;= p.pol_expirationdate AND p.pol_expirationdate = p.pol_effectivedate) OR
+        (sc.othradjustment_effectivedate &lt;= p.pol_expirationdate AND sc.othradjustment_effectivedate = sc.othradjustment_expirationdate))
+)
+WHERE  pick1 = 1
+;
+
+create table tmp_fpc_get_stg_otheradjust2
+nologging pctfree 0
+tablespace ${G_STAGING_DB_DATA}
+as
+SELECT sk_RecordNum,
+       othradjustment_effectivedate,
+       othradjustment_expirationdate,
+       pt_sequence
+FROM  (
+SELECT p.sk_RecordNum,
+       sc.othradjustment_effectivedate,
+       sc.othradjustment_expirationdate,
+       sc.pt_sequence,
+		   row_number() OVER (PARTITION BY p.sk_RecordNum ORDER BY sc.stgotheradjustment_id DESC) pick1
+FROM   stg_other_adjustment sc,
+       tmp_fpc_calc_prem7 p
+WHERE  sc.otheradjustment_uniqueid = p.otheradjustment_uniqueid
+AND	   sc.pt_sequence &lt;= p.MAX_PT_SEQUENCE
+AND    sc.transactioneffectivedate &lt;= p.sql_periodenddate
+AND    trunc(sc.transactionaccountingdate) &lt;= p.sql_periodenddate
+AND    ((sc.othradjustment_effectivedate &lt; p.pol_expirationdate) OR
+        (sc.othradjustment_effectivedate &lt;= p.pol_expirationdate AND p.pol_expirationdate = p.pol_effectivedate) OR
+        (sc.othradjustment_effectivedate &lt;= p.pol_expirationdate AND sc.othradjustment_effectivedate = sc.othradjustment_expirationdate) OR
+        (sc.othradjustment_effectivedate > p.pol_expirationdate AND sc.transactionaccountingdate &lt;= p.sql_periodEndDate))
+)
+WHERE  pick1 = 1
+;
+
+-- Add logic to deal with bad policy data.
+
+INSERT INTO tmp_fpc_get_stg_otheradjust2
+WITH x AS 
+    (SELECT *
+     FROM   tmp_fpc_calc_prem7 p 
+     WHERE  p.otheradjustment_uniqueid NOT IN ('0','1')
+     AND    NOT EXISTS (SELECT 1 FROM tmp_fpc_get_stg_otheradjust2 t 
+                        WHERE t.sk_recordnum = p.sk_recordnum))
+SELECT sk_RecordNum,
+       othradjustment_effectivedate,
+       othradjustment_expirationdate,
+       pt_sequence
+FROM  (
+SELECT p.sk_RecordNum,
+       sc.othradjustment_effectivedate,
+       sc.othradjustment_expirationdate,
+       sc.pt_sequence,
+		   row_number() OVER (PARTITION BY p.sk_RecordNum ORDER BY sc.stgotheradjustment_id DESC) pick1
+FROM   stg_other_adjustment sc,
+       x p
+WHERE  sc.otheradjustment_uniqueid = p.otheradjustment_uniqueid
+AND	   sc.pt_sequence &lt;= p.MAX_PT_SEQUENCE
+)
+WHERE  pick1 = 1
+;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_DataWarehouse</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>923</xloc>
+      <yloc>24</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_fpc_calc_prems2</name>
+      <description/>
+      <type>SQL</type>
+      <sql>-- Add coverage, component and other adjustment data. 
+create table tmp_fpc_calc_prem8 nologging pctfree 0 tablespace ${G_STAGING_DB_DATA} as
+SELECT p.*,
+       nvl2(sc1.sk_recordnum, sc1.cov_type, sc2.cov_type) cov_type,
+       nvl2(sc1.sk_recordnum, sc1.cov_code, sc2.cov_code) cov_code,
+       nvl2(sc1.sk_recordnum, sc1.cov_name, sc2.cov_name) cov_name,
+       nvl2(sc1.sk_recordnum, sc1.cov_subcode, sc2.cov_subcode) cov_subcode,
+       nvl2(sc1.sk_recordnum, sc1.cov_subcodename, sc2.cov_subcodename) cov_subcodename,
+       nvl2(sc1.sk_recordnum, sc1.cov_effectivedate, sc2.cov_effectivedate) cov_effectivedate,
+       --
+       nvl2(sc1.sk_recordnum,
+            sc1.cov_expirationdate,
+            sc2.cov_expirationdate) cov_expirationdate,
+       --
+       nvl2(sc1.sk_recordnum, sc1.cov_classcode, sc2.cov_classcode) cov_classcode,
+       nvl2(sc1.sk_recordnum, sc1.cov_classcodename, sc2.cov_classcodename) cov_classcodename,
+       nvl2(sc1.sk_recordnum, sc1.cov_classsubcode, sc2.cov_classsubcode) cov_classsubcode,
+       nvl2(sc1.sk_recordnum,
+            sc1.cov_classsubcodename,
+            sc2.cov_classsubcodename) cov_classsubcodename,
+       nvl2(sc1.sk_recordnum, sc1.cov_deductible1, sc2.cov_deductible1) cov_deductible1,
+       nvl2(sc1.sk_recordnum,
+            sc1.cov_deductible1type,
+            sc2.cov_deductible1type) cov_deductible1type,
+       nvl2(sc1.sk_recordnum, sc1.cov_deductible2, sc2.cov_deductible2) cov_deductible2,
+       nvl2(sc1.sk_recordnum,
+            sc1.cov_deductible2type,
+            sc2.cov_deductible2type) cov_deductible2type,
+       nvl2(sc1.sk_recordnum, sc1.cov_limit1, sc2.cov_limit1) cov_limit1,
+       nvl2(sc1.sk_recordnum, sc1.cov_limit1type, sc2.cov_limit1type) cov_limit1type,
+       nvl2(sc1.sk_recordnum, sc1.cov_limit2, sc2.cov_limit2) cov_limit2,
+       nvl2(sc1.sk_recordnum, sc1.cov_limit2type, sc2.cov_limit2type) cov_limit2type,
+       --Jma 10/3/2014 Add join to stg_component temp and stg_otheradj table
+       nvl(nvl2(scm1.sk_recordnum,
+                scm1.com_effectivedate,
+                scm2.com_effectivedate),
+           to_date('1/1/1900', 'mm/dd/yyyy')) com_effectivedate,
+       nvl(nvl2(scm1.sk_recordnum,
+                scm1.com_expirationdate,
+                scm2.com_expirationdate),
+           to_date('1/1/1900', 'mm/dd/yyyy')) com_expirationdate,
+       nvl(nvl2(so1.sk_recordnum,
+                so1.othradjustment_effectivedate,
+                so2.othradjustment_effectivedate),
+           to_date('1/1/1900', 'mm/dd/yyyy')) othradjustment_effectivedate,
+       nvl(nvl2(so1.sk_recordnum,
+                so1.othradjustment_expirationdate,
+                so2.othradjustment_expirationdate),
+           to_date('1/1/1900', 'mm/dd/yyyy')) othradjustment_expirationdate
+  FROM tmp_fpc_calc_prem7        p,
+       tmp_fpc_get_stg_coverage1 sc1,
+       tmp_fpc_get_stg_coverage2 sc2,
+       --Jma 10/3/2014 Add join to stg_component temp and stg_otheradj table
+       tmp_fpc_get_stg_component1   scm1,
+       tmp_fpc_get_stg_component2   scm2,
+       tmp_fpc_get_stg_otheradjust1 so1,
+       tmp_fpc_get_stg_otheradjust2 so2
+ WHERE p.sk_recordnum = sc1.sk_recordnum(+)
+   AND p.sk_recordnum = sc2.sk_recordnum(+)
+   AND p.sk_recordnum = scm1.sk_recordnum(+)
+   AND p.sk_recordnum = so1.sk_recordnum(+)
+   AND p.sk_recordnum = scm2.sk_recordnum(+)
+   AND p.sk_recordnum = so2.sk_recordnum(+);
+
+-- Add POLICY_ID, COVERAGE_ID and COVEREDRISK_ID
+create table tmp_fpc_calc_prem9 nologging tablespace ${G_STAGING_DB_DATA} as
+SELECT /*+ use_hash(p dp) */
+       p.*,
+       nvl(dp.policy_id, 0) policy_id,
+       nvl(dc.coverage_id, 0) coverage_id,
+       nvl(dcr.coveredrisk_id, 0) coveredrisk_id
+  FROM tmp_fpc_calc_prem8   p,
+       tmp_fpc_get_polid    dp,
+       tmp_fpc_dim_coverage dc,
+       tmp_fpc_coveredrisk  dcr
+ WHERE p.pol_uniqueid = dp.pol_uniqueid(+)
+   AND p.sk_period = dp.sk_period(+)
+   AND p.cov_type = dc.cov_type(+)
+   AND p.cov_code = dc.cov_code(+)
+   AND p.cov_name = dc.cov_name(+)
+   AND p.cov_subcode = dc.cov_subcode(+)
+   AND p.cov_subcodename = dc.cov_subcodename(+)
+   AND p.prsk_uniqueid = dcr.cvrsk_uniqueid(+)
+;
+
+create table tmp_fpc_calc_prem10
+nologging 
+tablespace ${G_STAGING_DB_DATA}
+as
+select p.*,
+-- JMA 09/18/2014
+-- Added COV_EXPIRATIONDATE_M1D so we can use it in tmp_fpc_calc_prem11 to calculate COV_EXPIRED_IN_CURR_MONTH_FLG 
+case when p.COV_EXPIRATIONDATE is null then to_date('1900/01/01','yyyy/mm/dd') else p.COV_EXPIRATIONDATE - 1 end COV_EXPIRATIONDATE_M1D,
+to_number(to_char(p.SQL_PERIODENDDATE,'YYYYMMDD')) SQL_PERIODENDDATE_ID,
+to_number(to_char(p.POL_EFFECTIVEDATE,'YYYYMMDD')) policyeffectivedate_id,
+to_number(to_char(p.POL_EXPIRATIONDATE,'YYYYMMDD')) policyexpirationdate_id,
+to_number(to_char(p.COV_EFFECTIVEDATE,'YYYYMMDD')) coverageeffectivedate_id,
+to_number(to_char(p.COV_EXPIRATIONDATE,'YYYYMMDD')) coverageexpirationdate_id,
+m.priorMonth_ID,
+m.periodMonth,
+nvl(l.loss_pd_amt,0) loss_pd_amt,
+nvl(l.loss_rsrv_chng_amt,0) loss_rsrv_chng_amt,
+nvl(l.alc_exp_pd_amt,0) alc_exp_pd_amt,
+nvl(l.alc_exp_rsrv_chng_amt,0) alc_exp_rsrv_chng_amt,
+nvl(l.ualc_exp_pd_amt,0) ualc_exp_pd_amt,
+nvl(l.ualc_exp_rsrv_chng_amt,0) ualc_exp_rsrv_chng_amt,
+nvl(l.subro_chng_amt,0) subro_chng_amt,
+nvl(l.salvage_chng_amt,0) salvage_chng_amt
+from
+tmp_fpc_calc_prem9 p,
+tmp_fpc_genmonths m,
+tmp_fpc_loss_lkup l
+where p.sk_period = m.sk_period
+and p.policy_id = l.policy_id(+)
+and p.coverage_id = l.coverage_id(+)
+and p.coveredrisk_id=l.coveredrisk_id(+)
+and p.month_id = l.month_id(+)
+;
+
+create index tmp_fpc_calc_prem10_idx1 on tmp_fpc_calc_prem10(PRSK_UNIQUEID) nologging pctfree 0
+tablespace ${G_STAGING_DB_INDEX};
+
+create table tmp_fpc_get_poltrans_status
+nologging 
+tablespace ${G_STAGING_DB_DATA}
+as
+select p.sk_RecordNum, p.trans_code, p.transactiondate_id
+from
+(
+select p.sk_RecordNum, p.trans_code, p.transactiondate_id,
+row_number() over (partition by p.sk_RecordNum order by p.transactiondate_id desc) pick1
+from 
+(
+select distinct p.sk_RecordNum, tt.trans_code, fp.transactiondate_id
+from 
+    fact_policytransaction fp 
+    inner join dim_transactiontype tt on fp.transactiontype_id = tt.transactiontype_id
+    inner join tmp_fpc_calc_prem10 p on fp.policy_id = p.policy_id
+where 
+    tt.trans_code in ('CM', 'CF', 'CS', 'RI')
+and fp.effectivedate_id &lt;= p.sql_periodenddate_id 
+and fp.accountingdate_id &lt;= p.sql_periodenddate_id
+) p
+) p
+where p.pick1 = 1
+order by 1,2,3 desc
+;
+
+create table tmp_fpc_calc_prem10r
+nologging 
+tablespace ${G_STAGING_DB_DATA}
+as
+select 
+      r.sk_RecordNum,
+      r.Rsk_TerritoryCode,
+      r.Rsk_TerritoryName,
+      r.Rsk_Address1,
+      r.Rsk_Address2,
+      r.Rsk_Address3,
+      r.Rsk_County,
+      r.Rsk_City,
+      r.Rsk_State,
+      r.Rsk_PostalCode,
+      r.Rsk_Country,
+      r.Rsk_Effective_To_Date
+from
+(
+	SELECT 
+	      p.sk_RecordNum,
+	      sr.Rsk_TerritoryCode,
+	      sr.Rsk_TerritoryName,
+	      sr.Rsk_Address1,
+	      sr.Rsk_Address2,
+	      sr.Rsk_Address3,
+	      sr.Rsk_County,
+	      sr.Rsk_City,
+	      sr.Rsk_State,
+	      sr.Rsk_PostalCode,
+	      sr.Rsk_Country,
+	      sr.Rsk_Effective_To_Date,
+	      row_number() over (partition by p.sk_RecordNum    ORDER  BY 
+	      sr.Rsk_TransactionAccountingDate DESC,
+	      sr.Rsk_TransactionEffectiveDate  DESC,
+	      sr.Pt_Sequence                   DESC) pick1
+	   FROM   Stg_Risk sr, tmp_fpc_calc_prem10 p
+	   WHERE  sr.Risk_UniqueID                         = p.PRSK_UNIQUEID
+	      AND sr.Pt_Sequence                          &lt;= p.MAX_PT_SEQUENCE
+	      AND TRUNC(sr.Rsk_TransactionAccountingDate) &lt;= p.sql_periodEndDate
+	      AND sr.Rsk_TransactionEffectiveDate         &lt;= p.sql_periodEndDate
+          -- JMA 09/19/2014 Change the comparison to be less or equal to deal with flat cancel transactions.
+	      AND sr.Rsk_Effective_From_Date              &lt;= p.POL_EXPIRATIONDATE
+) r
+where r.pick1 = 1
+;
+
+
+-- Add logic to deal with bad policy data.
+INSERT /*+ APPEND */ INTO tmp_fpc_calc_prem10r
+WITH x AS 
+     (SELECT *
+      FROM   tmp_fpc_calc_prem10 p10
+      WHERE  NOT EXISTS ( SELECT 1 
+                          FROM tmp_fpc_calc_prem10r p 
+                          WHERE p.sk_recordnum = p10.sk_recordnum))
+select 
+      r.sk_RecordNum,
+      r.Rsk_TerritoryCode,
+      r.Rsk_TerritoryName,
+      r.Rsk_Address1,
+      r.Rsk_Address2,
+      r.Rsk_Address3,
+      r.Rsk_County,
+      r.Rsk_City,
+      r.Rsk_State,
+      r.Rsk_PostalCode,
+      r.Rsk_Country,
+      r.Rsk_Effective_To_Date
+from
+(
+  SELECT 
+        p.sk_RecordNum,
+        sr.Rsk_TerritoryCode,
+        sr.Rsk_TerritoryName,
+        sr.Rsk_Address1,
+        sr.Rsk_Address2,
+        sr.Rsk_Address3,
+        sr.Rsk_County,
+        sr.Rsk_City,
+        sr.Rsk_State,
+        sr.Rsk_PostalCode,
+        sr.Rsk_Country,
+        sr.Rsk_Effective_To_Date,
+        row_number() over (partition by p.sk_RecordNum    ORDER  BY 
+        sr.Rsk_TransactionAccountingDate DESC,
+        sr.Rsk_TransactionEffectiveDate  DESC,
+        sr.Pt_Sequence                   DESC) pick1
+     FROM   Stg_Risk sr, x p
+     WHERE  sr.Risk_UniqueID                         = p.PRSK_UNIQUEID
+        AND sr.Pt_Sequence                          &lt;= p.MAX_PT_SEQUENCE
+) r
+where r.pick1 = 1
+;
+
+create table tmp_fpc_calc_prem11
+nologging 
+tablespace ${G_STAGING_DB_DATA}
+as
+--
+select
+p.SK_RECORDNUM,
+p.SK_PERIOD,
+-- mark groups of records to process later
+max(p.SK_RECORDNUM) over (partition by p.POL_UNIQUEID,p.PRSK_UNIQUEID, p.COV_UNIQUEID,p.component_uniqueid, p.otheradjustment_uniqueid) recordGroupNum,
+p.POL_UNIQUEID,
+p.COV_UNIQUEID,
+p.PRSK_UNIQUEID,
+p.COMPONENT_UNIQUEID,
+p.OTHERADJUSTMENT_UNIQUEID,
+p.MONTH_ID,
+p.PRIORMONTH_ID,
+p.SQL_PERIODENDDATE,
+p.SQL_PERIODSTARTDATE,
+p.PERIODENDDATE,
+p.PERIODSTARTDATE,
+p.PERIODMONTH,
+nvl(p.COV_EXPIRATIONDATE,to_date('1900/01/01','yyyy/mm/dd')) COV_EXPIRATIONDATE,
+p.COV_EXPIRATIONDATE_M1D,
+--coverage expires in current month
+--JMA 9/18/2014 change to use COV_EXPIRATIONDATE_M1D field to calculate the flag
+CASE WHEN to_char(p.COV_EXPIRATIONDATE_M1D,'yyyymmddhh24miss') >= to_char(p.PERIODSTARTDATE,'yyyymmddhh24miss') AND
+          to_char(p.COV_EXPIRATIONDATE_M1D,'yyyymmddhh24miss') &lt;= to_char(p.PERIODENDDATE,'yyyymmddhh24miss') THEN 'Y' 
+     WHEN to_char(p.COV_EXPIRATIONDATE_M1D+1,'yyyymmddhh24miss') &lt;= to_char(p.PERIODSTARTDATE,'yyyymmddhh24miss') THEN 'Y'
+     ELSE 'N' END COV_EXPIRED_IN_CURR_MONTH_FLG,
+--
+p.AUDIT_PREM_AMT,
+p.CNCL_PREM_AMT,
+p.COMMISSION_AMOUNT,
+p.EARNEDPREMIUM_ROUND,
+p.ENDORSE_PREM_AMT,
+p.FEES_AMT,
+p.MAN_WRTN_PREM_AMT,
+p.ORIG_WRTN_PREM_AMT,
+p.REIN_PREM_AMT,
+p.TAXES_AMT,
+p.TERM_PREM_AMT,
+p.USD1_AMT,
+p.USD2_AMT,
+p.USD3_AMT,
+p.USD4_AMT,
+p.USD5_AMT,
+p.V_WRITTEN_AMT,
+p.ALC_EXP_PD_AMT,
+p.ALC_EXP_RSRV_CHNG_AMT,
+p.LOSS_PD_AMT,
+p.LOSS_RSRV_CHNG_AMT,
+p.UALC_EXP_PD_AMT,
+p.UALC_EXP_RSRV_CHNG_AMT,
+p.SUBRO_CHNG_AMT,
+p.SALVAGE_CHNG_AMT,
+p.UNEARNEDPREMIUM_ROUND,
+--
+-- PREVIOUS VALUES
+--
+nvl(c.COMM_AMT_YTD,0) P_COMM_AMT_YTD,
+nvl(c.COMM_AMT_ITD,0) P_COMM_AMT_ITD,
+nvl(c.WRTN_PREM_AMT_YTD,0) P_WRTN_PREM_AMT_YTD,
+nvl(c.WRTN_PREM_AMT_ITD,0) P_WRTN_PREM_AMT_ITD,
+nvl(c.MAN_WRTN_PREM_AMT_YTD,0) P_MAN_WRTN_PREM_AMT_YTD,
+nvl(c.MAN_WRTN_PREM_AMT_ITD,0) P_MAN_WRTN_PREM_AMT_ITD,
+nvl(c.ORIG_WRTN_PREM_AMT_YTD,0) P_ORIG_WRTN_PREM_AMT_YTD,
+nvl(c.ORIG_WRTN_PREM_AMT_ITD,0) P_ORIG_WRTN_PREM_AMT_ITD,
+nvl(c.TERM_PREM_AMT_YTD,0) P_TERM_PREM_AMT_YTD,
+nvl(c.TERM_PREM_AMT_ITD,0) P_TERM_PREM_AMT_ITD,
+nvl(c.EARNED_PREM_AMT_YTD,0) P_EARNED_PREM_AMT_YTD,
+nvl(c.EARNED_PREM_AMT_ITD,0) P_EARNED_PREM_AMT_ITD,
+nvl(c.ENDORSE_PREM_AMT_YTD,0) P_ENDORSE_PREM_AMT_YTD,
+nvl(c.ENDORSE_PREM_AMT_ITD,0) P_ENDORSE_PREM_AMT_ITD,
+nvl(c.AUDIT_PREM_AMT_YTD,0) P_AUDIT_PREM_AMT_YTD,
+nvl(c.AUDIT_PREM_AMT_ITD,0) P_AUDIT_PREM_AMT_ITD,
+nvl(c.CNCL_PREM_AMT_YTD,0) P_CNCL_PREM_AMT_YTD,
+nvl(c.CNCL_PREM_AMT_ITD,0) P_CNCL_PREM_AMT_ITD,
+nvl(c.REIN_PREM_AMT_YTD,0) P_REIN_PREM_AMT_YTD,
+nvl(c.REIN_PREM_AMT_ITD,0) P_REIN_PREM_AMT_ITD,
+nvl(c.TAXES_AMT_YTD,0) P_TAXES_AMT_YTD,
+nvl(c.TAXES_AMT_ITD,0) P_TAXES_AMT_ITD,
+nvl(c.FEES_AMT_YTD,0) P_FEES_AMT_YTD,
+nvl(c.FEES_AMT_ITD,0) P_FEES_AMT_ITD,
+nvl(c.LOSS_PD_AMT_YTD,0) P_LOSS_PD_AMT_YTD,
+nvl(c.LOSS_PD_AMT_ITD,0) P_LOSS_PD_AMT_ITD,
+nvl(c.LOSS_RSRV_CHNG_AMT_YTD,0) P_LOSS_RSRV_CHNG_AMT_YTD,
+nvl(c.LOSS_RSRV_CHNG_AMT_ITD,0) P_LOSS_RSRV_CHNG_AMT_ITD,
+nvl(c.ALC_EXP_PD_AMT_YTD,0) P_ALC_EXP_PD_AMT_YTD,
+nvl(c.ALC_EXP_PD_AMT_ITD,0) P_ALC_EXP_PD_AMT_ITD,
+nvl(c.ALC_EXP_RSRV_CHNG_AMT_YTD,0) P_ALC_EXP_RSRV_CHNG_AMT_YTD,
+nvl(c.ALC_EXP_RSRV_CHNG_AMT_ITD,0) P_ALC_EXP_RSRV_CHNG_AMT_ITD,
+nvl(c.UALC_EXP_PD_AMT_YTD,0) P_UALC_EXP_PD_AMT_YTD,
+nvl(c.UALC_EXP_PD_AMT_ITD,0) P_UALC_EXP_PD_AMT_ITD,
+nvl(c.UALC_EXP_RSRV_CHNG_AMT_YTD,0) P_UALC_EXP_RSRV_CHNG_AMT_YTD,
+nvl(c.UALC_EXP_RSRV_CHNG_AMT_ITD,0) P_UALC_EXP_RSRV_CHNG_AMT_ITD,
+nvl(c.SALVAGE_CHNG_AMT_YTD,0) P_SALVAGE_CHNG_AMT_YTD,
+nvl(c.SALVAGE_CHNG_AMT_ITD,0) P_SALVAGE_CHNG_AMT_ITD,
+nvl(c.SUBRO_CHNG_AMT_YTD,0) P_SUBRO_CHNG_AMT_YTD,
+nvl(c.SUBRO_CHNG_AMT_ITD,0) P_SUBRO_CHNG_AMT_ITD,
+nvl(c.USR_DEF_AMT_YTD1,0) P_USR_DEF_AMT_YTD1,
+nvl(c.USR_DEF_AMT_ITD1,0) P_USR_DEF_AMT_ITD1,
+nvl(c.USR_DEF_AMT_YTD2,0) P_USR_DEF_AMT_YTD2,
+nvl(c.USR_DEF_AMT_ITD2,0) P_USR_DEF_AMT_ITD2,
+nvl(c.USR_DEF_AMT_YTD3,0) P_USR_DEF_AMT_YTD3,
+nvl(c.USR_DEF_AMT_ITD3,0) P_USR_DEF_AMT_ITD3,
+nvl(c.USR_DEF_AMT_YTD4,0) P_USR_DEF_AMT_YTD4,
+nvl(c.USR_DEF_AMT_ITD4,0) P_USR_DEF_AMT_ITD4,
+nvl(c.USR_DEF_AMT_YTD5,0) P_USR_DEF_AMT_YTD5,
+nvl(c.USR_DEF_AMT_ITD5,0) P_USR_DEF_AMT_ITD5,
+--
+-- NEW VALUES
+--
+nvl(c.COMM_AMT_YTD,0) N_COMM_AMT_YTD,
+nvl(c.COMM_AMT_ITD,0) N_COMM_AMT_ITD,
+nvl(c.WRTN_PREM_AMT_YTD,0) N_WRTN_PREM_AMT_YTD,
+nvl(c.WRTN_PREM_AMT_ITD,0) N_WRTN_PREM_AMT_ITD,
+nvl(c.MAN_WRTN_PREM_AMT_YTD,0) N_MAN_WRTN_PREM_AMT_YTD,
+nvl(c.MAN_WRTN_PREM_AMT_ITD,0) N_MAN_WRTN_PREM_AMT_ITD,
+nvl(c.ORIG_WRTN_PREM_AMT_YTD,0) N_ORIG_WRTN_PREM_AMT_YTD,
+nvl(c.ORIG_WRTN_PREM_AMT_ITD,0) N_ORIG_WRTN_PREM_AMT_ITD,
+nvl(c.TERM_PREM_AMT_YTD,0) N_TERM_PREM_AMT_YTD,
+nvl(c.TERM_PREM_AMT_ITD,0) N_TERM_PREM_AMT_ITD,
+nvl(c.EARNED_PREM_AMT_YTD,0) N_EARNED_PREM_AMT_YTD,
+nvl(c.EARNED_PREM_AMT_ITD,0) N_EARNED_PREM_AMT_ITD,
+nvl(c.ENDORSE_PREM_AMT_YTD,0) N_ENDORSE_PREM_AMT_YTD,
+nvl(c.ENDORSE_PREM_AMT_ITD,0) N_ENDORSE_PREM_AMT_ITD,
+nvl(c.AUDIT_PREM_AMT_YTD,0) N_AUDIT_PREM_AMT_YTD,
+nvl(c.AUDIT_PREM_AMT_ITD,0) N_AUDIT_PREM_AMT_ITD,
+nvl(c.CNCL_PREM_AMT_YTD,0) N_CNCL_PREM_AMT_YTD,
+nvl(c.CNCL_PREM_AMT_ITD,0) N_CNCL_PREM_AMT_ITD,
+nvl(c.REIN_PREM_AMT_YTD,0) N_REIN_PREM_AMT_YTD,
+nvl(c.REIN_PREM_AMT_ITD,0) N_REIN_PREM_AMT_ITD,
+nvl(c.TAXES_AMT_YTD,0) N_TAXES_AMT_YTD,
+nvl(c.TAXES_AMT_ITD,0) N_TAXES_AMT_ITD,
+nvl(c.FEES_AMT_YTD,0) N_FEES_AMT_YTD,
+nvl(c.FEES_AMT_ITD,0) N_FEES_AMT_ITD,
+nvl(c.LOSS_PD_AMT_YTD,0) N_LOSS_PD_AMT_YTD,
+nvl(c.LOSS_PD_AMT_ITD,0) N_LOSS_PD_AMT_ITD,
+nvl(c.LOSS_RSRV_CHNG_AMT_YTD,0) N_LOSS_RSRV_CHNG_AMT_YTD,
+nvl(c.LOSS_RSRV_CHNG_AMT_ITD,0) N_LOSS_RSRV_CHNG_AMT_ITD,
+nvl(c.ALC_EXP_PD_AMT_YTD,0) N_ALC_EXP_PD_AMT_YTD,
+nvl(c.ALC_EXP_PD_AMT_ITD,0) N_ALC_EXP_PD_AMT_ITD,
+nvl(c.ALC_EXP_RSRV_CHNG_AMT_YTD,0) N_ALC_EXP_RSRV_CHNG_AMT_YTD,
+nvl(c.ALC_EXP_RSRV_CHNG_AMT_ITD,0) N_ALC_EXP_RSRV_CHNG_AMT_ITD,
+nvl(c.UALC_EXP_PD_AMT_YTD,0) N_UALC_EXP_PD_AMT_YTD,
+nvl(c.UALC_EXP_PD_AMT_ITD,0) N_UALC_EXP_PD_AMT_ITD,
+nvl(c.UALC_EXP_RSRV_CHNG_AMT_YTD,0) N_UALC_EXP_RSRV_CHNG_AMT_YTD,
+nvl(c.UALC_EXP_RSRV_CHNG_AMT_ITD,0) N_UALC_EXP_RSRV_CHNG_AMT_ITD,
+nvl(c.SALVAGE_CHNG_AMT_YTD,0) N_SALVAGE_CHNG_AMT_YTD,
+nvl(c.SALVAGE_CHNG_AMT_ITD,0) N_SALVAGE_CHNG_AMT_ITD,
+nvl(c.SUBRO_CHNG_AMT_YTD,0) N_SUBRO_CHNG_AMT_YTD,
+nvl(c.SUBRO_CHNG_AMT_ITD,0) N_SUBRO_CHNG_AMT_ITD,
+nvl(c.USR_DEF_AMT_YTD1,0) N_USR_DEF_AMT_YTD1,
+nvl(c.USR_DEF_AMT_ITD1,0) N_USR_DEF_AMT_ITD1,
+nvl(c.USR_DEF_AMT_YTD2,0) N_USR_DEF_AMT_YTD2,
+nvl(c.USR_DEF_AMT_ITD2,0) N_USR_DEF_AMT_ITD2,
+nvl(c.USR_DEF_AMT_YTD3,0) N_USR_DEF_AMT_YTD3,
+nvl(c.USR_DEF_AMT_ITD3,0) N_USR_DEF_AMT_ITD3,
+nvl(c.USR_DEF_AMT_YTD4,0) N_USR_DEF_AMT_YTD4,
+nvl(c.USR_DEF_AMT_ITD4,0) N_USR_DEF_AMT_ITD4,
+nvl(c.USR_DEF_AMT_YTD5,0) N_USR_DEF_AMT_YTD5,
+nvl(c.USR_DEF_AMT_ITD5,0) N_USR_DEF_AMT_ITD5,
+-- 11/26/2017
+substr(nvl(c.month_id,p.month_id),1,4) previous_ytd_mon_year,
+substr(p.month_id,1,4) current_mon_year
+from 
+    tmp_fpc_calc_prem10 p,
+    tmp_fpc_prior_YTD_ITD c
+where
+    p.POL_UNIQUEID = c.POL_UNIQUEID(+)
+and p.COV_UNIQUEID = c.COV_UNIQUEID(+)
+and p.PRSK_UNIQUEID = c.CVRSK_UNIQUEID(+)
+--Jma 10/03/2014 Add join for component uniqueid and otheradjustement uniqueid
+AND p.component_uniqueid = c.component_uniqueid(+)
+AND p.otheradjustment_uniqueid = c.otheradjustment_uniqueid(+)
+--
+--and p.priorMONTH_ID = c.MONTH_ID(+)
+order by 3,4,5,6,7,8
+;
+
+-- only need an empty table
+create table tmp_fpc_calc_prem12 nologging tablespace ${G_STAGING_DB_DATA} as
+select 0 sk, p.EARNEDPREMIUM_ROUND EARNEDPREMIUM_NEW, p.* from tmp_fpc_calc_prem11 p where 0=1
+;
+
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>994</xloc>
+      <yloc>96</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_fpc_lkup Lookups 2</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_fpc_lkup_deduct_id nologging tablespace ${G_STAGING_DB_DATA}
+as
+select p.sk_RecordNum, d.deductible_id
+from   tmp_fpc_calc_prem10 p, dim_deductible d
+where  p.COV_DEDUCTIBLE1	=	d.COV_DEDUCTIBLE1	
+and    p.COV_DEDUCTIBLE1TYPE	=	d.COV_DEDUCTIBLE1TYPE	
+and    p.COV_DEDUCTIBLE2 = d.COV_DEDUCTIBLE2
+and    p.COV_DEDUCTIBLE2TYPE	=	d.COV_DEDUCTIBLE2TYPE	
+;
+
+create table tmp_fpc_lkup_limit_id nologging tablespace ${G_STAGING_DB_DATA}
+as
+select p.sk_RecordNum, l.limit_id
+from tmp_fpc_calc_prem10 p, DIM_limit l
+where 
+l.COV_LIMIT1	=	p.COV_LIMIT1	
+and l.COV_LIMIT1TYPE	=	p.COV_LIMIT1TYPE	
+and l.COV_LIMIT2	=	p.COV_LIMIT2	
+and l.COV_LIMIT2TYPE	=	p.COV_LIMIT2TYPE	
+;
+
+create table tmp_fpc_lkup_policy_id nologging 
+tablespace ${G_STAGING_DB_DATA}
+as
+select p.sk_recordNum,p.policy_id
+from
+(
+SELECT p.sk_recordNum,dp.policy_id,dp.record_version, row_number() over (partition by p.sk_recordNum, p.pol_uniqueid  order by dp.record_version desc) pick1
+FROM   Dim_Policy dp,tmp_fpc_calc_prem10 p
+WHERE  dp.pol_uniqueid = p.pol_uniqueid 
+AND    trunc(dp.valid_fromdate) &lt;= p.SQL_PERIODENDDATE
+AND    trunc(dp.valid_todate) >= p.SQL_PERIODENDDATE
+) p
+where p.pick1 = 1
+;
+
+-- Add logic to deal with bad policy data. 
+INSERT /*+ APPEND */ INTO tmp_fpc_lkup_policy_id
+WITH x AS 
+    (SELECT *
+     FROM   tmp_fpc_calc_prem10 p10
+     WHERE  NOT EXISTS ( SELECT 1 
+                         FROM tmp_fpc_lkup_policy_id p 
+                         WHERE p.sk_recordnum = p10.sk_recordnum))
+select p.sk_recordNum,p.policy_id
+from
+(
+SELECT P.SK_RECORDNUM,
+       DP.POLICY_ID,
+       DP.RECORD_VERSION,
+       trunc(dp.valid_fromdate),
+       trunc(dp.valid_todate),
+       ROW_NUMBER() OVER(PARTITION BY P.SK_RECORDNUM, P.POL_UNIQUEID ORDER BY DP.RECORD_VERSION DESC) PICK1
+  FROM DIM_POLICY DP, x P
+ WHERE DP.POL_UNIQUEID = P.POL_UNIQUEID
+) p
+where p.pick1 = 1
+;
+
+create table tmp_fpc_lkup_polstat_id nologging tablespace ${G_STAGING_DB_DATA}
+as
+WITH x AS (
+     SELECT p.sk_recordnum,
+     -- Issue #169151 and #194959
+     -- 1. If mmpol_policy_current_status is CANCEL, then we consider this policy
+     -- term is CANCELLED;
+     -- 2. If policy expriation date is less or equal to the least of current month's end date or load date, 
+     -- then we consider this policy term is EXPIRED.
+     -- 3. If policy expriation date is greater than the least of current month's end date or load date, 
+     -- and policy effective date is less or equal to the least of current month's end date or load date, 
+     -- then we consider this policy term is still INFORCE.
+     -- 4. We should not have any policy term that effective date is greater than
+     -- current month's end date be pulled in current month's snapshot. Those
+     -- terms will be included in future month's snapshots.
+            CASE 
+              WHEN dpe.mmpol_policy_current_status = 'CANCEL' THEN
+                'CN'
+              WHEN p.pol_expirationdate &lt;= least(p.periodenddate,${sql_loadDate}) THEN 
+                'EXP'
+              WHEN p.pol_expirationdate > least(p.periodenddate,${sql_loadDate}) AND 
+                   p.pol_effectivedate &lt;= least(p.periodenddate,${sql_loadDate}) THEN
+                'INF'
+              ELSE
+                'UNK'
+              END policy_status
+     FROM   tmp_fpc_calc_prem10 p,
+            tmp_fpc_lkup_polext_id l, 
+            dim_policyextension dpe
+     WHERE  p.sk_recordnum = l.sk_recordnum
+     AND    l.policyextension_id = dpe.policyextension_id)
+SELECT x.sk_recordnum, nvl(vps.policystatus_id,1) policystatus_id
+FROM   vdim_policystatus vps, x
+WHERE  x.policy_status = vps.polst_statuscd(+)
+;
+
+create table tmp_fpc_lkup_riskloc_id nologging tablespace ${G_STAGING_DB_DATA}
+as
+select p.sk_RecordNum, g.GEOGRAPHY_ID	COVEREDRISKLOCATION_ID
+FROM   tmp_fpc_calc_prem10 p, tmp_fpc_calc_prem10r r, DIM_GEOGRAPHY g
+where
+g.GEO_COUNTY	=	p.COMPANY_UNIQUEID	
+and g.GEO_CITY	=	r.RSK_CITY	
+and g.GEO_STATE	=	r.RSK_STATE	
+and g.GEO_POSTALCODE	=	r.RSK_POSTALCODE	
+and g.GEO_COUNTRY	=	r.RSK_COUNTRY	
+and p.sk_RecordNum = r.sk_RecordNum
+;
+
+create table tmp_fpc_lkup_producer_id nologging tablespace ${G_STAGING_DB_DATA}
+as
+select p.sk_RecordNum, min(u.PRODUCER_ID) PRODUCER_ID
+from tmp_fpc_calc_prem10 p, VDIM_PRODUCER u
+where 
+u.PRDR_UNIQUEID	=	p.PRODUCER_UNIQUEID	
+group by p.sk_RecordNum
+;
+
+create table tmp_fpc_lkup_product_id nologging tablespace ${G_STAGING_DB_DATA}
+as
+select p.sk_RecordNum, u.PRODUCT_ID
+from tmp_fpc_calc_prem10 p, DIM_PRODUCT u
+where 
+u.PRODUCT_UNIQUEID	=	p.PRODUCT_UNIQUEID	
+;
+
+create table tmp_fpc_lkup_terr_id nologging tablespace ${G_STAGING_DB_DATA}
+as
+SELECT p.sk_recordnum, p.territory_id
+FROM  (
+select p.sk_RecordNum, t.territory_id, row_number() OVER (PARTITION BY p.sk_recordnum ORDER BY t.territory_id) pick1
+from tmp_fpc_calc_prem10r p, DIM_territory t
+where 
+    nvl(t.TERR_CODE,'*')= nvl(p.RSK_TERRITORYCODE,'*')
+and nvl(t.TERR_NAME,'*')= nvl(p.RSK_TERRITORYNAME,'*')
+) p
+WHERE p.pick1 = 1
+;
+
+create table tmp_fpc_lkup_uw_id nologging tablespace ${G_STAGING_DB_DATA}
+as
+select p.sk_RecordNum, min(u.UNDERWRITER_ID) UNDERWRITER_ID
+from tmp_fpc_calc_prem10 p, VDIM_UNDERWRITER u
+where 
+u.UW_UNIQUEID	=	p.UNDERWRITER_UNIQUEID	
+group by p.sk_RecordNum
+;
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>684</xloc>
+      <yloc>212</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_fpc_lkup Lookups1</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_fpc_lkup_covext_id nologging tablespace ${G_STAGING_DB_DATA}
+as
+WITH dce1 AS
+(SELECT p.sk_RecordNum, MAX(dce.coverageextension_id) COVERAGEEXTENSION_ID
+FROM   dim_coverageextension dce, tmp_fpc_calc_prem10 p
+WHERE  dce.cov_uniqueid = p.COV_UNIQUEID   
+AND    dce.policy_uniqueid = p.pol_uniqueid
+AND    dce.pt_sequence &lt;= p.max_pt_sequence
+AND    dce.cov_effective_from_date &lt;= p.PERIODENDDATE
+AND    (dce.cov_effective_from_date &lt;= p.POL_EXPIRATIONDATE
+        OR 
+        dce.mmcov_coverage_segment_code = 'TAIL')
+AND    dce.cov_effective_to_date >= least(p.PERIODENDDATE,p.COV_EXPIRATIONDATE)
+group by p.sk_RecordNum),
+dce2 AS (
+-- JMA 09/19/2014 Add following union to deal with the case that coverage effective in future date but involved in current month's transaction
+SELECT p.sk_RecordNum, MAX(dce.coverageextension_id) COVERAGEEXTENSION_ID
+FROM   dim_coverageextension dce, tmp_fpc_calc_prem10 p
+WHERE  dce.cov_uniqueid = p.COV_UNIQUEID   
+AND    dce.pt_sequence &lt;= p.max_pt_sequence
+AND    dce.cov_effective_to_date >= least(p.PERIODENDDATE,p.COV_EXPIRATIONDATE)
+group by p.sk_RecordNum)
+SELECT dce2.sk_RecordNum, NVL2(dce1.sk_RecordNum,dce1.COVERAGEEXTENSION_ID, dce2.COVERAGEEXTENSION_ID) COVERAGEEXTENSION_ID
+FROM   dce2,
+       dce1
+WHERE  dce2.sk_recordNum = dce1.sk_RecordNum(+)
+;
+
+create table tmp_fpc_lkup_1insured_id nologging tablespace ${G_STAGING_DB_DATA}
+as
+SELECT p.sk_RecordNum, max(dle.legalentity_id) AS FIRSTINSURED_ID
+FROM   tmp_fpc_calc_prem10 p, DIM_LEGALENTITY dle
+WHERE  dle.lenty_uniqueid = p.FIRSTINSURED_UNIQUEID
+AND    dle.valid_fromdate &lt;= p.periodEndDate
+group by p.sk_RecordNum
+;
+
+INSERT INTO tmp_fpc_lkup_1insured_id 
+SELECT p.sk_RecordNum, MAX(dle.legalentity_id) AS FIRSTINSURED_ID
+FROM   tmp_fpc_calc_prem10 p, DIM_LEGALENTITY dle
+WHERE  dle.lenty_uniqueid = p.FIRSTINSURED_UNIQUEID
+AND    p.sk_recordnum NOT IN 
+       (SELECT sk_RecordNum FROM tmp_fpc_lkup_1insured_id)
+GROUP  BY p.sk_RecordNum
+;
+
+create table tmp_fpc_lkup_3insured_id nologging tablespace ${G_STAGING_DB_DATA}
+as
+SELECT p.sk_RecordNum, min(dle.THIRDINSURED_ID) AS THIRDINSURED_ID
+FROM   tmp_fpc_calc_prem10 p, VDIM_THIRDINSURED dle
+WHERE  dle.TINSD_UNIQUEID = p.THIRDINSURED_UNIQUEID
+group by p.sk_RecordNum
+;
+
+create table tmp_fpc_lkup_2insured_id nologging tablespace ${G_STAGING_DB_DATA}
+as
+SELECT p.sk_RecordNum, min(dle.SECONDINSURED_ID) AS SECONDINSURED_ID
+FROM   tmp_fpc_calc_prem10 p, VDIM_SECONDINSURED dle
+WHERE  dle.SINSD_UNIQUEID = p.SECONDINSURED_UNIQUEID
+group by p.sk_RecordNum
+;
+
+
+create table tmp_fpc_lkup_company_id nologging tablespace ${G_STAGING_DB_DATA}
+as
+SELECT p.sk_RecordNum, min(c.COMPANY_ID) COMPANY_ID
+from tmp_fpc_calc_prem10 p, VDIM_COMPANY c
+where
+c.COMP_UNIQUEID	= p.COMPANY_UNIQUEID	
+group by p.sk_RecordNum
+;
+
+create table tmp_fpc_lkup_polext_id nologging tablespace ${G_STAGING_DB_DATA}
+as
+SELECT p.sk_RecordNum, MAX(dpe.policyextension_id) policyextension_id
+FROM   tmp_fpc_calc_prem10 p, Dim_Policyextension dpe, tmp_fpc_maxtrans_wk smt
+WHERE  dpe.policy_uniqueid = smt.policy_uniqueid
+AND    dpe.pt_sequence &lt;= smt.max_pt_sequence
+and p.POL_UNIQUEID = smt.policy_uniqueid
+and p.sk_period = smt.sk_period
+GROUP  BY p.sk_RecordNum
+;
+
+create table tmp_fpc_lkup_cov_id nologging pctfree 0 tablespace ${G_STAGING_DB_DATA}
+as
+SELECT p.sk_recordnum, p.coverage_id
+FROM (
+SELECT p.sk_RecordNum, cv.COVERAGE_ID, row_number() OVER (PARTITION BY p.sk_recordnum ORDER BY cv.coverage_id) pick1
+from tmp_fpc_calc_prem10 p, DIM_COVERAGE cv
+where
+p.COV_TYPE	= cv.COV_TYPE	
+and p.COV_CODE	= cv.COV_CODE
+and p.COV_NAME	= cv.COV_NAME	
+and p.COV_SUBCODE	= cv.COV_SUBCODE	
+and p.COV_SUBCODENAME = cv.COV_SUBCODENAME) p
+WHERE p.pick1 = 1;
+
+create table tmp_fpc_lkup_class_id nologging tablespace ${G_STAGING_DB_DATA}
+as
+select p.sk_RecordNum, c.CLASSIFICATION_ID CLASS_ID
+from tmp_fpc_calc_prem10 p, DIM_CLASSIFICATION c
+where 
+c.CLASS_CODE	=	p.COV_CLASSCODE	
+and c.CLASS_CODENAME	=	p.COV_CLASSCODENAME	
+and NVL(c.CLASS_SUBCODE,'x')	=	NVL(p.COV_CLASSSUBCODE,'x')	
+and NVL(c.CLASS_SUBCODENAME,'x')	=	NVL(p.COV_CLASSSUBCODENAME,'x')	
+;
+
+create table tmp_fpc_lkup_otheradjust_id nologging tablespace ${G_STAGING_DB_DATA}
+as
+SELECT p.sk_RecordNum, MAX(dc.OTHERADJUSTMENT_ID) OTHERADJUSTMENT_ID
+FROM   tmp_fpc_calc_prem10 p, Dim_other_adjustment dc
+WHERE  dc.otheradjustment_uniqueid = p.OTHERADJUSTMENT_UNIQUEID
+AND    trunc(dc.valid_fromdate) &lt;= p.periodEndDate
+AND    trunc(dc.valid_todate) >= p.periodEndDate
+group by p.sk_RecordNum
+;
+
+create table tmp_fpc_lkup_cvrsk_id nologging tablespace ${G_STAGING_DB_DATA}
+as
+SELECT p.sk_RecordNum, max(cvr.COVEREDRISK_ID) COVEREDRISK_ID
+FROM   DIM_COVEREDRISK_WORK cvr, tmp_fpc_calc_prem10 p
+WHERE  cvr.CVRSK_uniqueid = p.PRSK_UNIQUEID   
+group by p.sk_RecordNum
+;
+
+create table tmp_fpc_lkup_component_id nologging tablespace ${G_STAGING_DB_DATA}
+as
+SELECT p.sk_RecordNum, MAX(dc.component_id) COMPONENT_ID
+FROM   tmp_fpc_calc_prem10 p, Dim_component dc
+WHERE  dc.component_uniqueid = p.COMPONENT_UNIQUEID
+AND    trunc(dc.valid_fromdate) &lt;= p.periodEndDate
+AND    trunc(dc.valid_todate) >= p.periodEndDate
+and    ((dc.pt_sequence &lt;= p.max_pt_sequence and
+         dc.policy_uniqueid = p.pol_uniqueid) 
+       or (dc.component_uniqueid = '1'))
+group by p.sk_RecordNum 
+;
+
+-- Add logic to deal with bad policy data. 
+INSERT /*+ APPEND */ INTO tmp_fpc_lkup_component_id
+WITH x AS 
+    (SELECT *
+     FROM   tmp_fpc_calc_prem10 p10
+     WHERE  NOT EXISTS ( SELECT 1 
+                         FROM tmp_fpc_lkup_component_id p 
+                         WHERE p.sk_recordnum = p10.sk_recordnum))
+SELECT p.sk_RecordNum, MAX(dc.component_id) COMPONENT_ID
+FROM   x p, Dim_component dc
+WHERE  dc.component_uniqueid = p.COMPONENT_UNIQUEID
+and    (dc.policy_uniqueid = p.pol_uniqueid 
+       or dc.component_uniqueid = '1')
+group by p.sk_RecordNum
+;
+
+create table tmp_fpc_lkup_cvrskext_id nologging tablespace ${G_STAGING_DB_DATA}
+as
+SELECT p.sk_RecordNum, MAX(dcre.coveredriskextension_id) COVEREDRISKEXTENSION_ID
+FROM   tmp_fpc_calc_prem10 p, tmp_fpc_calc_prem10r r, DIM_COVEREDRISKEXT_WORK dcre
+WHERE  dcre.cvrsk_uniqueid = p.PRSK_UNIQUEID
+AND    dcre.pt_sequence &lt;= p.MAX_PT_SEQUENCE
+AND    dcre.rsk_effective_from_date &lt;= p.periodEndDate
+AND    dcre.rsk_effective_from_date &lt;= p.POL_EXPIRATIONDATE
+AND    dcre.rsk_effective_to_date >= least(p.periodEndDate,r.RSK_EFFECTIVE_TO_DATE)
+and p.sk_RecordNum = r.sk_RecordNum
+group by p.sk_RecordNum 
+;
+
+-- Add logic to deal with bad policy data.
+INSERT /*+ APPEND */ INTO tmp_fpc_lkup_cvrskext_id
+WITH x AS 
+    (SELECT *
+     FROM   tmp_fpc_calc_prem10 p10
+     WHERE  NOT EXISTS ( SELECT 1 
+                         FROM tmp_fpc_lkup_cvrskext_id p 
+                         WHERE p.sk_recordnum = p10.sk_recordnum))
+SELECT p.sk_RecordNum, MAX(dcre.coveredriskextension_id) COVEREDRISKEXTENSION_ID
+FROM   x p, tmp_fpc_calc_prem10r r, DIM_COVEREDRISKEXT_WORK dcre
+WHERE  dcre.cvrsk_uniqueid = p.PRSK_UNIQUEID
+AND    dcre.pt_sequence &lt;= p.MAX_PT_SEQUENCE
+AND    p.sk_RecordNum = r.sk_RecordNum
+group by p.sk_RecordNum;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>855</xloc>
+      <yloc>212</yloc>
+    </entry>
+    <entry>
+      <name>Create FPC Helper Tables 2</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_fpc_get_polid
+nologging 
+tablespace ${G_STAGING_DB_DATA}
+as
+select p.sk_Period, p.pol_uniqueid, p.policy_id, p.record_version
+from
+(
+	SELECT m.sk_Period, dp.pol_uniqueid, dp.policy_id, dp.record_version,
+	row_number() over (partition by m.sk_period, dp.pol_uniqueid order by dp.record_version desc) pick1
+	FROM   Dim_Policy dp, tmp_fpc_genmonths m
+	where 
+	       trunc(dp.valid_fromdate) &lt;= m.sql_periodEndDate
+	AND    trunc(dp.valid_todate) >= m.sql_periodEndDate
+) p
+where p.pick1 = 1
+;
+
+create table tmp_fpc_maxtrans_wk nologging tablespace ${G_STAGING_DB_DATA}
+as
+SELECT m.sk_period, m.sql_periodEndDate, spt.policy_uniqueid, MAX(spt.pt_sequence) MAX_PT_SEQUENCE
+FROM   tmp_fpc_pol_uniqueid spt,tmp_fpc_genmonths m
+WHERE  spt.pt_effectivedate &lt;= m.sql_periodEndDate
+AND    spt.pt_accountingdate &lt;= m.sql_periodEndDate
+GROUP  BY m.sk_period,m.sql_periodEndDate,spt.policy_uniqueid
+;
+
+
+create index tmp_fpc_maxtrans_wk_ix on tmp_fpc_maxtrans_wk (sk_period, policy_uniqueid, sql_periodEndDate, max_pt_sequence) nologging tablespace ${G_STAGING_DB_INDEX};
+
+create table tmp_fpc_wk_union1 nologging tablespace ${G_STAGING_DB_DATA}
+as
+SELECT /*+ USE_HASH(f m) */
+       m.sk_period,
+       f.FIRSTINSURED_ID,
+       f.SECONDINSURED_ID,
+       f.THIRDINSURED_ID,
+       f.FIRSTOTHERINTEREST_ID,
+       f.SECONDOTHERINTEREST_ID,
+       f.LIMIT_ID,
+       f.DEDUCTIBLE_ID,
+       f.CLASS_ID,
+       f.COVEREDRISKEXTENSION_ID,
+       f.POLICYTRANSACTIONEXTENSION_ID,
+       f.EFFECTIVEDATE_ID,
+       f.COVERAGEEFFECTIVEDATE_ID,
+       f.COVERAGEEXPIRATIONDATE_ID,
+       --Jma 10/02/2014 Add component dates and otheradjustment dates
+       f.COMPONENTEFFECTIVEDATE_ID,
+       f.COMPONENTEXPIRATIONDATE_ID,
+       f.OTHERADJEFFECTIVEDATE_ID,
+       f.OTHERADJEXPIRATIONDATE_ID,
+       --
+       f.UNDERWRITER_ID,
+       f.PRODUCT_ID,
+       f.COMPANY_ID,
+       f.TERRITORY_ID,
+       f.TRANSACTIONTYPE_ID,
+       f.PRODUCER_ID,
+       f.COVERAGE_ID,
+       f.POLICYEXTENSION_ID,
+       f.POLICYEFFECTIVEDATE_ID,
+       f.POLICYEXPIRATIONDATE_ID,
+       f.POLICY_ID,
+       f.POL_UNIQUEID,
+       f.COV_UNIQUEID,
+       f.COMPONENT_UNIQUEID,
+       f.OTHERADJUSTMENT_UNIQUEID,
+       f.COVEREDRISK_ID,
+       f.CVRSK_UNIQUEID AS PRSK_UNIQUEID,
+       f.COVEREDRISKLOCATION_ID,
+       -- Jma 02/09/2017 Add following fields for VL merge
+       f.OFFERINGCOMPANY_ID,
+       f.POLICYUNIT_ID,
+       f.POLICYVERSION_ID,
+       f.AGENT_ID,
+       f.LOCATION_ID,
+       f.CLASSIFICATIONEXTENSION_ID,
+       f.STATE_ID,
+       f.LOB_ID,
+       -- End update
+       f.EARNINGSTYPE,
+       f.TRANS_CODE,
+       to_date(case when f.ACCOUNTINGDATE_ID=0 then '19000101' 
+                    else to_char(f.ACCOUNTINGDATE_ID) end,'YYYYMMDD') ACCOUNTINGDATE,
+       to_date(case when f.COVERAGEEFFECTIVEDATE_ID=0 then '19000101' 
+                    else to_char(f.COVERAGEEFFECTIVEDATE_ID) end,'YYYYMMDD') COVERAGEEFFECTIVEDATE,
+       to_date(case when f.COVERAGEEXPIRATIONDATE_ID=0 then '19000101' 
+                    else to_char(f.COVERAGEEXPIRATIONDATE_ID) end,'YYYYMMDD') COVERAGEEXPIRATIONDATE,
+       to_date(case when f.EFFECTIVEDATE_ID=0 then '19000101' 
+                    else to_char(f.EFFECTIVEDATE_ID) end,'YYYYMMDD') TRANSACTIONEFFECTIVEDATE,
+       to_date(case when f.EARNFROMDATE_ID=0 then '19000101' 
+                    else to_char(f.EARNFROMDATE_ID) end,'YYYYMMDD') EARNFROM_DATE,
+       to_date(case when f.EARNTODATE_ID=0 then '19000101' 
+                    else to_char(f.EARNTODATE_ID) end,'YYYYMMDD') EARNTO_DATE,
+       --Jma 10/02/2014 Add component dates and otheradjustment dates
+       to_date(case when f.COMPONENTEFFECTIVEDATE_ID=0 then '19000101' 
+                    else to_char(f.COMPONENTEFFECTIVEDATE_ID) end,'YYYYMMDD') COMPONENTEFFECTIVEDATE,
+       to_date(case when f.COMPONENTEXPIRATIONDATE_ID=0 then '19000101' 
+                    else to_char(f.COMPONENTEXPIRATIONDATE_ID) end,'YYYYMMDD') COMPONENTEXPIRATIONDATE,
+       to_date(case when f.OTHERADJEFFECTIVEDATE_ID=0 then '19000101' 
+                    else to_char(f.OTHERADJEFFECTIVEDATE_ID) end,'YYYYMMDD') OTHERADJUSTEFFECTIVEDATE,
+       to_date(case when f.OTHERADJEXPIRATIONDATE_ID=0 then '19000101' 
+                    else to_char(f.OTHERADJEXPIRATIONDATE_ID) end,'YYYYMMDD') OTHERADJUSTEXPIRATIONDATE,
+       --
+       f.MMCOV_COVERAGE_SEGMENT_CODE,
+       to_date(case when f.org_pol_expdate_id=0 then '19000101' 
+                    else to_char(f.org_pol_expdate_id) end,'YYYYMMDD') org_pol_expdate,
+       f.prem_type,
+       SUM(f.AMOUNT) AS AMOUNT,
+       SUM(f.COMMISSION_AMOUNT) AS COMMISSION_AMOUNT,
+        f.policyneworrenewal 
+FROM   tmp_fpc_fact_policytrans f,
+       tmp_fpc_genmonths m
+WHERE  1=1
+       -- Exclude future transactions.
+AND    f.EFFECTIVEDATE_ID  &lt;= m.sql_periodEndDate_ID
+AND    f.ACCOUNTINGDATE_ID &lt;= m.sql_periodEndDate_ID
+AND    ( -- Policy still active in this time period. 
+         (f.POLICYEXPIRATIONDATE_ID > m.sql_periodStartDate_ID AND f.POLICYEFFECTIVEDATE_ID &lt;= m.sql_periodEndDate_ID)
+         OR 
+         -- Transaction processed in this time period, but term effective date ls less than the period start date
+         -- A sample of this kind of transaction is a REINSTATE transaction after EXTEND transaction.
+         (f.POLICYEFFECTIVEDATE_ID &lt;= m.sql_periodStartDate_ID AND f.EFFECTIVEDATE_ID >= m.sql_periodStartDate_ID) 
+         OR 
+         -- Policy processed in the last day of the policy term and policy term equals to period start time
+         (f.POLICYEXPIRATIONDATE_ID = m.sql_periodStartDate_ID AND f.EFFECTIVEDATE_ID = f.POLICYEXPIRATIONDATE_ID)
+         OR  
+         -- Policy term that cancelled or expired in this year, and policy original expiration date is in this year and
+         -- greater than current period's start date.
+         (f.POLICYEXPIRATIONDATE_ID &lt;= m.sql_periodEndDate_ID AND 
+          to_number(substr(to_char(f.POLICYEXPIRATIONDATE_ID),1,4)) = m.periodYear AND
+          f.POLICYEXPIRATIONDATE_ID >= m.sql_periodStartYear AND
+          f.org_pol_expdate_id > m.sql_periodStartDate_ID) 
+         OR  
+         -- Policy cacelled in last year but the original term expiration date is greater than the period start date
+         -- We need to include the cancel transaction in this year so it can reverse
+         -- the transaction amount for the initial term  
+         (f.POLICYEXPIRATIONDATE_ID &lt;= m.sql_periodEndDate_ID AND 
+          to_number(substr(to_char(f.POLICYEXPIRATIONDATE_ID),1,4)) &lt; m.periodYear AND
+          f.org_pol_expdate_id > m.sql_periodStartDate_ID AND
+          f.MMPOL_POLICY_CURRENT_STATUS = 'CANCEL')      
+       )
+GROUP BY
+       m.sk_period,
+       f.FIRSTINSURED_ID,
+       f.SECONDINSURED_ID,
+       f.THIRDINSURED_ID,
+       f.FIRSTOTHERINTEREST_ID,
+       f.SECONDOTHERINTEREST_ID,
+       f.LIMIT_ID,
+       f.DEDUCTIBLE_ID,
+       f.CLASS_ID,
+       f.COVEREDRISKEXTENSION_ID,
+       f.POLICYTRANSACTIONEXTENSION_ID,
+       f.EFFECTIVEDATE_ID,
+       f.COVERAGEEFFECTIVEDATE_ID,
+       f.COVERAGEEXPIRATIONDATE_ID,
+       --Jma 10/02/2014 Add component dates and otheradjustment dates
+       f.COMPONENTEFFECTIVEDATE_ID,
+       f.COMPONENTEXPIRATIONDATE_ID,
+       f.OTHERADJEFFECTIVEDATE_ID,
+       f.OTHERADJEXPIRATIONDATE_ID,
+       --
+       f.UNDERWRITER_ID,
+       f.PRODUCT_ID,
+       f.COMPANY_ID,
+       f.TERRITORY_ID,
+       f.TRANSACTIONTYPE_ID,
+       f.PRODUCER_ID,
+       f.COVERAGE_ID,
+       f.POLICYEXTENSION_ID,
+       f.POLICYEFFECTIVEDATE_ID,
+       f.POLICYEXPIRATIONDATE_ID,
+       f.POLICY_ID,
+       f.POL_UNIQUEID,
+       f.COV_UNIQUEID,
+       f.COMPONENT_UNIQUEID,
+       f.OTHERADJUSTMENT_UNIQUEID,
+       f.COVEREDRISK_ID,
+       f.CVRSK_UNIQUEID,
+       f.COVEREDRISKLOCATION_ID,
+       -- Jma 02/09/2017 Add following fields for VL merge
+       f.OFFERINGCOMPANY_ID,
+       f.POLICYUNIT_ID,
+       f.POLICYVERSION_ID,
+       f.AGENT_ID,
+       f.LOCATION_ID,
+       f.CLASSIFICATIONEXTENSION_ID,
+       f.STATE_ID,
+       f.LOB_ID,
+       -- End update
+       f.EARNINGSTYPE,
+       f.TRANS_CODE,
+       f.ACCOUNTINGDATE_ID,
+       f.COVERAGEEFFECTIVEDATE_ID,
+       f.COVERAGEEXPIRATIONDATE_ID ,
+       f.EFFECTIVEDATE_ID,
+       f.EARNFROMDATE_ID ,
+       f.EARNTODATE_ID,
+       f.MMCOV_COVERAGE_SEGMENT_CODE,
+       f.org_pol_expdate_id, 
+       f.prem_type,
+       f.policyneworrenewal
+order by m.sk_period,f.ACCOUNTINGDATE_ID, f.POLICYTRANSACTIONEXTENSION_ID;
+
+
+create index tmp_fpc_wk_union1_ix1 on tmp_fpc_wk_union1 (sk_period) nologging tablespace ${G_STAGING_DB_INDEX};
+
+create table tmp_fpc_wk_union2 nologging pctfree 0 tablespace ${G_STAGING_DB_DATA}
+as
+SELECT 1 sk_period,
+       f.firstinsured_id,
+       f.secondinsured_id,
+       f.thirdinsured_id,
+       f.firstotherinterest_id,
+       f.secondotherinterest_id,
+       f.limit_id,
+       f.deductible_id,
+       f.class_id,
+       f.coveredriskextension_id,
+       f.policytransactionextension_id,
+       f.effectivedate_id,
+       f.coverageeffectivedate_id,
+       f.coverageexpirationdate_id,
+       f.componenteffectivedate_id,
+       f.componentexpirationdate_id,
+       f.otheradjeffectivedate_id,
+       f.otheradjexpirationdate_id,
+       f.underwriter_id,
+       f.product_id,
+       f.company_id,
+       f.territory_id,
+       f.transactiontype_id,
+       f.producer_id,
+       f.coverage_id,
+       f.policyextension_id,
+       f.policyeffectivedate_id,
+       f.policyexpirationdate_id,
+       f.policy_id,
+       f.pol_uniqueid,
+       f.cov_uniqueid,
+       f.component_uniqueid,
+       f.otheradjustment_uniqueid,
+       f.coveredrisk_id,
+       f.cvrsk_uniqueid AS prsk_uniqueid,
+       f.coveredrisklocation_id,
+       -- Jma 02/09/2017 Add following fields for VL merge
+       f.OFFERINGCOMPANY_ID,
+       f.POLICYUNIT_ID,
+       f.POLICYVERSION_ID,
+       f.AGENT_ID,
+       f.LOCATION_ID,
+       f.CLASSIFICATIONEXTENSION_ID,
+       f.STATE_ID,
+       f.LOB_ID,
+       -- End update
+       f.earningstype,
+       f.trans_code,
+       to_date(CASE
+                 WHEN f.accountingdate_id = 0 THEN
+                  '19000101'
+                 ELSE
+                  to_char(f.accountingdate_id)
+               END,
+               'YYYYMMDD') accountingdate,
+       to_date(CASE
+                 WHEN f.coverageeffectivedate_id = 0 THEN
+                  '19000101'
+                 ELSE
+                  to_char(f.coverageeffectivedate_id)
+               END,
+               'YYYYMMDD') coverageeffectivedate,
+       to_date(CASE
+                 WHEN f.coverageexpirationdate_id = 0 THEN
+                  '19000101'
+                 ELSE
+                  to_char(f.coverageexpirationdate_id)
+               END,
+               'YYYYMMDD') coverageexpirationdate,
+       to_date(CASE
+                 WHEN f.effectivedate_id = 0 THEN
+                  '19000101'
+                 ELSE
+                  to_char(f.effectivedate_id)
+               END,
+               'YYYYMMDD') transactioneffectivedate,
+       to_date(CASE
+                 WHEN f.earnfromdate_id = 0 THEN
+                  '19000101'
+                 ELSE
+                  to_char(f.earnfromdate_id)
+               END,
+               'YYYYMMDD') earnfrom_date,
+       to_date(CASE
+                 WHEN f.earntodate_id = 0 THEN
+                  '19000101'
+                 ELSE
+                  to_char(f.earntodate_id)
+               END,
+               'YYYYMMDD') earnto_date,
+       to_date(CASE
+                 WHEN f.componenteffectivedate_id = 0 THEN
+                  '19000101'
+                 ELSE
+                  to_char(f.componenteffectivedate_id)
+               END,
+               'YYYYMMDD') componenteffectivedate,
+       to_date(CASE
+                 WHEN f.componentexpirationdate_id = 0 THEN
+                  '19000101'
+                 ELSE
+                  to_char(f.componentexpirationdate_id)
+               END,
+               'YYYYMMDD') componentexpirationdate,
+       to_date(CASE
+                 WHEN f.otheradjeffectivedate_id = 0 THEN
+                  '19000101'
+                 ELSE
+                  to_char(f.otheradjeffectivedate_id)
+               END,
+               'YYYYMMDD') otheradjusteffectivedate,
+       to_date(CASE
+                 WHEN f.otheradjexpirationdate_id = 0 THEN
+                  '19000101'
+                 ELSE
+                  to_char(f.otheradjexpirationdate_id)
+               END,
+               'YYYYMMDD') otheradjustexpirationdate,
+       f.mmcov_coverage_segment_code,
+       to_date(CASE
+                 WHEN f.org_pol_expdate_id = 0 THEN
+                  '19000101'
+                 ELSE
+                  to_char(f.org_pol_expdate_id)
+               END,
+               'YYYYMMDD') org_pol_expdate,
+       f.prem_type,
+       SUM(f.amount) AS amount,
+       SUM(f.commission_amount) AS commission_amount,
+       f.policyneworrenewal
+FROM   tmp_fpc_fact_policytrans f, 
+       tmp_fpc_wk_union2_t2 j
+WHERE  1 = 1
+AND    f.sk_tmp_fpc_policytrans = j.sk_tmp_fpc_policytrans
+GROUP  BY 1,
+          f.firstinsured_id,
+          f.secondinsured_id,
+          f.thirdinsured_id,
+          f.firstotherinterest_id,
+          f.secondotherinterest_id,
+          f.limit_id,
+          f.deductible_id,
+          f.class_id,
+          f.coveredriskextension_id,
+          f.policytransactionextension_id,
+          f.effectivedate_id,
+          f.coverageeffectivedate_id,
+          f.coverageexpirationdate_id,
+          f.componenteffectivedate_id,
+          f.componentexpirationdate_id,
+          f.otheradjeffectivedate_id,
+          f.otheradjexpirationdate_id,
+          f.underwriter_id,
+          f.product_id,
+          f.company_id,
+          f.territory_id,
+          f.transactiontype_id,
+          f.producer_id,
+          f.coverage_id,
+          f.policyextension_id,
+          f.policyeffectivedate_id,
+          f.policyexpirationdate_id,
+          f.policy_id,
+          f.pol_uniqueid,
+          f.cov_uniqueid,
+          f.component_uniqueid,
+          f.otheradjustment_uniqueid,
+          f.coveredrisk_id,
+          f.cvrsk_uniqueid,
+          f.coveredrisklocation_id,
+          -- Jma 02/09/2017 Add following fields for VL merge
+          f.OFFERINGCOMPANY_ID,
+          f.POLICYUNIT_ID,
+          f.POLICYVERSION_ID,
+          f.AGENT_ID,
+          f.LOCATION_ID,
+          f.CLASSIFICATIONEXTENSION_ID,
+          f.STATE_ID,
+          f.LOB_ID,
+          -- End update
+          f.earningstype,
+          f.trans_code,
+          f.accountingdate_id,
+          f.coverageeffectivedate_id,
+          f.coverageexpirationdate_id,
+          f.effectivedate_id,
+          f.earnfromdate_id,
+          f.earntodate_id,
+          f.mmcov_coverage_segment_code,
+          f.org_pol_expdate_id,
+          f.prem_type,
+          f.policyneworrenewal
+ORDER BY  1, f.accountingdate_id, f.policytransactionextension_id;
+
+create index tmp_fpc_wk_union2_ix1 on tmp_fpc_wk_union2 (sk_period) nologging tablespace ${G_STAGING_DB_INDEX};
+
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_DataWarehouse</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>272</xloc>
+      <yloc>24</yloc>
+    </entry>
+  </entries>
+  <hops>
+    <hop>
+      <from>Create tmp_fpc_wk</from>
+      <to>Create tmp_fpc_polcancel_lkup</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create tmp_fpc_polcancel_lkup</from>
+      <to>Create tmp_fpc_maxmonth_id</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create tmp_fpc_maxmonth_id</from>
+      <to>Create tmp_fpc_prior_YTD_ITD</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create tmp_fpc_prior_YTD_ITD</from>
+      <to>Create tmp_fpc_calc_prems</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>JB_FPC_GEN_MONTH</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Create tmp_fpc_calc_prems</from>
+      <to>Create FPC Helper Tables</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create FPC Helper Tables</from>
+      <to>Create tmp_fpc_calc_prems2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create tmp_fpc_calc_prems2</from>
+      <to>Calculate YTD ITD</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Calculate YTD ITD</from>
+      <to>Create tmp_fpc_lkup Lookups1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create tmp_fpc_lkup Lookups1</from>
+      <to>Create tmp_fpc_lkup Lookups 2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create tmp_fpc_lkup Lookups 2</from>
+      <to>JB_FPC_Insert_FACT_POLICYCOVERAGE</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>JB_FPC_GEN_MONTH</from>
+      <to>Create FPC Helper Tables 2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create FPC Helper Tables 2</from>
+      <to>Create tmp_fpc_wk</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+  </hops>
+  <notepads>
+  </notepads>
+  <attributes>
+    <group>
+      <name>JobRestart</name>
+      <attribute>
+        <key>UniqueConnections</key>
+        <value>N</value>
+      </attribute>
+    </group>
+  </attributes>
+</job>

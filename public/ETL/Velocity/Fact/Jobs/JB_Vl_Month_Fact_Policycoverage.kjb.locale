@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:25 EST 2019
+file.title=JB_Vl_Month_Fact_Policycoverage
+description=Job to populate data for FACT_POLICYCOVERAGE table for Velocity PAS data.
+title=JB_Vl_Month_Fact_Policycoverage
+file.description=Job to populate data for FACT_POLICYCOVERAGE table for Velocity PAS data.

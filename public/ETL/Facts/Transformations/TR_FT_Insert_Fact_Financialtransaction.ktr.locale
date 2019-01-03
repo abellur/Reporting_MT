@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:54 EST 2019
+file.title=TR_FT_Insert_Fact_Financialtransaction
+description=Transformation to insert data into Fact_Financialsummary table.
+title=TR_FT_Insert_Fact_Financialtransaction
+file.description=Transformation to insert data into Fact_Financialsummary table.

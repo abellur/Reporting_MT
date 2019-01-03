@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:45 EST 2019
+file.title=JB_FPC_HELPER_TABLES_4
+description=Job to create work tables for Fact_PolicyCoverage
+title=JB_FPC_HELPER_TABLES_4
+file.description=Job to create work tables for Fact_PolicyCoverage

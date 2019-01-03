@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:46 EST 2019
+file.title=JB_FPC_lkup_terr_id
+description=Job to create work tables for Fact_PolicyCoverage
+title=JB_FPC_lkup_terr_id
+file.description=Job to create work tables for Fact_PolicyCoverage

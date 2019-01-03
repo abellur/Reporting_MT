@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:38 EST 2019
+file.title=TR_DIM_CIS_Table_Group_2_Daily
+description=Transform to load CIS staging data to Dim tables
+title=TR_DIM_CIS_Table_Group_2_Daily
+file.description=Transform to load CIS staging data to Dim tables

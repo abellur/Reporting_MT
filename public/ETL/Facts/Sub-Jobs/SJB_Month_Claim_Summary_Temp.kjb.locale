@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:49 EST 2019
+file.title=SJB_Month_Claim_Summary_Temp
+description=Sub-job calculates and inserts the summary values in the claim fact tables for only one month.
+title=SJB_Month_Claim_Summary_Temp
+file.description=Sub-job calculates and inserts the summary values in the claim fact tables for only one month.

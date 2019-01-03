@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:54 EST 2019
+file.title=TR_FPS_INSERT_FACT_POLICYSNAPSHOT
+description=Transformation to insert data into FACT_POLICYSNAPSHOT
+title=TR_FPS_INSERT_FACT_POLICYSNAPSHOT
+file.description=Transformation to insert data into FACT_POLICYSNAPSHOT

@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:28 EST 2019
+file.title=TR_Populate_VL_Conf_Map_Override
+description=Transformation to load data to VL_CONF_XML_COL_MAP_OVERRIDE table.
+title=TR_Populate_VL_Conf_Map_Override
+file.description=Transformation to load data to VL_CONF_XML_COL_MAP_OVERRIDE table.

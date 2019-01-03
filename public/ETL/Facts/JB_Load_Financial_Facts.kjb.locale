@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:47 EST 2019
+file.title=JB_Load_Financial_Facts
+description=Loads the summary financial fact tables (FACT_FINANCIALTRANSACTION, FACT_FINANCIAL, FACT_FINANCIALSUMMARY)
+title=JB_Load_Financial_Facts
+file.description=Loads the summary financial fact tables (FACT_FINANCIALTRANSACTION, FACT_FINANCIAL, FACT_FINANCIALSUMMARY)

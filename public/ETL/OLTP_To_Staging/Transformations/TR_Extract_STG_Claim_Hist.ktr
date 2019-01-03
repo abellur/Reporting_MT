@@ -1,0 +1,4454 @@
+<transformation>
+  <info>
+    <name>TR_Extract_STG_Claim_Hist</name>
+    <description>Transformation to extract data from OLTP tables to Stg_Claim for historical load</description>
+    <extended_description>Date       By    Description
+06/07/2013 Jma   Update table output step to add CLAIM_FK, CLAIM_INSURED_FK, COVERAGE_INSURED_FK and 
+                 CLAIMANT_FK fields.
+08/15/2016 Jma   #178681. Add more fields from CIX table in Get coverage data step.
+11/29/2017 Jma   #189478. Update Get Claim Status/Type/Case Hist step to add case change data.</extended_description>
+    <trans_version/>
+    <trans_type>Normal</trans_type>
+    <trans_status>1</trans_status>
+    <directory>/public/ETL/OLTP_To_Staging/Transformations</directory>
+    <parameters>
+    </parameters>
+    <log>
+      <trans-log-table>
+        <connection>DW_LOG_Link</connection>
+        <schema/>
+        <table>${G_DB_TR_LOG_TABLE}</table>
+        <size_limit_lines/>
+        <interval/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STATUS</id>
+          <enabled>Y</enabled>
+          <name>STATUS</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+          <subject/>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>STARTDATE</id>
+          <enabled>Y</enabled>
+          <name>STARTDATE</name>
+        </field>
+        <field>
+          <id>ENDDATE</id>
+          <enabled>Y</enabled>
+          <name>ENDDATE</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>DEPDATE</id>
+          <enabled>Y</enabled>
+          <name>DEPDATE</name>
+        </field>
+        <field>
+          <id>REPLAYDATE</id>
+          <enabled>Y</enabled>
+          <name>REPLAYDATE</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>Y</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+        <field>
+          <id>EXECUTING_SERVER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_SERVER</name>
+        </field>
+        <field>
+          <id>EXECUTING_USER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_USER</name>
+        </field>
+        <field>
+          <id>CLIENT</id>
+          <enabled>N</enabled>
+          <name>CLIENT</name>
+        </field>
+      </trans-log-table>
+      <perf-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <interval/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>SEQ_NR</id>
+          <enabled>Y</enabled>
+          <name>SEQ_NR</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>INPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>INPUT_BUFFER_ROWS</name>
+        </field>
+        <field>
+          <id>OUTPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>OUTPUT_BUFFER_ROWS</name>
+        </field>
+      </perf-log-table>
+      <channel-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>LOGGING_OBJECT_TYPE</id>
+          <enabled>Y</enabled>
+          <name>LOGGING_OBJECT_TYPE</name>
+        </field>
+        <field>
+          <id>OBJECT_NAME</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_NAME</name>
+        </field>
+        <field>
+          <id>OBJECT_COPY</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_COPY</name>
+        </field>
+        <field>
+          <id>REPOSITORY_DIRECTORY</id>
+          <enabled>Y</enabled>
+          <name>REPOSITORY_DIRECTORY</name>
+        </field>
+        <field>
+          <id>FILENAME</id>
+          <enabled>Y</enabled>
+          <name>FILENAME</name>
+        </field>
+        <field>
+          <id>OBJECT_ID</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_ID</name>
+        </field>
+        <field>
+          <id>OBJECT_REVISION</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_REVISION</name>
+        </field>
+        <field>
+          <id>PARENT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>PARENT_CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>ROOT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>ROOT_CHANNEL_ID</name>
+        </field>
+      </channel-log-table>
+      <step-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>N</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+      </step-log-table>
+      <metrics-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_DATE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_CODE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_CODE</name>
+        </field>
+        <field>
+          <id>METRICS_DESCRIPTION</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DESCRIPTION</name>
+        </field>
+        <field>
+          <id>METRICS_SUBJECT</id>
+          <enabled>Y</enabled>
+          <name>METRICS_SUBJECT</name>
+        </field>
+        <field>
+          <id>METRICS_TYPE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_TYPE</name>
+        </field>
+        <field>
+          <id>METRICS_VALUE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_VALUE</name>
+        </field>
+      </metrics-log-table>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+      <slaveserver>
+        <name>4Sight BI - PDI Server</name>
+        <hostname>10.0.0.21</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>joe</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Carte 1</name>
+        <hostname>localhost</hostname>
+        <port>9081</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>DI Server</name>
+        <hostname>localhost</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>joe</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_DEV</name>
+        <hostname>magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>shota</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_SERVER</name>
+        <hostname>http://magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>shota</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_TEST</name>
+        <hostname>magspentahotest</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO</name>
+        <hostname>magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO_BTS</name>
+        <hostname>129.144.25.104</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO_DEV</name>
+        <hostname>magspentahodev</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Master</name>
+        <hostname>localhost</hostname>
+        <port>8081</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SERVER1</name>
+        <hostname>LOCALHOST</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SLAVE ONE</name>
+        <hostname>192.168.2.101</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4a418bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SLAVE TWO</name>
+        <hostname>192.168.2.101</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave1</name>
+        <hostname>localhost</hostname>
+        <port>8082</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave2</name>
+        <hostname>localhost</hostname>
+        <port>8083</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave3</name>
+        <hostname>localhost</hostname>
+        <port>8084</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>local DIS</name>
+        <hostname>localhost</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>magspentahodev</name>
+        <hostname>magspentahodev</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+    </slaveservers>
+    <clusterschemas>
+      <clusterschema>
+        <name>4sbi_admin</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+        </slaveservers>
+      </clusterschema>
+      <clusterschema>
+        <name>ClusterSchema</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+          <name>Slave3</name>
+          <name>Slave2</name>
+          <name>Slave1</name>
+          <name>Master</name>
+        </slaveservers>
+      </clusterschema>
+      <clusterschema>
+        <name>cluster A</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+          <name>Carte 1</name>
+          <name>local DIS</name>
+        </slaveservers>
+      </clusterschema>
+    </clusterschemas>
+    <created_user>joe</created_user>
+    <created_date>2014/04/04 09:30:14.783</created_date>
+    <modified_user>joe</modified_user>
+    <modified_date>2018/04/02 15:48:40.178</modified_date>
+    <key_for_session_key/>
+    <is_key_private>N</is_key_private>
+  </info>
+  <notepads>
+    <notepad>
+      <note>Developer Notes:
+Date            By      Desc
+02/21/2012  hxk     Initial version</note>
+      <xloc>779</xloc>
+      <yloc>2</yloc>
+      <width>254</width>
+      <heigth>69</heigth>
+      <fontname>Arial</fontname>
+      <fontsize>10</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>128</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+  </notepads>
+  <connection>
+    <name>4SBI_Staging</name>
+    <server>${G_STAGING_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_STAGING_DB_NAME}</database>
+    <port>${G_STAGING_DB_PORT}</port>
+    <username>${G_STAGING_DB_USERNAME}</username>
+    <password>${G_STAGING_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_STAGING_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_STAGING_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_STAGING_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>Delphi_OLTP</name>
+    <server>${G_OLTP_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_OLTP_DB_NAME}</database>
+    <port>${G_OLTP_DB_PORT}</port>
+    <username>${G_OLTP_DB_USERNAME}</username>
+    <password>${G_OLTP_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_OLTP_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_OLTP_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_OLTP_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>DW_Log_Link</name>
+    <server>${G_LOG_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_LOG_DB_NAME}</database>
+    <port>${G_LOG_DB_PORT}</port>
+    <username>${G_LOG_DB_USERNAME}</username>
+    <password>${G_LOG_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_LOG_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_LOG_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_LOG_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <order>
+    <hop>
+      <from>Load refresh date</from>
+      <to>If field value is null</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get claim_dynamic_data</from>
+      <to>Get Claim Status/Type/Case Hist</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Property Vars</from>
+      <to>Add constants 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get claim data</from>
+      <to>Get Insured Info</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Insured Info</from>
+      <to>Get coverage data</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get claim Classif code/desc list</from>
+      <to>Split Fields claim classif. code</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Split Fields claim classif. code</from>
+      <to>Split Fields(claim classif desc)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Split Fields(claim classif desc)</from>
+      <to>Get Featire Uniqueids</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Featire Uniqueids</from>
+      <to>Get Litigation Flag</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>If field value is null</from>
+      <to>Get Sysparm</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Sysparm</from>
+      <to>Get Property Vars</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get adjuster info</from>
+      <to>Get claim Classif code/desc list</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sequence (stgclaim_id)</from>
+      <to>stg_claim</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>If field value is null 2</from>
+      <to>Get Layer Info</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Layer Info</from>
+      <to>Sort rows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Add constants 2</from>
+      <to>If field value is null 3</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>If field value is null 3</from>
+      <to>Build File Version</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get coverage data</from>
+      <to>Get Pol/Rsk/Cvg Keys</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Pol/Rsk/Cvg Keys</from>
+      <to>Get claimant info</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Claim Status, Type, Disp</from>
+      <to>Get claim data</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get claimant info</from>
+      <to>Get claim_dynamic_data</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Claim Status/Type/Case Hist</from>
+      <to>Get adjuster info</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Build File Version</from>
+      <to>Get Claim Status, Type, Disp</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Litigation Flag</from>
+      <to>Select values</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values</from>
+      <to>If field value is null 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort rows</from>
+      <to>Sequence (stgclaim_id)</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <step>
+    <name>Add constants 2</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>file_code</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>CLM</nullif>
+        <length>0</length>
+        <precision>0</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>source_system</name>
+        <type>string</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>OASIS</nullif>
+        <length>0</length>
+        <precision>0</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>86</xloc>
+      <yloc>489</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Build File Version</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <calculation>
+      <field_name>file_version</field_name>
+      <calc_type>ADD</calc_type>
+      <field_a>version_number</field_a>
+      <field_b>file_code</field_b>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>86</xloc>
+      <yloc>649</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get Claim Status, Type, Disp</name>
+    <type>DBProc</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <procedure>DW_CM_STAGE.CREATE_ALL_TYPE_STATUS_DISP</procedure>
+    <lookup>
+      <arg>
+        <name>LAST_REFRESH_START_TIME</name>
+        <direction>IN</direction>
+        <type>Date</type>
+      </arg>
+      <arg>
+        <name>chunkNumber</name>
+        <direction>IN</direction>
+        <type>String</type>
+      </arg>
+      <arg>
+        <name>chunkPosition</name>
+        <direction>IN</direction>
+        <type>String</type>
+      </arg>
+    </lookup>
+    <result>
+      <name/>
+      <type>Number</type>
+    </result>
+    <auto_commit>Y</auto_commit>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>270</xloc>
+      <yloc>649</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get Claim Status/Type/Case Hist</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>SELECT claim_no,
+       trunc(d.effective_date) clm_changeEffectiveDate,
+       d.claim_type mmclm_current_claim_type,
+       d.claim_type mmclm_claim_subtype_code,
+       cm_report.get_desc('CLAIM_TYPE_CODE',d.claim_type,'LONG') mmclm_current_claim_type_desc,
+       d.claim_status mmclm_claim_current_status,
+       d.claim_status claim_current_status,
+       d.claim_status clm_claimStatusCd,
+       cm_report.get_desc('CLAIM_STATUS_CODE',d.claim_status,'LONG') mmclm_claim_current_stat_desc,
+       trunc(d.claim_type_date) mmclm_claim_type_date,
+       --th.type_end_date,
+       trunc(d.claim_status_date) mmclm_claim_status_date,
+       -- sh.status_end_date,
+       cm_report.get_desc('CLAIM_STATUS_CODE',d.claim_status,'LONG') mmclm_current_claim_stat_desc,
+       d.claim_disp mmclm_final_dispostion_code,
+       trunc(d.claim_disp_date) mmclm_final_dispostion_date,
+       cm_report.get_desc('FINAL_DISPOSITION_CODE',d.claim_disp,'LONG') mmclm_final_dispostion_desc ,
+       trunc(decode(d.claim_status,'CLOSED',trunc(d.claim_status_date),null)) clm_closeddate,
+       d.claim_status clm_substatusCd,
+       decode(csc.hide_b,'Y','Y',null) clm_del_flag,
+       -- Issue 161327
+       (SELECT MIN(trunc(csh.status_start_date))
+        FROM   claim_status_history csh 
+        WHERE  csh.source_record_fk = c.claim_pk
+        AND    csh.claim_status_code = 'OPEN') clm_opendate,
+       -- Issue 189478 
+       o.occurrence_no,
+       o.occurrence_name mmclm_case_name
+  FROM claim c,
+       dw_stg_claim_type_status_disp d,
+       claim_status_code csc,
+       occurrence o
+ WHERE c.claim_pk = d.claim_fk
+   AND d.claim_status = csc.claim_status_code
+   AND d.claim_case = o.occurrence_no(+)
+   AND c.claim_pk = ?
+UNION
+-- get the current status/type when no updates
+SELECT claim_no,
+       trunc(GREATEST(type_start_date,status_start_date)) clm_changeEffectiveDate,
+       th.claim_type_code mmclm_current_claim_type,
+       th.claim_type_code mmclm_claim_subtype_code,
+       cm_report.get_desc('CLAIM_TYPE_CODE',th.claim_type_code,'LONG') mmclm_current_claim_type_desc,
+       sh.claim_status_code mmclm_claim_current_status,
+       sh.claim_status_code claim_current_status,
+       sh.claim_status_code clm_claimStatusCd,
+       cm_report.get_desc('CLAIM_STATUS_CODE',sh.claim_status_code,'LONG') mmclm_claim_current_stat_desc,
+       trunc(th.type_start_date) mmclm_claim_type_date,
+       -- th.type_end_date,
+       trunc(sh.status_start_date) mmclm_claim_status_date,
+       -- sh.status_end_date,
+       cm_report.get_desc('CLAIM_STATUS_CODE',sh.claim_status_code,'LONG') mmclm_current_claim_stat_desc,
+       c.final_disposition_code mmclm_final_dispostion_code,
+       trunc(c.final_disposition_date) mmclm_final_dispostion_date,
+       cm_report.get_desc('FINAL_DISPOSITION_CODE',c.final_disposition_code,'LONG') mmclm_final_dispostion_desc,
+       trunc(decode(c.claim_current_status,'CLOSED',trunc(c.claim_status_date),null)) clm_closeddate,
+       c.claim_current_status clm_subStatusCd,
+       decode(csc.hide_b,'Y','Y',null) clm_del_flag,
+       -- Issue 161327
+       (SELECT MIN(trunc(csh.status_start_date))
+        FROM   claim_status_history csh 
+        WHERE  csh.source_record_fk = c.claim_pk
+        AND    csh.claim_status_code = 'OPEN') clm_opendate,
+       -- Issue 189478 
+       o.occurrence_no,
+       o.occurrence_name mmclm_case_name
+  FROM claim c,
+       claim_status_history sh,
+       claim_type_history th,
+       claim_status_code csc,
+       occurrence o,
+       claim_occurrence_xref cox
+ WHERE c.claim_pk = sh.SOURCE_RECORD_FK
+   AND c.claim_pk = th.SOURCE_RECORD_FK
+   AND sh.claim_status_code = csc.claim_status_code
+   AND c.claim_pk = cox.claim_fk(+)
+   AND cox.occurrence_fk = o.occurrence_pk(+)
+   AND c.claim_pk = ?
+   AND sh.claim_status_history_pk = (SELECT MAX(claim_status_history_pk)
+                                       FROM claim_status_history h
+                                      WHERE h.source_record_fk = c.claim_pk)
+   AND th.claim_type_history_pk   = (SELECT MAX(claim_type_history_pk)
+                                       FROM claim_type_history t
+                                      WHERE t.source_record_fk = c.claim_pk)
+   AND NOT EXISTS(SELECT 'x'
+                    FROM  dw_stg_claim_type_status_disp d
+                   WHERE c.claim_pk = d.claim_fk)                                  
+   </sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>CLAIM_PK</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>CLAIM_PK</name>
+        <type>Number</type>
+      </field>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>450</xloc>
+      <yloc>362</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get Featire Uniqueids</name>
+    <type>DBProc</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <procedure>dw_cm_stage.get_feature_key</procedure>
+    <lookup>
+      <arg>
+        <name>CLAIM_PK</name>
+        <direction>IN</direction>
+        <type>Number</type>
+      </arg>
+      <arg>
+        <name>CLAIM_INSURED_PK</name>
+        <direction>IN</direction>
+        <type>Number</type>
+      </arg>
+      <arg>
+        <name>CLAIMANT_PK</name>
+        <direction>IN</direction>
+        <type>Number</type>
+      </arg>
+      <arg>
+        <name>COVERAGE_INSURED_XREF_PK</name>
+        <direction>IN</direction>
+        <type>Number</type>
+      </arg>
+      <arg>
+        <name>feature_key</name>
+        <direction>OUT</direction>
+        <type>String</type>
+      </arg>
+      <arg>
+        <name>claim_key</name>
+        <direction>OUT</direction>
+        <type>String</type>
+      </arg>
+    </lookup>
+    <result>
+      <name/>
+      <type>String</type>
+    </result>
+    <auto_commit>Y</auto_commit>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>625</xloc>
+      <yloc>362</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get Insured Info</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>select claim_insured_pk,
+       cs_report.get_lookup_code('CLAIM_SPECIALTY_CODE',claim_specialty_code,'LONG') mmclm_ci_claim_specialty,
+       trunc(consent_date) mmcln_ci_consent_date,
+       cs_report.get_lookup_code('CONSENTTYP',consent_type,'LONG') mmclm_ci_consent_type ,
+       trunc(settlement_demand_date) mmclm_ci_demand_date,
+       settlement_demand_amt mmclm_ci_demand_amt,
+       e.client_id insured_uniqueid
+from claim_insured ci,
+     entity_role er,
+     entity e
+where er.source_record_fk = ?
+and er.entity_role_pk     = ci.entity_role_fk
+and er.entity_fk          = e.entity_pk
+</sql>
+    <outer_join>N</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>CLAIM_PK</name>
+        <type>Number</type>
+      </field>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>270</xloc>
+      <yloc>362</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get Layer Info</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>select l.layer_name        mmclm_layer_name,
+       l.layer_seq_no      mmclm_layer_seq_no,
+       l.lob_code_list     mmclm_layer_lob_code_list,
+       l.verif_needed_b    mmclm_layer_verif_needed_b,
+       l.fully_eroded_b    mmclm_layer_fully_eroded_b,
+       l.diff_to_b         mmclm_layer_diff_to_b,
+       l.cost_code_list    mmclm_layer_cost_code_list,
+       l.named_risk_b      mmclm_layer_named_risk_b,
+       l.diff_to_list      mmclm_layer_diff_to_list,
+       l.shared_with_limit_list mmclm_layer_shrd_w_limit_list,
+       l.res_eroded_b      mmclm_layer_res_eroded_b,
+       l.agg_res_b         mmclm_layer_agg_res_b,
+       p.long_description  mmclm_program_long_descr,
+       p.short_description mmclm_program_short_descr,
+       p.start_date        mmclm_program_start_date,
+       p.end_date          mmclm_program_end_date,
+       p.incurred_amt      mmclm_program_incurred_amt
+from layer_coverage_xref lcx,
+     layer l,
+     program p
+where 1 = 1 
+and lcx.cm_coverage_fk = ?
+and lcx.layer_fk       = l.layer_pk
+and l.program_fk       = p.program_pk</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>COVERAGE_FK</name>
+        <type>Number</type>
+      </field>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>810</xloc>
+      <yloc>259</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get Litigation Flag</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>select 'Y' mmclm_litigation_b
+  from courtcase
+ where source_record_fk = ?
+union
+select 'Y' mmclm_litigation_b
+  from claim 
+ where claim_pk = ?
+   and instr(','||?||',',?) > 0</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>CLAIM_PK</name>
+        <type>Integer</type>
+      </field>
+      <field>
+        <name>CLAIM_PK</name>
+        <type>Integer</type>
+      </field>
+      <field>
+        <name>LITIGATION_CLAIM_TYPE</name>
+        <type>String</type>
+      </field>
+      <field>
+        <name>MMCLM_CURRENT_CLAIM_TYPE</name>
+        <type>String</type>
+      </field>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>625</xloc>
+      <yloc>259</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get Pol/Rsk/Cvg Keys</name>
+    <type>Mapping</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>STR_Get_Term_Risk_Coverage_keys</trans_name>
+    <filename/>
+    <directory_path>/public/ETL/OLTP_To_Staging/Transformations</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>Y</rename_on_output>
+          <description/>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step>Mapping output specification</input_step>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+          <connector>
+            <parent>POL_UNIQUEID</parent>
+            <child>POL_UNIQUEID</child>
+          </connector>
+          <connector>
+            <parent>RISK_BASE_RECORD_FK</parent>
+            <child>RISK_BASE_RECORD_FK</child>
+          </connector>
+          <connector>
+            <parent>COVERAGE_BASE_RECORD_FK</parent>
+            <child>COVERAGE_BASE_RECORD_FK</child>
+          </connector>
+        </mapping>
+      </output>
+      <parameters>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
+    <allow_multiple_input>N</allow_multiple_input>
+    <allow_multiple_output>N</allow_multiple_output>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>270</xloc>
+      <yloc>140</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get Property Vars</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>version_number</name>
+        <variable>${G_VERSION_NUMBER}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>0</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>vloaddate</name>
+        <variable>${loadDate}</variable>
+        <type>Date</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>0</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>chunkNumber</name>
+        <variable>${CHUNK_NUMBER}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>0</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>useLegacyDataId</name>
+        <variable>${G_USE_LEGACY_DATA_ID}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>0</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>chunkPosition</name>
+        <variable>${CHUNK_POSITION}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>0</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>86</xloc>
+      <yloc>362</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get Sysparm</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>  SELECT 
+  nvl(dw_staging_util.get_dw_parameter('CM_LITIG_CLAIM_TYPES'),',SUIT,') litigation_claim_type
+  FROM dual</sql>
+    <outer_join>N</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>86</xloc>
+      <yloc>259</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get adjuster info</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>select *
+  from (select *
+          from (select 1 sort_key, -- Max here should not matter, there should only be one, but you never know...
+                       er.effective_from_date sort_date,
+                       client_id adj_uniqueID
+                  from entity e, entity_role er
+                 where er.source_record_fk                  = ?
+                   and er.entity_fk                         = e.entity_pk
+                   and trunc(?) >=
+                       nvl(trunc(er.effective_from_date),
+                           to_date('01/01/1900', 'mm/dd/yyyy'))
+                   and trunc(?)  &lt;
+                       nvl(trunc(er.effective_to_date),
+                           to_date('01/01/3000', 'mm/dd/yyyy'))
+                   and er.role_Type_code                    = dw_staging_util.get_dw_parameter('ADJUSTER_CODE')
+                union  -- Just in case we have no hit above using the date, take the first one... 
+                select *
+                  from (select 2 sort_key, 
+                               er.effective_from_date sort_date,
+                               client_id adj_uniqueID
+                          from entity e, 
+                               entity_role er
+                         where er.source_record_fk = ?
+                           and er.entity_fk        = e.entity_pk
+                           and er.role_Type_code   = dw_staging_util.get_dw_parameter('ADJUSTER_CODE')
+                           order by 1,2) 
+                 where rownum &lt; 2
+                 order by 1,2 desc)  -- Make sure the "date hit" one is first
+         where adj_uniqueid is not null  -- filter off any "misses"
+         )
+ where rownum = 1
+ </sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>CLAIM_PK</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>CLM_CHANGEEFFECTIVEDATE</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>CLM_CHANGEEFFECTIVEDATE</name>
+        <type>Date</type>
+      </field>
+      <field>
+        <name>CLAIM_PK</name>
+        <type>Number</type>
+      </field>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>450</xloc>
+      <yloc>489</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get claim Classif code/desc list</name>
+    <type>DBProc</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <procedure>dw_cm_stage.get_claim_classification_info</procedure>
+    <lookup>
+      <arg>
+        <name>CLAIM_PK</name>
+        <direction>IN</direction>
+        <type>Integer</type>
+      </arg>
+      <arg>
+        <name>CLM_CHANGEEFFECTIVEDATE</name>
+        <direction>IN</direction>
+        <type>Date</type>
+      </arg>
+      <arg>
+        <name>claim_class_code_list</name>
+        <direction>OUT</direction>
+        <type>String</type>
+      </arg>
+      <arg>
+        <name>claim_class_desc_list</name>
+        <direction>OUT</direction>
+        <type>String</type>
+      </arg>
+    </lookup>
+    <result>
+      <name/>
+      <type>String</type>
+    </result>
+    <auto_commit>Y</auto_commit>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>450</xloc>
+      <yloc>649</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get claim data</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>select claim_no,
+       claim_pk,
+       cm_lob_code,
+       (select long_description
+          from cm_lob_code lob
+         where c.cm_lob_code = lob.cm_lob_code) cm_lob_code_desc,
+       headline,
+       catastrophe_number,
+       trunc(loss_date) loss_date,
+       trunc(report_date) report_date,
+       claim_county_code,
+       cm_report.get_desc('CLAIM_COUNTY_CODE',c.claim_county_code,'LONG' )clm_county,      
+       claim_city,
+       claim_state_code,
+       claim_zip,
+       claim_country,
+       trunc(claim_status_date) claim_status_date,
+       trunc(c.sys_create_time) claim_create_time,
+       trunc(c.sys_create_time) mmclm_sys_create_time,
+       trunc(c.sys_update_time) mmclm_sys_update_time,
+       c.sys_created_by  mmclm_sys_created_by,
+       c.sys_updated_by mmclm_sys_updated_by,
+       alternate_claim_no mmclm_alternate_claim_no,
+       alternate_claim_no_type mmclm_alternate_claim_no_type,
+       char1 mmclm_char1,
+      char2 mmclm_char2,
+      char3 mmclm_char3,
+      char4 mmclm_char4, 
+      char5 mmclm_char5,
+      char6 mmclm_char6,
+      char7 mmclm_char7,
+      char8 mmclm_char8,
+      char9 mmclm_char9,
+      char10 mmclm_char10,
+      branch_office mmclm_branch_office,
+      cs_report.get_lookup_code('BRANCHOFF',branch_office,'LONG') mmclm_branch_office_desc,
+      num1 mmclm_num1,
+      num2 mmclm_num2,
+      num3 mmclm_num3,
+      num4 mmclm_num4,
+      num5 mmclm_num5,
+      trunc(date1) mmclm_date1,
+      trunc(date2) mmclm_date2,
+      trunc(date3) mmclm_date3,
+      trunc(date4) mmclm_date4,
+      trunc(date5) mmclm_date5,
+      boolean1 mmclm_boolean1,
+      boolean2 mmclm_boolean2,
+      boolean3 mmclm_boolean3,
+      boolean4 mmclm_boolean4,
+      boolean5 mmclm_boolean5,
+      company mmclm_company,
+      severity_code mmclm_claim_severity_code,
+      cm_report.get_desc('CLAIM_SEVERITY_CODE',c.severity_code,'LONG') mmclm_claim_severity_desc,
+   --   final_disposition_code mmclm_final_disposition_code,
+    --  cm_report.get_desc('FINAL_DISPOSITION_CODE',c.final_disposition_code,'LONG') mmclm_final_dispostion_desc,
+    --  final_disposition_date mmclm_final_disposition_date,
+      trunc(incident_start_date) mmclm_incident_start_date,
+      trunc(incident_end_date) mmclm_incident_end_date,
+      cm_report.get_desc('CM_LOB_CODE',c.cm_lob_code,'LONG') mmclm_loss_type_desc,
+      location_code mmclm_location_code,
+      cs_report.get_lookup_code('LOCATION_CODE',c.location_code,'LONG') mmclm_location_desc,
+      trunc(index_date) mmclm_index_date,
+      reinsurance_b mmclm_reinsurance_b,
+      cm_coverage_type_code mmclm_loss_sub_type_code,
+      cm_report.get_desc('CM_COVERAGE_TYPE',c.cm_coverage_type_code,'LONG') mmclm_loss_sub_type_desc,
+      claim_category_code mmclm_claim_category_code,
+      cs_report.get_lookup_code('CLAIM_CATEGORY_CODE',c.claim_category_code,'LONG') mmclm_category_desc, 
+      response_to_claim mmclm_response_to_claim,
+      cs_report.get_lookup_code('CLAIMRESP',c.response_to_claim,'LONG') mmclm_response_to_claim_desc,
+      tpa_b mmclm_tpa_b,
+      tpa_claim_no mmclm_tpa_claim_no,
+      cm_jurisdiction_code mmclm_jurisdiction_code,
+      cm_report.get_desc('CM_JURISDICTION',c.cm_jurisdiction_code,'LONG') mmclm_jurisdiction_desc,
+      trunc(receive_date) mmclm_receive_date,
+      claim_cause clm_causeLossCode,
+      cm_report.get_desc('CAUSE_CODE',claim_cause,'LONG') clm_causeLossDescription,
+      c.filed_date MMCLM_FILED_DATE,
+      c.num6 mmclm_num6,
+      trunc(c.date6) mmclm_date6,
+      c.boolean6 mmclm_boolean6,
+      c.CATASTROPHE_NUMBER MMCLM_CATASTROPHE_NUMBER
+from claim c
+where claim_pk in(SELECT er.source_record_fk
+                    FROM coverage_insured_xref cix,
+                         claim_insured ci,
+                         entity_role er
+                   WHERE cix.claim_insured_fk = ci.claim_insured_pk
+                     AND ci.entity_role_fk = er.entity_role_pk
+                     and to_number(substr(cix.policy_fk,${CHUNK_POSITION},1)) in(${CHUNK_NUMBER}))
+union
+select claim_no,
+       claim_pk,
+       cm_lob_code,
+       (select long_description
+          from cm_lob_code lob
+         where c.cm_lob_code = lob.cm_lob_code) cm_lob_code_desc,
+       headline,
+       catastrophe_number,
+       trunc(loss_date) loss_date,
+       trunc(report_date) report_date,
+       claim_county_code,
+       cm_report.get_desc('CLAIM_COUNTY_CODE',c.claim_county_code,'LONG' )clm_county,      
+       claim_city,
+       claim_state_code,
+       claim_zip,
+       claim_country,
+       trunc(claim_status_date) claim_status_date,
+       trunc(c.sys_create_time) claim_create_time,
+       trunc(c.sys_create_time) mmclm_sys_create_time,
+      trunc(c.sys_update_time) mmclm_sys_update_time,
+       c.sys_created_by  mmclm_sys_created_by,
+       c.sys_updated_by mmclm_sys_updated_by,
+      alternate_claim_no mmclm_alternate_claim_no,
+      alternate_claim_no_type mmclm_alternate_claim_no_type,
+      char1 mmclm_char1,
+      char2 mmclm_char2,
+      char3 mmclm_char3,
+      char4 mmclm_char4,
+      char5 mmclm_char5,
+      char6 mmclm_char6,
+      char7 mmclm_char7,
+      char8 mmclm_char8,
+      char9 mmclm_char9,
+      char10 mmclm_char10,
+      branch_office mmclm_branch_office,
+      cs_report.get_lookup_code('BRANCHOFF',branch_office,'LONG') mmclm_branch_office_desc,
+      num1 mmclm_num1,
+      num2 mmclm_num2,
+      num3 mmclm_num3,
+      num4 mmclm_num4,
+      num5 mmclm_num5,
+      trunc(date1) mmclm_date1,
+      trunc(date2) mmclm_date2,
+      trunc(date3) mmclm_date3,
+      trunc(date4) mmclm_date4,
+      trunc(date5) mmclm_date5,
+      boolean1 mmclm_boolean1,
+      boolean2 mmclm_boolean2,
+      boolean3 mmclm_boolean3,
+      boolean4 mmclm_boolean4,
+      boolean5 mmclm_boolean5,
+      company mmclm_company,
+      severity_code mmclm_claim_severity_code,
+      cm_report.get_desc('CLAIM_SEVERITY_CODE',c.severity_code,'LONG') mmclm_claim_severity_desc,
+   --   final_disposition_code mmclm_final_disposition_code,
+    --  cm_report.get_desc('FINAL_DISPOSITION_CODE',c.final_disposition_code,'LONG') mmclm_final_dispostion_desc,
+    --  final_disposition_date mmclm_final_disposition_date,
+      trunc(incident_start_date) mmclm_incident_start_date,
+      trunc(incident_end_date) mmclm_incident_end_date,
+      cm_report.get_desc('CM_LOB_CODE',c.cm_lob_code,'LONG') mmclm_loss_type_desc,
+      location_code mmclm_location_code,
+      cs_report.get_lookup_code('LOCATION',c.location_code,'LONG') mmclm_location_desc,
+      trunc(index_date) mmclm_index_date,
+      reinsurance_b mmclm_reinsurance_b,
+      cm_coverage_type_code mmclm_loss_sub_type_code,
+      cm_report.get_desc('CM_COVERAGE_TYPE',c.cm_coverage_type_code,'LONG') mmclm_loss_sub_type_desc,
+      claim_category_code mmclm_claim_category_code,
+      cs_report.get_lookup_code('CLAIM_CATEGORY_CODE',c.claim_category_code,'LONG') mmclm_claim_category_desc, 
+      response_to_claim mmclm_response_to_claim,
+      cs_report.get_lookup_code('CLAIMRESP',c.response_to_claim,'LONG') mmclm_response_to_claim_desc,
+      tpa_b mmclm_tpa_b,
+      tpa_claim_no mmclm_tpa_claim_no,
+      cm_jurisdiction_code mmclm_jurisdiction_code,
+      cm_report.get_desc('CM_JURISDICTION',c.cm_jurisdiction_code,'LONG') mmclm_jurisdiction_desc,
+      trunc(receive_date) mmclm_receive_date,
+      claim_cause clm_causeLossCode,
+      cm_report.get_desc('CAUSE_CODE',claim_cause,'LONG') clm_causeLossDescription,
+      c.filed_date MMCLM_FILED_DATE,
+      c.num6 mmclm_num6,
+      trunc(c.date6) mmclm_date6,
+      c.boolean6 mmclm_boolean6,
+      c.CATASTROPHE_NUMBER MMCLM_CATASTROPHE_NUMBER
+from claim c
+where to_number(substr(claim_pk,${CHUNK_POSITION},1)) in(${CHUNK_NUMBER})
+and not exists(SELECT 'x'
+                    FROM coverage_insured_xref cix,
+                         claim_insured ci,
+                         entity_role er
+                   WHERE cix.claim_insured_fk = ci.claim_insured_pk
+                     AND ci.entity_role_fk = er.entity_role_pk
+                     and er.source_record_fk = c.claim_pk)</sql>
+    <outer_join>N</outer_join>
+    <replace_vars>Y</replace_vars>
+    <parameter>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>270</xloc>
+      <yloc>489</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get claim_dynamic_data</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>select 
+char1 mmclm_cmd_char1,
+char2 mmclm_cmd_char2,
+char3 mmclm_cmd_char3,
+char4 mmclm_cmd_char4,
+char5 mmclm_cmd_char5,
+char6 mmclm_cmd_char6,
+char7 mmclm_cmd_char7,
+char8 mmclm_cmd_char8,
+char9 mmclm_cmd_char9,
+char10 mmclm_cmd_char10,
+num1 mmclm_cmd_num1,
+num2 mmclm_cmd_num2,
+num3 mmclm_cmd_num3,
+num4 mmclm_cmd_num4,
+num5 mmclm_cmd_num5,
+num6 mmclm_cmd_num6,
+num7 mmclm_cmd_num7,
+num8 mmclm_cmd_num8,
+num9 mmclm_cmd_num9,
+num10 mmclm_cmd_num10,
+trunc(date1) mmclm_cmd_date1,
+trunc(date2) mmclm_cmd_date2,
+trunc(date3) mmclm_cmd_date3,
+trunc(date4) mmclm_cmd_date4,
+trunc(date5) mmclm_cmd_date5,
+trunc(date6) mmclm_cmd_date6,
+char11 mmclm_cmd_char11,
+char12 mmclm_cmd_char12,
+char13 mmclm_cmd_char13,
+char14 mmclm_cmd_char14,
+char15 mmclm_cmd_char15,
+char16 mmclm_cmd_char16,
+char17 mmclm_cmd_char17,
+char18 mmclm_cmd_char18,
+char19 mmclm_cmd_char19,
+char20 mmclm_cmd_char20,
+char21 mmclm_cmd_char21,
+char22 mmclm_cmd_char22,
+char23 mmclm_cmd_char23,
+char24 mmclm_cmd_char24,
+char25 mmclm_cmd_char25,
+char26 mmclm_cmd_char26,
+char27 mmclm_cmd_char27,
+char28 mmclm_cmd_char28,
+char29 mmclm_cmd_char29,
+char30 mmclm_cmd_char30,
+num11 mmclm_cmd_num11,
+num12 mmclm_cmd_num12,
+num13 mmclm_cmd_num13,
+num14 mmclm_cmd_num14,
+num15 mmclm_cmd_num15,
+num16 mmclm_cmd_num16,
+num17 mmclm_cmd_num17,
+num18 mmclm_cmd_num18,
+num19 mmclm_cmd_num19,
+num20 mmclm_cmd_num20,
+num21 mmclm_cmd_num21,
+num22 mmclm_cmd_num22,
+num23 mmclm_cmd_num23,
+num24 mmclm_cmd_num24,
+num25 mmclm_cmd_num25,
+num26 mmclm_cmd_num26,
+num27 mmclm_cmd_num27,
+num28 mmclm_cmd_num28,
+num29 mmclm_cmd_num29,
+num30 mmclm_cmd_num30,
+trunc(date7) mmclm_cmd_date7,
+trunc(date8) mmclm_cmd_date8,
+trunc(date9) mmclm_cmd_date9,
+trunc(date10) mmclm_cmd_date10,
+trunc(date11) mmclm_cmd_date11,
+trunc(date12) mmclm_cmd_date12,
+trunc(date13) mmclm_cmd_date13,
+trunc(date14) mmclm_cmd_date14,
+trunc(date15) mmclm_cmd_date15,
+trunc(date16) mmclm_cmd_date16,
+trunc(date17) mmclm_cmd_date17,
+trunc(date18) mmclm_cmd_date18,
+trunc(date19) mmclm_cmd_date19,
+trunc(date20) mmclm_cmd_date20,
+char31 mmclm_cmd_char31,
+char32 mmclm_cmd_char32,
+char33 mmclm_cmd_char33,
+char34 mmclm_cmd_char34,
+char35 mmclm_cmd_char35,
+char36 mmclm_cmd_char36
+from claim_dynamic_data
+where source_record_fk = ?</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>CLAIM_PK</name>
+        <type>BigNumber</type>
+      </field>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>450</xloc>
+      <yloc>259</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get claimant info</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>select claimant_pk,
+claimant_weekly_wages mmclm_clmnt_weekly_wage, 
+claimant_no_dependents mmclm_clmnt_no_dependents, 
+claimant_occupation_code mmclm_clmnt_occupation_code,
+cm_get_lookup_desc('OCCUPTYPE',claimant_occupation_code,'LONG') mmclm_clmnt_occupation_desc,
+claimant_occupation mmclm_clmnt_occupation,
+employment_type_code mmclm_clmnt_empl_type_code,
+cm_get_lookup_desc('EMPLOYMENT_TYPE_CODE',employment_type_code,'LONG') mmclm_clmnt_empl_type_desc,
+employment_status_code mmclm_clmnt_empl_status_code,
+cm_get_lookup_desc('EMPLOYMENT_STATUS_CODE',employment_status_code,'LONG') mmclm_clmnt_empl_status_desc,
+employment_text mmclm_clmnt_empl_info,
+cm_get_lookup_desc('EDUCATION_LEVEL',claimant_educ_level,'LONG') mmclm_clmnt_edu_level,
+claimant_insurance_carrier mmclm_clmnt_insurance_carrier,
+nvl(cs_report.get_lookup_code('RELATION_TO_PATIENT',relation_to_patient,'LONG'),relation_to_patient) mmclm_clmnt_rel_to_patient,
+cm_get_lookup_desc('PATIENT_CLASS',patient_class,'LONG') mmclm_clmnt_class,
+clmnt.expense_pct mmclm_clmnt_exp_pct,
+clmnt.indemnity_pct mmclm_clmnt_ind_pct,
+age_at_loss mmclm_clmnt_age_at_loss,
+age_at_loss_type mmclm_clmnt_age_at_loss_type,
+cm_get_lookup_desc('MARITAL_STATUS',clmnt.marital_status,'LONG') mmclm_clmnt_marital_status,
+clmnt.char1 mmclm_clmnt_char1,
+clmnt.char2 mmclm_clmnt_char2,
+clmnt.char3 mmclm_clmnt_char3,
+clmnt.char4 mmclm_clmnt_char4,
+clmnt.char5 mmclm_clmnt_char5,
+e.client_id claimant_uniqueid,
+clmnt.primary_claimant_b MMCLM_CLMNT_PRIMARY_B
+  from claimant_coverage_xref ccx,
+       coverage_insured_xref cix,
+       claimant clmnt,
+       entity e,
+       entity_role er
+where cix.coverage_insured_xref_pk = ?
+  and cix.coverage_insured_xref_pk = ccx.coverage_insured_xref_fk
+  and ccx.claimant_fk = clmnt.claimant_pk
+  and clmnt.entity_role_fk = er.entity_role_pk
+   and er.entity_fk = e.entity_pk
+union
+select claimant_pk,
+claimant_weekly_wages mmclm_clmnt_weekly_wage, 
+claimant_no_dependents mmclm_clmnt_no_dependents, 
+claimant_occupation_code mmclm_clmnt_occupation_code,
+cm_get_lookup_desc('OCCUPTYPE',claimant_occupation_code,'LONG') mmclm_clmnt_occupation_desc,
+claimant_occupation mmclm_clmnt_occupation,
+employment_type_code mmclm_clmnt_empl_type_code,
+cm_get_lookup_desc('EMPLOYMENT_TYPE_CODE',employment_type_code,'LONG') mmclm_clmnt_empl_type_desc,
+employment_status_code mmclm_clmnt_empl_status_code,
+cm_get_lookup_desc('EMPLOYMENT_STATUS_CODE',employment_status_code,'LONG') mmclm_clmnt_empl_status_desc,
+employment_text mmclm_clmnt_empl_info,
+cm_get_lookup_desc('EDUCATION_LEVEL',claimant_educ_level,'LONG') mmclm_clmnt_edu_level,
+claimant_insurance_carrier mmclm_clmnt_insurance_carrier,
+nvl(cs_report.get_lookup_code('RELATION_TO_PATIENT',relation_to_patient,'LONG'),relation_to_patient) mmclm_clmnt_rel_to_patient,
+cm_get_lookup_desc('PATIENT_CLASS',patient_class,'LONG') mmclm_clmnt_class,
+clmnt.expense_pct mmclm_clmnt_exp_pct,
+clmnt.indemnity_pct mmclm_clmnt_ind_pct,
+age_at_loss mmclm_clmnt_age_at_loss,
+age_at_loss_type mmclm_clmnt_age_at_loss_type,
+cm_get_lookup_desc('MARITAL_STATUS',clmnt.marital_status,'LONG') mmclm_clmnt_marital_status,
+clmnt.char1 mmclm_clmnt_char1,
+clmnt.char2 mmclm_clmnt_char2,
+clmnt.char3 mmclm_clmnt_char3,
+clmnt.char4 mmclm_clmnt_char4,
+clmnt.char5 mmclm_clmnt_char5,
+e.client_id claimant_uniqueid,
+clmnt.primary_claimant_b
+  from claimant clmnt,
+       entity_role er,
+       entity e
+ where er.source_record_fk = ?
+   and er.entity_fk = e.entity_pk
+   and ? is null
+   and er.entity_role_pk = clmnt.entity_role_fk
+
+</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>COVERAGE_INSURED_XREF_PK</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>CLAIM_PK</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>COVERAGE_INSURED_XREF_PK</name>
+        <type>Number</type>
+      </field>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>450</xloc>
+      <yloc>140</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get coverage data</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <rowlimit>0</rowlimit>
+    <sql>select coverage_fk,
+       policy_fk,
+       nvl(policy_term_fk,0) policy_term_fk,
+       coverage_insured_xref_pk,
+       policy_no,
+       risk_fk,
+       incident_limit mmclm_inc_lim,
+       aggregate_limit mmclm_agg_lim,
+       deductible      mmclm_inc_ded,
+       aggregate_deductible mmclm_agg_ded,
+       inc_sir mmclm_inc_sir,
+       agg_sir mmclm_agg_sir,
+       -- The shared fields where added in 2012.1.0
+       shared_incident_limit mmclm_shared_inc_lim,
+       shared_aggregate_limit mmclm_shared_agg_lim,
+       shared_incident_deductible mmclm_shared_inc_ded,
+       shared_aggregate_deductible mmclm_shared_agg_ded,
+       shared_incident_SIR mmclm_shared_inc_SIR,
+       shared_aggregate_SIR mmclm_shared_agg_SIR,
+       limit_override       mmclm_over_inc_lim,
+       aggregate_limit_override mmclm_over_agg_lim,
+       deductible_override      mmclm_over_inc_ded,
+       aggregate_deductible_override mmclm_over_agg_ded,
+       inc_sir_override mmclm_over_inc_SIR,
+       agg_sir_override mmclm_over_agg_sir,   
+       coverage_descr mmclm_cix_coverage_desc,
+       cix.INDEMNITY_PCT mmclm_cix_indemnity_pct,
+       cix.expense_pct mmclm_cix_expense_pct,
+       cix.source_table_name cix_source_table,
+       -- Issue 178681
+       cix.incident_low_value      mmclm_cix_incident_low_value,
+       cix.incident_high_value     mmclm_cix_incident_high_value,
+       cix.aggregate_low_value     mmclm_cix_aggregate_low_value,
+       cix.aggregate_high_value    mmclm_cix_aggregate_high_value,
+       cix.policy_name             mmclm_cix_policy_name,
+       cix.retro_date              mmclm_cix_retro_date,
+       cix.policy_start_date       mmclm_cix_policy_start_date,
+       cix.policy_end_date         mmclm_cix_policy_end_date,
+       cix.form_descr              mmclm_cix_form_descr,
+       cix.limit_descr             mmclm_cix_limit_descr, 
+       cix.excess_b                mmclm_cix_excess_b,
+       cix.indemnity_res_erosion   mmclm_cix_indemnity_res_ero,
+       cix.indemnity_paid_erosion  mmclm_cix_indemnity_paid_ero,
+       cix.coverage_issue_b        mmclm_cix_coverage_issue_b,
+       cix.coverage_verified_b     mmclm_cix_coverage_verified_b,
+       cix.deductible_type         mmclm_cix_deductible_type,
+       cix.product_coverage_code   mmclm_cix_product_cov_code,
+       cix.status                  mmclm_cix_status,
+       cix.status_date             mmclm_cix_status_date,
+       cix.risk_incident_limit     mmclm_cix_risk_inc_limit,
+       cix.risk_aggregate_limit    mmclm_cix_risk_agg_limit,
+       cix.policy_incident_limit   mmclm_cix_pol_inc_limit,
+       cix.policy_aggregate_limit  mmclm_cix_pol_agg_limit,
+       cix.limit_cost_type_list    mmclm_cix_limit_cost_type,
+       cix.pl_aggregate            mmclm_cix_pl_aggregate,
+       cix.gl_aggregate            mmclm_cix_gl_aggregate,
+       cix.sir_cost_type_list      mmclm_cix_sir_cost_type_list,
+       cix.ded_cost_type_list      mmclm_cix_ded_cost_type_list
+from   coverage_insured_xref cix
+where  cix.claim_insured_fk = ?
+and    to_number(substr(cix.policy_fk,${CHUNK_POSITION},1)) in(${CHUNK_NUMBER})
+union
+select to_number(null) coverage_fk,
+       to_number(null) policy_fk,
+       to_number(null) policy_term_fk,
+       to_number(null) coverage_insured_xref_pk,
+       to_char(null) policy_no,
+       to_number(null) risk_fk,
+       to_number(null)  mmclm_inc_lim,
+       to_number(null) mmclm_agg_lim,
+       to_number(null) mmclm_inc_ded,
+       to_number(null)  mmclm_agg_ded,
+       to_number(null) mmclm_inc_sir,
+       to_number(null) mmclm_agg_sir,
+       -- The shared fields where added in 2012.1.0
+       to_number(null) mmclm_shared_inc_lim,
+       to_number(null) mmclm_shared_agg_lim,
+       to_number(null) mmclm_shared_inc_ded,
+       to_number(null) mmclm_shared_agg_ded,
+       to_number(null) mmclm_shared_inc_SIR,
+       to_number(null) mmclm_shared_agg_SIR,
+       to_number(null) mmclm_over_inc_lim,
+       to_number(null) mmclm_over_agg_lim,
+       to_number(null) mmclm_over_inc_ded,
+       to_number(null) mmclm_over_agg_ded,
+       to_number(null) mmclm_over_inc_SIR,
+       to_number(null) mmclm_over_agg_sir,   
+       to_char(null)  mmclm_cix_coverage_desc,
+       to_number(null) mmclm_cix_indemnity_pct,
+       to_number(null) mmclm_cix_expense_pct,
+       to_char(null)   cix_source_table,
+       -- Issue 178681
+       to_number(NULL)     mmclm_cix_incident_low_value,
+       to_number(NULL)     mmclm_cix_incident_high_value,
+       to_number(NULL)     mmclm_cix_aggregate_low_value,
+       to_number(NULL)     mmclm_cix_aggregate_high_value,
+       to_char(NULL)       mmclm_cix_policy_name,
+       to_date(NULL)       mmclm_cix_retro_date,
+       to_date(NULL)       mmclm_cix_policy_start_date,
+       to_date(NULL)       mmclm_cix_policy_end_date,
+       to_char(NULL)       mmclm_cix_form_descr,
+       to_char(NULL)       mmclm_cix_limit_descr, 
+       to_char(NULL)       mmclm_cix_excess_b,
+       to_number(NULL)     mmclm_cix_indemnity_res_ero,
+       to_number(NULL)     mmclm_cix_indemnity_paid_ero,
+       to_char(NULL)       mmclm_cix_coverage_issue_b,
+       to_char(NULL)       mmclm_cix_coverage_verified_b,
+       to_char(NULL)       mmclm_cix_deductible_type,
+       to_char(NULL)       mmclm_cix_product_cov_code,
+       to_char(NULL)       mmclm_cix_status,
+       to_date(NULL)       mmclm_cix_status_date,
+       to_number(NULL)     mmclm_cix_risk_inc_limit,
+       to_number(NULL)     mmclm_cix_risk_agg_limit,
+       to_number(NULL)     mmclm_cix_pol_inc_limit,
+       to_number(NULL)     mmclm_cix_pol_agg_limit,
+       to_char(NULL)       mmclm_cix_limit_cost_type,
+       to_number(NULL)     mmclm_cix_pl_aggregate,
+       to_number(NULL)     mmclm_cix_gl_aggregate,
+       to_char(NULL)       mmclm_cix_sir_cost_type_list,
+       to_char(NULL)       mmclm_cix_ded_cost_type_list
+from   claim_insured ci,
+       entity_role er
+where  ci.claim_insured_pk = ?
+and    ci.entity_role_fk = er.entity_role_pk
+and    to_number(substr(er.source_record_fk,${CHUNK_POSITION},1)) in(${CHUNK_NUMBER})
+and    not exists(select 'x'
+                 from   coverage_insured_xref cix
+                 where  cix.claim_insured_fk = ci.claim_insured_pk)
+
+
+
+
+</sql>
+    <outer_join>N</outer_join>
+    <replace_vars>Y</replace_vars>
+    <parameter>
+      <field>
+        <name>CLAIM_INSURED_PK</name>
+        <type>Number</type>
+      </field>
+      <field>
+        <name>CLAIM_INSURED_PK</name>
+        <type>Number</type>
+      </field>
+    </parameter>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>270</xloc>
+      <yloc>259</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>If field value is null</name>
+    <type>IfNull</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <replaceAllByValue/>
+    <replaceAllMask/>
+    <selectFields>N</selectFields>
+    <selectValuesType>Y</selectValuesType>
+    <setEmptyStringAll>N</setEmptyStringAll>
+    <valuetypes>
+      <valuetype>
+        <name>Date</name>
+        <value>${G_DEFAULT_DATE}</value>
+        <mask>MM/dd/yyyy</mask>
+        <set_type_empty_string>N</set_type_empty_string>
+      </valuetype>
+    </valuetypes>
+    <fields>
+      </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>86</xloc>
+      <yloc>140</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>If field value is null 2</name>
+    <type>IfNull</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <replaceAllByValue/>
+    <replaceAllMask/>
+    <selectFields>N</selectFields>
+    <selectValuesType>Y</selectValuesType>
+    <setEmptyStringAll>N</setEmptyStringAll>
+    <valuetypes>
+      <valuetype>
+        <name>Date</name>
+        <value>${G_DEFAULT_DATE}</value>
+        <mask>MM/dd/yyyy</mask>
+        <set_type_empty_string>N</set_type_empty_string>
+      </valuetype>
+    </valuetypes>
+    <fields>
+      </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>810</xloc>
+      <yloc>140</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>If field value is null 3</name>
+    <type>IfNull</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <replaceAllByValue/>
+    <replaceAllMask/>
+    <selectFields>Y</selectFields>
+    <selectValuesType>N</selectValuesType>
+    <setEmptyStringAll>N</setEmptyStringAll>
+    <valuetypes>
+      </valuetypes>
+    <fields>
+      <field>
+        <name>useLegacyDataId</name>
+        <value>N</value>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>87</xloc>
+      <yloc>573</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Load refresh date</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>4SBI_Staging</connection>
+    <sql> SELECT
+  MAX(CURRENT_REFRESH_DATE) CURRENT_REFRESH_DATE
+, MAX(LAST_REFRESH_START_TIME) LAST_REFRESH_START_TIME
+FROM DW_REFRESH_DATE </sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>86</xloc>
+      <yloc>51</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>CLM_CLOSEDDATE</name>
+        <rename>CLM_CLOSEDDATE</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>MM/dd/yyyy</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>CLM_OPENDATE</name>
+        <rename>CLM_OPENDATE</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>MM/dd/yyyy</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>MMCLM_CLAIM_STATUS_DATE</name>
+        <rename>MMCLM_CLAIM_STATUS_DATE</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>MM/dd/yyyy</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>MMCLM_CLAIM_TYPE_DATE</name>
+        <rename>MMCLM_CLAIM_TYPE_DATE</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>MM/dd/yyyy</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>MMCLM_FINAL_DISPOSTION_DATE</name>
+        <rename>MMCLM_FINAL_DISPOSTION_DATE</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>MM/dd/yyyy</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>MMCLM_INCIDENT_START_DATE</name>
+        <rename>MMCLM_INCIDENT_START_DATE</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>MM/dd/yyyy</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>MMCLM_INCIDENT_END_DATE</name>
+        <rename>MMCLM_INCIDENT_END_DATE</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>MM/dd/yyyy</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>625</xloc>
+      <yloc>140</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sequence (stgclaim_id)</name>
+    <type>Sequence</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <valuename>STGCLAIM_ID</valuename>
+    <use_database>N</use_database>
+    <connection/>
+    <schema/>
+    <seqname>SEQ_</seqname>
+    <use_counter>Y</use_counter>
+    <counter_name/>
+    <start_at>${MAX_STGCLAIM_ID}</start_at>
+    <increment_by>1</increment_by>
+    <max_value>9999999999</max_value>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>810</xloc>
+      <yloc>489</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort rows</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>100000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>claim_key</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>2</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>clm_changeEffectiveDate</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>2</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>810</xloc>
+      <yloc>362</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Split Fields claim classif. code</name>
+    <type>FieldSplitter</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <splitfield>claim_class_code_list</splitfield>
+    <delimiter>,</delimiter>
+    <enclosure/>
+    <fields>
+      <field>
+        <name>claim_class_code1</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>claim_class_code2</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>claim_class_code3</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>claim_class_code4</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>claim_class_code5</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>claim_class_code6</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>claim_class_code7</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>claim_class_code8</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>claim_class_code9</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>claim_class_code10</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>625</xloc>
+      <yloc>649</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Split Fields(claim classif desc)</name>
+    <type>FieldSplitter</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <splitfield>claim_class_desc_list</splitfield>
+    <delimiter>,</delimiter>
+    <enclosure/>
+    <fields>
+      <field>
+        <name>claim_class_desc1</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>claim_class_desc2</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>claim_class_desc3</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>claim_class_desc4</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>claim_class_desc5</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>claim_class_desc6</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>claim_class_desc7</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>claim_class_desc8</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>claim_class_desc9</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>claim_class_desc10</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>625</xloc>
+      <yloc>489</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>stg_claim</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>4SBI_Staging</connection>
+    <schema/>
+    <table>stg_claim</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>N</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>STGCLAIM_ID</column_name>
+        <stream_name>STGCLAIM_ID</stream_name>
+      </field>
+      <field>
+        <column_name>FILE_VERSION</column_name>
+        <stream_name>file_version</stream_name>
+      </field>
+      <field>
+        <column_name>SOURCE_SYSTEM</column_name>
+        <stream_name>source_system</stream_name>
+      </field>
+      <field>
+        <column_name>EXTRACT_DATE</column_name>
+        <stream_name>CURRENT_REFRESH_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>CLM_CLAIMNUMBER</column_name>
+        <stream_name>CLAIM_NO</stream_name>
+      </field>
+      <field>
+        <column_name>CLM_FEATURENUMBER</column_name>
+        <stream_name>feature_key</stream_name>
+      </field>
+      <field>
+        <column_name>CLM_GROUPNUMBER</column_name>
+        <stream_name>OCCURRENCE_NO</stream_name>
+      </field>
+      <field>
+        <column_name>CLM_TYPELOSS</column_name>
+        <stream_name>CM_LOB_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>CLM_DESCRIPTION</column_name>
+        <stream_name>HEADLINE</stream_name>
+      </field>
+      <field>
+        <column_name>CLM_CATCODE</column_name>
+        <stream_name>CATASTROPHE_NUMBER</stream_name>
+      </field>
+      <field>
+        <column_name>CLM_DATEOFLOSS</column_name>
+        <stream_name>LOSS_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>CLM_LOSSREPORTEDDATE</column_name>
+        <stream_name>REPORT_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>CLM_CLOSEDDATE</column_name>
+        <stream_name>CLM_CLOSEDDATE</stream_name>
+      </field>
+      <field>
+        <column_name>CLM_CLAIMSTATUSCD</column_name>
+        <stream_name>CLM_CLAIMSTATUSCD</stream_name>
+      </field>
+      <field>
+        <column_name>CLM_CITY</column_name>
+        <stream_name>CLAIM_CITY</stream_name>
+      </field>
+      <field>
+        <column_name>CLM_STATE</column_name>
+        <stream_name>CLAIM_STATE_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>CLM_COUNTRY</column_name>
+        <stream_name>CLAIM_COUNTRY</stream_name>
+      </field>
+      <field>
+        <column_name>CLM_COUNTY</column_name>
+        <stream_name>CLM_COUNTY</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_INC_LIM</column_name>
+        <stream_name>MMCLM_INC_LIM</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_AGG_LIM</column_name>
+        <stream_name>MMCLM_AGG_LIM</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_INC_DED</column_name>
+        <stream_name>MMCLM_INC_DED</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_AGG_DED</column_name>
+        <stream_name>MMCLM_AGG_DED</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_INC_SIR</column_name>
+        <stream_name>MMCLM_INC_SIR</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_AGG_SIR</column_name>
+        <stream_name>MMCLM_AGG_SIR</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_OVER_INC_LIM</column_name>
+        <stream_name>MMCLM_OVER_INC_LIM</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_OVER_AGG_LIM</column_name>
+        <stream_name>MMCLM_OVER_AGG_LIM</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_OVER_INC_DED</column_name>
+        <stream_name>MMCLM_OVER_INC_DED</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_OVER_AGG_DED</column_name>
+        <stream_name>MMCLM_OVER_AGG_DED</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_OVER_INC_SIR</column_name>
+        <stream_name>MMCLM_OVER_INC_SIR</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_OVER_AGG_SIR</column_name>
+        <stream_name>MMCLM_OVER_AGG_SIR</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_SHARED_INC_LIM</column_name>
+        <stream_name>MMCLM_SHARED_INC_LIM</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_SHARED_AGG_LIM</column_name>
+        <stream_name>MMCLM_SHARED_AGG_LIM</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_SHARED_INC_DED</column_name>
+        <stream_name>MMCLM_SHARED_INC_DED</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_SHARED_AGG_DED</column_name>
+        <stream_name>MMCLM_SHARED_AGG_DED</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_SHARED_INC_SIR</column_name>
+        <stream_name>MMCLM_SHARED_INC_SIR</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_SHARED_AGG_SIR</column_name>
+        <stream_name>MMCLM_SHARED_AGG_SIR</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLAIM_STATUS_DATE</column_name>
+        <stream_name>MMCLM_CLAIM_STATUS_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_SYS_CREATE_TIME</column_name>
+        <stream_name>MMCLM_SYS_CREATE_TIME</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_SYS_UPDATE_TIME</column_name>
+        <stream_name>MMCLM_SYS_UPDATE_TIME</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_SYS_CREATED_BY</column_name>
+        <stream_name>MMCLM_SYS_CREATED_BY</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_SYS_UPDATED_BY</column_name>
+        <stream_name>MMCLM_SYS_UPDATED_BY</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_BRANCH_OFFICE</column_name>
+        <stream_name>MMCLM_BRANCH_OFFICE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_BRANCH_OFFICE_DESC</column_name>
+        <stream_name>MMCLM_BRANCH_OFFICE_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_NUM1</column_name>
+        <stream_name>MMCLM_NUM1</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_NUM2</column_name>
+        <stream_name>MMCLM_NUM2</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_NUM3</column_name>
+        <stream_name>MMCLM_NUM3</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_NUM4</column_name>
+        <stream_name>MMCLM_NUM4</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_NUM5</column_name>
+        <stream_name>MMCLM_NUM5</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_DATE1</column_name>
+        <stream_name>MMCLM_DATE1</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_DATE2</column_name>
+        <stream_name>MMCLM_DATE2</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_DATE3</column_name>
+        <stream_name>MMCLM_DATE3</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_DATE4</column_name>
+        <stream_name>MMCLM_DATE4</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_DATE5</column_name>
+        <stream_name>MMCLM_DATE5</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_BOOLEAN1</column_name>
+        <stream_name>MMCLM_BOOLEAN1</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_BOOLEAN2</column_name>
+        <stream_name>MMCLM_BOOLEAN2</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_BOOLEAN3</column_name>
+        <stream_name>MMCLM_BOOLEAN3</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_BOOLEAN4</column_name>
+        <stream_name>MMCLM_BOOLEAN4</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_BOOLEAN5</column_name>
+        <stream_name>MMCLM_BOOLEAN5</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_FINAL_DISPOSITION_DESC</column_name>
+        <stream_name>MMCLM_FINAL_DISPOSTION_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_INCIDENT_START_DATE</column_name>
+        <stream_name>MMCLM_INCIDENT_START_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_INCIDENT_END_DATE</column_name>
+        <stream_name>MMCLM_INCIDENT_END_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_LOCATION_CODE</column_name>
+        <stream_name>MMCLM_LOCATION_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_LOCATION_DESC</column_name>
+        <stream_name>MMCLM_LOCATION_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_INDEX_DATE</column_name>
+        <stream_name>MMCLM_INDEX_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_REINSURANCE_B</column_name>
+        <stream_name>MMCLM_REINSURANCE_B</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CHAR1</column_name>
+        <stream_name>MMCLM_CHAR1</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CHAR2</column_name>
+        <stream_name>MMCLM_CHAR2</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CHAR3</column_name>
+        <stream_name>MMCLM_CHAR3</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CHAR4</column_name>
+        <stream_name>MMCLM_CHAR4</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CHAR5</column_name>
+        <stream_name>MMCLM_CHAR5</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CHAR6</column_name>
+        <stream_name>MMCLM_CHAR6</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CHAR7</column_name>
+        <stream_name>MMCLM_CHAR7</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CHAR8</column_name>
+        <stream_name>MMCLM_CHAR8</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CHAR9</column_name>
+        <stream_name>MMCLM_CHAR9</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CHAR10</column_name>
+        <stream_name>MMCLM_CHAR10</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLAIM_COMPANY</column_name>
+        <stream_name>MMCLM_COMPANY</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLAIM_SEVERITY_CODE</column_name>
+        <stream_name>MMCLM_CLAIM_SEVERITY_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLAIM_SEVERITY_DESC</column_name>
+        <stream_name>MMCLM_CLAIM_SEVERITY_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CURRENT_CLAIM_TYPE</column_name>
+        <stream_name>MMCLM_CURRENT_CLAIM_TYPE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CURRENT_CLAIM_TYPE_DESC</column_name>
+        <stream_name>MMCLM_CURRENT_CLAIM_TYPE_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLAIM_TYPE_DATE</column_name>
+        <stream_name>MMCLM_CLAIM_TYPE_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_LOSS_SUB_TYPE_CODE</column_name>
+        <stream_name>MMCLM_LOSS_SUB_TYPE_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_LOSS_SUB_TYPE_DESC</column_name>
+        <stream_name>MMCLM_LOSS_SUB_TYPE_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_RESPONSE_TO_CLAIM</column_name>
+        <stream_name>MMCLM_RESPONSE_TO_CLAIM</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_RESPONSE_TO_CLAIM_DESC</column_name>
+        <stream_name>MMCLM_RESPONSE_TO_CLAIM_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_TPA_B</column_name>
+        <stream_name>MMCLM_TPA_B</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_TPA_CLAIM_NO</column_name>
+        <stream_name>MMCLM_TPA_CLAIM_NO</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_JURISDICTION_CODE</column_name>
+        <stream_name>MMCLM_JURISDICTION_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_JURISDICTION_DESC</column_name>
+        <stream_name>MMCLM_JURISDICTION_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_RECEIVE_DATE</column_name>
+        <stream_name>MMCLM_RECEIVE_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CATEGORY_CODE</column_name>
+        <stream_name>MMCLM_CLAIM_CATEGORY_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_ALTERNATE_CLAIM_NO</column_name>
+        <stream_name>MMCLM_ALTERNATE_CLAIM_NO</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_ALTERNATE_CLAIM_NO_TYPE</column_name>
+        <stream_name>MMCLM_ALTERNATE_CLAIM_NO_TYPE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CASE_NAME</column_name>
+        <stream_name>MMCLM_CASE_NAME</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR1</column_name>
+        <stream_name>MMCLM_CMD_CHAR1</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR2</column_name>
+        <stream_name>MMCLM_CMD_CHAR2</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR3</column_name>
+        <stream_name>MMCLM_CMD_CHAR3</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR4</column_name>
+        <stream_name>MMCLM_CMD_CHAR4</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR5</column_name>
+        <stream_name>MMCLM_CMD_CHAR5</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR6</column_name>
+        <stream_name>MMCLM_CMD_CHAR6</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR7</column_name>
+        <stream_name>MMCLM_CMD_CHAR7</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR8</column_name>
+        <stream_name>MMCLM_CMD_CHAR8</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR9</column_name>
+        <stream_name>MMCLM_CMD_CHAR9</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR10</column_name>
+        <stream_name>MMCLM_CMD_CHAR10</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM1</column_name>
+        <stream_name>MMCLM_CMD_NUM1</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM2</column_name>
+        <stream_name>MMCLM_CMD_NUM2</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM3</column_name>
+        <stream_name>MMCLM_CMD_NUM3</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM4</column_name>
+        <stream_name>MMCLM_CMD_NUM4</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM5</column_name>
+        <stream_name>MMCLM_CMD_NUM5</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM6</column_name>
+        <stream_name>MMCLM_CMD_NUM6</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM7</column_name>
+        <stream_name>MMCLM_CMD_NUM7</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM8</column_name>
+        <stream_name>MMCLM_CMD_NUM8</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM9</column_name>
+        <stream_name>MMCLM_CMD_NUM9</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM10</column_name>
+        <stream_name>MMCLM_CMD_NUM10</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_DATE1</column_name>
+        <stream_name>MMCLM_CMD_DATE1</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_DATE2</column_name>
+        <stream_name>MMCLM_CMD_DATE2</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_DATE3</column_name>
+        <stream_name>MMCLM_CMD_DATE3</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_DATE4</column_name>
+        <stream_name>MMCLM_CMD_DATE4</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_DATE5</column_name>
+        <stream_name>MMCLM_CMD_DATE5</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_DATE6</column_name>
+        <stream_name>MMCLM_CMD_DATE6</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR11</column_name>
+        <stream_name>MMCLM_CMD_CHAR11</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR12</column_name>
+        <stream_name>MMCLM_CMD_CHAR12</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR13</column_name>
+        <stream_name>MMCLM_CMD_CHAR13</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR14</column_name>
+        <stream_name>MMCLM_CMD_CHAR14</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR15</column_name>
+        <stream_name>MMCLM_CMD_CHAR15</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR16</column_name>
+        <stream_name>MMCLM_CMD_CHAR16</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR17</column_name>
+        <stream_name>MMCLM_CMD_CHAR17</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR18</column_name>
+        <stream_name>MMCLM_CMD_CHAR18</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR19</column_name>
+        <stream_name>MMCLM_CMD_CHAR19</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR20</column_name>
+        <stream_name>MMCLM_CMD_CHAR20</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR21</column_name>
+        <stream_name>MMCLM_CMD_CHAR21</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR22</column_name>
+        <stream_name>MMCLM_CMD_CHAR22</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR23</column_name>
+        <stream_name>MMCLM_CMD_CHAR23</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR24</column_name>
+        <stream_name>MMCLM_CMD_CHAR24</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR25</column_name>
+        <stream_name>MMCLM_CMD_CHAR25</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR26</column_name>
+        <stream_name>MMCLM_CMD_CHAR26</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR27</column_name>
+        <stream_name>MMCLM_CMD_CHAR27</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR28</column_name>
+        <stream_name>MMCLM_CMD_CHAR28</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR29</column_name>
+        <stream_name>MMCLM_CMD_CHAR29</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR30</column_name>
+        <stream_name>MMCLM_CMD_CHAR30</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM11</column_name>
+        <stream_name>MMCLM_CMD_NUM11</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM12</column_name>
+        <stream_name>MMCLM_CMD_NUM12</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM13</column_name>
+        <stream_name>MMCLM_CMD_NUM13</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM14</column_name>
+        <stream_name>MMCLM_CMD_NUM14</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM15</column_name>
+        <stream_name>MMCLM_CMD_NUM15</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM16</column_name>
+        <stream_name>MMCLM_CMD_NUM16</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM17</column_name>
+        <stream_name>MMCLM_CMD_NUM17</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM18</column_name>
+        <stream_name>MMCLM_CMD_NUM18</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM19</column_name>
+        <stream_name>MMCLM_CMD_NUM19</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM20</column_name>
+        <stream_name>MMCLM_CMD_NUM20</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM21</column_name>
+        <stream_name>MMCLM_CMD_NUM21</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM22</column_name>
+        <stream_name>MMCLM_CMD_NUM22</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM23</column_name>
+        <stream_name>MMCLM_CMD_NUM23</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM24</column_name>
+        <stream_name>MMCLM_CMD_NUM24</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM25</column_name>
+        <stream_name>MMCLM_CMD_NUM25</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM26</column_name>
+        <stream_name>MMCLM_CMD_NUM26</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM27</column_name>
+        <stream_name>MMCLM_CMD_NUM27</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM28</column_name>
+        <stream_name>MMCLM_CMD_NUM28</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM29</column_name>
+        <stream_name>MMCLM_CMD_NUM29</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_NUM30</column_name>
+        <stream_name>MMCLM_CMD_NUM30</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_DATE7</column_name>
+        <stream_name>MMCLM_CMD_DATE7</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_DATE8</column_name>
+        <stream_name>MMCLM_CMD_DATE8</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_DATE9</column_name>
+        <stream_name>MMCLM_CMD_DATE9</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_DATE10</column_name>
+        <stream_name>MMCLM_CMD_DATE10</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_DATE11</column_name>
+        <stream_name>MMCLM_CMD_DATE11</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_DATE12</column_name>
+        <stream_name>MMCLM_CMD_DATE12</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_DATE13</column_name>
+        <stream_name>MMCLM_CMD_DATE13</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_DATE14</column_name>
+        <stream_name>MMCLM_CMD_DATE14</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_DATE15</column_name>
+        <stream_name>MMCLM_CMD_DATE15</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_DATE16</column_name>
+        <stream_name>MMCLM_CMD_DATE16</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_DATE17</column_name>
+        <stream_name>MMCLM_CMD_DATE17</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_DATE18</column_name>
+        <stream_name>MMCLM_CMD_DATE18</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_DATE19</column_name>
+        <stream_name>MMCLM_CMD_DATE19</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_DATE20</column_name>
+        <stream_name>MMCLM_CMD_DATE20</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR31</column_name>
+        <stream_name>MMCLM_CMD_CHAR31</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR32</column_name>
+        <stream_name>MMCLM_CMD_CHAR32</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR33</column_name>
+        <stream_name>MMCLM_CMD_CHAR33</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR34</column_name>
+        <stream_name>MMCLM_CMD_CHAR34</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR35</column_name>
+        <stream_name>MMCLM_CMD_CHAR35</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CMD_CHAR36</column_name>
+        <stream_name>MMCLM_CMD_CHAR36</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLMNT_WEEKLY_WAGE</column_name>
+        <stream_name>MMCLM_CLMNT_WEEKLY_WAGE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLMNT_NO_DEPENDENTS</column_name>
+        <stream_name>MMCLM_CLMNT_NO_DEPENDENTS</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLMNT_OCCUPATION_CODE</column_name>
+        <stream_name>MMCLM_CLMNT_OCCUPATION_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLMNT_OCCUPATION_DESC</column_name>
+        <stream_name>MMCLM_CLMNT_OCCUPATION_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLMNT_OCCUPATION</column_name>
+        <stream_name>MMCLM_CLMNT_OCCUPATION</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLMNT_EMPL_TYPE_CODE</column_name>
+        <stream_name>MMCLM_CLMNT_EMPL_TYPE_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLMNT_EMPL_TYPE_DESC</column_name>
+        <stream_name>MMCLM_CLMNT_EMPL_TYPE_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLMNT_EMPL_STATUS_CODE</column_name>
+        <stream_name>MMCLM_CLMNT_EMPL_STATUS_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLMNT_EMPL_STATUS_DESC</column_name>
+        <stream_name>MMCLM_CLMNT_EMPL_STATUS_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLMNT_EMPL_INFO</column_name>
+        <stream_name>MMCLM_CLMNT_EMPL_INFO</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLMNT_EDU_LEVEL</column_name>
+        <stream_name>MMCLM_CLMNT_EDU_LEVEL</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLMNT_INSURANCE_CARRIER</column_name>
+        <stream_name>MMCLM_CLMNT_INSURANCE_CARRIER</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLMNT_REL_TO_PATIENT</column_name>
+        <stream_name>MMCLM_CLMNT_REL_TO_PATIENT</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLMNT_CLASS</column_name>
+        <stream_name>MMCLM_CLMNT_CLASS</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLMNT_EXP_PCT</column_name>
+        <stream_name>MMCLM_CLMNT_EXP_PCT</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLMNT_IND_PCT</column_name>
+        <stream_name>MMCLM_CLMNT_IND_PCT</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLMNT_AGE_AT_LOSS</column_name>
+        <stream_name>MMCLM_CLMNT_AGE_AT_LOSS</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLMNT_AGE_AT_LOSS_TYPE</column_name>
+        <stream_name>MMCLM_CLMNT_AGE_AT_LOSS_TYPE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLMNT_MARITAL_STATUS</column_name>
+        <stream_name>MMCLM_CLMNT_MARITAL_STATUS</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLMNT_CHAR1</column_name>
+        <stream_name>MMCLM_CLMNT_CHAR1</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLMNT_CHAR2</column_name>
+        <stream_name>MMCLM_CLMNT_CHAR2</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLMNT_CHAR3</column_name>
+        <stream_name>MMCLM_CLMNT_CHAR3</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLMNT_CHAR4</column_name>
+        <stream_name>MMCLM_CLMNT_CHAR4</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLMNT_CHAR5</column_name>
+        <stream_name>MMCLM_CLMNT_CHAR5</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CI_CLAIM_SPECIALTY</column_name>
+        <stream_name>MMCLM_CI_CLAIM_SPECIALTY</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CI_CONSENT_DATE</column_name>
+        <stream_name>MMCLN_CI_CONSENT_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CI_CONSENT_TYPE</column_name>
+        <stream_name>MMCLM_CI_CONSENT_TYPE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_COVERAGE_DESC</column_name>
+        <stream_name>MMCLM_CIX_COVERAGE_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_INDEMNITY_PCT</column_name>
+        <stream_name>MMCLM_CIX_INDEMNITY_PCT</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_EXPENSE_PCT</column_name>
+        <stream_name>MMCLM_CIX_EXPENSE_PCT</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CI_SETTLEMENT_DATE</column_name>
+        <stream_name>MMCLM_CI_DEMAND_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CI_SETTLEMENT_AMT</column_name>
+        <stream_name>MMCLM_CI_DEMAND_AMT</stream_name>
+      </field>
+      <field>
+        <column_name>CLM_CHANGEEFFECTIVEDATE</column_name>
+        <stream_name>CLM_CHANGEEFFECTIVEDATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_FINAL_DISPOSITION_CODE</column_name>
+        <stream_name>MMCLM_FINAL_DISPOSTION_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_FINAL_DISPOSITION_DATE</column_name>
+        <stream_name>MMCLM_FINAL_DISPOSTION_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>CLAIM_UNIQUEID</column_name>
+        <stream_name>claim_key</stream_name>
+      </field>
+      <field>
+        <column_name>POLICY_UNIQUEID</column_name>
+        <stream_name>POL_UNIQUEID</stream_name>
+      </field>
+      <field>
+        <column_name>PRIMARYRISK_UNIQUEID</column_name>
+        <stream_name>RISK_BASE_RECORD_FK</stream_name>
+      </field>
+      <field>
+        <column_name>ADJUSTER_UNIQUEID</column_name>
+        <stream_name>ADJ_UNIQUEID</stream_name>
+      </field>
+      <field>
+        <column_name>COVERAGE_UNIQUEID</column_name>
+        <stream_name>COVERAGE_BASE_RECORD_FK</stream_name>
+      </field>
+      <field>
+        <column_name>CLAIMANT_UNIQUEID</column_name>
+        <stream_name>CLAIMANT_UNIQUEID</stream_name>
+      </field>
+      <field>
+        <column_name>CLM_POSTALCODE</column_name>
+        <stream_name>CLAIM_ZIP</stream_name>
+      </field>
+      <field>
+        <column_name>LOADDATE</column_name>
+        <stream_name>vloaddate</stream_name>
+      </field>
+      <field>
+        <column_name>CLM_CAUSELOSSCODE</column_name>
+        <stream_name>CLM_CAUSELOSSCODE</stream_name>
+      </field>
+      <field>
+        <column_name>CLM_CAUSELOSSDESCRIPTION</column_name>
+        <stream_name>CLM_CAUSELOSSDESCRIPTION</stream_name>
+      </field>
+      <field>
+        <column_name>CLM_SUBSTATUSCD</column_name>
+        <stream_name>CLM_SUBSTATUSCD</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLASSIF_CODE1</column_name>
+        <stream_name>claim_class_code1</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLASSIF_CODE2</column_name>
+        <stream_name>claim_class_code2</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLASSIF_CODE3</column_name>
+        <stream_name>claim_class_code3</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLASSIF_CODE4</column_name>
+        <stream_name>claim_class_code4</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLASSIF_CODE5</column_name>
+        <stream_name>claim_class_code5</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLASSIF_CODE6</column_name>
+        <stream_name>claim_class_code6</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLASSIF_CODE7</column_name>
+        <stream_name>claim_class_code7</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLASSIF_CODE8</column_name>
+        <stream_name>claim_class_code8</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLASSIF_CODE9</column_name>
+        <stream_name>claim_class_code9</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLASSIF_CODE10</column_name>
+        <stream_name>claim_class_code10</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLASSIF_DESC1</column_name>
+        <stream_name>claim_class_desc1</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLASSIF_DESC2</column_name>
+        <stream_name>claim_class_desc2</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLASSIF_DESC3</column_name>
+        <stream_name>claim_class_desc3</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLASSIF_DESC4</column_name>
+        <stream_name>claim_class_desc4</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLASSIF_DESC5</column_name>
+        <stream_name>claim_class_desc5</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLASSIF_DESC6</column_name>
+        <stream_name>claim_class_desc6</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLASSIF_DESC7</column_name>
+        <stream_name>claim_class_desc7</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLASSIF_DESC8</column_name>
+        <stream_name>claim_class_desc8</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLASSIF_DESC9</column_name>
+        <stream_name>claim_class_desc9</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLASSIF_DESC10</column_name>
+        <stream_name>claim_class_desc10</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_LITIGATION_B</column_name>
+        <stream_name>MMCLM_LITIGATION_B</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_PROGRAM_START_DATE</column_name>
+        <stream_name>MMCLM_PROGRAM_START_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_PROGRAM_END_DATE</column_name>
+        <stream_name>MMCLM_PROGRAM_END_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_PROGRAM_INCURRED_AMT</column_name>
+        <stream_name>MMCLM_PROGRAM_INCURRED_AMT</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_PROGRAM_SHORT_DESCR</column_name>
+        <stream_name>MMCLM_PROGRAM_SHORT_DESCR</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_LAYER_SEQ_NO</column_name>
+        <stream_name>MMCLM_LAYER_SEQ_NO</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_LAYER_NAME</column_name>
+        <stream_name>MMCLM_LAYER_NAME</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_LAYER_LOB_CODE_LIST</column_name>
+        <stream_name>MMCLM_LAYER_LOB_CODE_LIST</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_LAYER_VERIF_NEEDED_B</column_name>
+        <stream_name>MMCLM_LAYER_VERIF_NEEDED_B</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_LAYER_FULLY_ERODED_B</column_name>
+        <stream_name>MMCLM_LAYER_FULLY_ERODED_B</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_LAYER_DIFF_TO_B</column_name>
+        <stream_name>MMCLM_LAYER_DIFF_TO_B</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_LAYER_COST_CODE_LIST</column_name>
+        <stream_name>MMCLM_LAYER_COST_CODE_LIST</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_LAYER_NAMED_RISK_B</column_name>
+        <stream_name>MMCLM_LAYER_NAMED_RISK_B</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_LAYER_DIFF_TO_LIST</column_name>
+        <stream_name>MMCLM_LAYER_DIFF_TO_LIST</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_LAYER_SHRD_W_LIMIT_LIST</column_name>
+        <stream_name>MMCLM_LAYER_SHRD_W_LIMIT_LIST</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_LAYER_RES_ERODED_B</column_name>
+        <stream_name>MMCLM_LAYER_RES_ERODED_B</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_LAYER_AGG_RES_B</column_name>
+        <stream_name>MMCLM_LAYER_AGG_RES_B</stream_name>
+      </field>
+      <field>
+        <column_name>INSURED_UNIQUEID</column_name>
+        <stream_name>INSURED_UNIQUEID</stream_name>
+      </field>
+      <field>
+        <column_name>CLAIM_FK</column_name>
+        <stream_name>CLAIM_PK</stream_name>
+      </field>
+      <field>
+        <column_name>CLAIM_INSURED_FK</column_name>
+        <stream_name>CLAIM_INSURED_PK</stream_name>
+      </field>
+      <field>
+        <column_name>COVERAGE_INSURED_XREF_FK</column_name>
+        <stream_name>COVERAGE_INSURED_XREF_PK</stream_name>
+      </field>
+      <field>
+        <column_name>CLAIMANT_FK</column_name>
+        <stream_name>CLAIMANT_PK</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_FILED_DATE</column_name>
+        <stream_name>MMCLM_FILED_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>CLM_TYPELOSSDESCRIPTION</column_name>
+        <stream_name>CM_LOB_CODE_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>CLM_FEATUREDELETEFLAG</column_name>
+        <stream_name>CLM_DEL_FLAG</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLAIM_SUBTYPE_CODE</column_name>
+        <stream_name>MMCLM_CLAIM_SUBTYPE_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_NUM6</column_name>
+        <stream_name>MMCLM_NUM6</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_DATE6</column_name>
+        <stream_name>MMCLM_DATE6</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_BOOLEAN6</column_name>
+        <stream_name>MMCLM_BOOLEAN6</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CATASTROPHE_NUMBER</column_name>
+        <stream_name>MMCLM_CATASTROPHE_NUMBER</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CATEGORY_DESC</column_name>
+        <stream_name>MMCLM_CATEGORY_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLMNT_PRIMARY_B</column_name>
+        <stream_name>MMCLM_CLMNT_PRIMARY_B</stream_name>
+      </field>
+      <field>
+        <column_name>COVERAGE_PK</column_name>
+        <stream_name>COVERAGE_FK</stream_name>
+      </field>
+      <field>
+        <column_name>RISK_PK</column_name>
+        <stream_name>RISK_FK</stream_name>
+      </field>
+      <field>
+        <column_name>CLM_OPENDATE</column_name>
+        <stream_name>CLM_OPENDATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_INCIDENT_LOW_VALUE</column_name>
+        <stream_name>MMCLM_CIX_INCIDENT_LOW_VALUE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_INCIDENT_HIGH_VALUE</column_name>
+        <stream_name>MMCLM_CIX_INCIDENT_HIGH_VALUE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_AGGREGATE_LOW_VALUE</column_name>
+        <stream_name>MMCLM_CIX_AGGREGATE_LOW_VALUE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_AGGREGATE_HIGH_VALUE</column_name>
+        <stream_name>MMCLM_CIX_AGGREGATE_HIGH_VALUE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_POLICY_NAME</column_name>
+        <stream_name>MMCLM_CIX_POLICY_NAME</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_RETRO_DATE</column_name>
+        <stream_name>MMCLM_CIX_RETRO_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_POLICY_START_DATE</column_name>
+        <stream_name>MMCLM_CIX_POLICY_START_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_POLICY_END_DATE</column_name>
+        <stream_name>MMCLM_CIX_POLICY_END_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_FORM_DESCR</column_name>
+        <stream_name>MMCLM_CIX_FORM_DESCR</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_LIMIT_DESCR</column_name>
+        <stream_name>MMCLM_CIX_LIMIT_DESCR</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_EXCESS_B</column_name>
+        <stream_name>MMCLM_CIX_EXCESS_B</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_INDEMNITY_RES_ERO</column_name>
+        <stream_name>MMCLM_CIX_INDEMNITY_RES_ERO</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_INDEMNITY_PAID_ERO</column_name>
+        <stream_name>MMCLM_CIX_INDEMNITY_PAID_ERO</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_COVERAGE_ISSUE_B</column_name>
+        <stream_name>MMCLM_CIX_COVERAGE_ISSUE_B</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_COVERAGE_VERIFIED_B</column_name>
+        <stream_name>MMCLM_CIX_COVERAGE_VERIFIED_B</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_DEDUCTIBLE_TYPE</column_name>
+        <stream_name>MMCLM_CIX_DEDUCTIBLE_TYPE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_PRODUCT_COV_CODE</column_name>
+        <stream_name>MMCLM_CIX_PRODUCT_COV_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_STATUS</column_name>
+        <stream_name>MMCLM_CIX_STATUS</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_STATUS_DATE</column_name>
+        <stream_name>MMCLM_CIX_STATUS_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_RISK_INC_LIMIT</column_name>
+        <stream_name>MMCLM_CIX_RISK_INC_LIMIT</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_RISK_AGG_LIMIT</column_name>
+        <stream_name>MMCLM_CIX_RISK_AGG_LIMIT</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_POL_INC_LIMIT</column_name>
+        <stream_name>MMCLM_CIX_POL_INC_LIMIT</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_POL_AGG_LIMIT</column_name>
+        <stream_name>MMCLM_CIX_POL_AGG_LIMIT</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_LIMIT_COST_TYPE</column_name>
+        <stream_name>MMCLM_CIX_LIMIT_COST_TYPE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_PL_AGGREGATE</column_name>
+        <stream_name>MMCLM_CIX_PL_AGGREGATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_GL_AGGREGATE</column_name>
+        <stream_name>MMCLM_CIX_GL_AGGREGATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_SIR_COST_TYPE_LIST</column_name>
+        <stream_name>MMCLM_CIX_SIR_COST_TYPE_LIST</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_DED_COST_TYPE_LIST</column_name>
+        <stream_name>MMCLM_CIX_DED_COST_TYPE_LIST</stream_name>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>810</xloc>
+      <yloc>649</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step_error_handling>
+    <error>
+      <source_step>Get coverage data</source_step>
+      <target_step/>
+      <is_enabled>N</is_enabled>
+      <nr_valuename/>
+      <descriptions_valuename/>
+      <fields_valuename/>
+      <codes_valuename/>
+      <max_errors/>
+      <max_pct_errors/>
+      <min_pct_rows/>
+    </error>
+  </step_error_handling>
+  <slave-step-copy-partition-distribution>
+  </slave-step-copy-partition-distribution>
+  <slave_transformation>N</slave_transformation>
+</transformation>

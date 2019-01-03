@@ -1,0 +1,966 @@
+<job>
+  <name>SJB_Fact_Claim_Current</name>
+  <description>Job to create Fact_Claim_Current table.</description>
+  <extended_description/>
+  <job_version/>
+  <job_status>0</job_status>
+  <directory>/public/ETL/Facts/Sub-Jobs</directory>
+  <created_user>-</created_user>
+  <created_date>2013/12/03 10:17:41.688</created_date>
+  <modified_user>-</modified_user>
+  <modified_date>2016/02/19 15:08:33.812</modified_date>
+  <parameters>
+    </parameters>
+  <connection>
+    <name>4SBI_DataWarehouse</name>
+    <server>${G_DW_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_DW_DB_NAME}</database>
+    <port>${G_DW_DB_PORT}</port>
+    <username>${G_DW_DB_USERNAME}</username>
+    <password>${G_DW_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_DW_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_DW_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_DW_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <slaveservers>
+    <slaveserver>
+      <name>4Sight BI - PDI Server</name>
+      <hostname>10.0.0.21</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>joe</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Carte 1</name>
+      <hostname>localhost</hostname>
+      <port>9081</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>DI Server</name>
+      <hostname>localhost</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>joe</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_DEV</name>
+      <hostname>magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>shota</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_SERVER</name>
+      <hostname>http://magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>shota</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_TEST</name>
+      <hostname>magspentahotest</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO</name>
+      <hostname>magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO_BTS</name>
+      <hostname>129.144.25.104</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO_DEV</name>
+      <hostname>magspentahodev</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Master</name>
+      <hostname>localhost</hostname>
+      <port>8081</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SERVER1</name>
+      <hostname>LOCALHOST</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SLAVE ONE</name>
+      <hostname>192.168.2.101</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4a418bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SLAVE TWO</name>
+      <hostname>192.168.2.101</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave1</name>
+      <hostname>localhost</hostname>
+      <port>8082</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave2</name>
+      <hostname>localhost</hostname>
+      <port>8083</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave3</name>
+      <hostname>localhost</hostname>
+      <port>8084</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>local DIS</name>
+      <hostname>localhost</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>magspentahodev</name>
+      <hostname>magspentahodev</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+  </slaveservers>
+  <job-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <size_limit_lines/>
+    <interval/>
+    <timeout_days/>
+    <field>
+      <id>ID_JOB</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>JOBNAME</name>
+    </field>
+    <field>
+      <id>STATUS</id>
+      <enabled>Y</enabled>
+      <name>STATUS</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>STARTDATE</id>
+      <enabled>Y</enabled>
+      <name>STARTDATE</name>
+    </field>
+    <field>
+      <id>ENDDATE</id>
+      <enabled>Y</enabled>
+      <name>ENDDATE</name>
+    </field>
+    <field>
+      <id>LOGDATE</id>
+      <enabled>Y</enabled>
+      <name>LOGDATE</name>
+    </field>
+    <field>
+      <id>DEPDATE</id>
+      <enabled>Y</enabled>
+      <name>DEPDATE</name>
+    </field>
+    <field>
+      <id>REPLAYDATE</id>
+      <enabled>Y</enabled>
+      <name>REPLAYDATE</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>Y</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>EXECUTING_SERVER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_SERVER</name>
+    </field>
+    <field>
+      <id>EXECUTING_USER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_USER</name>
+    </field>
+    <field>
+      <id>START_JOB_ENTRY</id>
+      <enabled>N</enabled>
+      <name>START_JOB_ENTRY</name>
+    </field>
+    <field>
+      <id>CLIENT</id>
+      <enabled>N</enabled>
+      <name>CLIENT</name>
+    </field>
+  </job-log-table>
+  <jobentry-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>TRANSNAME</name>
+    </field>
+    <field>
+      <id>JOBENTRYNAME</id>
+      <enabled>Y</enabled>
+      <name>STEPNAME</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>RESULT</id>
+      <enabled>Y</enabled>
+      <name>RESULT</name>
+    </field>
+    <field>
+      <id>NR_RESULT_ROWS</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_ROWS</name>
+    </field>
+    <field>
+      <id>NR_RESULT_FILES</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_FILES</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>N</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>COPY_NR</id>
+      <enabled>N</enabled>
+      <name>COPY_NR</name>
+    </field>
+  </jobentry-log-table>
+  <channel-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>LOGGING_OBJECT_TYPE</id>
+      <enabled>Y</enabled>
+      <name>LOGGING_OBJECT_TYPE</name>
+    </field>
+    <field>
+      <id>OBJECT_NAME</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_NAME</name>
+    </field>
+    <field>
+      <id>OBJECT_COPY</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_COPY</name>
+    </field>
+    <field>
+      <id>REPOSITORY_DIRECTORY</id>
+      <enabled>Y</enabled>
+      <name>REPOSITORY_DIRECTORY</name>
+    </field>
+    <field>
+      <id>FILENAME</id>
+      <enabled>Y</enabled>
+      <name>FILENAME</name>
+    </field>
+    <field>
+      <id>OBJECT_ID</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_ID</name>
+    </field>
+    <field>
+      <id>OBJECT_REVISION</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_REVISION</name>
+    </field>
+    <field>
+      <id>PARENT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>PARENT_CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>ROOT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>ROOT_CHANNEL_ID</name>
+    </field>
+  </channel-log-table>
+  <checkpoint-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <max_nr_retries/>
+    <run_retry_period/>
+    <namespace_parameter/>
+    <save_parameters/>
+    <save_result_rows/>
+    <save_result_files/>
+    <field>
+      <id>ID_JOB_RUN</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB_RUN</name>
+    </field>
+    <field>
+      <id>ID_JOB</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>JOBNAME</name>
+    </field>
+    <field>
+      <id>NAMESPACE</id>
+      <enabled>Y</enabled>
+      <name>NAMESPACE</name>
+    </field>
+    <field>
+      <id>CHECKPOINT_NAME</id>
+      <enabled>Y</enabled>
+      <name>CHECKPOINT_NAME</name>
+    </field>
+    <field>
+      <id>CHECKPOINT_COPYNR</id>
+      <enabled>Y</enabled>
+      <name>CHECKPOINT_COPYNR</name>
+    </field>
+    <field>
+      <id>ATTEMPT_NR</id>
+      <enabled>Y</enabled>
+      <name>ATTEMPT_NR</name>
+    </field>
+    <field>
+      <id>JOB_RUN_START_DATE</id>
+      <enabled>Y</enabled>
+      <name>JOB_RUN_START_DATE</name>
+    </field>
+    <field>
+      <id>LOGDATE</id>
+      <enabled>Y</enabled>
+      <name>LOGDATE</name>
+    </field>
+    <field>
+      <id>RESULT_XML</id>
+      <enabled>Y</enabled>
+      <name>RESULT_XML</name>
+    </field>
+    <field>
+      <id>PARAMETER_XML</id>
+      <enabled>Y</enabled>
+      <name>PARAMETER_XML</name>
+    </field>
+  </checkpoint-log-table>
+  <pass_batchid>N</pass_batchid>
+  <shared_objects_file/>
+  <entries>
+    <entry>
+      <name>START</name>
+      <description/>
+      <type>SPECIAL</type>
+      <start>Y</start>
+      <dummy>N</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>61</xloc>
+      <yloc>47</yloc>
+    </entry>
+    <entry>
+      <name>Success</name>
+      <description/>
+      <type>SUCCESS</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>207</xloc>
+      <yloc>214</yloc>
+    </entry>
+    <entry>
+      <name>Simple evaluation</name>
+      <description/>
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname>${G_STAGING_LOAD_TYPE}</fieldname>
+      <variablename>${G_STAGING_LOAD_TYPE}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask/>
+      <comparevalue>ONLY,LAST,DAILY</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>inlist</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>206</xloc>
+      <yloc>47</yloc>
+    </entry>
+    <entry>
+      <name>Drop Fact_Claim_Current</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table fact_claim_current</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>T</sendOneStatement>
+      <connection>4SBI_DataWarehouse</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>556</xloc>
+      <yloc>214</yloc>
+    </entry>
+    <entry>
+      <name>Table exists</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>FACT_CLAIM_CURRENT</tablename>
+      <schemaname/>
+      <connection>4SBI_DataWarehouse</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>437</xloc>
+      <yloc>47</yloc>
+    </entry>
+    <entry>
+      <name>Create Table Fact Claim Current</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table fact_claim_current nologging
+pctfree 0
+as
+select *
+from fact_claim fc
+where fc.month_id = 
+      (select month_id
+       from   dim_month dm
+       WHERE  SYSDATE BETWEEN dm.mon_startdate AND dm.mon_enddate)</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>T</sendOneStatement>
+      <connection>4SBI_DataWarehouse</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>687</xloc>
+      <yloc>47</yloc>
+    </entry>
+    <entry>
+      <name>Create indexes on Fact_Claim_Current</name>
+      <description/>
+      <type>SQL</type>
+      <sql>alter table FACT_CLAIM_CURRENT
+  add constraint PK_FACT_CLAIM_CURRENT primary key (CLAIMSUMMARY_ID)
+  using index 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;
+
+create index IN_FCC_CLM_ADJUSTER_ID on FACT_CLAIM_CURRENT (ADJUSTER_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;
+  
+create index IN_FCC_CLM_CLAIMANT_ID on FACT_CLAIM_CURRENT (CLAIMANT_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;
+  
+create index IN_FCC_CLM_CLAIMEXT_ID on FACT_CLAIM_CURRENT (CLAIMEXTENSION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;
+  
+create index IN_FCC_CLM_CLAIM_ID on FACT_CLAIM_CURRENT (CLAIM_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;
+  
+create index IN_FCC_CLM_CLOSEDDATE_ID on FACT_CLAIM_CURRENT (CLOSEDDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;
+  
+create index IN_FCC_CLM_COMPANY_ID on FACT_CLAIM_CURRENT (COMPANY_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;
+  
+create index IN_FCC_CLM_COVERAGEEXT_ID on FACT_CLAIM_CURRENT (COVERAGEEXTENSION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;
+  
+create index IN_FCC_CLM_COVERAGE_ID on FACT_CLAIM_CURRENT (COVERAGE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;
+  
+create index IN_FCC_CLM_COVEREDRISKEXT_ID on FACT_CLAIM_CURRENT (COVEREDRISKEXTENSION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;
+  
+create index IN_FCC_CLM_COVEREDRISKLOC_ID on FACT_CLAIM_CURRENT (COVEREDRISKLOCATION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;
+  
+create index IN_FCC_CLM_COVEREDRISK_ID on FACT_CLAIM_CURRENT (COVEREDRISK_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;
+  
+create index IN_FCC_CLM_COVGEFFDATE_ID on FACT_CLAIM_CURRENT (COVERAGEEFFECTIVEDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;
+  
+create index IN_FCC_CLM_COVGEXPDATE_ID on FACT_CLAIM_CURRENT (COVERAGEEXPIRATIONDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;
+  
+create index IN_FCC_CLM_FIRSTINSURED_ID on FACT_CLAIM_CURRENT (FIRSTINSURED_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;
+  
+create index IN_FCC_CLM_LIMIT_ID on FACT_CLAIM_CURRENT (LIMIT_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;
+  
+create index IN_FCC_CLM_LOSSDATE_ID on FACT_CLAIM_CURRENT (DATEOFLOSS_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;
+  
+create index IN_FCC_CLM_LOSSLOCATION_ID on FACT_CLAIM_CURRENT (CLAIMLOSSLOCATION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;
+  
+create index IN_FCC_CLM_POLICYEFF_ID on FACT_CLAIM_CURRENT (POLICYEFFECTIVEDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;
+  
+create index IN_FCC_CLM_POLICYEXP_ID on FACT_CLAIM_CURRENT (POLICYEXPIRATIONDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;
+  
+create index IN_FCC_CLM_POLICYEXT_ID on FACT_CLAIM_CURRENT (POLICYEXTENSION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;
+  
+create index IN_FCC_CLM_POLICY_ID on FACT_CLAIM_CURRENT (POLICY_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;
+  
+create index IN_FCC_CLM_PRODUCER_ID on FACT_CLAIM_CURRENT (PRODUCER_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;
+  
+create index IN_FCC_CLM_REPORTDATE_ID on FACT_CLAIM_CURRENT (DATEREPORTED_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;
+  
+create index IN_FCC_CLM_STATUS_ID on FACT_CLAIM_CURRENT (CLAIMSTATUS_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;
+  
+create index IN_FCC_CLM_TERRITORY_ID on FACT_CLAIM_CURRENT (TERRITORY_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;
+  
+create index IN_FCC_CLM_UNDERWRITER_ID on FACT_CLAIM_CURRENT (UNDERWRITER_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0
+  NOLOGGING;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_DataWarehouse</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>791</xloc>
+      <yloc>214</yloc>
+    </entry>
+  </entries>
+  <hops>
+    <hop>
+      <from>START</from>
+      <to>Simple evaluation</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Simple evaluation</from>
+      <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Simple evaluation</from>
+      <to>Table exists</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Table exists</from>
+      <to>Drop Fact_Claim_Current</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Table exists</from>
+      <to>Create Table Fact Claim Current</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop Fact_Claim_Current</from>
+      <to>Create Table Fact Claim Current</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create Table Fact Claim Current</from>
+      <to>Create indexes on Fact_Claim_Current</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+  </hops>
+  <notepads>
+  </notepads>
+  <attributes>
+    <group>
+      <name>JobRestart</name>
+      <attribute>
+        <key>UniqueConnections</key>
+        <value>N</value>
+      </attribute>
+    </group>
+  </attributes>
+</job>

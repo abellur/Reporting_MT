@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:29 EST 2019
+file.title=TR_DEFAULT_COMPONENT
+description=Transformation to load default row to DIM_COMPONENT table.
+title=TR_DEFAULT_COMPONENT
+file.description=Transformation to load default row to DIM_COMPONENT table.

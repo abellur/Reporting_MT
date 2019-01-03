@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:37 EST 2019
+file.title=TR_DIM_AGENT
+description=Load data from OLTP AGENT table to DIM_AGENT. This a Type 1 slowly changing dimension table.
+title=TR_DIM_AGENT
+file.description=Load data from OLTP AGENT table to DIM_AGENT. This a Type 1 slowly changing dimension table.

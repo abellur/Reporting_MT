@@ -1,0 +1,2538 @@
+<job>
+  <name>jb_load_tmp_clm_mon_sum_temp1</name>
+  <description>Job to create temp tables to help Fact_Claim table load.</description>
+  <extended_description>Date         By     Description
+01/21/2016   Jma    #165162. Add new logic to create tmp_clm_mon_sum_clm_calc table when load data
+                    for first month's snapshot.
+08/30/2016   Jma    #178894. Updated query in Create tmp clm stg step to get PIAA_DATA_ID.</extended_description>
+  <job_version/>
+  <job_status>0</job_status>
+  <directory>/public/ETL/Facts</directory>
+  <created_user>-</created_user>
+  <created_date>2014/10/15 06:48:53.867</created_date>
+  <modified_user>-</modified_user>
+  <modified_date>2018/04/25 16:55:09.619</modified_date>
+  <parameters>
+    </parameters>
+  <connection>
+    <name>4SBI_Staging</name>
+    <server>${G_STAGING_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_STAGING_DB_NAME}</database>
+    <port>${G_STAGING_DB_PORT}</port>
+    <username>${G_STAGING_DB_USERNAME}</username>
+    <password>${G_STAGING_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_STAGING_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_STAGING_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_STAGING_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <slaveservers>
+    <slaveserver>
+      <name>4Sight BI - PDI Server</name>
+      <hostname>10.0.0.21</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>joe</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Carte 1</name>
+      <hostname>localhost</hostname>
+      <port>9081</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>DI Server</name>
+      <hostname>localhost</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>joe</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_DEV</name>
+      <hostname>magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>shota</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_SERVER</name>
+      <hostname>http://magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>shota</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_TEST</name>
+      <hostname>magspentahotest</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO</name>
+      <hostname>magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO_BTS</name>
+      <hostname>129.144.25.104</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO_DEV</name>
+      <hostname>magspentahodev</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Master</name>
+      <hostname>localhost</hostname>
+      <port>8081</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SERVER1</name>
+      <hostname>LOCALHOST</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SLAVE ONE</name>
+      <hostname>192.168.2.101</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4a418bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SLAVE TWO</name>
+      <hostname>192.168.2.101</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave1</name>
+      <hostname>localhost</hostname>
+      <port>8082</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave2</name>
+      <hostname>localhost</hostname>
+      <port>8083</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave3</name>
+      <hostname>localhost</hostname>
+      <port>8084</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>local DIS</name>
+      <hostname>localhost</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>magspentahodev</name>
+      <hostname>magspentahodev</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+  </slaveservers>
+  <job-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <size_limit_lines/>
+    <interval/>
+    <timeout_days/>
+    <field>
+      <id>ID_JOB</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>JOBNAME</name>
+    </field>
+    <field>
+      <id>STATUS</id>
+      <enabled>Y</enabled>
+      <name>STATUS</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>STARTDATE</id>
+      <enabled>Y</enabled>
+      <name>STARTDATE</name>
+    </field>
+    <field>
+      <id>ENDDATE</id>
+      <enabled>Y</enabled>
+      <name>ENDDATE</name>
+    </field>
+    <field>
+      <id>LOGDATE</id>
+      <enabled>Y</enabled>
+      <name>LOGDATE</name>
+    </field>
+    <field>
+      <id>DEPDATE</id>
+      <enabled>Y</enabled>
+      <name>DEPDATE</name>
+    </field>
+    <field>
+      <id>REPLAYDATE</id>
+      <enabled>Y</enabled>
+      <name>REPLAYDATE</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>Y</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>EXECUTING_SERVER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_SERVER</name>
+    </field>
+    <field>
+      <id>EXECUTING_USER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_USER</name>
+    </field>
+    <field>
+      <id>START_JOB_ENTRY</id>
+      <enabled>N</enabled>
+      <name>START_JOB_ENTRY</name>
+    </field>
+    <field>
+      <id>CLIENT</id>
+      <enabled>N</enabled>
+      <name>CLIENT</name>
+    </field>
+  </job-log-table>
+  <jobentry-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>TRANSNAME</name>
+    </field>
+    <field>
+      <id>JOBENTRYNAME</id>
+      <enabled>Y</enabled>
+      <name>STEPNAME</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>RESULT</id>
+      <enabled>Y</enabled>
+      <name>RESULT</name>
+    </field>
+    <field>
+      <id>NR_RESULT_ROWS</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_ROWS</name>
+    </field>
+    <field>
+      <id>NR_RESULT_FILES</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_FILES</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>N</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>COPY_NR</id>
+      <enabled>N</enabled>
+      <name>COPY_NR</name>
+    </field>
+  </jobentry-log-table>
+  <channel-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>LOGGING_OBJECT_TYPE</id>
+      <enabled>Y</enabled>
+      <name>LOGGING_OBJECT_TYPE</name>
+    </field>
+    <field>
+      <id>OBJECT_NAME</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_NAME</name>
+    </field>
+    <field>
+      <id>OBJECT_COPY</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_COPY</name>
+    </field>
+    <field>
+      <id>REPOSITORY_DIRECTORY</id>
+      <enabled>Y</enabled>
+      <name>REPOSITORY_DIRECTORY</name>
+    </field>
+    <field>
+      <id>FILENAME</id>
+      <enabled>Y</enabled>
+      <name>FILENAME</name>
+    </field>
+    <field>
+      <id>OBJECT_ID</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_ID</name>
+    </field>
+    <field>
+      <id>OBJECT_REVISION</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_REVISION</name>
+    </field>
+    <field>
+      <id>PARENT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>PARENT_CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>ROOT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>ROOT_CHANNEL_ID</name>
+    </field>
+  </channel-log-table>
+  <checkpoint-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <max_nr_retries/>
+    <run_retry_period/>
+    <namespace_parameter/>
+    <save_parameters/>
+    <save_result_rows/>
+    <save_result_files/>
+    <field>
+      <id>ID_JOB_RUN</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB_RUN</name>
+    </field>
+    <field>
+      <id>ID_JOB</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>JOBNAME</name>
+    </field>
+    <field>
+      <id>NAMESPACE</id>
+      <enabled>Y</enabled>
+      <name>NAMESPACE</name>
+    </field>
+    <field>
+      <id>CHECKPOINT_NAME</id>
+      <enabled>Y</enabled>
+      <name>CHECKPOINT_NAME</name>
+    </field>
+    <field>
+      <id>CHECKPOINT_COPYNR</id>
+      <enabled>Y</enabled>
+      <name>CHECKPOINT_COPYNR</name>
+    </field>
+    <field>
+      <id>ATTEMPT_NR</id>
+      <enabled>Y</enabled>
+      <name>ATTEMPT_NR</name>
+    </field>
+    <field>
+      <id>JOB_RUN_START_DATE</id>
+      <enabled>Y</enabled>
+      <name>JOB_RUN_START_DATE</name>
+    </field>
+    <field>
+      <id>LOGDATE</id>
+      <enabled>Y</enabled>
+      <name>LOGDATE</name>
+    </field>
+    <field>
+      <id>RESULT_XML</id>
+      <enabled>Y</enabled>
+      <name>RESULT_XML</name>
+    </field>
+    <field>
+      <id>PARAMETER_XML</id>
+      <enabled>Y</enabled>
+      <name>PARAMETER_XML</name>
+    </field>
+  </checkpoint-log-table>
+  <pass_batchid>N</pass_batchid>
+  <shared_objects_file/>
+  <entries>
+    <entry>
+      <name>Create tmp clm uid</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_clm_mon_sum_clm_id nologging pctfree 0
+       tablespace ${G_STAGING_DB_DATA} as
+select c.claim_uniqueid,
+       max(claim_id) claim_id
+  from tmp_clm_mon_sum_clm_uid c,
+       dim_claim dc
+ where dc.clm_uniqueid = c.claim_uniqueid
+   and valid_fromdate &lt;= ${sql_periodEndDate}
+   and valid_todate   >  ${sql_periodEndDate}
+   group by c.claim_uniqueid;
+   
+-- create claim id where we only have dim claim rows created after this period.   
+insert
+  into tmp_clm_mon_sum_clm_id   
+select dc.clm_uniqueid claim_uniqueid,
+       min(claim_id) claim_id
+  from (select claim_uniqueid
+          from tmp_clm_mon_sum_clm_uid mc
+         where not exists(select 'x'
+                    from tmp_clm_mon_sum_clm_id cid
+                   where cid.claim_uniqueid = mc.claim_uniqueid)) v,
+       dim_claim dc
+ where dc.clm_uniqueid    = v.claim_uniqueid
+   and dc.valid_fromdate > ${sql_periodEndDate}
+   group by dc.clm_uniqueid;
+commit;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>526</xloc>
+      <yloc>91</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp clm calc</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_clm_mon_sum_clm_calc nologging pctfree 0
+       tablespace ${G_STAGING_DB_DATA} as
+select fc.claim_uniqueid,
+      nvl(v.loss_pd_amt, 0) loss_pd_amt, 
+      nvl(v.loss_rsrv_chng_amt, 0) loss_rsrv_chng_amt, 
+      nvl(v.alc_exp_pd_amt, 0) alc_exp_pd_amt, 
+      nvl(v.alc_exp_rsrv_chng_amt, 0) alc_exp_rsrv_chng_amt, 
+      nvl(v.ualc_exp_pd_amt, 0) ualc_exp_pd_amt, 
+      nvl(v.ualc_exp_rsrv_chng_amt, 0) ualc_exp_rsrv_chng_amt, 
+      nvl(v.subro_recv_chng_amt, 0) subro_recv_chng_amt, 
+      nvl(v.subro_rsrv_chng_amt, 0) subro_rsrv_chng_amt, 
+      nvl(v.subro_paid_chng_amt, 0) subro_paid_chng_amt, 
+      nvl(v.salvage_recv_chng_amt, 0) salvage_recv_chng_amt, 
+      nvl(v.salvage_rsrv_chng_amt, 0) salvage_rsrv_chng_amt, 
+      nvl(v.dedrecov_recv_chng_amt, 0) dedrecov_recv_chng_amt, 
+      nvl(v.dedrecov_rsrv_chng_amt, 0) dedrecov_rsrv_chng_amt, 
+      nvl(v.alc_exp_recovery_amt, 0) alc_exp_recovery_amt, 
+      nvl(v.loss_recovery_amt, 0) loss_recovery_amt, 
+      nvl(v.other_recovery_amt, 0) other_recovery_amt, 
+      nvl(v.usr_def_sum1, 0) usr_def_sum1, 
+      nvl(v.usr_def_sum2, 0) usr_def_sum2, 
+      nvl(v.usr_def_sum3, 0) usr_def_sum3, 
+      nvl(v.usr_def_sum4, 0) usr_def_sum4, 
+      nvl(v.usr_def_sum5, 0) usr_def_sum5, 
+      nvl(v.usr_def_sum6, 0) usr_def_sum6, 
+      nvl(v.usr_def_sum7, 0) usr_def_sum7, 
+      nvl(v.usr_def_sum8, 0) usr_def_sum8, 
+      nvl(v.usr_def_sum9, 0) usr_def_sum9, 
+      nvl(v.usr_def_sum10, 0) usr_def_sum10, 
+      nvl(v.usr_def_sum11, 0) usr_def_sum11, 
+      nvl(v.usr_def_sum12, 0) usr_def_sum12, 
+      nvl(v.usr_def_sum13, 0) usr_def_sum13, 
+      nvl(v.usr_def_sum14, 0) usr_def_sum14, 
+      nvl(v.usr_def_sum15, 0) usr_def_sum15, 
+      nvl(v.usr_def_sum16, 0) usr_def_sum16, 
+      nvl(v.usr_def_sum17, 0) usr_def_sum17, 
+      nvl(v.usr_def_sum18, 0) usr_def_sum18, 
+      nvl(v.usr_def_sum19, 0) usr_def_sum19, 
+      nvl(v.usr_def_sum20, 0) usr_def_sum20, 
+      nvl(v.usr_def_sum21, 0) usr_def_sum21, 
+      nvl(v.usr_def_sum22, 0) usr_def_sum22, 
+      nvl(v.usr_def_sum23, 0) usr_def_sum23, 
+      nvl(v.usr_def_sum24, 0) usr_def_sum24, 
+      nvl(v.usr_def_sum25, 0) usr_def_sum25, 
+      nvl(v.usr_def_sum26, 0) usr_def_sum26, 
+      nvl(v.usr_def_sum27, 0) usr_def_sum27, 
+      nvl(v.usr_def_sum28, 0) usr_def_sum28, 
+      nvl(v.usr_def_sum29, 0) usr_def_sum29, 
+      nvl(v.usr_def_sum30, 0) usr_def_sum30, 
+      nvl(v.usr_def_sum31, 0) usr_def_sum31, 
+      nvl(v.usr_def_sum32, 0) usr_def_sum32, 
+      nvl(v.usr_def_sum33, 0) usr_def_sum33, 
+      nvl(v.usr_def_sum34, 0) usr_def_sum34, 
+      nvl(v.usr_def_sum35, 0) usr_def_sum35, 
+      nvl(v.usr_def_sum36, 0) usr_def_sum36, 
+      nvl(v.usr_def_sum37, 0) usr_def_sum37, 
+      nvl(v.usr_def_sum38, 0) usr_def_sum38, 
+      nvl(v.usr_def_sum39, 0) usr_def_sum39, 
+      nvl(v.usr_def_sum40, 0) usr_def_sum40, 
+      nvl(v.usr_def_sum41, 0) usr_def_sum41, 
+      nvl(v.usr_def_sum42, 0) usr_def_sum42, 
+      nvl(v.usr_def_sum43, 0) usr_def_sum43, 
+      nvl(v.usr_def_sum44, 0) usr_def_sum44, 
+      nvl(v.usr_def_sum45, 0) usr_def_sum45, 
+      nvl(v.usr_def_sum46, 0) usr_def_sum46, 
+      nvl(v.usr_def_sum47, 0) usr_def_sum47, 
+      nvl(v.usr_def_sum48, 0) usr_def_sum48, 
+      nvl(v.usr_def_sum49, 0) usr_def_sum49, 
+      nvl(v.usr_def_sum50, 0) usr_def_sum50, 
+decode(${periodMonth},1,0 + nvl(v.loss_pd_amt,0),loss_pd_amt_ytd + nvl(v.loss_pd_amt,0)) loss_pd_amt_ytd,
+decode(${periodMonth},1,0 + nvl(v.loss_rsrv_chng_amt,0),loss_rsrv_chng_amt_ytd + nvl(v.loss_rsrv_chng_amt,0)) loss_rsrv_chng_amt_ytd,
+decode(${periodMonth},1,0 + nvl(v.alc_exp_pd_amt,0),alc_exp_pd_amt_ytd + nvl(v.alc_exp_pd_amt,0)) alc_exp_pd_amt_ytd,
+decode(${periodMonth},1,0 + nvl(v.alc_exp_rsrv_chng_amt,0),alc_exp_rsrv_chng_amt_ytd + nvl(v.alc_exp_rsrv_chng_amt,0)) alc_exp_rsrv_chng_amt_ytd,
+decode(${periodMonth},1,0 + nvl(v.ualc_exp_pd_amt,0),ualc_exp_pd_amt_ytd + nvl(v.ualc_exp_pd_amt,0)) ualc_exp_pd_amt_ytd,
+decode(${periodMonth},1,0 + nvl(v.ualc_exp_rsrv_chng_amt,0),ualc_exp_rsrv_chng_amt_ytd + nvl(v.ualc_exp_rsrv_chng_amt,0)) ualc_exp_rsrv_chng_amt_ytd,
+decode(${periodMonth},1,0 + nvl(v.subro_recv_chng_amt,0),subro_recv_chng_amt_ytd + nvl(v.subro_recv_chng_amt,0)) subro_recv_chng_amt_ytd,
+decode(${periodMonth},1,0 + nvl(v.subro_rsrv_chng_amt,0),subro_rsrv_chng_amt_ytd + nvl(v.subro_rsrv_chng_amt,0)) subro_rsrv_chng_amt_ytd,
+decode(${periodMonth},1,0 + nvl(v.subro_paid_chng_amt,0),subro_paid_chng_amt_ytd + nvl(v.subro_paid_chng_amt,0)) subro_paid_chng_amt_ytd,
+decode(${periodMonth},1,0 + nvl(v.salvage_recv_chng_amt,0),salvage_recv_chng_amt_ytd + nvl(v.salvage_recv_chng_amt,0)) salvage_recv_chng_amt_ytd,
+decode(${periodMonth},1,0 + nvl(v.salvage_rsrv_chng_amt,0),salvage_rsrv_chng_amt_ytd + nvl(v.salvage_rsrv_chng_amt,0)) salvage_rsrv_chng_amt_ytd,
+decode(${periodMonth},1,0 + nvl(v.dedrecov_recv_chng_amt,0),dedrecov_recv_chng_amt_ytd + nvl(v.dedrecov_recv_chng_amt,0)) dedrecov_recv_chng_amt_ytd,
+decode(${periodMonth},1,0 + nvl(v.dedrecov_rsrv_chng_amt,0),dedrecov_rsrv_chng_amt_ytd + nvl(v.dedrecov_rsrv_chng_amt,0)) dedrecov_rsrv_chng_amt_ytd,
+decode(${periodMonth},1,0 + nvl(v.alc_exp_recovery_amt,0),alc_exp_recovery_amt_ytd + nvl(v.alc_exp_recovery_amt,0)) alc_exp_recovery_amt_ytd,
+decode(${periodMonth},1,0 + nvl(v.loss_recovery_amt,0),loss_recovery_amt_ytd + nvl(v.loss_recovery_amt,0)) loss_recovery_amt_ytd,
+decode(${periodMonth},1,0 + nvl(v.other_recovery_amt,0),other_recovery_amt_ytd + nvl(v.other_recovery_amt,0)) other_recovery_amt_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum1,0),usr_def_sum1_ytd + nvl(v.usr_def_sum1,0)) usr_def_sum1_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum2,0),usr_def_sum2_ytd + nvl(v.usr_def_sum2,0)) usr_def_sum2_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum3,0),usr_def_sum3_ytd + nvl(v.usr_def_sum3,0)) usr_def_sum3_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum4,0),usr_def_sum4_ytd + nvl(v.usr_def_sum4,0)) usr_def_sum4_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum5,0),usr_def_sum5_ytd + nvl(v.usr_def_sum5,0)) usr_def_sum5_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum6,0),usr_def_sum6_ytd + nvl(v.usr_def_sum6,0)) usr_def_sum6_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum7,0),usr_def_sum7_ytd + nvl(v.usr_def_sum7,0)) usr_def_sum7_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum8,0),usr_def_sum8_ytd + nvl(v.usr_def_sum8,0)) usr_def_sum8_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum9,0),usr_def_sum9_ytd + nvl(v.usr_def_sum9,0)) usr_def_sum9_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum10,0),usr_def_sum10_ytd + nvl(v.usr_def_sum10,0)) usr_def_sum10_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum11,0),usr_def_sum11_ytd + nvl(v.usr_def_sum11,0)) usr_def_sum11_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum12,0),usr_def_sum12_ytd + nvl(v.usr_def_sum12,0)) usr_def_sum12_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum13,0),usr_def_sum13_ytd + nvl(v.usr_def_sum13,0)) usr_def_sum13_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum14,0),usr_def_sum14_ytd + nvl(v.usr_def_sum14,0)) usr_def_sum14_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum15,0),usr_def_sum15_ytd + nvl(v.usr_def_sum15,0)) usr_def_sum15_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum16,0),usr_def_sum16_ytd + nvl(v.usr_def_sum16,0)) usr_def_sum16_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum17,0),usr_def_sum17_ytd + nvl(v.usr_def_sum17,0)) usr_def_sum17_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum18,0),usr_def_sum18_ytd + nvl(v.usr_def_sum18,0)) usr_def_sum18_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum19,0),usr_def_sum19_ytd + nvl(v.usr_def_sum19,0)) usr_def_sum19_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum20,0),usr_def_sum20_ytd + nvl(v.usr_def_sum20,0)) usr_def_sum20_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum21,0),usr_def_sum21_ytd + nvl(v.usr_def_sum21,0)) usr_def_sum21_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum22,0),usr_def_sum22_ytd + nvl(v.usr_def_sum22,0)) usr_def_sum22_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum23,0),usr_def_sum23_ytd + nvl(v.usr_def_sum23,0)) usr_def_sum23_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum24,0),usr_def_sum24_ytd + nvl(v.usr_def_sum24,0)) usr_def_sum24_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum25,0),usr_def_sum25_ytd + nvl(v.usr_def_sum25,0)) usr_def_sum25_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum26,0),usr_def_sum26_ytd + nvl(v.usr_def_sum26,0)) usr_def_sum26_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum27,0),usr_def_sum27_ytd + nvl(v.usr_def_sum27,0)) usr_def_sum27_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum28,0),usr_def_sum28_ytd + nvl(v.usr_def_sum28,0)) usr_def_sum28_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum29,0),usr_def_sum29_ytd + nvl(v.usr_def_sum29,0)) usr_def_sum29_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum30,0),usr_def_sum30_ytd + nvl(v.usr_def_sum30,0)) usr_def_sum30_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum31,0),usr_def_sum31_ytd + nvl(v.usr_def_sum31,0)) usr_def_sum31_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum32,0),usr_def_sum32_ytd + nvl(v.usr_def_sum32,0)) usr_def_sum32_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum33,0),usr_def_sum33_ytd + nvl(v.usr_def_sum33,0)) usr_def_sum33_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum34,0),usr_def_sum34_ytd + nvl(v.usr_def_sum34,0)) usr_def_sum34_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum35,0),usr_def_sum35_ytd + nvl(v.usr_def_sum35,0)) usr_def_sum35_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum36,0),usr_def_sum36_ytd + nvl(v.usr_def_sum36,0)) usr_def_sum36_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum37,0),usr_def_sum37_ytd + nvl(v.usr_def_sum37,0)) usr_def_sum37_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum38,0),usr_def_sum38_ytd + nvl(v.usr_def_sum38,0)) usr_def_sum38_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum39,0),usr_def_sum39_ytd + nvl(v.usr_def_sum39,0)) usr_def_sum39_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum40,0),usr_def_sum40_ytd + nvl(v.usr_def_sum40,0)) usr_def_sum40_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum41,0),usr_def_sum41_ytd + nvl(v.usr_def_sum41,0)) usr_def_sum41_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum42,0),usr_def_sum42_ytd + nvl(v.usr_def_sum42,0)) usr_def_sum42_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum43,0),usr_def_sum43_ytd + nvl(v.usr_def_sum43,0)) usr_def_sum43_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum44,0),usr_def_sum44_ytd + nvl(v.usr_def_sum44,0)) usr_def_sum44_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum45,0),usr_def_sum45_ytd + nvl(v.usr_def_sum45,0)) usr_def_sum45_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum46,0),usr_def_sum46_ytd + nvl(v.usr_def_sum46,0)) usr_def_sum46_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum47,0),usr_def_sum47_ytd + nvl(v.usr_def_sum47,0)) usr_def_sum47_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum48,0),usr_def_sum48_ytd + nvl(v.usr_def_sum48,0)) usr_def_sum48_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum49,0),usr_def_sum49_ytd + nvl(v.usr_def_sum49,0)) usr_def_sum49_ytd,
+decode(${periodMonth},1,0 + nvl(v.usr_def_sum50,0),usr_def_sum50_ytd + nvl(v.usr_def_sum50,0)) usr_def_sum50_ytd,
+      fc.loss_pd_amt_itd + nvl(v.loss_pd_amt,0) loss_pd_amt_itd, 
+      fc.loss_rsrv_chng_amt_itd + nvl(v.loss_rsrv_chng_amt,0) loss_rsrv_chng_amt_itd, 
+      fc.alc_exp_pd_amt_itd + nvl(v.alc_exp_pd_amt,0) alc_exp_pd_amt_itd, 
+      fc.alc_exp_rsrv_chng_amt_itd + nvl(v.alc_exp_rsrv_chng_amt,0) alc_exp_rsrv_chng_amt_itd, 
+      fc.ualc_exp_pd_amt_itd + nvl(v.ualc_exp_pd_amt,0) ualc_exp_pd_amt_itd, 
+      fc.ualc_exp_rsrv_chng_amt_itd + nvl(v.ualc_exp_rsrv_chng_amt,0) ualc_exp_rsrv_chng_amt_itd, 
+      fc.subro_recv_chng_amt_itd + nvl(v.subro_recv_chng_amt,0) subro_recv_chng_amt_itd, 
+      fc.subro_rsrv_chng_amt_itd + nvl(v.subro_rsrv_chng_amt,0) subro_rsrv_chng_amt_itd, 
+      fc.subro_paid_chng_amt_itd + nvl(v.subro_paid_chng_amt,0) subro_paid_chng_amt_itd, 
+      fc.salvage_recv_chng_amt_itd + nvl(v.salvage_recv_chng_amt,0) salvage_recv_chng_amt_itd, 
+      fc.salvage_rsrv_chng_amt_itd + nvl(v.salvage_rsrv_chng_amt,0) salvage_rsrv_chng_amt_itd, 
+      fc.dedrecov_recv_chng_amt_itd + nvl(v.dedrecov_recv_chng_amt,0) dedrecov_recv_chng_amt_itd, 
+      fc.dedrecov_rsrv_chng_amt_itd + nvl(v.dedrecov_rsrv_chng_amt,0) dedrecov_rsrv_chng_amt_itd, 
+      fc.alc_exp_recovery_amt_itd + nvl(v.alc_exp_recovery_amt,0) alc_exp_recovery_amt_itd, 
+      fc.loss_recovery_amt_itd + nvl(v.loss_recovery_amt,0) loss_recovery_amt_itd, 
+      fc.other_recovery_amt_itd + nvl(v.other_recovery_amt,0) other_recovery_amt_itd, 
+      fc.usr_def_sum1_itd + nvl(v.usr_def_sum1,0) usr_def_sum1_itd, 
+      fc.usr_def_sum2_itd + nvl(v.usr_def_sum2,0) usr_def_sum2_itd, 
+      fc.usr_def_sum3_itd + nvl(v.usr_def_sum3,0) usr_def_sum3_itd, 
+      fc.usr_def_sum4_itd + nvl(v.usr_def_sum4,0) usr_def_sum4_itd, 
+      fc.usr_def_sum5_itd + nvl(v.usr_def_sum5,0) usr_def_sum5_itd, 
+      fc.usr_def_sum6_itd + nvl(v.usr_def_sum6,0) usr_def_sum6_itd, 
+      fc.usr_def_sum7_itd + nvl(v.usr_def_sum7,0) usr_def_sum7_itd, 
+      fc.usr_def_sum8_itd + nvl(v.usr_def_sum8,0) usr_def_sum8_itd, 
+      fc.usr_def_sum9_itd + nvl(v.usr_def_sum9,0) usr_def_sum9_itd, 
+      fc.usr_def_sum10_itd + nvl(v.usr_def_sum10,0) usr_def_sum10_itd, 
+      fc.usr_def_sum11_itd + nvl(v.usr_def_sum11,0) usr_def_sum11_itd, 
+      fc.usr_def_sum12_itd + nvl(v.usr_def_sum12,0) usr_def_sum12_itd, 
+      fc.usr_def_sum13_itd + nvl(v.usr_def_sum13,0) usr_def_sum13_itd, 
+      fc.usr_def_sum14_itd + nvl(v.usr_def_sum14,0) usr_def_sum14_itd, 
+      fc.usr_def_sum15_itd + nvl(v.usr_def_sum15,0) usr_def_sum15_itd, 
+      fc.usr_def_sum16_itd + nvl(v.usr_def_sum16,0) usr_def_sum16_itd, 
+      fc.usr_def_sum17_itd + nvl(v.usr_def_sum17,0) usr_def_sum17_itd, 
+      fc.usr_def_sum18_itd + nvl(v.usr_def_sum18,0) usr_def_sum18_itd, 
+      fc.usr_def_sum19_itd + nvl(v.usr_def_sum19,0) usr_def_sum19_itd, 
+      fc.usr_def_sum20_itd + nvl(v.usr_def_sum20,0) usr_def_sum20_itd, 
+      fc.usr_def_sum21_itd + nvl(v.usr_def_sum21,0) usr_def_sum21_itd, 
+      fc.usr_def_sum22_itd + nvl(v.usr_def_sum22,0) usr_def_sum22_itd, 
+      fc.usr_def_sum23_itd + nvl(v.usr_def_sum23,0) usr_def_sum23_itd, 
+      fc.usr_def_sum24_itd + nvl(v.usr_def_sum24,0) usr_def_sum24_itd, 
+      fc.usr_def_sum25_itd + nvl(v.usr_def_sum25,0) usr_def_sum25_itd, 
+      fc.usr_def_sum26_itd + nvl(v.usr_def_sum26,0) usr_def_sum26_itd, 
+      fc.usr_def_sum27_itd + nvl(v.usr_def_sum27,0) usr_def_sum27_itd, 
+      fc.usr_def_sum28_itd + nvl(v.usr_def_sum28,0) usr_def_sum28_itd, 
+      fc.usr_def_sum29_itd + nvl(v.usr_def_sum29,0) usr_def_sum29_itd, 
+      fc.usr_def_sum30_itd + nvl(v.usr_def_sum30,0) usr_def_sum30_itd, 
+      fc.usr_def_sum31_itd + nvl(v.usr_def_sum31,0) usr_def_sum31_itd, 
+      fc.usr_def_sum32_itd + nvl(v.usr_def_sum32,0) usr_def_sum32_itd, 
+      fc.usr_def_sum33_itd + nvl(v.usr_def_sum33,0) usr_def_sum33_itd, 
+      fc.usr_def_sum34_itd + nvl(v.usr_def_sum34,0) usr_def_sum34_itd, 
+      fc.usr_def_sum35_itd + nvl(v.usr_def_sum35,0) usr_def_sum35_itd, 
+      fc.usr_def_sum36_itd + nvl(v.usr_def_sum36,0) usr_def_sum36_itd, 
+      fc.usr_def_sum37_itd + nvl(v.usr_def_sum37,0) usr_def_sum37_itd, 
+      fc.usr_def_sum38_itd + nvl(v.usr_def_sum38,0) usr_def_sum38_itd, 
+      fc.usr_def_sum39_itd + nvl(v.usr_def_sum39,0) usr_def_sum39_itd, 
+      fc.usr_def_sum40_itd + nvl(v.usr_def_sum40,0) usr_def_sum40_itd, 
+      fc.usr_def_sum41_itd + nvl(v.usr_def_sum41,0) usr_def_sum41_itd, 
+      fc.usr_def_sum42_itd + nvl(v.usr_def_sum42,0) usr_def_sum42_itd, 
+      fc.usr_def_sum43_itd + nvl(v.usr_def_sum43,0) usr_def_sum43_itd, 
+      fc.usr_def_sum44_itd + nvl(v.usr_def_sum44,0) usr_def_sum44_itd, 
+      fc.usr_def_sum45_itd + nvl(v.usr_def_sum45,0) usr_def_sum45_itd, 
+      fc.usr_def_sum46_itd + nvl(v.usr_def_sum46,0) usr_def_sum46_itd, 
+      fc.usr_def_sum47_itd + nvl(v.usr_def_sum47,0) usr_def_sum47_itd, 
+      fc.usr_def_sum48_itd + nvl(v.usr_def_sum48,0) usr_def_sum48_itd, 
+      fc.usr_def_sum49_itd + nvl(v.usr_def_sum49,0) usr_def_sum49_itd, 
+      fc.usr_def_sum50_itd + nvl(v.usr_def_sum50,0) usr_def_sum50_itd       
+from (
+select claim_uniqueid,
+       loss_pd_amt,
+       loss_rsrv_chng_amt,
+       alc_exp_pd_amt,
+       alc_exp_rsrv_chng_amt,
+       ualc_exp_pd_amt,
+       ualc_exp_rsrv_chng_amt,
+       subro_recv_chng_amt,
+       subro_paid_chng_amt,
+       subro_rsrv_chng_amt,
+       salvage_recv_chng_amt,
+       salvage_rsrv_chng_amt,
+       dedrecov_recv_chng_amt,
+       dedrecov_rsrv_chng_amt,
+       alc_exp_recovery_amt,
+       loss_recovery_amt,
+       other_recovery_amt,
+       usr_def_sum1,
+       usr_def_sum2,
+       usr_def_sum3,
+       usr_def_sum4,
+       usr_def_sum5,
+       usr_def_sum6,
+       usr_def_sum7,
+       usr_def_sum8,
+       usr_def_sum9,
+       usr_def_sum10,
+       usr_def_sum11,
+       usr_def_sum12,
+       usr_def_sum13,
+       usr_def_sum14,
+       usr_def_sum15,
+       usr_def_sum16,
+       usr_def_sum17,
+       usr_def_sum18,
+       usr_def_sum19,
+       usr_def_sum20,
+       usr_def_sum21,
+       usr_def_sum22,
+       usr_def_sum23,
+       usr_def_sum24,
+       usr_def_sum25,
+       usr_def_sum26,
+       usr_def_sum27,
+       usr_def_sum28,
+       usr_def_sum29,
+       usr_def_sum30,
+       usr_def_sum31,
+       usr_def_sum32,
+       usr_def_sum33,
+       usr_def_sum34,
+       usr_def_sum35,
+       usr_def_sum36,
+       usr_def_sum37,
+       usr_def_sum38,
+       usr_def_sum39,
+       usr_def_sum40,
+       usr_def_sum41,
+       usr_def_sum42,
+       usr_def_sum43,
+       usr_def_sum44,
+       usr_def_sum45,
+       usr_def_sum46,
+       usr_def_sum47,
+       usr_def_sum48,
+       usr_def_sum49,
+       usr_def_sum50
+FROM tmp_clm_mon_sum_clm_precalc pre
+WHERE pre.month_id = ${month_id} ) v,
+  fact_claim fc
+  where v.claim_uniqueid(+) = fc.claim_uniqueid
+    and fc.month_id = ${priorMonth_id};
+
+insert
+  into tmp_clm_mon_sum_clm_calc
+select v.claim_uniqueid,
+      nvl(v.loss_pd_amt, 0) loss_pd_amt, 
+      nvl(v.loss_rsrv_chng_amt, 0) loss_rsrv_chng_amt, 
+      nvl(v.alc_exp_pd_amt, 0) alc_exp_pd_amt, 
+      nvl(v.alc_exp_rsrv_chng_amt, 0) alc_exp_rsrv_chng_amt, 
+      nvl(v.ualc_exp_pd_amt, 0) ualc_exp_pd_amt, 
+      nvl(v.ualc_exp_rsrv_chng_amt, 0) ualc_exp_rsrv_chng_amt, 
+      nvl(v.subro_recv_chng_amt, 0) subro_recv_chng_amt, 
+      nvl(v.subro_rsrv_chng_amt, 0) subro_rsrv_chng_amt, 
+      nvl(v.subro_paid_chng_amt, 0) subro_paid_chng_amt, 
+      nvl(v.salvage_recv_chng_amt, 0) salvage_recv_chng_amt, 
+      nvl(v.salvage_rsrv_chng_amt, 0) salvage_rsrv_chng_amt, 
+      nvl(v.dedrecov_recv_chng_amt, 0) dedrecov_recv_chng_amt, 
+      nvl(v.dedrecov_rsrv_chng_amt, 0) dedrecov_rsrv_chng_amt, 
+      nvl(v.alc_exp_recovery_amt, 0) alc_exp_recovery_amt, 
+      nvl(v.loss_recovery_amt, 0) loss_recovery_amt, 
+      nvl(v.other_recovery_amt, 0) other_recovery_amt, 
+      nvl(v.usr_def_sum1, 0) usr_def_sum1, 
+      nvl(v.usr_def_sum2, 0) usr_def_sum2, 
+      nvl(v.usr_def_sum3, 0) usr_def_sum3, 
+      nvl(v.usr_def_sum4, 0) usr_def_sum4, 
+      nvl(v.usr_def_sum5, 0) usr_def_sum5, 
+      nvl(v.usr_def_sum6, 0) usr_def_sum6, 
+      nvl(v.usr_def_sum7, 0) usr_def_sum7, 
+      nvl(v.usr_def_sum8, 0) usr_def_sum8, 
+      nvl(v.usr_def_sum9, 0) usr_def_sum9, 
+      nvl(v.usr_def_sum10, 0) usr_def_sum10, 
+      nvl(v.usr_def_sum11, 0) usr_def_sum11, 
+      nvl(v.usr_def_sum12, 0) usr_def_sum12, 
+      nvl(v.usr_def_sum13, 0) usr_def_sum13, 
+      nvl(v.usr_def_sum14, 0) usr_def_sum14, 
+      nvl(v.usr_def_sum15, 0) usr_def_sum15, 
+      nvl(v.usr_def_sum16, 0) usr_def_sum16, 
+      nvl(v.usr_def_sum17, 0) usr_def_sum17, 
+      nvl(v.usr_def_sum18, 0) usr_def_sum18, 
+      nvl(v.usr_def_sum19, 0) usr_def_sum19, 
+      nvl(v.usr_def_sum20, 0) usr_def_sum20, 
+      nvl(v.usr_def_sum21, 0) usr_def_sum21, 
+      nvl(v.usr_def_sum22, 0) usr_def_sum22, 
+      nvl(v.usr_def_sum23, 0) usr_def_sum23, 
+      nvl(v.usr_def_sum24, 0) usr_def_sum24, 
+      nvl(v.usr_def_sum25, 0) usr_def_sum25, 
+      nvl(v.usr_def_sum26, 0) usr_def_sum26, 
+      nvl(v.usr_def_sum27, 0) usr_def_sum27, 
+      nvl(v.usr_def_sum28, 0) usr_def_sum28, 
+      nvl(v.usr_def_sum29, 0) usr_def_sum29, 
+      nvl(v.usr_def_sum30, 0) usr_def_sum30, 
+      nvl(v.usr_def_sum31, 0) usr_def_sum31, 
+      nvl(v.usr_def_sum32, 0) usr_def_sum32, 
+      nvl(v.usr_def_sum33, 0) usr_def_sum33, 
+      nvl(v.usr_def_sum34, 0) usr_def_sum34, 
+      nvl(v.usr_def_sum35, 0) usr_def_sum35, 
+      nvl(v.usr_def_sum36, 0) usr_def_sum36, 
+      nvl(v.usr_def_sum37, 0) usr_def_sum37, 
+      nvl(v.usr_def_sum38, 0) usr_def_sum38, 
+      nvl(v.usr_def_sum39, 0) usr_def_sum39, 
+      nvl(v.usr_def_sum40, 0) usr_def_sum40, 
+      nvl(v.usr_def_sum41, 0) usr_def_sum41, 
+      nvl(v.usr_def_sum42, 0) usr_def_sum42, 
+      nvl(v.usr_def_sum43, 0) usr_def_sum43, 
+      nvl(v.usr_def_sum44, 0) usr_def_sum44, 
+      nvl(v.usr_def_sum45, 0) usr_def_sum45, 
+      nvl(v.usr_def_sum46, 0) usr_def_sum46, 
+      nvl(v.usr_def_sum47, 0) usr_def_sum47, 
+      nvl(v.usr_def_sum48, 0) usr_def_sum48, 
+      nvl(v.usr_def_sum49, 0) usr_def_sum49, 
+      nvl(v.usr_def_sum50, 0) usr_def_sum50, 
+      nvl(v.loss_pd_amt, 0) loss_pd_amt_ytd, 
+      nvl(v.loss_rsrv_chng_amt, 0) loss_rsrv_chng_amt_ytd, 
+      nvl(v.alc_exp_pd_amt, 0) alc_exp_pd_amt_ytd, 
+      nvl(v.alc_exp_rsrv_chng_amt, 0) alc_exp_rsrv_chng_amt_ytd, 
+      nvl(v.ualc_exp_pd_amt, 0) ualc_exp_pd_amt_ytd, 
+      nvl(v.ualc_exp_rsrv_chng_amt, 0) ualc_exp_rsrv_chng_amt_ytd, 
+      nvl(v.subro_recv_chng_amt, 0) subro_recv_chng_amt_ytd, 
+      nvl(v.subro_rsrv_chng_amt, 0) subro_rsrv_chng_amt_ytd, 
+      nvl(v.subro_paid_chng_amt, 0) subro_paid_chng_amt_ytd, 
+      nvl(v.salvage_recv_chng_amt, 0) salvage_recv_chng_amt_ytd, 
+      nvl(v.salvage_rsrv_chng_amt, 0) salvage_rsrv_chng_amt_ytd, 
+      nvl(v.dedrecov_recv_chng_amt, 0) dedrecov_recv_chng_amt_ytd, 
+      nvl(v.dedrecov_rsrv_chng_amt, 0) dedrecov_rsrv_chng_amt_ytd, 
+      nvl(v.alc_exp_recovery_amt, 0) alc_exp_recovery_amt_ytd, 
+      nvl(v.loss_recovery_amt, 0) loss_recovery_amt_ytd, 
+      nvl(v.other_recovery_amt, 0) other_recovery_amt_ytd, 
+      nvl(v.usr_def_sum1, 0) usr_def_sum1_ytd, 
+      nvl(v.usr_def_sum2, 0) usr_def_sum2_ytd, 
+      nvl(v.usr_def_sum3, 0) usr_def_sum3_ytd, 
+      nvl(v.usr_def_sum4, 0) usr_def_sum4_ytd, 
+      nvl(v.usr_def_sum5, 0) usr_def_sum5_ytd, 
+      nvl(v.usr_def_sum6, 0) usr_def_sum6_ytd, 
+      nvl(v.usr_def_sum7, 0) usr_def_sum7_ytd, 
+      nvl(v.usr_def_sum8, 0) usr_def_sum8_ytd, 
+      nvl(v.usr_def_sum9, 0) usr_def_sum9_ytd, 
+      nvl(v.usr_def_sum10, 0) usr_def_sum10_ytd, 
+      nvl(v.usr_def_sum11, 0) usr_def_sum11_ytd, 
+      nvl(v.usr_def_sum12, 0) usr_def_sum12_ytd, 
+      nvl(v.usr_def_sum13, 0) usr_def_sum13_ytd, 
+      nvl(v.usr_def_sum14, 0) usr_def_sum14_ytd, 
+      nvl(v.usr_def_sum15, 0) usr_def_sum15_ytd, 
+      nvl(v.usr_def_sum16, 0) usr_def_sum16_ytd, 
+      nvl(v.usr_def_sum17, 0) usr_def_sum17_ytd, 
+      nvl(v.usr_def_sum18, 0) usr_def_sum18_ytd, 
+      nvl(v.usr_def_sum19, 0) usr_def_sum19_ytd, 
+      nvl(v.usr_def_sum20, 0) usr_def_sum20_ytd, 
+      nvl(v.usr_def_sum21, 0) usr_def_sum21_ytd, 
+      nvl(v.usr_def_sum22, 0) usr_def_sum22_ytd, 
+      nvl(v.usr_def_sum23, 0) usr_def_sum23_ytd, 
+      nvl(v.usr_def_sum24, 0) usr_def_sum24_ytd, 
+      nvl(v.usr_def_sum25, 0) usr_def_sum25_ytd, 
+      nvl(v.usr_def_sum26, 0) usr_def_sum26_ytd, 
+      nvl(v.usr_def_sum27, 0) usr_def_sum27_ytd, 
+      nvl(v.usr_def_sum28, 0) usr_def_sum28_ytd, 
+      nvl(v.usr_def_sum29, 0) usr_def_sum29_ytd, 
+      nvl(v.usr_def_sum30, 0) usr_def_sum30_ytd, 
+      nvl(v.usr_def_sum31, 0) usr_def_sum31_ytd, 
+      nvl(v.usr_def_sum32, 0) usr_def_sum32_ytd, 
+      nvl(v.usr_def_sum33, 0) usr_def_sum33_ytd, 
+      nvl(v.usr_def_sum34, 0) usr_def_sum34_ytd, 
+      nvl(v.usr_def_sum35, 0) usr_def_sum35_ytd, 
+      nvl(v.usr_def_sum36, 0) usr_def_sum36_ytd, 
+      nvl(v.usr_def_sum37, 0) usr_def_sum37_ytd, 
+      nvl(v.usr_def_sum38, 0) usr_def_sum38_ytd, 
+      nvl(v.usr_def_sum39, 0) usr_def_sum39_ytd, 
+      nvl(v.usr_def_sum40, 0) usr_def_sum40_ytd, 
+      nvl(v.usr_def_sum41, 0) usr_def_sum41_ytd, 
+      nvl(v.usr_def_sum42, 0) usr_def_sum42_ytd, 
+      nvl(v.usr_def_sum43, 0) usr_def_sum43_ytd, 
+      nvl(v.usr_def_sum44, 0) usr_def_sum44_ytd, 
+      nvl(v.usr_def_sum45, 0) usr_def_sum45_ytd, 
+      nvl(v.usr_def_sum46, 0) usr_def_sum46_ytd, 
+      nvl(v.usr_def_sum47, 0) usr_def_sum47_ytd, 
+      nvl(v.usr_def_sum48, 0) usr_def_sum48_ytd, 
+      nvl(v.usr_def_sum49, 0) usr_def_sum49_ytd, 
+      nvl(v.usr_def_sum50, 0) usr_def_sum50_ytd, 
+      nvl(v.loss_pd_amt, 0) loss_pd_amt_itd, 
+      nvl(v.loss_rsrv_chng_amt, 0) loss_rsrv_chng_amt_itd, 
+      nvl(v.alc_exp_pd_amt, 0) alc_exp_pd_amt_itd, 
+      nvl(v.alc_exp_rsrv_chng_amt, 0) alc_exp_rsrv_chng_amt_itd, 
+      nvl(v.ualc_exp_pd_amt, 0) ualc_exp_pd_amt_itd, 
+      nvl(v.ualc_exp_rsrv_chng_amt, 0) ualc_exp_rsrv_chng_amt_itd, 
+      nvl(v.subro_recv_chng_amt, 0) subro_recv_chng_amt_itd, 
+      nvl(v.subro_rsrv_chng_amt, 0) subro_rsrv_chng_amt_itd, 
+      nvl(v.subro_paid_chng_amt, 0) subro_paid_chng_amt_itd, 
+      nvl(v.salvage_recv_chng_amt, 0) salvage_recv_chng_amt_itd, 
+      nvl(v.salvage_rsrv_chng_amt, 0) salvage_rsrv_chng_amt_itd, 
+      nvl(v.dedrecov_recv_chng_amt, 0) dedrecov_recv_chng_amt_itd, 
+      nvl(v.dedrecov_rsrv_chng_amt, 0) dedrecov_rsrv_chng_amt_itd, 
+      nvl(v.alc_exp_recovery_amt, 0) alc_exp_recovery_amt_itd, 
+      nvl(v.loss_recovery_amt, 0) loss_recovery_amt_itd, 
+      nvl(v.other_recovery_amt, 0) other_recovery_amt_itd, 
+      nvl(v.usr_def_sum1, 0) usr_def_sum1_itd, 
+      nvl(v.usr_def_sum2, 0) usr_def_sum2_itd, 
+      nvl(v.usr_def_sum3, 0) usr_def_sum3_itd, 
+      nvl(v.usr_def_sum4, 0) usr_def_sum4_itd, 
+      nvl(v.usr_def_sum5, 0) usr_def_sum5_itd, 
+      nvl(v.usr_def_sum6, 0) usr_def_sum6_itd, 
+      nvl(v.usr_def_sum7, 0) usr_def_sum7_itd, 
+      nvl(v.usr_def_sum8, 0) usr_def_sum8_itd, 
+      nvl(v.usr_def_sum9, 0) usr_def_sum9_itd, 
+      nvl(v.usr_def_sum10, 0) usr_def_sum10_itd, 
+      nvl(v.usr_def_sum11, 0) usr_def_sum11_itd, 
+      nvl(v.usr_def_sum12, 0) usr_def_sum12_itd, 
+      nvl(v.usr_def_sum13, 0) usr_def_sum13_itd, 
+      nvl(v.usr_def_sum14, 0) usr_def_sum14_itd, 
+      nvl(v.usr_def_sum15, 0) usr_def_sum15_itd, 
+      nvl(v.usr_def_sum16, 0) usr_def_sum16_itd, 
+      nvl(v.usr_def_sum17, 0) usr_def_sum17_itd, 
+      nvl(v.usr_def_sum18, 0) usr_def_sum18_itd, 
+      nvl(v.usr_def_sum19, 0) usr_def_sum19_itd, 
+      nvl(v.usr_def_sum20, 0) usr_def_sum20_itd, 
+      nvl(v.usr_def_sum21, 0) usr_def_sum21_itd, 
+      nvl(v.usr_def_sum22, 0) usr_def_sum22_itd, 
+      nvl(v.usr_def_sum23, 0) usr_def_sum23_itd, 
+      nvl(v.usr_def_sum24, 0) usr_def_sum24_itd, 
+      nvl(v.usr_def_sum25, 0) usr_def_sum25_itd, 
+      nvl(v.usr_def_sum26, 0) usr_def_sum26_itd, 
+      nvl(v.usr_def_sum27, 0) usr_def_sum27_itd, 
+      nvl(v.usr_def_sum28, 0) usr_def_sum28_itd, 
+      nvl(v.usr_def_sum29, 0) usr_def_sum29_itd, 
+      nvl(v.usr_def_sum30, 0) usr_def_sum30_itd, 
+      nvl(v.usr_def_sum31, 0) usr_def_sum31_itd, 
+      nvl(v.usr_def_sum32, 0) usr_def_sum32_itd, 
+      nvl(v.usr_def_sum33, 0) usr_def_sum33_itd, 
+      nvl(v.usr_def_sum34, 0) usr_def_sum34_itd, 
+      nvl(v.usr_def_sum35, 0) usr_def_sum35_itd, 
+      nvl(v.usr_def_sum36, 0) usr_def_sum36_itd, 
+      nvl(v.usr_def_sum37, 0) usr_def_sum37_itd, 
+      nvl(v.usr_def_sum38, 0) usr_def_sum38_itd, 
+      nvl(v.usr_def_sum39, 0) usr_def_sum39_itd, 
+      nvl(v.usr_def_sum40, 0) usr_def_sum40_itd, 
+      nvl(v.usr_def_sum41, 0) usr_def_sum41_itd, 
+      nvl(v.usr_def_sum42, 0) usr_def_sum42_itd, 
+      nvl(v.usr_def_sum43, 0) usr_def_sum43_itd, 
+      nvl(v.usr_def_sum44, 0) usr_def_sum44_itd, 
+      nvl(v.usr_def_sum45, 0) usr_def_sum45_itd, 
+      nvl(v.usr_def_sum46, 0) usr_def_sum46_itd, 
+      nvl(v.usr_def_sum47, 0) usr_def_sum47_itd, 
+      nvl(v.usr_def_sum48, 0) usr_def_sum48_itd, 
+      nvl(v.usr_def_sum49, 0) usr_def_sum49_itd, 
+      nvl(v.usr_def_sum50, 0) usr_def_sum50_itd 
+from (
+select tmp.claim_uniqueid,
+       loss_pd_amt,
+       loss_rsrv_chng_amt,
+       alc_exp_pd_amt,
+       alc_exp_rsrv_chng_amt,
+       ualc_exp_pd_amt,
+       ualc_exp_rsrv_chng_amt,
+       subro_recv_chng_amt,
+       subro_paid_chng_amt,
+       subro_rsrv_chng_amt,
+       salvage_recv_chng_amt,
+       salvage_rsrv_chng_amt,
+       dedrecov_recv_chng_amt,
+       dedrecov_rsrv_chng_amt,
+       alc_exp_recovery_amt,
+       loss_recovery_amt,
+       other_recovery_amt,
+       usr_def_sum1,
+       usr_def_sum2,
+       usr_def_sum3,
+       usr_def_sum4,
+       usr_def_sum5,
+       usr_def_sum6,
+       usr_def_sum7,
+       usr_def_sum8,
+       usr_def_sum9,
+       usr_def_sum10,
+       usr_def_sum11,
+       usr_def_sum12,
+       usr_def_sum13,
+       usr_def_sum14,
+       usr_def_sum15,
+       usr_def_sum16,
+       usr_def_sum17,
+       usr_def_sum18,
+       usr_def_sum19,
+       usr_def_sum20,
+       usr_def_sum21,
+       usr_def_sum22,
+       usr_def_sum23,
+       usr_def_sum24,
+       usr_def_sum25,
+       usr_def_sum26,
+       usr_def_sum27,
+       usr_def_sum28,
+       usr_def_sum29,
+       usr_def_sum30,
+       usr_def_sum31,
+       usr_def_sum32,
+       usr_def_sum33,
+       usr_def_sum34,
+       usr_def_sum35,
+       usr_def_sum36,
+       usr_def_sum37,
+       usr_def_sum38,
+       usr_def_sum39,
+       usr_def_sum40,
+       usr_def_sum41,
+       usr_def_sum42,
+       usr_def_sum43,
+       usr_def_sum44,
+       usr_def_sum45,
+       usr_def_sum46,
+       usr_def_sum47,
+       usr_def_sum48,
+       usr_def_sum49,
+       usr_def_sum50
+  FROM tmp_clm_mon_sum_clm_precalc t,
+       tmp_clm_mon_sum_clm_uid     tmp
+ WHERE t.month_id = ${month_id}
+   and tmp.claim_uniqueid = t.claim_uniqueid
+   and tmp.new_b = 'Y') v;
+commit;
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>651</xloc>
+      <yloc>272</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp clm stg</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_clm_mon_sum_stgclm_id nologging pctfree 0
+       tablespace ${G_STAGING_DB_DATA} as
+select sc.claim_uniqueid,  
+       max(stgclaim_id) max_stgclaim_id
+  from stg_claim sc,
+       tmp_clm_mon_sum_clm_uid c
+ where sc.claim_uniqueid = c.claim_uniqueid
+   and sc.clm_changeeffectivedate &lt;= ${sql_periodEndDate}
+   group by sc.claim_uniqueid;
+
+
+insert
+  into tmp_clm_mon_sum_stgclm_id   
+select sc.claim_uniqueid,
+       min(stgclaim_id)   
+  from (select claim_uniqueid
+          from tmp_clm_mon_sum_clm_uid mc
+         where not exists(select 'x'
+                    from tmp_clm_mon_sum_stgclm_id cid
+                   where cid.claim_uniqueid = mc.claim_uniqueid)) v,
+     stg_claim sc
+where sc.claim_uniqueid = v.claim_uniqueid
+group by sc.claim_uniqueid;
+
+commit;
+
+create table tmp_clm_mon_sum_clm_stg
+       nologging pctfree 0
+       tablespace ${G_STAGING_DB_DATA} as
+select sc.claim_uniqueid,
+       sc.clm_claimstatuscd, 
+       sc.clm_closeddate,
+       nvl(to_number(to_char(clm_closeddate,'yyyymmdd')),19000101) closeddate_id,
+       sc.clm_lossreporteddate ,
+       nvl(to_number(to_char(clm_lossreporteddate,'yyyymmdd')),19000101) datereported_id   ,
+       sc.clm_dateofloss       ,
+       nvl(to_number(to_char(clm_dateofloss,'yyyymmdd')),19000101)  dateofloss_id    ,
+       adjuster_uniqueid       ,
+       contact_uniqueid        ,
+       sc.clm_city             ,
+       sc.clm_county           ,
+       sc.clm_state            ,
+       sc.clm_postalcode       ,
+       sc.clm_country          ,
+       sc.insured_uniqueid     ,
+       sc.claimant_uniqueid    ,
+       sc.mmclm_current_claim_type,
+       sc.mmclm_claim_subtype_code,
+       sc.MMCLM_FINAL_DISPOSITION_CODE,
+       (select claimtype_id
+          from dim_claimtype dct
+         where dct.ctyp_code = sc.mmclm_current_claim_type) claimtype_id,
+       (select claimstatus_id
+          from vdim_claimstatus s
+         where s.CLMST_STATUSCD = sc.clm_claimstatuscd) claimstatus_id ,
+       (select finaldisposition_id
+          from dim_finaldisposition fd
+         where fd.finaldisp_code =  sc.mmclm_final_disposition_code) finaldisposition_id,
+       NVL(vop.opendate_id,19000101)     opendate_id, 
+       NVL(dctt.courtcase_id,0)          courtcase_id,
+       -- Issue #178894
+       NVL(dpd.claimpiaadata_id,0)       claimpiaadata_id
+  from tmp_clm_mon_sum_stgclm_id t,
+       stg_claim         sc,       
+       dim_courtcase     dctt,
+       vdim_opendate     vop,
+       DIM_CLAIMPIAADATA     dpd
+ where stgclaim_id        = t.max_stgclaim_id
+   AND sc.clm_claimnumber = dctt.source_number(+)
+   AND sc.clm_opendate    = vop.open_date(+)   
+   AND sc.clm_claimnumber = dpd.source_claimnumber(+)
+;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>526</xloc>
+      <yloc>381</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp clm ext id</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_clm_mon_sum_clm_ext_id nologging pctfree 0
+       tablespace ${G_STAGING_DB_DATA} as
+select c.claim_uniqueid,
+       max(claimextension_id) claimextension_id
+  from tmp_clm_mon_sum_clm_uid c,
+       dim_claimextension dc
+ where dc.claim_uniqueid = c.claim_uniqueid
+   and valid_fromdate &lt;= ${sql_periodEndDate}
+   and valid_todate   >  ${sql_periodEndDate}
+   group by c.claim_uniqueid;
+   
+-- create claim id where we only have dim claim rows created after this period.   
+insert
+  into tmp_clm_mon_sum_clm_ext_id   
+select dc.claim_uniqueid claim_uniqueid,
+       min(claimextension_id) claimextension_id
+  from (select claim_uniqueid
+          from tmp_clm_mon_sum_clm_uid mc
+         where not exists(select 'x'
+                    from tmp_clm_mon_sum_clm_ext_id cid
+                   where cid.claim_uniqueid = mc.claim_uniqueid)) v,
+       dim_claimextension dc
+ where dc.claim_uniqueid    = v.claim_uniqueid
+   and dc.valid_fromdate > ${sql_periodEndDate}
+   group by dc.claim_uniqueid;
+commit;
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>526</xloc>
+      <yloc>548</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp clm old id</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_clm_mon_sum_clm_old_id nologging pctfree 0
+       tablespace ${G_STAGING_DB_DATA} as
+select  c.claim_uniqueid,
+        coveredRisk_id ,
+        coveredRiskExtension_id,
+        coveredRiskLocation_id,
+        underwriter_id,
+        producer_id ,
+        product_id ,
+        company_id ,
+        firstInsured_id ,
+        secondInsured_id ,
+        thirdInsured_id ,
+        firstOtherInterest_id ,
+        secondOtherInterest_id ,
+        policy_id ,
+        policyExtension_id,
+        policyEffectiveDate_id,
+        policyExpirationDate_id,
+        coverage_id,
+        coverageExtension_id,
+        limit_id ,
+        deductible_id ,
+        coverageEffectiveDate_id ,
+        coverageExpirationDate_id ,
+        class_id ,
+        territory_id 
+  from fact_claimtransaction fct,
+       tmp_clm_mon_sum_clm_uid c
+ where c.min_claimtransaction_id = fct.claimtransaction_id;
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>522</xloc>
+      <yloc>701</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp losscod</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_clm_mon_sum_clm_losscod nologging pctfree 0
+       tablespace ${G_STAGING_DB_DATA} as
+select c.claim_uniqueid,
+       max(losscoding_id) losscoding_id
+  from tmp_clm_mon_sum_clm_uid c,
+       dim_losscoding lc
+ where lc.claim_uniqueid = c.claim_uniqueid
+   and lc.valid_fromdate &lt;= ${sql_periodEndDate} 
+   and lc.valid_todate   >  ${sql_periodEndDate}
+   group by c.claim_uniqueid;
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>520</xloc>
+      <yloc>850</yloc>
+    </entry>
+    <entry>
+      <name>START</name>
+      <description/>
+      <type>SPECIAL</type>
+      <start>Y</start>
+      <dummy>N</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>Y</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>46</xloc>
+      <yloc>548</yloc>
+    </entry>
+    <entry>
+      <name>Simple evaluation</name>
+      <description>Check if this is a daily load, if it is, then use original Create tmp clm calc step to calculate claim numbers.</description>
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname>${G_LOAD_TYPE}</fieldname>
+      <variablename>${G_LOAD_TYPE}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask/>
+      <comparevalue>DAILY</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>526</xloc>
+      <yloc>200</yloc>
+    </entry>
+    <entry>
+      <name>Simple evaluation 2</name>
+      <description/>
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname/>
+      <variablename>${DateDiff}</variablename>
+      <fieldtype>number</fieldtype>
+      <mask/>
+      <comparevalue>0</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>651</xloc>
+      <yloc>351</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp clm calc 2</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_clm_mon_sum_clm_calc nologging pctfree 0
+       tablespace ${G_STAGING_DB_DATA} as
+WITH x AS (
+-- Month-to-date numbers
+SELECT claim_uniqueid,
+       loss_pd_amt,
+       loss_rsrv_chng_amt,
+       alc_exp_pd_amt,
+       alc_exp_rsrv_chng_amt,
+       ualc_exp_pd_amt,
+       ualc_exp_rsrv_chng_amt,
+       subro_recv_chng_amt,
+       subro_paid_chng_amt,
+       subro_rsrv_chng_amt,
+       salvage_recv_chng_amt,
+       salvage_rsrv_chng_amt,
+       dedrecov_recv_chng_amt,
+       dedrecov_rsrv_chng_amt,
+       alc_exp_recovery_amt,
+       loss_recovery_amt,
+       other_recovery_amt,
+       usr_def_sum1,
+       usr_def_sum2,
+       usr_def_sum3,
+       usr_def_sum4,
+       usr_def_sum5,
+       usr_def_sum6,
+       usr_def_sum7,
+       usr_def_sum8,
+       usr_def_sum9,
+       usr_def_sum10,
+       usr_def_sum11,
+       usr_def_sum12,
+       usr_def_sum13,
+       usr_def_sum14,
+       usr_def_sum15,
+       usr_def_sum16,
+       usr_def_sum17,
+       usr_def_sum18,
+       usr_def_sum19,
+       usr_def_sum20,
+       usr_def_sum21,
+       usr_def_sum22,
+       usr_def_sum23,
+       usr_def_sum24,
+       usr_def_sum25,
+       usr_def_sum26,
+       usr_def_sum27,
+       usr_def_sum28,
+       usr_def_sum29,
+       usr_def_sum30,
+       usr_def_sum31,
+       usr_def_sum32,
+       usr_def_sum33,
+       usr_def_sum34,
+       usr_def_sum35,
+       usr_def_sum36,
+       usr_def_sum37,
+       usr_def_sum38,
+       usr_def_sum39,
+       usr_def_sum40,
+       usr_def_sum41,
+       usr_def_sum42,
+       usr_def_sum43,
+       usr_def_sum44,
+       usr_def_sum45,
+       usr_def_sum46,
+       usr_def_sum47,
+       usr_def_sum48,
+       usr_def_sum49,
+       usr_def_sum50,
+       0 loss_pd_amt_ytd,
+       0 loss_rsrv_chng_amt_ytd,
+       0 alc_exp_pd_amt_ytd,
+       0 alc_exp_rsrv_chng_amt_ytd,
+       0 ualc_exp_pd_amt_ytd,
+       0 ualc_exp_rsrv_chng_amt_ytd,
+       0 subro_recv_chng_amt_ytd,
+       0 subro_paid_chng_amt_ytd,
+       0 subro_rsrv_chng_amt_ytd,
+       0 salvage_recv_chng_amt_ytd,
+       0 salvage_rsrv_chng_amt_ytd,
+       0 dedrecov_recv_chng_amt_ytd,
+       0 dedrecov_rsrv_chng_amt_ytd,
+       0 alc_exp_recovery_amt_ytd,
+       0 loss_recovery_amt_ytd,
+       0 other_recovery_amt_ytd,
+       0 usr_def_sum1_ytd,
+       0 usr_def_sum2_ytd,
+       0 usr_def_sum3_ytd,
+       0 usr_def_sum4_ytd,
+       0 usr_def_sum5_ytd,
+       0 usr_def_sum6_ytd,
+       0 usr_def_sum7_ytd,
+       0 usr_def_sum8_ytd,
+       0 usr_def_sum9_ytd,
+       0 usr_def_sum10_ytd,
+       0 usr_def_sum11_ytd,
+       0 usr_def_sum12_ytd,
+       0 usr_def_sum13_ytd,
+       0 usr_def_sum14_ytd,
+       0 usr_def_sum15_ytd,
+       0 usr_def_sum16_ytd,
+       0 usr_def_sum17_ytd,
+       0 usr_def_sum18_ytd,
+       0 usr_def_sum19_ytd,
+       0 usr_def_sum20_ytd,
+       0 usr_def_sum21_ytd,
+       0 usr_def_sum22_ytd,
+       0 usr_def_sum23_ytd,
+       0 usr_def_sum24_ytd,
+       0 usr_def_sum25_ytd,
+       0 usr_def_sum26_ytd,
+       0 usr_def_sum27_ytd,
+       0 usr_def_sum28_ytd,
+       0 usr_def_sum29_ytd,
+       0 usr_def_sum30_ytd,
+       0 usr_def_sum31_ytd,
+       0 usr_def_sum32_ytd,
+       0 usr_def_sum33_ytd,
+       0 usr_def_sum34_ytd,
+       0 usr_def_sum35_ytd,
+       0 usr_def_sum36_ytd,
+       0 usr_def_sum37_ytd,
+       0 usr_def_sum38_ytd,
+       0 usr_def_sum39_ytd,
+       0 usr_def_sum40_ytd,
+       0 usr_def_sum41_ytd,
+       0 usr_def_sum42_ytd,
+       0 usr_def_sum43_ytd,
+       0 usr_def_sum44_ytd,
+       0 usr_def_sum45_ytd,
+       0 usr_def_sum46_ytd,
+       0 usr_def_sum47_ytd,
+       0 usr_def_sum48_ytd,
+       0 usr_def_sum49_ytd,
+       0 usr_def_sum50_ytd,
+       0 loss_pd_amt_itd,
+       0 loss_rsrv_chng_amt_itd,
+       0 alc_exp_pd_amt_itd,
+       0 alc_exp_rsrv_chng_amt_itd,
+       0 ualc_exp_pd_amt_itd,
+       0 ualc_exp_rsrv_chng_amt_itd,
+       0 subro_recv_chng_amt_itd,
+       0 subro_paid_chng_amt_itd,
+       0 subro_rsrv_chng_amt_itd,
+       0 salvage_recv_chng_amt_itd,
+       0 salvage_rsrv_chng_amt_itd,
+       0 dedrecov_recv_chng_amt_itd,
+       0 dedrecov_rsrv_chng_amt_itd,
+       0 alc_exp_recovery_amt_itd,
+       0 loss_recovery_amt_itd,
+       0 other_recovery_amt_itd,
+       0 usr_def_sum1_itd,
+       0 usr_def_sum2_itd,
+       0 usr_def_sum3_itd,
+       0 usr_def_sum4_itd,
+       0 usr_def_sum5_itd,
+       0 usr_def_sum6_itd,
+       0 usr_def_sum7_itd,
+       0 usr_def_sum8_itd,
+       0 usr_def_sum9_itd,
+       0 usr_def_sum10_itd,
+       0 usr_def_sum11_itd,
+       0 usr_def_sum12_itd,
+       0 usr_def_sum13_itd,
+       0 usr_def_sum14_itd,
+       0 usr_def_sum15_itd,
+       0 usr_def_sum16_itd,
+       0 usr_def_sum17_itd,
+       0 usr_def_sum18_itd,
+       0 usr_def_sum19_itd,
+       0 usr_def_sum20_itd,
+       0 usr_def_sum21_itd,
+       0 usr_def_sum22_itd,
+       0 usr_def_sum23_itd,
+       0 usr_def_sum24_itd,
+       0 usr_def_sum25_itd,
+       0 usr_def_sum26_itd,
+       0 usr_def_sum27_itd,
+       0 usr_def_sum28_itd,
+       0 usr_def_sum29_itd,
+       0 usr_def_sum30_itd,
+       0 usr_def_sum31_itd,
+       0 usr_def_sum32_itd,
+       0 usr_def_sum33_itd,
+       0 usr_def_sum34_itd,
+       0 usr_def_sum35_itd,
+       0 usr_def_sum36_itd,
+       0 usr_def_sum37_itd,
+       0 usr_def_sum38_itd,
+       0 usr_def_sum39_itd,
+       0 usr_def_sum40_itd,
+       0 usr_def_sum41_itd,
+       0 usr_def_sum42_itd,
+       0 usr_def_sum43_itd,
+       0 usr_def_sum44_itd,
+       0 usr_def_sum45_itd,
+       0 usr_def_sum46_itd,
+       0 usr_def_sum47_itd,
+       0 usr_def_sum48_itd,
+       0 usr_def_sum49_itd,
+       0 usr_def_sum50_itd
+FROM   tmp_clm_mon_sum_clm_precalc pre
+WHERE  pre.month_id = ${month_id}
+-- Year-to-date numbers
+UNION ALL 
+SELECT claim_uniqueid,
+       0 loss_pd_amt,
+       0 loss_rsrv_chng_amt,
+       0 alc_exp_pd_amt,
+       0 alc_exp_rsrv_chng_amt,
+       0 ualc_exp_pd_amt,
+       0 ualc_exp_rsrv_chng_amt,
+       0 subro_recv_chng_amt,
+       0 subro_paid_chng_amt,
+       0 subro_rsrv_chng_amt,
+       0 salvage_recv_chng_amt,
+       0 salvage_rsrv_chng_amt,
+       0 dedrecov_recv_chng_amt,
+       0 dedrecov_rsrv_chng_amt,
+       0 alc_exp_recovery_amt,
+       0 loss_recovery_amt,
+       0 other_recovery_amt,
+       0 usr_def_sum1,
+       0 usr_def_sum2,
+       0 usr_def_sum3,
+       0 usr_def_sum4,
+       0 usr_def_sum5,
+       0 usr_def_sum6,
+       0 usr_def_sum7,
+       0 usr_def_sum8,
+       0 usr_def_sum9,
+       0 usr_def_sum10,
+       0 usr_def_sum11,
+       0 usr_def_sum12,
+       0 usr_def_sum13,
+       0 usr_def_sum14,
+       0 usr_def_sum15,
+       0 usr_def_sum16,
+       0 usr_def_sum17,
+       0 usr_def_sum18,
+       0 usr_def_sum19,
+       0 usr_def_sum20,
+       0 usr_def_sum21,
+       0 usr_def_sum22,
+       0 usr_def_sum23,
+       0 usr_def_sum24,
+       0 usr_def_sum25,
+       0 usr_def_sum26,
+       0 usr_def_sum27,
+       0 usr_def_sum28,
+       0 usr_def_sum29,
+       0 usr_def_sum30,
+       0 usr_def_sum31,
+       0 usr_def_sum32,
+       0 usr_def_sum33,
+       0 usr_def_sum34,
+       0 usr_def_sum35,
+       0 usr_def_sum36,
+       0 usr_def_sum37,
+       0 usr_def_sum38,
+       0 usr_def_sum39,
+       0 usr_def_sum40,
+       0 usr_def_sum41,
+       0 usr_def_sum42,
+       0 usr_def_sum43,
+       0 usr_def_sum44,
+       0 usr_def_sum45,
+       0 usr_def_sum46,
+       0 usr_def_sum47,
+       0 usr_def_sum48,
+       0 usr_def_sum49,
+       0 usr_def_sum50,
+       loss_pd_amt loss_pd_amt_ytd,
+       loss_rsrv_chng_amt loss_rsrv_chng_amt_ytd,
+       alc_exp_pd_amt alc_exp_pd_amt_ytd,
+       alc_exp_rsrv_chng_amt alc_exp_rsrv_chng_amt_ytd,
+       ualc_exp_pd_amt ualc_exp_pd_amt_ytd,
+       ualc_exp_rsrv_chng_amt ualc_exp_rsrv_chng_amt_ytd,
+       subro_recv_chng_amt subro_recv_chng_amt_ytd,
+       subro_paid_chng_amt subro_paid_chng_amt_ytd,
+       subro_rsrv_chng_amt subro_rsrv_chng_amt_ytd,
+       salvage_recv_chng_amt salvage_recv_chng_amt_ytd,
+       salvage_rsrv_chng_amt salvage_rsrv_chng_amt_ytd,
+       dedrecov_recv_chng_amt dedrecov_recv_chng_amt_ytd,
+       dedrecov_rsrv_chng_amt dedrecov_rsrv_chng_amt_ytd,
+       alc_exp_recovery_amt alc_exp_recovery_amt_ytd,
+       loss_recovery_amt loss_recovery_amt_ytd,
+       other_recovery_amt other_recovery_amt_ytd,
+       usr_def_sum1 usr_def_sum1_ytd,
+       usr_def_sum2 usr_def_sum2_ytd,
+       usr_def_sum3 usr_def_sum3_ytd,
+       usr_def_sum4 usr_def_sum4_ytd,
+       usr_def_sum5 usr_def_sum5_ytd,
+       usr_def_sum6 usr_def_sum6_ytd,
+       usr_def_sum7 usr_def_sum7_ytd,
+       usr_def_sum8 usr_def_sum8_ytd,
+       usr_def_sum9 usr_def_sum9_ytd,
+       usr_def_sum10 usr_def_sum10_ytd,
+       usr_def_sum11 usr_def_sum11_ytd,
+       usr_def_sum12 usr_def_sum12_ytd,
+       usr_def_sum13 usr_def_sum13_ytd,
+       usr_def_sum14 usr_def_sum14_ytd,
+       usr_def_sum15 usr_def_sum15_ytd,
+       usr_def_sum16 usr_def_sum16_ytd,
+       usr_def_sum17 usr_def_sum17_ytd,
+       usr_def_sum18 usr_def_sum18_ytd,
+       usr_def_sum19 usr_def_sum19_ytd,
+       usr_def_sum20 usr_def_sum20_ytd,
+       usr_def_sum21 usr_def_sum21_ytd,
+       usr_def_sum22 usr_def_sum22_ytd,
+       usr_def_sum23 usr_def_sum23_ytd,
+       usr_def_sum24 usr_def_sum24_ytd,
+       usr_def_sum25 usr_def_sum25_ytd,
+       usr_def_sum26 usr_def_sum26_ytd,
+       usr_def_sum27 usr_def_sum27_ytd,
+       usr_def_sum28 usr_def_sum28_ytd,
+       usr_def_sum29 usr_def_sum29_ytd,
+       usr_def_sum30 usr_def_sum30_ytd,
+       usr_def_sum31 usr_def_sum31_ytd,
+       usr_def_sum32 usr_def_sum32_ytd,
+       usr_def_sum33 usr_def_sum33_ytd,
+       usr_def_sum34 usr_def_sum34_ytd,
+       usr_def_sum35 usr_def_sum35_ytd,
+       usr_def_sum36 usr_def_sum36_ytd,
+       usr_def_sum37 usr_def_sum37_ytd,
+       usr_def_sum38 usr_def_sum38_ytd,
+       usr_def_sum39 usr_def_sum39_ytd,
+       usr_def_sum40 usr_def_sum40_ytd,
+       usr_def_sum41 usr_def_sum41_ytd,
+       usr_def_sum42 usr_def_sum42_ytd,
+       usr_def_sum43 usr_def_sum43_ytd,
+       usr_def_sum44 usr_def_sum44_ytd,
+       usr_def_sum45 usr_def_sum45_ytd,
+       usr_def_sum46 usr_def_sum46_ytd,
+       usr_def_sum47 usr_def_sum47_ytd,
+       usr_def_sum48 usr_def_sum48_ytd,
+       usr_def_sum49 usr_def_sum49_ytd,
+       usr_def_sum50 usr_def_sum50_ytd,
+       0 loss_pd_amt_itd,
+       0 loss_rsrv_chng_amt_itd,
+       0 alc_exp_pd_amt_itd,
+       0 alc_exp_rsrv_chng_amt_itd,
+       0 ualc_exp_pd_amt_itd,
+       0 ualc_exp_rsrv_chng_amt_itd,
+       0 subro_recv_chng_amt_itd,
+       0 subro_paid_chng_amt_itd,
+       0 subro_rsrv_chng_amt_itd,
+       0 salvage_recv_chng_amt_itd,
+       0 salvage_rsrv_chng_amt_itd,
+       0 dedrecov_recv_chng_amt_itd,
+       0 dedrecov_rsrv_chng_amt_itd,
+       0 alc_exp_recovery_amt_itd,
+       0 loss_recovery_amt_itd,
+       0 other_recovery_amt_itd,
+       0 usr_def_sum1_itd,
+       0 usr_def_sum2_itd,
+       0 usr_def_sum3_itd,
+       0 usr_def_sum4_itd,
+       0 usr_def_sum5_itd,
+       0 usr_def_sum6_itd,
+       0 usr_def_sum7_itd,
+       0 usr_def_sum8_itd,
+       0 usr_def_sum9_itd,
+       0 usr_def_sum10_itd,
+       0 usr_def_sum11_itd,
+       0 usr_def_sum12_itd,
+       0 usr_def_sum13_itd,
+       0 usr_def_sum14_itd,
+       0 usr_def_sum15_itd,
+       0 usr_def_sum16_itd,
+       0 usr_def_sum17_itd,
+       0 usr_def_sum18_itd,
+       0 usr_def_sum19_itd,
+       0 usr_def_sum20_itd,
+       0 usr_def_sum21_itd,
+       0 usr_def_sum22_itd,
+       0 usr_def_sum23_itd,
+       0 usr_def_sum24_itd,
+       0 usr_def_sum25_itd,
+       0 usr_def_sum26_itd,
+       0 usr_def_sum27_itd,
+       0 usr_def_sum28_itd,
+       0 usr_def_sum29_itd,
+       0 usr_def_sum30_itd,
+       0 usr_def_sum31_itd,
+       0 usr_def_sum32_itd,
+       0 usr_def_sum33_itd,
+       0 usr_def_sum34_itd,
+       0 usr_def_sum35_itd,
+       0 usr_def_sum36_itd,
+       0 usr_def_sum37_itd,
+       0 usr_def_sum38_itd,
+       0 usr_def_sum39_itd,
+       0 usr_def_sum40_itd,
+       0 usr_def_sum41_itd,
+       0 usr_def_sum42_itd,
+       0 usr_def_sum43_itd,
+       0 usr_def_sum44_itd,
+       0 usr_def_sum45_itd,
+       0 usr_def_sum46_itd,
+       0 usr_def_sum47_itd,
+       0 usr_def_sum48_itd,
+       0 usr_def_sum49_itd,
+       0 usr_def_sum50_itd
+FROM   tmp_clm_mon_sum_clm_precalc pre
+WHERE  pre.month_id BETWEEN to_number(SUBSTR(${month_id},1,4)||'0101') AND ${month_id}
+-- Inception-to-date numbers
+UNION ALL
+SELECT claim_uniqueid,
+       0 loss_pd_amt,
+       0 loss_rsrv_chng_amt,
+       0 alc_exp_pd_amt,
+       0 alc_exp_rsrv_chng_amt,
+       0 ualc_exp_pd_amt,
+       0 ualc_exp_rsrv_chng_amt,
+       0 subro_recv_chng_amt,
+       0 subro_paid_chng_amt,
+       0 subro_rsrv_chng_amt,
+       0 salvage_recv_chng_amt,
+       0 salvage_rsrv_chng_amt,
+       0 dedrecov_recv_chng_amt,
+       0 dedrecov_rsrv_chng_amt,
+       0 alc_exp_recovery_amt,
+       0 loss_recovery_amt,
+       0 other_recovery_amt,
+       0 usr_def_sum1,
+       0 usr_def_sum2,
+       0 usr_def_sum3,
+       0 usr_def_sum4,
+       0 usr_def_sum5,
+       0 usr_def_sum6,
+       0 usr_def_sum7,
+       0 usr_def_sum8,
+       0 usr_def_sum9,
+       0 usr_def_sum10,
+       0 usr_def_sum11,
+       0 usr_def_sum12,
+       0 usr_def_sum13,
+       0 usr_def_sum14,
+       0 usr_def_sum15,
+       0 usr_def_sum16,
+       0 usr_def_sum17,
+       0 usr_def_sum18,
+       0 usr_def_sum19,
+       0 usr_def_sum20,
+       0 usr_def_sum21,
+       0 usr_def_sum22,
+       0 usr_def_sum23,
+       0 usr_def_sum24,
+       0 usr_def_sum25,
+       0 usr_def_sum26,
+       0 usr_def_sum27,
+       0 usr_def_sum28,
+       0 usr_def_sum29,
+       0 usr_def_sum30,
+       0 usr_def_sum31,
+       0 usr_def_sum32,
+       0 usr_def_sum33,
+       0 usr_def_sum34,
+       0 usr_def_sum35,
+       0 usr_def_sum36,
+       0 usr_def_sum37,
+       0 usr_def_sum38,
+       0 usr_def_sum39,
+       0 usr_def_sum40,
+       0 usr_def_sum41,
+       0 usr_def_sum42,
+       0 usr_def_sum43,
+       0 usr_def_sum44,
+       0 usr_def_sum45,
+       0 usr_def_sum46,
+       0 usr_def_sum47,
+       0 usr_def_sum48,
+       0 usr_def_sum49,
+       0 usr_def_sum50,
+       0 loss_pd_amt_ytd,
+       0 loss_rsrv_chng_amt_ytd,
+       0 alc_exp_pd_amt_ytd,
+       0 alc_exp_rsrv_chng_amt_ytd,
+       0 ualc_exp_pd_amt_ytd,
+       0 ualc_exp_rsrv_chng_amt_ytd,
+       0 subro_recv_chng_amt_ytd,
+       0 subro_paid_chng_amt_ytd,
+       0 subro_rsrv_chng_amt_ytd,
+       0 salvage_recv_chng_amt_ytd,
+       0 salvage_rsrv_chng_amt_ytd,
+       0 dedrecov_recv_chng_amt_ytd,
+       0 dedrecov_rsrv_chng_amt_ytd,
+       0 alc_exp_recovery_amt_ytd,
+       0 loss_recovery_amt_ytd,
+       0 other_recovery_amt_ytd,
+       0 usr_def_sum1_ytd,
+       0 usr_def_sum2_ytd,
+       0 usr_def_sum3_ytd,
+       0 usr_def_sum4_ytd,
+       0 usr_def_sum5_ytd,
+       0 usr_def_sum6_ytd,
+       0 usr_def_sum7_ytd,
+       0 usr_def_sum8_ytd,
+       0 usr_def_sum9_ytd,
+       0 usr_def_sum10_ytd,
+       0 usr_def_sum11_ytd,
+       0 usr_def_sum12_ytd,
+       0 usr_def_sum13_ytd,
+       0 usr_def_sum14_ytd,
+       0 usr_def_sum15_ytd,
+       0 usr_def_sum16_ytd,
+       0 usr_def_sum17_ytd,
+       0 usr_def_sum18_ytd,
+       0 usr_def_sum19_ytd,
+       0 usr_def_sum20_ytd,
+       0 usr_def_sum21_ytd,
+       0 usr_def_sum22_ytd,
+       0 usr_def_sum23_ytd,
+       0 usr_def_sum24_ytd,
+       0 usr_def_sum25_ytd,
+       0 usr_def_sum26_ytd,
+       0 usr_def_sum27_ytd,
+       0 usr_def_sum28_ytd,
+       0 usr_def_sum29_ytd,
+       0 usr_def_sum30_ytd,
+       0 usr_def_sum31_ytd,
+       0 usr_def_sum32_ytd,
+       0 usr_def_sum33_ytd,
+       0 usr_def_sum34_ytd,
+       0 usr_def_sum35_ytd,
+       0 usr_def_sum36_ytd,
+       0 usr_def_sum37_ytd,
+       0 usr_def_sum38_ytd,
+       0 usr_def_sum39_ytd,
+       0 usr_def_sum40_ytd,
+       0 usr_def_sum41_ytd,
+       0 usr_def_sum42_ytd,
+       0 usr_def_sum43_ytd,
+       0 usr_def_sum44_ytd,
+       0 usr_def_sum45_ytd,
+       0 usr_def_sum46_ytd,
+       0 usr_def_sum47_ytd,
+       0 usr_def_sum48_ytd,
+       0 usr_def_sum49_ytd,
+       0 usr_def_sum50_ytd,
+       loss_pd_amt loss_pd_amt_itd,
+       loss_rsrv_chng_amt loss_rsrv_chng_amt_itd,
+       alc_exp_pd_amt alc_exp_pd_amt_itd,
+       alc_exp_rsrv_chng_amt alc_exp_rsrv_chng_amt_itd,
+       ualc_exp_pd_amt ualc_exp_pd_amt_itd,
+       ualc_exp_rsrv_chng_amt ualc_exp_rsrv_chng_amt_itd,
+       subro_recv_chng_amt subro_recv_chng_amt_itd,
+       subro_paid_chng_amt subro_paid_chng_amt_itd,
+       subro_rsrv_chng_amt subro_rsrv_chng_amt_itd,
+       salvage_recv_chng_amt salvage_recv_chng_amt_itd,
+       salvage_rsrv_chng_amt salvage_rsrv_chng_amt_itd,
+       dedrecov_recv_chng_amt dedrecov_recv_chng_amt_itd,
+       dedrecov_rsrv_chng_amt dedrecov_rsrv_chng_amt_itd,
+       alc_exp_recovery_amt alc_exp_recovery_amt_itd,
+       loss_recovery_amt loss_recovery_amt_itd,
+       other_recovery_amt other_recovery_amt_itd,
+       usr_def_sum1 usr_def_sum1_itd,
+       usr_def_sum2 usr_def_sum2_itd,
+       usr_def_sum3 usr_def_sum3_itd,
+       usr_def_sum4 usr_def_sum4_itd,
+       usr_def_sum5 usr_def_sum5_itd,
+       usr_def_sum6 usr_def_sum6_itd,
+       usr_def_sum7 usr_def_sum7_itd,
+       usr_def_sum8 usr_def_sum8_itd,
+       usr_def_sum9 usr_def_sum9_itd,
+       usr_def_sum10 usr_def_sum10_itd,
+       usr_def_sum11 usr_def_sum11_itd,
+       usr_def_sum12 usr_def_sum12_itd,
+       usr_def_sum13 usr_def_sum13_itd,
+       usr_def_sum14 usr_def_sum14_itd,
+       usr_def_sum15 usr_def_sum15_itd,
+       usr_def_sum16 usr_def_sum16_itd,
+       usr_def_sum17 usr_def_sum17_itd,
+       usr_def_sum18 usr_def_sum18_itd,
+       usr_def_sum19 usr_def_sum19_itd,
+       usr_def_sum20 usr_def_sum20_itd,
+       usr_def_sum21 usr_def_sum21_itd,
+       usr_def_sum22 usr_def_sum22_itd,
+       usr_def_sum23 usr_def_sum23_itd,
+       usr_def_sum24 usr_def_sum24_itd,
+       usr_def_sum25 usr_def_sum25_itd,
+       usr_def_sum26 usr_def_sum26_itd,
+       usr_def_sum27 usr_def_sum27_itd,
+       usr_def_sum28 usr_def_sum28_itd,
+       usr_def_sum29 usr_def_sum29_itd,
+       usr_def_sum30 usr_def_sum30_itd,
+       usr_def_sum31 usr_def_sum31_itd,
+       usr_def_sum32 usr_def_sum32_itd,
+       usr_def_sum33 usr_def_sum33_itd,
+       usr_def_sum34 usr_def_sum34_itd,
+       usr_def_sum35 usr_def_sum35_itd,
+       usr_def_sum36 usr_def_sum36_itd,
+       usr_def_sum37 usr_def_sum37_itd,
+       usr_def_sum38 usr_def_sum38_itd,
+       usr_def_sum39 usr_def_sum39_itd,
+       usr_def_sum40 usr_def_sum40_itd,
+       usr_def_sum41 usr_def_sum41_itd,
+       usr_def_sum42 usr_def_sum42_itd,
+       usr_def_sum43 usr_def_sum43_itd,
+       usr_def_sum44 usr_def_sum44_itd,
+       usr_def_sum45 usr_def_sum45_itd,
+       usr_def_sum46 usr_def_sum46_itd,
+       usr_def_sum47 usr_def_sum47_itd,
+       usr_def_sum48 usr_def_sum48_itd,
+       usr_def_sum49 usr_def_sum49_itd,
+       usr_def_sum50 usr_def_sum50_itd
+FROM   tmp_clm_mon_sum_clm_precalc pre
+WHERE  pre.month_id &lt;= ${month_id})
+-- Group result by claim_uniqueid
+SELECT claim_uniqueid,
+       SUM(loss_pd_amt) loss_pd_amt,
+       SUM(loss_rsrv_chng_amt) loss_rsrv_chng_amt,
+       SUM(alc_exp_pd_amt) alc_exp_pd_amt,
+       SUM(alc_exp_rsrv_chng_amt) alc_exp_rsrv_chng_amt,
+       SUM(ualc_exp_pd_amt) ualc_exp_pd_amt,
+       SUM(ualc_exp_rsrv_chng_amt) ualc_exp_rsrv_chng_amt,
+       SUM(subro_recv_chng_amt) subro_recv_chng_amt,
+       SUM(subro_paid_chng_amt) subro_paid_chng_amt,
+       SUM(subro_rsrv_chng_amt) subro_rsrv_chng_amt,
+       SUM(salvage_recv_chng_amt) salvage_recv_chng_amt,
+       SUM(salvage_rsrv_chng_amt) salvage_rsrv_chng_amt,
+       SUM(dedrecov_recv_chng_amt) dedrecov_recv_chng_amt,
+       SUM(dedrecov_rsrv_chng_amt) dedrecov_rsrv_chng_amt,
+       SUM(alc_exp_recovery_amt) alc_exp_recovery_amt,
+       SUM(loss_recovery_amt) loss_recovery_amt,
+       SUM(other_recovery_amt) other_recovery_amt,
+       SUM(usr_def_sum1) usr_def_sum1,
+       SUM(usr_def_sum2) usr_def_sum2,
+       SUM(usr_def_sum3) usr_def_sum3,
+       SUM(usr_def_sum4) usr_def_sum4,
+       SUM(usr_def_sum5) usr_def_sum5,
+       SUM(usr_def_sum6) usr_def_sum6,
+       SUM(usr_def_sum7) usr_def_sum7,
+       SUM(usr_def_sum8) usr_def_sum8,
+       SUM(usr_def_sum9) usr_def_sum9,
+       SUM(usr_def_sum10) usr_def_sum10,
+       SUM(usr_def_sum11) usr_def_sum11,
+       SUM(usr_def_sum12) usr_def_sum12,
+       SUM(usr_def_sum13) usr_def_sum13,
+       SUM(usr_def_sum14) usr_def_sum14,
+       SUM(usr_def_sum15) usr_def_sum15,
+       SUM(usr_def_sum16) usr_def_sum16,
+       SUM(usr_def_sum17) usr_def_sum17,
+       SUM(usr_def_sum18) usr_def_sum18,
+       SUM(usr_def_sum19) usr_def_sum19,
+       SUM(usr_def_sum20) usr_def_sum20,
+       SUM(usr_def_sum21) usr_def_sum21,
+       SUM(usr_def_sum22) usr_def_sum22,
+       SUM(usr_def_sum23) usr_def_sum23,
+       SUM(usr_def_sum24) usr_def_sum24,
+       SUM(usr_def_sum25) usr_def_sum25,
+       SUM(usr_def_sum26) usr_def_sum26,
+       SUM(usr_def_sum27) usr_def_sum27,
+       SUM(usr_def_sum28) usr_def_sum28,
+       SUM(usr_def_sum29) usr_def_sum29,
+       SUM(usr_def_sum30) usr_def_sum30,
+       SUM(usr_def_sum31) usr_def_sum31,
+       SUM(usr_def_sum32) usr_def_sum32,
+       SUM(usr_def_sum33) usr_def_sum33,
+       SUM(usr_def_sum34) usr_def_sum34,
+       SUM(usr_def_sum35) usr_def_sum35,
+       SUM(usr_def_sum36) usr_def_sum36,
+       SUM(usr_def_sum37) usr_def_sum37,
+       SUM(usr_def_sum38) usr_def_sum38,
+       SUM(usr_def_sum39) usr_def_sum39,
+       SUM(usr_def_sum40) usr_def_sum40,
+       SUM(usr_def_sum41) usr_def_sum41,
+       SUM(usr_def_sum42) usr_def_sum42,
+       SUM(usr_def_sum43) usr_def_sum43,
+       SUM(usr_def_sum44) usr_def_sum44,
+       SUM(usr_def_sum45) usr_def_sum45,
+       SUM(usr_def_sum46) usr_def_sum46,
+       SUM(usr_def_sum47) usr_def_sum47,
+       SUM(usr_def_sum48) usr_def_sum48,
+       SUM(usr_def_sum49) usr_def_sum49,
+       SUM(usr_def_sum50) usr_def_sum50,
+       SUM(loss_pd_amt_ytd) loss_pd_amt_ytd,
+       SUM(loss_rsrv_chng_amt_ytd) loss_rsrv_chng_amt_ytd,
+       SUM(alc_exp_pd_amt_ytd) alc_exp_pd_amt_ytd,
+       SUM(alc_exp_rsrv_chng_amt_ytd) alc_exp_rsrv_chng_amt_ytd,
+       SUM(ualc_exp_pd_amt_ytd) ualc_exp_pd_amt_ytd,
+       SUM(ualc_exp_rsrv_chng_amt_ytd) ualc_exp_rsrv_chng_amt_ytd,
+       SUM(subro_recv_chng_amt_ytd) subro_recv_chng_amt_ytd,
+       SUM(subro_paid_chng_amt_ytd) subro_paid_chng_amt_ytd,
+       SUM(subro_rsrv_chng_amt_ytd) subro_rsrv_chng_amt_ytd,
+       SUM(salvage_recv_chng_amt_ytd) salvage_recv_chng_amt_ytd,
+       SUM(salvage_rsrv_chng_amt_ytd) salvage_rsrv_chng_amt_ytd,
+       SUM(dedrecov_recv_chng_amt_ytd) dedrecov_recv_chng_amt_ytd,
+       SUM(dedrecov_rsrv_chng_amt_ytd) dedrecov_rsrv_chng_amt_ytd,
+       SUM(alc_exp_recovery_amt_ytd) alc_exp_recovery_amt_ytd,
+       SUM(loss_recovery_amt_ytd) loss_recovery_amt_ytd,
+       SUM(other_recovery_amt_ytd) other_recovery_amt_ytd,
+       SUM(usr_def_sum1_ytd) usr_def_sum1_ytd,
+       SUM(usr_def_sum2_ytd) usr_def_sum2_ytd,
+       SUM(usr_def_sum3_ytd) usr_def_sum3_ytd,
+       SUM(usr_def_sum4_ytd) usr_def_sum4_ytd,
+       SUM(usr_def_sum5_ytd) usr_def_sum5_ytd,
+       SUM(usr_def_sum6_ytd) usr_def_sum6_ytd,
+       SUM(usr_def_sum7_ytd) usr_def_sum7_ytd,
+       SUM(usr_def_sum8_ytd) usr_def_sum8_ytd,
+       SUM(usr_def_sum9_ytd) usr_def_sum9_ytd,
+       SUM(usr_def_sum10_ytd) usr_def_sum10_ytd,
+       SUM(usr_def_sum11_ytd) usr_def_sum11_ytd,
+       SUM(usr_def_sum12_ytd) usr_def_sum12_ytd,
+       SUM(usr_def_sum13_ytd) usr_def_sum13_ytd,
+       SUM(usr_def_sum14_ytd) usr_def_sum14_ytd,
+       SUM(usr_def_sum15_ytd) usr_def_sum15_ytd,
+       SUM(usr_def_sum16_ytd) usr_def_sum16_ytd,
+       SUM(usr_def_sum17_ytd) usr_def_sum17_ytd,
+       SUM(usr_def_sum18_ytd) usr_def_sum18_ytd,
+       SUM(usr_def_sum19_ytd) usr_def_sum19_ytd,
+       SUM(usr_def_sum20_ytd) usr_def_sum20_ytd,
+       SUM(usr_def_sum21_ytd) usr_def_sum21_ytd,
+       SUM(usr_def_sum22_ytd) usr_def_sum22_ytd,
+       SUM(usr_def_sum23_ytd) usr_def_sum23_ytd,
+       SUM(usr_def_sum24_ytd) usr_def_sum24_ytd,
+       SUM(usr_def_sum25_ytd) usr_def_sum25_ytd,
+       SUM(usr_def_sum26_ytd) usr_def_sum26_ytd,
+       SUM(usr_def_sum27_ytd) usr_def_sum27_ytd,
+       SUM(usr_def_sum28_ytd) usr_def_sum28_ytd,
+       SUM(usr_def_sum29_ytd) usr_def_sum29_ytd,
+       SUM(usr_def_sum30_ytd) usr_def_sum30_ytd,
+       SUM(usr_def_sum31_ytd) usr_def_sum31_ytd,
+       SUM(usr_def_sum32_ytd) usr_def_sum32_ytd,
+       SUM(usr_def_sum33_ytd) usr_def_sum33_ytd,
+       SUM(usr_def_sum34_ytd) usr_def_sum34_ytd,
+       SUM(usr_def_sum35_ytd) usr_def_sum35_ytd,
+       SUM(usr_def_sum36_ytd) usr_def_sum36_ytd,
+       SUM(usr_def_sum37_ytd) usr_def_sum37_ytd,
+       SUM(usr_def_sum38_ytd) usr_def_sum38_ytd,
+       SUM(usr_def_sum39_ytd) usr_def_sum39_ytd,
+       SUM(usr_def_sum40_ytd) usr_def_sum40_ytd,
+       SUM(usr_def_sum41_ytd) usr_def_sum41_ytd,
+       SUM(usr_def_sum42_ytd) usr_def_sum42_ytd,
+       SUM(usr_def_sum43_ytd) usr_def_sum43_ytd,
+       SUM(usr_def_sum44_ytd) usr_def_sum44_ytd,
+       SUM(usr_def_sum45_ytd) usr_def_sum45_ytd,
+       SUM(usr_def_sum46_ytd) usr_def_sum46_ytd,
+       SUM(usr_def_sum47_ytd) usr_def_sum47_ytd,
+       SUM(usr_def_sum48_ytd) usr_def_sum48_ytd,
+       SUM(usr_def_sum49_ytd) usr_def_sum49_ytd,
+       SUM(usr_def_sum50_ytd) usr_def_sum50_ytd,
+       SUM(loss_pd_amt_itd) loss_pd_amt_itd,
+       SUM(loss_rsrv_chng_amt_itd) loss_rsrv_chng_amt_itd,
+       SUM(alc_exp_pd_amt_itd) alc_exp_pd_amt_itd,
+       SUM(alc_exp_rsrv_chng_amt_itd) alc_exp_rsrv_chng_amt_itd,
+       SUM(ualc_exp_pd_amt_itd) ualc_exp_pd_amt_itd,
+       SUM(ualc_exp_rsrv_chng_amt_itd) ualc_exp_rsrv_chng_amt_itd,
+       SUM(subro_recv_chng_amt_itd) subro_recv_chng_amt_itd,
+       SUM(subro_paid_chng_amt_itd) subro_paid_chng_amt_itd,
+       SUM(subro_rsrv_chng_amt_itd) subro_rsrv_chng_amt_itd,
+       SUM(salvage_recv_chng_amt_itd) salvage_recv_chng_amt_itd,
+       SUM(salvage_rsrv_chng_amt_itd) salvage_rsrv_chng_amt_itd,
+       SUM(dedrecov_recv_chng_amt_itd) dedrecov_recv_chng_amt_itd,
+       SUM(dedrecov_rsrv_chng_amt_itd) dedrecov_rsrv_chng_amt_itd,
+       SUM(alc_exp_recovery_amt_itd) alc_exp_recovery_amt_itd,
+       SUM(loss_recovery_amt_itd) loss_recovery_amt_itd,
+       SUM(other_recovery_amt_itd) other_recovery_amt_itd,
+       SUM(usr_def_sum1_itd) usr_def_sum1_itd,
+       SUM(usr_def_sum2_itd) usr_def_sum2_itd,
+       SUM(usr_def_sum3_itd) usr_def_sum3_itd,
+       SUM(usr_def_sum4_itd) usr_def_sum4_itd,
+       SUM(usr_def_sum5_itd) usr_def_sum5_itd,
+       SUM(usr_def_sum6_itd) usr_def_sum6_itd,
+       SUM(usr_def_sum7_itd) usr_def_sum7_itd,
+       SUM(usr_def_sum8_itd) usr_def_sum8_itd,
+       SUM(usr_def_sum9_itd) usr_def_sum9_itd,
+       SUM(usr_def_sum10_itd) usr_def_sum10_itd,
+       SUM(usr_def_sum11_itd) usr_def_sum11_itd,
+       SUM(usr_def_sum12_itd) usr_def_sum12_itd,
+       SUM(usr_def_sum13_itd) usr_def_sum13_itd,
+       SUM(usr_def_sum14_itd) usr_def_sum14_itd,
+       SUM(usr_def_sum15_itd) usr_def_sum15_itd,
+       SUM(usr_def_sum16_itd) usr_def_sum16_itd,
+       SUM(usr_def_sum17_itd) usr_def_sum17_itd,
+       SUM(usr_def_sum18_itd) usr_def_sum18_itd,
+       SUM(usr_def_sum19_itd) usr_def_sum19_itd,
+       SUM(usr_def_sum20_itd) usr_def_sum20_itd,
+       SUM(usr_def_sum21_itd) usr_def_sum21_itd,
+       SUM(usr_def_sum22_itd) usr_def_sum22_itd,
+       SUM(usr_def_sum23_itd) usr_def_sum23_itd,
+       SUM(usr_def_sum24_itd) usr_def_sum24_itd,
+       SUM(usr_def_sum25_itd) usr_def_sum25_itd,
+       SUM(usr_def_sum26_itd) usr_def_sum26_itd,
+       SUM(usr_def_sum27_itd) usr_def_sum27_itd,
+       SUM(usr_def_sum28_itd) usr_def_sum28_itd,
+       SUM(usr_def_sum29_itd) usr_def_sum29_itd,
+       SUM(usr_def_sum30_itd) usr_def_sum30_itd,
+       SUM(usr_def_sum31_itd) usr_def_sum31_itd,
+       SUM(usr_def_sum32_itd) usr_def_sum32_itd,
+       SUM(usr_def_sum33_itd) usr_def_sum33_itd,
+       SUM(usr_def_sum34_itd) usr_def_sum34_itd,
+       SUM(usr_def_sum35_itd) usr_def_sum35_itd,
+       SUM(usr_def_sum36_itd) usr_def_sum36_itd,
+       SUM(usr_def_sum37_itd) usr_def_sum37_itd,
+       SUM(usr_def_sum38_itd) usr_def_sum38_itd,
+       SUM(usr_def_sum39_itd) usr_def_sum39_itd,
+       SUM(usr_def_sum40_itd) usr_def_sum40_itd,
+       SUM(usr_def_sum41_itd) usr_def_sum41_itd,
+       SUM(usr_def_sum42_itd) usr_def_sum42_itd,
+       SUM(usr_def_sum43_itd) usr_def_sum43_itd,
+       SUM(usr_def_sum44_itd) usr_def_sum44_itd,
+       SUM(usr_def_sum45_itd) usr_def_sum45_itd,
+       SUM(usr_def_sum46_itd) usr_def_sum46_itd,
+       SUM(usr_def_sum47_itd) usr_def_sum47_itd,
+       SUM(usr_def_sum48_itd) usr_def_sum48_itd,
+       SUM(usr_def_sum49_itd) usr_def_sum49_itd,
+       SUM(usr_def_sum50_itd) usr_def_sum50_itd
+FROM   x
+GROUP  BY x.claim_uniqueid;
+
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>806</xloc>
+      <yloc>272</yloc>
+    </entry>
+    <entry>
+      <name>Simple evaluation 3</name>
+      <description/>
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname/>
+      <variablename>${DateDiff_Daily}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask/>
+      <comparevalue> 0</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>651</xloc>
+      <yloc>200</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp occ uid</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_clm_mon_sum_occ_id nologging pctfree 0
+       tablespace ${G_DW_DB_DATA} as
+select c.CLAIM_UNIQUEID, max(o.occurrence_id) occurrence_id
+from   tmp_clm_mon_sum_clm_id c,
+       dim_claim dc,
+       dim_occurrence o
+where  c.claim_id = dc.claim_id
+  and  dc.clm_claimnumber = o.claim_number(+)
+  and  dc.clm_groupnumber = o.occurrence_no(+)
+group  by c.CLAIM_UNIQUEID;
+   </sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>662</xloc>
+      <yloc>91</yloc>
+    </entry>
+  </entries>
+  <hops>
+    <hop>
+      <from>START</from>
+      <to>Create tmp clm ext id</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>Create tmp clm uid</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>Create tmp clm stg</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>Create tmp clm old id</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>Create tmp losscod</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>Simple evaluation</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Simple evaluation 2</from>
+      <to>Create tmp clm calc</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Simple evaluation 2</from>
+      <to>Create tmp clm calc 2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Simple evaluation</from>
+      <to>Simple evaluation 3</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Simple evaluation 3</from>
+      <to>Create tmp clm calc</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Simple evaluation</from>
+      <to>Simple evaluation 2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Simple evaluation 3</from>
+      <to>Create tmp clm calc 2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create tmp clm uid</from>
+      <to>Create tmp occ uid</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+  </hops>
+  <notepads>
+    <notepad>
+      <note>Execute this step when loading the first month snapshot.</note>
+      <xloc>892</xloc>
+      <yloc>274</yloc>
+      <width>339</width>
+      <heigth>26</heigth>
+      <fontname/>
+      <fontsize>-1</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+  </notepads>
+  <attributes>
+    <group>
+      <name>JobRestart</name>
+      <attribute>
+        <key>UniqueConnections</key>
+        <value>N</value>
+      </attribute>
+    </group>
+  </attributes>
+</job>

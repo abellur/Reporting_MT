@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:33 EST 2019
+file.title=TR_DIM_LOOKUPCODE
+description=Transformation to load data to DIM_LOOKUPCODE table.
+title=TR_DIM_LOOKUPCODE
+file.description=Transformation to load data to DIM_LOOKUPCODE table.

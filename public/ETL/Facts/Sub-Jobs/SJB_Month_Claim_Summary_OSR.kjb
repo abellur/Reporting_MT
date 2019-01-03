@@ -1,0 +1,1462 @@
+<job>
+  <name>SJB_Month_Claim_Summary_OSR</name>
+  <description>Job to populate data for Fact_Claim_OSR table</description>
+  <extended_description>Date         By     Description
+05/05/2016   Jma    Issue #170920. Add new job entries to get underwriter_id, company_id,
+                    policy_id, policyextension_id, policyeffectivedate_id and policyexpirationdate_id.</extended_description>
+  <job_version/>
+  <job_status>0</job_status>
+  <directory>/public/ETL/Facts/Sub-Jobs</directory>
+  <created_user>-</created_user>
+  <created_date>2015/06/01 16:53:02.773</created_date>
+  <modified_user>-</modified_user>
+  <modified_date>2018/10/03 11:54:10.070</modified_date>
+  <parameters>
+    </parameters>
+  <connection>
+    <name>4SBI_DataWarehouse</name>
+    <server>${G_DW_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_DW_DB_NAME}</database>
+    <port>${G_DW_DB_PORT}</port>
+    <username>${G_DW_DB_USERNAME}</username>
+    <password>${G_DW_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_DW_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_DW_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_DW_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <slaveservers>
+    <slaveserver>
+      <name>4Sight BI - PDI Server</name>
+      <hostname>10.0.0.21</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>joe</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Carte 1</name>
+      <hostname>localhost</hostname>
+      <port>9081</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>DI Server</name>
+      <hostname>localhost</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>joe</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_DEV</name>
+      <hostname>magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>shota</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_SERVER</name>
+      <hostname>http://magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>shota</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_TEST</name>
+      <hostname>magspentahotest</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO</name>
+      <hostname>magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO_BTS</name>
+      <hostname>129.144.25.104</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO_DEV</name>
+      <hostname>magspentahodev</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Master</name>
+      <hostname>localhost</hostname>
+      <port>8081</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SERVER1</name>
+      <hostname>LOCALHOST</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SLAVE ONE</name>
+      <hostname>192.168.2.101</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4a418bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SLAVE TWO</name>
+      <hostname>192.168.2.101</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave1</name>
+      <hostname>localhost</hostname>
+      <port>8082</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave2</name>
+      <hostname>localhost</hostname>
+      <port>8083</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave3</name>
+      <hostname>localhost</hostname>
+      <port>8084</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>local DIS</name>
+      <hostname>localhost</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>magspentahodev</name>
+      <hostname>magspentahodev</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+  </slaveservers>
+  <job-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <size_limit_lines/>
+    <interval/>
+    <timeout_days/>
+    <field>
+      <id>ID_JOB</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>JOBNAME</name>
+    </field>
+    <field>
+      <id>STATUS</id>
+      <enabled>Y</enabled>
+      <name>STATUS</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>STARTDATE</id>
+      <enabled>Y</enabled>
+      <name>STARTDATE</name>
+    </field>
+    <field>
+      <id>ENDDATE</id>
+      <enabled>Y</enabled>
+      <name>ENDDATE</name>
+    </field>
+    <field>
+      <id>LOGDATE</id>
+      <enabled>Y</enabled>
+      <name>LOGDATE</name>
+    </field>
+    <field>
+      <id>DEPDATE</id>
+      <enabled>Y</enabled>
+      <name>DEPDATE</name>
+    </field>
+    <field>
+      <id>REPLAYDATE</id>
+      <enabled>Y</enabled>
+      <name>REPLAYDATE</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>Y</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>EXECUTING_SERVER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_SERVER</name>
+    </field>
+    <field>
+      <id>EXECUTING_USER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_USER</name>
+    </field>
+    <field>
+      <id>START_JOB_ENTRY</id>
+      <enabled>N</enabled>
+      <name>START_JOB_ENTRY</name>
+    </field>
+    <field>
+      <id>CLIENT</id>
+      <enabled>N</enabled>
+      <name>CLIENT</name>
+    </field>
+  </job-log-table>
+  <jobentry-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>TRANSNAME</name>
+    </field>
+    <field>
+      <id>JOBENTRYNAME</id>
+      <enabled>Y</enabled>
+      <name>STEPNAME</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>RESULT</id>
+      <enabled>Y</enabled>
+      <name>RESULT</name>
+    </field>
+    <field>
+      <id>NR_RESULT_ROWS</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_ROWS</name>
+    </field>
+    <field>
+      <id>NR_RESULT_FILES</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_FILES</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>N</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>COPY_NR</id>
+      <enabled>N</enabled>
+      <name>COPY_NR</name>
+    </field>
+  </jobentry-log-table>
+  <channel-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>LOGGING_OBJECT_TYPE</id>
+      <enabled>Y</enabled>
+      <name>LOGGING_OBJECT_TYPE</name>
+    </field>
+    <field>
+      <id>OBJECT_NAME</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_NAME</name>
+    </field>
+    <field>
+      <id>OBJECT_COPY</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_COPY</name>
+    </field>
+    <field>
+      <id>REPOSITORY_DIRECTORY</id>
+      <enabled>Y</enabled>
+      <name>REPOSITORY_DIRECTORY</name>
+    </field>
+    <field>
+      <id>FILENAME</id>
+      <enabled>Y</enabled>
+      <name>FILENAME</name>
+    </field>
+    <field>
+      <id>OBJECT_ID</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_ID</name>
+    </field>
+    <field>
+      <id>OBJECT_REVISION</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_REVISION</name>
+    </field>
+    <field>
+      <id>PARENT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>PARENT_CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>ROOT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>ROOT_CHANNEL_ID</name>
+    </field>
+  </channel-log-table>
+  <checkpoint-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <max_nr_retries/>
+    <run_retry_period/>
+    <namespace_parameter/>
+    <save_parameters>Y</save_parameters>
+    <save_result_rows>Y</save_result_rows>
+    <save_result_files>Y</save_result_files>
+    <field>
+      <id>ID_JOB_RUN</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB_RUN</name>
+    </field>
+    <field>
+      <id>ID_JOB</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>JOBNAME</name>
+    </field>
+    <field>
+      <id>NAMESPACE</id>
+      <enabled>Y</enabled>
+      <name>NAMESPACE</name>
+    </field>
+    <field>
+      <id>CHECKPOINT_NAME</id>
+      <enabled>Y</enabled>
+      <name>CHECKPOINT_NAME</name>
+    </field>
+    <field>
+      <id>CHECKPOINT_COPYNR</id>
+      <enabled>Y</enabled>
+      <name>CHECKPOINT_COPYNR</name>
+    </field>
+    <field>
+      <id>ATTEMPT_NR</id>
+      <enabled>Y</enabled>
+      <name>ATTEMPT_NR</name>
+    </field>
+    <field>
+      <id>JOB_RUN_START_DATE</id>
+      <enabled>Y</enabled>
+      <name>JOB_RUN_START_DATE</name>
+    </field>
+    <field>
+      <id>LOGDATE</id>
+      <enabled>Y</enabled>
+      <name>LOGDATE</name>
+    </field>
+    <field>
+      <id>RESULT_XML</id>
+      <enabled>Y</enabled>
+      <name>RESULT_XML</name>
+    </field>
+    <field>
+      <id>PARAMETER_XML</id>
+      <enabled>Y</enabled>
+      <name>PARAMETER_XML</name>
+    </field>
+  </checkpoint-log-table>
+  <pass_batchid>N</pass_batchid>
+  <shared_objects_file/>
+  <entries>
+    <entry>
+      <name>START</name>
+      <description/>
+      <type>SPECIAL</type>
+      <start>Y</start>
+      <dummy>N</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>94</xloc>
+      <yloc>211</yloc>
+    </entry>
+    <entry>
+      <name>TR_FC_OSR_Drop_TMP_Tables</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>rep_name</specification_method>
+      <trans_object_id/>
+      <filename/>
+      <transname>TR_FC_OSR_Drop_TMP_Tables</transname>
+      <directory>/public/ETL/Facts/Transformations</directory>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration/>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>294</xloc>
+      <yloc>211</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_fc_osr_driver</name>
+      <description/>
+      <type>SQL</type>
+      <sql>CREATE TABLE tmp_fc_osr_driver NOLOGGING PCTFREE 0 
+tablespace ${G_STAGING_DB_DATA} AS
+WITH x AS (
+SELECT fc.month_id, 
+       fc.adjuster_id,
+       --fc.underwriter_id,
+       --fc.company_id,
+       dc.clm_claimnumber,
+       /* fc.policy_id,
+       fc.policyextension_id,
+       fc.policyeffectivedate_id,
+       fc.policyexpirationdate_id,  */     
+       MAX(fc.claim_id) claim_id,
+       MAX(fc.claimextension_id) claimextension_id,
+       fc.claimstatus_id,
+       fc.claimlosslocation_id,
+       fc.datereported_id,
+       fc.dateofloss_id,
+       fc.closeddate_id,
+       fc.opendate_id,
+       fc.courtcase_id,
+       -- Issue 178894
+       fc.claimpiaadata_id,
+       MAX(fc.losscoding_id) losscoding_id,
+       fc.claimtype_id,
+       fc.finaldisposition_id,
+       fc.clmpart_id1,
+       fc.clmpart_id2,
+       fc.clmpart_id3,
+       fc.clmpart_id4,
+       fc.clmpart_id5,
+       fc.clmpart_id6,
+       fc.clmpart_id7,
+       fc.clmpart_id8,
+       fc.clmpart_id9,
+       fc.clmpart_id10,
+       fc.clmpart_id11,
+       fc.clmpart_id12,
+       fc.clmpart_id13,
+       fc.clmpart_id14,
+       fc.clmpart_id15,
+       --claimuniqueid
+       SUM(fc.loss_pd_amt)                                    loss_pd_amt,
+       SUM(fc.loss_rsrv_chng_amt)                             loss_rsrv_chng_amt,
+       SUM(fc.loss_rsrv_chng_amt) - SUM(fc.loss_pd_amt)       LOSS_OSD_RSRV_CHNG_AMT,
+       SUM(fc.alc_exp_pd_amt)                                 EXP_PD_AMT,
+       SUM(fc.alc_exp_rsrv_chng_amt)                          EXP_RSRV_CHNG_AMT,                                     
+       SUM(fc.alc_exp_rsrv_chng_amt) - SUM(fc.alc_exp_pd_amt) EXP_OSD_RSRV_CHNG_AMT,
+       SUM(fc.alc_exp_recovery_amt)                           EXP_RECOVERY_AMT,
+       SUM(fc.loss_recovery_amt)                              LOSS_RECOVERY_AMT,
+       SUM(fc.other_recovery_amt)                             OTHER_RECOVERY_AMT,
+       SUM(FC.USR_DEF_SUM1)                                   USR_DEF_SUM1,
+       SUM(FC.USR_DEF_SUM2)                                   USR_DEF_SUM2,
+       SUM(FC.USR_DEF_SUM3)                                   USR_DEF_SUM3,
+       SUM(FC.USR_DEF_SUM4)                                   USR_DEF_SUM4,
+       SUM(FC.USR_DEF_SUM5)                                   USR_DEF_SUM5,
+       SUM(FC.USR_DEF_SUM6)                                   USR_DEF_SUM6,
+       SUM(FC.USR_DEF_SUM7)                                   USR_DEF_SUM7,
+       SUM(FC.USR_DEF_SUM8)                                   USR_DEF_SUM8,
+       SUM(FC.USR_DEF_SUM9)                                   USR_DEF_SUM9,
+       SUM(FC.USR_DEF_SUM10)                                  USR_DEF_SUM10,
+       SUM(FC.USR_DEF_SUM11)                                  USR_DEF_SUM11,
+       SUM(FC.USR_DEF_SUM12)                                  USR_DEF_SUM12,
+       SUM(FC.USR_DEF_SUM13)                                  USR_DEF_SUM13,
+       SUM(FC.USR_DEF_SUM14)                                  USR_DEF_SUM14,
+       SUM(FC.USR_DEF_SUM15)                                  USR_DEF_SUM15,
+       SUM(FC.USR_DEF_SUM16)                                  USR_DEF_SUM16,
+       SUM(FC.USR_DEF_SUM17)                                  USR_DEF_SUM17,
+       SUM(FC.USR_DEF_SUM18)                                  USR_DEF_SUM18,
+       SUM(FC.USR_DEF_SUM19)                                  USR_DEF_SUM19,
+       SUM(FC.USR_DEF_SUM20)                                  USR_DEF_SUM20,
+       SUM(FC.USR_DEF_SUM21)                                  USR_DEF_SUM21,
+       SUM(FC.USR_DEF_SUM22)                                  USR_DEF_SUM22,        
+       SUM(FC.USR_DEF_SUM23)                                  USR_DEF_SUM23,
+       SUM(FC.USR_DEF_SUM24)                                  USR_DEF_SUM24,
+       SUM(FC.USR_DEF_SUM25)                                  USR_DEF_SUM25,
+       SUM(FC.USR_DEF_SUM26)                                  USR_DEF_SUM26,
+       SUM(FC.USR_DEF_SUM27)                                  USR_DEF_SUM27,
+       SUM(FC.USR_DEF_SUM28)                                  USR_DEF_SUM28,
+       SUM(FC.USR_DEF_SUM29)                                  USR_DEF_SUM29,
+       SUM(FC.USR_DEF_SUM30)                                  USR_DEF_SUM30,
+       SUM(FC.USR_DEF_SUM31)                                  USR_DEF_SUM31,
+       SUM(FC.USR_DEF_SUM32)                                  USR_DEF_SUM32,
+       SUM(FC.USR_DEF_SUM33)                                  USR_DEF_SUM33,
+       SUM(FC.USR_DEF_SUM34)                                  USR_DEF_SUM34,
+       SUM(FC.USR_DEF_SUM35)                                  USR_DEF_SUM35,
+       SUM(FC.USR_DEF_SUM36)                                  USR_DEF_SUM36,
+       SUM(FC.USR_DEF_SUM37)                                  USR_DEF_SUM37,
+       SUM(FC.USR_DEF_SUM38)                                  USR_DEF_SUM38,
+       SUM(FC.USR_DEF_SUM39)                                  USR_DEF_SUM39,
+       SUM(FC.USR_DEF_SUM40)                                  USR_DEF_SUM40,
+       SUM(FC.USR_DEF_SUM41)                                  USR_DEF_SUM41,
+       SUM(FC.USR_DEF_SUM42)                                  USR_DEF_SUM42,
+       SUM(FC.USR_DEF_SUM43)                                  USR_DEF_SUM43,
+       SUM(FC.USR_DEF_SUM44)                                  USR_DEF_SUM44,
+       SUM(FC.USR_DEF_SUM45)                                  USR_DEF_SUM45,
+       SUM(FC.USR_DEF_SUM46)                                  USR_DEF_SUM46,
+       SUM(FC.USR_DEF_SUM47)                                  USR_DEF_SUM47,
+       SUM(FC.USR_DEF_SUM48)                                  USR_DEF_SUM48,
+       SUM(FC.USR_DEF_SUM49)                                  USR_DEF_SUM49,
+       SUM(FC.USR_DEF_SUM50)                                  USR_DEF_SUM50,
+       SUM(fc.loss_pd_amt_ytd)                                        loss_pd_amt_ytd,
+       SUM(fc.loss_rsrv_chng_amt_ytd)                                 loss_rsrv_chng_amt_ytd,
+       SUM(fc.loss_rsrv_chng_amt_ytd) - SUM(fc.loss_pd_amt_ytd)       LOSS_OSD_RSRV_CHNG_YTD,
+       SUM(fc.alc_exp_pd_amt_ytd)                                     EXP_PD_AMT_YTD,
+       SUM(fc.alc_exp_rsrv_chng_amt_ytd)                              EXP_RSRV_CHNG_AMT_YTD,
+       SUM(fc.alc_exp_rsrv_chng_amt_ytd) - SUM(fc.alc_exp_pd_amt_ytd) EXP_OSD_RSRV_CHNG_YTD,
+       SUM(fc.alc_exp_recovery_amt_ytd)                               EXP_RECOVERY_AMT_YTD,
+       SUM(fc.loss_recovery_amt_ytd)                                  LOSS_RECOVERY_AMT_YTD,
+       SUM(fc.other_recovery_amt_ytd)                                 OTHER_RECOVERY_AMT_YTD,
+       SUM(FC.USR_DEF_SUM1_YTD)                                       USR_DEF_SUM1_YTD,
+       SUM(FC.USR_DEF_SUM2_YTD)                                       USR_DEF_SUM2_YTD,
+       SUM(FC.USR_DEF_SUM3_YTD)                                       USR_DEF_SUM3_YTD,
+       SUM(FC.USR_DEF_SUM4_YTD)                                       USR_DEF_SUM4_YTD,
+       SUM(FC.USR_DEF_SUM5_YTD)                                       USR_DEF_SUM5_YTD,
+       SUM(FC.USR_DEF_SUM6_YTD)                                       USR_DEF_SUM6_YTD,
+       SUM(FC.USR_DEF_SUM7_YTD)                                       USR_DEF_SUM7_YTD,
+       SUM(FC.USR_DEF_SUM8_YTD)                                       USR_DEF_SUM8_YTD,
+       SUM(FC.USR_DEF_SUM9_YTD)                                       USR_DEF_SUM9_YTD,
+       SUM(FC.USR_DEF_SUM10_YTD)                                      USR_DEF_SUM10_YTD,
+       SUM(FC.USR_DEF_SUM11_YTD)                                      USR_DEF_SUM11_YTD,
+       SUM(FC.USR_DEF_SUM12_YTD)                                      USR_DEF_SUM12_YTD,
+       SUM(FC.USR_DEF_SUM13_YTD)                                      USR_DEF_SUM13_YTD,
+       SUM(FC.USR_DEF_SUM14_YTD)                                      USR_DEF_SUM14_YTD,
+       SUM(FC.USR_DEF_SUM15_YTD)                                      USR_DEF_SUM15_YTD,
+       SUM(FC.USR_DEF_SUM16_YTD)                                      USR_DEF_SUM16_YTD,
+       SUM(FC.USR_DEF_SUM17_YTD)                                      USR_DEF_SUM17_YTD,
+       SUM(FC.USR_DEF_SUM18_YTD)                                      USR_DEF_SUM18_YTD,
+       SUM(FC.USR_DEF_SUM19_YTD)                                      USR_DEF_SUM19_YTD,
+       SUM(FC.USR_DEF_SUM20_YTD)                                      USR_DEF_SUM20_YTD,
+       SUM(FC.USR_DEF_SUM21_YTD)                                      USR_DEF_SUM21_YTD,
+       SUM(FC.USR_DEF_SUM22_YTD)                                      USR_DEF_SUM22_YTD,
+       SUM(FC.USR_DEF_SUM23_YTD)                                      USR_DEF_SUM23_YTD,
+       SUM(FC.USR_DEF_SUM24_YTD)                                      USR_DEF_SUM24_YTD,
+       SUM(FC.USR_DEF_SUM25_YTD)                                      USR_DEF_SUM25_YTD,
+       SUM(FC.USR_DEF_SUM26_YTD)                                      USR_DEF_SUM26_YTD,
+       SUM(FC.USR_DEF_SUM27_YTD)                                      USR_DEF_SUM27_YTD,
+       SUM(FC.USR_DEF_SUM28_YTD)                                      USR_DEF_SUM28_YTD,
+       SUM(FC.USR_DEF_SUM29_YTD)                                      USR_DEF_SUM29_YTD,
+       SUM(FC.USR_DEF_SUM30_YTD)                                      USR_DEF_SUM30_YTD,
+       SUM(FC.USR_DEF_SUM31_YTD)                                      USR_DEF_SUM31_YTD,
+       SUM(FC.USR_DEF_SUM32_YTD)                                      USR_DEF_SUM32_YTD,
+       SUM(FC.USR_DEF_SUM33_YTD)                                      USR_DEF_SUM33_YTD,
+       SUM(FC.USR_DEF_SUM34_YTD)                                      USR_DEF_SUM34_YTD,
+       SUM(FC.USR_DEF_SUM35_YTD)                                      USR_DEF_SUM35_YTD,
+       SUM(FC.USR_DEF_SUM36_YTD)                                      USR_DEF_SUM36_YTD,
+       SUM(FC.USR_DEF_SUM37_YTD)                                      USR_DEF_SUM37_YTD,
+       SUM(FC.USR_DEF_SUM38_YTD)                                      USR_DEF_SUM38_YTD,
+       SUM(FC.USR_DEF_SUM39_YTD)                                      USR_DEF_SUM39_YTD,
+       SUM(FC.USR_DEF_SUM40_YTD)                                      USR_DEF_SUM40_YTD,
+       SUM(FC.USR_DEF_SUM41_YTD)                                      USR_DEF_SUM41_YTD,
+       SUM(FC.USR_DEF_SUM42_YTD)                                      USR_DEF_SUM42_YTD,
+       SUM(FC.USR_DEF_SUM43_YTD)                                      USR_DEF_SUM43_YTD,
+       SUM(FC.USR_DEF_SUM44_YTD)                                      USR_DEF_SUM44_YTD,
+       SUM(FC.USR_DEF_SUM45_YTD)                                      USR_DEF_SUM45_YTD,
+       SUM(FC.USR_DEF_SUM46_YTD)                                      USR_DEF_SUM46_YTD,
+       SUM(FC.USR_DEF_SUM47_YTD)                                      USR_DEF_SUM47_YTD,
+       SUM(FC.USR_DEF_SUM48_YTD)                                      USR_DEF_SUM48_YTD,
+       SUM(FC.USR_DEF_SUM49_YTD)                                      USR_DEF_SUM49_YTD,
+       SUM(FC.USR_DEF_SUM50_YTD)                                      USR_DEF_SUM50_YTD,
+       SUM(fc.LOSS_PD_AMT_ITD)                                        LOSS_PD_AMT_ITD,
+       SUM(fc.LOSS_RSRV_CHNG_AMT_ITD)                                 LOSS_RSRV_CHNG_AMT_ITD,
+       CASE WHEN (SUM(fc.LOSS_RSRV_CHNG_AMT_ITD) - SUM(fc.LOSS_PD_AMT_ITD)) &lt; 0 THEN
+            0
+       ELSE (SUM(fc.LOSS_RSRV_CHNG_AMT_ITD) - SUM(fc.LOSS_PD_AMT_ITD))
+       END                                                            LOSS_OSD_RSRV_CHNG_ITD,
+       SUM(fc.ALC_EXP_PD_AMT_ITD)                                     EXP_PD_AMT_ITD,
+       SUM(fc.ALC_EXP_RSRV_CHNG_AMT_ITD)                              EXP_RSRV_CHNG_AMT_ITD,
+       CASE WHEN (SUM(fc.alc_exp_rsrv_chng_amt_itd) - SUM(fc.alc_exp_pd_amt_itd)) &lt; 0 THEN
+            0
+       ELSE (SUM(fc.alc_exp_rsrv_chng_amt_itd) - SUM(fc.alc_exp_pd_amt_itd))
+       END                                                            EXP_OSD_RSRV_CHNG_ITD,
+       SUM(fc.alc_exp_recovery_amt_itd)                               EXP_RECOVERY_AMT_ITD,
+       SUM(fc.loss_recovery_amt_itd)                                  LOSS_RECOVERY_AMT_ITD,
+       SUM(fc.other_recovery_amt_itd)                                 OTHER_RECOVERY_AMT_ITD,
+       SUM(FC.USR_DEF_SUM1_ITD)                                       USR_DEF_SUM1_ITD,
+       SUM(FC.USR_DEF_SUM2_ITD)                                       USR_DEF_SUM2_ITD,
+       SUM(FC.USR_DEF_SUM3_ITD)                                       USR_DEF_SUM3_ITD,
+       SUM(FC.USR_DEF_SUM4_ITD)                                       USR_DEF_SUM4_ITD,
+       SUM(FC.USR_DEF_SUM5_ITD)                                       USR_DEF_SUM5_ITD,
+       SUM(FC.USR_DEF_SUM6_ITD)                                       USR_DEF_SUM6_ITD,
+       SUM(FC.USR_DEF_SUM7_ITD)                                       USR_DEF_SUM7_ITD,
+       SUM(FC.USR_DEF_SUM8_ITD)                                       USR_DEF_SUM8_ITD,
+       SUM(FC.USR_DEF_SUM9_ITD)                                       USR_DEF_SUM9_ITD,
+       SUM(FC.USR_DEF_SUM10_ITD)                                      USR_DEF_SUM10_ITD,
+       SUM(FC.USR_DEF_SUM11_ITD)                                      USR_DEF_SUM11_ITD,
+       SUM(FC.USR_DEF_SUM12_ITD)                                      USR_DEF_SUM12_ITD,
+       SUM(FC.USR_DEF_SUM13_ITD)                                      USR_DEF_SUM13_ITD,
+       SUM(FC.USR_DEF_SUM14_ITD)                                      USR_DEF_SUM14_ITD,
+       SUM(FC.USR_DEF_SUM15_ITD)                                      USR_DEF_SUM15_ITD,
+       SUM(FC.USR_DEF_SUM16_ITD)                                      USR_DEF_SUM16_ITD,
+       SUM(FC.USR_DEF_SUM17_ITD)                                      USR_DEF_SUM17_ITD,
+       SUM(FC.USR_DEF_SUM18_ITD)                                      USR_DEF_SUM18_ITD,
+       SUM(FC.USR_DEF_SUM19_ITD)                                      USR_DEF_SUM19_ITD,
+       SUM(FC.USR_DEF_SUM20_ITD)                                      USR_DEF_SUM20_ITD,
+       SUM(FC.USR_DEF_SUM21_ITD)                                      USR_DEF_SUM21_ITD,
+       SUM(FC.USR_DEF_SUM22_ITD)                                      USR_DEF_SUM22_ITD,
+       SUM(FC.USR_DEF_SUM23_ITD)                                      USR_DEF_SUM23_ITD,
+       SUM(FC.USR_DEF_SUM24_ITD)                                      USR_DEF_SUM24_ITD,
+       SUM(FC.USR_DEF_SUM25_ITD)                                      USR_DEF_SUM25_ITD,
+       SUM(FC.USR_DEF_SUM26_ITD)                                      USR_DEF_SUM26_ITD,
+       SUM(FC.USR_DEF_SUM27_ITD)                                      USR_DEF_SUM27_ITD,
+       SUM(FC.USR_DEF_SUM28_ITD)                                      USR_DEF_SUM28_ITD,
+       SUM(FC.USR_DEF_SUM29_ITD)                                      USR_DEF_SUM29_ITD,
+       SUM(FC.USR_DEF_SUM30_ITD)                                      USR_DEF_SUM30_ITD,
+       SUM(FC.USR_DEF_SUM31_ITD)                                      USR_DEF_SUM31_ITD,
+       SUM(FC.USR_DEF_SUM32_ITD)                                      USR_DEF_SUM32_ITD,
+       SUM(FC.USR_DEF_SUM33_ITD)                                      USR_DEF_SUM33_ITD,
+       SUM(FC.USR_DEF_SUM34_ITD)                                      USR_DEF_SUM34_ITD,
+       SUM(FC.USR_DEF_SUM35_ITD)                                      USR_DEF_SUM35_ITD,
+       SUM(FC.USR_DEF_SUM36_ITD)                                      USR_DEF_SUM36_ITD,
+       SUM(FC.USR_DEF_SUM37_ITD)                                      USR_DEF_SUM37_ITD,
+       SUM(FC.USR_DEF_SUM38_ITD)                                      USR_DEF_SUM38_ITD,
+       SUM(FC.USR_DEF_SUM39_ITD)                                      USR_DEF_SUM39_ITD,
+       SUM(FC.USR_DEF_SUM40_ITD)                                      USR_DEF_SUM40_ITD,
+       SUM(FC.USR_DEF_SUM41_ITD)                                      USR_DEF_SUM41_ITD,
+       SUM(FC.USR_DEF_SUM42_ITD)                                      USR_DEF_SUM42_ITD,
+       SUM(FC.USR_DEF_SUM43_ITD)                                      USR_DEF_SUM43_ITD,        
+       SUM(FC.USR_DEF_SUM44_ITD)                                      USR_DEF_SUM44_ITD,
+       SUM(FC.USR_DEF_SUM45_ITD)                                      USR_DEF_SUM45_ITD,
+       SUM(FC.USR_DEF_SUM46_ITD)                                      USR_DEF_SUM46_ITD,
+       SUM(FC.USR_DEF_SUM47_ITD)                                      USR_DEF_SUM47_ITD,
+       SUM(FC.USR_DEF_SUM48_ITD)                                      USR_DEF_SUM48_ITD,
+       SUM(FC.USR_DEF_SUM49_ITD)                                      USR_DEF_SUM49_ITD,
+       SUM(FC.USR_DEF_SUM50_ITD)                                      USR_DEF_SUM50_ITD,
+       MAX(fc.days_open)                                              days_open,
+       MAX(fc.loaddate)                                               loaddate,
+       MAX(fc.occurrence_id)                                          occurrence_id
+FROM   FACT_claim fc,
+       Dim_Claim  dc,
+       Dim_Claimextension dce
+WHERE  fc.claim_id = dc.claim_id
+AND    fc.claimextension_id = dce.claimextension_id
+AND    fc.month_id          = ${month_id}
+GROUP  BY fc.month_id, 
+       fc.adjuster_id,
+       --fc.underwriter_id,
+       --fc.company_id,
+       dc.clm_claimnumber,
+       /* fc.policy_id,
+       fc.policyextension_id,
+       fc.policyeffectivedate_id,
+       fc.policyexpirationdate_id,  */     
+       fc.claimstatus_id,
+       fc.claimlosslocation_id,
+       fc.datereported_id,
+       fc.dateofloss_id,
+       fc.closeddate_id,
+       fc.opendate_id,
+       fc.courtcase_id,
+       -- Issue 178894
+       fc.claimpiaadata_id,
+       fc.claimtype_id,
+       fc.finaldisposition_id,
+       fc.clmpart_id1,
+       fc.clmpart_id2,
+       fc.clmpart_id3,
+       fc.clmpart_id4,
+       fc.clmpart_id5,
+       fc.clmpart_id6,
+       fc.clmpart_id7,
+       fc.clmpart_id8,
+       fc.clmpart_id9,
+       fc.clmpart_id10,
+       fc.clmpart_id11,
+       fc.clmpart_id12,
+       fc.clmpart_id13,
+       fc.clmpart_id14,
+       fc.clmpart_id15)
+SELECT ROWNUM sk,
+       x.*
+FROM   x              
+;
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_DataWarehouse</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>459</xloc>
+      <yloc>211</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_fc_osr_stg_claim</name>
+      <description/>
+      <type>SQL</type>
+      <sql>CREATE TABLE tmp_fc_osr_stg_claim NOLOGGING PCTFREE 0
+tablespace ${G_STAGING_DB_DATA} AS
+WITH x AS 
+       (SELECT d.sk,
+               dc.clm_uniqueid claim_uniqueid,
+               sc.insured_uniqueid,
+               sc.claimant_uniqueid,
+               sc.policy_uniqueid,               
+               row_number() OVER (PARTITION BY d.sk ORDER BY sc.claim_insured_fk, sc.claimant_fk, sc.stgclaim_id) pick1
+        FROM   tmp_fc_osr_driver d,
+               dim_claim         dc,
+               stg_claim         sc
+        WHERE  d.clm_claimnumber = dc.clm_claimnumber
+        AND    sc.claim_uniqueid = dc.clm_uniqueid
+        AND    sc.mmclm_clmnt_primary_b = 'Y'
+        and    sc.policy_uniqueid is not null)
+SELECT x.sk,
+       x.claim_uniqueid,
+       x.insured_uniqueid,
+       x.claimant_uniqueid,
+       x.policy_uniqueid
+FROM   x 
+WHERE  x.pick1 = 1;
+
+INSERT INTO tmp_fc_osr_stg_claim 
+WITH x AS 
+       (SELECT d.sk,
+               dc.clm_uniqueid claim_uniqueid,
+               sc.insured_uniqueid,
+               sc.claimant_uniqueid,
+               sc.policy_uniqueid,               
+               row_number() OVER (PARTITION BY d.sk ORDER BY sc.claim_insured_fk, sc.claimant_fk, sc.stgclaim_id) pick1
+        FROM   tmp_fc_osr_driver d,
+               dim_claim         dc,
+               stg_claim         sc
+        WHERE  d.clm_claimnumber = dc.clm_claimnumber
+        AND    sc.claim_uniqueid = dc.clm_uniqueid
+        and    not exists
+               (select 1 
+                from   tmp_fc_osr_stg_claim t
+                where  d.sk = t.sk)
+       )
+SELECT x.sk,
+       x.claim_uniqueid,
+       x.insured_uniqueid,
+       x.claimant_uniqueid,
+       x.policy_uniqueid
+FROM   x 
+WHERE  x.pick1 = 1;
+
+commit;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_DataWarehouse</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>560</xloc>
+      <yloc>75</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_fc_osr_insured_id</name>
+      <description/>
+      <type>SQL</type>
+      <sql>CREATE TABLE tmp_fc_osr_insured_id NOLOGGING PCTFREE 0
+tablespace ${G_STAGING_DB_DATA} AS
+SELECT c.sk,
+       MAX(le.legalentity_id) firstinsured_id
+FROM   tmp_fc_osr_stg_claim c,
+       dim_legalentity le
+WHERE  c.insured_uniqueid = le.lenty_uniqueid
+AND    le.lenty_role = 'INSURED'
+GROUP BY c.sk;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_DataWarehouse</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>956</xloc>
+      <yloc>356</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_fc_osr_claimant_id</name>
+      <description/>
+      <type>SQL</type>
+      <sql>CREATE TABLE tmp_fc_osr_claimant_id NOLOGGING PCTFREE 0
+tablespace ${G_STAGING_DB_DATA} AS
+SELECT c.sk,
+       MAX(le.legalentity_id) claimant_id
+FROM   tmp_fc_osr_stg_claim c,
+       dim_legalentity le
+WHERE  c.claimant_uniqueid = le.lenty_uniqueid
+AND    le.lenty_role = 'CLAIMANT'
+GROUP BY c.sk;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_DataWarehouse</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>804</xloc>
+      <yloc>275</yloc>
+    </entry>
+    <entry>
+      <name>Delete FACT_CLAIM_OSR</name>
+      <description/>
+      <type>SQL</type>
+      <sql>DELETE FACT_CLAIM_OSR fc
+where  fc.month_id = ${month_id}             
+;
+
+commit;
+
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_DataWarehouse</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>401</xloc>
+      <yloc>77</yloc>
+    </entry>
+    <entry>
+      <name>TR_SET_EVALUATION_PERIOD_VALUES</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>rep_name</specification_method>
+      <trans_object_id/>
+      <filename/>
+      <transname>TR_SET_EVALUATION_PERIOD_VALUES</transname>
+      <directory>/public/ETL/Facts/Transformations</directory>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration/>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>185</xloc>
+      <yloc>77</yloc>
+    </entry>
+    <entry>
+      <name>TR_FC_OSR_Insert_Fact_Claim_OSR</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>rep_name</specification_method>
+      <trans_object_id/>
+      <filename/>
+      <transname>TR_FC_OSR_Insert_Fact_Claim_OSR</transname>
+      <directory>/public/ETL/Facts/Transformations</directory>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration/>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>672</xloc>
+      <yloc>356</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_fc_osr_stg_policy</name>
+      <description/>
+      <type>SQL</type>
+      <sql>CREATE TABLE tmp_fc_osr_stg_policy NOLOGGING PCTFREE 0 
+tablespace ${G_STAGING_DB_DATA} AS
+WITH x AS 
+       (SELECT t.sk,
+               sp.policy_uniqueid,
+               sp.underwriter_uniqueid, 
+               sp.company_uniqueid,
+               sp.pol_effectivedate,
+               sp.pol_expirationdate,
+               row_number() over (PARTITION BY t.sk order by sp.stgpolicy_id desc) pick1
+        FROM   tmp_fc_osr_stg_claim t,
+               stg_policy sp
+        WHERE  t.policy_uniqueid = sp.policy_uniqueid)
+SELECT sk,
+       policy_uniqueid,
+       underwriter_uniqueid,
+       company_uniqueid,
+       to_number(to_char(pol_effectivedate,'yyyymmdd')) policyeffectivedate_id,
+       to_number(to_char(pol_expirationdate,'yyyymmdd')) policyexpirationdate_id
+FROM   x
+WHERE  pick1 = 1;
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_DataWarehouse</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>633</xloc>
+      <yloc>211</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_fc_osr_policy_id</name>
+      <description/>
+      <type>SQL</type>
+      <sql>CREATE TABLE tmp_fc_osr_policy_id NOLOGGING PCTFREE 0 
+tablespace ${G_STAGING_DB_DATA} AS
+WITH x AS
+       (SELECT t.sk,
+               dp.policy_id,
+               row_number() over (PARTITION BY t.sk order by dp.policy_id desc) pick1
+        FROM   tmp_fc_osr_stg_policy t,
+               dim_policy dp
+        WHERE  t.policy_uniqueid = dp.pol_uniqueid)
+SELECT sk,
+       policy_id
+FROM   x
+WHERE  pick1 = 1;   
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_DataWarehouse</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>721</xloc>
+      <yloc>77</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_fc_osr_policyext_id</name>
+      <description/>
+      <type>SQL</type>
+      <sql>CREATE TABLE tmp_fc_osr_policyext_id NOLOGGING PCTFREE 0 
+tablespace ${G_STAGING_DB_DATA} AS
+WITH x AS
+       (SELECT t.sk,
+               dpe.policyextension_id,
+               row_number() over (PARTITION BY t.sk order by dpe.policyextension_id desc) pick1
+        FROM   tmp_fc_osr_stg_policy t,
+               dim_policyextension dpe
+        WHERE  t.policy_uniqueid = dpe.policy_uniqueid)
+SELECT sk,
+       policyextension_id
+FROM   x
+WHERE  pick1 = 1;        </sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_DataWarehouse</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>799</xloc>
+      <yloc>211</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_fc_osr_underwriter_id</name>
+      <description/>
+      <type>SQL</type>
+      <sql>CREATE TABLE tmp_fc_osr_underwriter_id NOLOGGING PCTFREE 0 
+tablespace ${G_STAGING_DB_DATA} AS
+SELECT t.sk,
+       MAX(u.UNDERWRITER_ID) UNDERWRITER_ID
+FROM   tmp_fc_osr_stg_policy t,
+       vdim_underwriter u
+WHERE  t.underwriter_uniqueid = u.UW_UNIQUEID
+GROUP BY t.sk;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_DataWarehouse</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>900</xloc>
+      <yloc>77</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_fc_osr_company_id</name>
+      <description/>
+      <type>SQL</type>
+      <sql>CREATE TABLE tmp_fc_osr_company_id NOLOGGING PCTFREE 0 
+tablespace ${G_STAGING_DB_DATA} AS
+SELECT t.sk,
+       MAX(c.COMPANY_ID) company_id
+FROM   tmp_fc_osr_stg_policy t,
+       vdim_company c
+WHERE  t.company_uniqueid = c.COMP_UNIQUEID
+GROUP BY t.sk;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_DataWarehouse</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>984</xloc>
+      <yloc>211</yloc>
+    </entry>
+  </entries>
+  <hops>
+    <hop>
+      <from>Create tmp_fc_osr_driver</from>
+      <to>Create tmp_fc_osr_stg_claim</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create tmp_fc_osr_insured_id</from>
+      <to>Create tmp_fc_osr_claimant_id</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>TR_FC_OSR_Drop_TMP_Tables</from>
+      <to>Delete FACT_CLAIM_OSR</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Delete FACT_CLAIM_OSR</from>
+      <to>Create tmp_fc_osr_driver</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>TR_SET_EVALUATION_PERIOD_VALUES</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>TR_SET_EVALUATION_PERIOD_VALUES</from>
+      <to>TR_FC_OSR_Drop_TMP_Tables</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create tmp_fc_osr_claimant_id</from>
+      <to>TR_FC_OSR_Insert_Fact_Claim_OSR</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create tmp_fc_osr_stg_claim</from>
+      <to>Create tmp_fc_osr_stg_policy</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create tmp_fc_osr_stg_policy</from>
+      <to>Create tmp_fc_osr_policy_id</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create tmp_fc_osr_policy_id</from>
+      <to>Create tmp_fc_osr_policyext_id</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create tmp_fc_osr_policyext_id</from>
+      <to>Create tmp_fc_osr_underwriter_id</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create tmp_fc_osr_underwriter_id</from>
+      <to>Create tmp_fc_osr_company_id</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create tmp_fc_osr_company_id</from>
+      <to>Create tmp_fc_osr_insured_id</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+  </hops>
+  <notepads>
+  </notepads>
+  <attributes>
+    <group>
+      <name>JobRestart</name>
+      <attribute>
+        <key>UniqueConnections</key>
+        <value>N</value>
+      </attribute>
+    </group>
+  </attributes>
+</job>

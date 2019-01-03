@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:25 EST 2019
+file.title=JB_Vl_Load_Policy_Facts
+description=Loads the Velocity PAS data to Policy Fact table
+title=JB_Vl_Load_Policy_Facts
+file.description=Loads the Velocity PAS data to Policy Fact table

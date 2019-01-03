@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:30 EST 2019
+file.title=TR_Set_VL_DW_Refresh_Date
+description=Set loaddate variables for Velocity PAS data load.
+title=TR_Set_VL_DW_Refresh_Date
+file.description=Set loaddate variables for Velocity PAS data load.

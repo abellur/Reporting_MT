@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:25 EST 2019
+file.title=JB_Vl_Month_Fact_Policysnapshot
+description=Job to populate data for FACT_POLICYSNAPSHOT table
+title=JB_Vl_Month_Fact_Policysnapshot
+file.description=Job to populate data for FACT_POLICYSNAPSHOT table

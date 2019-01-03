@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:40 EST 2019
+file.title=TR_DEFAULT_COVCOMP_MAPPING
+description=Insert default row to dim_coveragecomp_mapping table
+title=TR_DEFAULT_COVCOMP_MAPPING
+file.description=Insert default row to dim_coveragecomp_mapping table

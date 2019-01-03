@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:50 EST 2019
+file.title=TR_ETL_CLAIMTRANSACTION
+description=Load ETL supporting table for claim transactions
+title=TR_ETL_CLAIMTRANSACTION
+file.description=Load ETL supporting table for claim transactions

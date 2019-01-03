@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:27 EST 2019
+file.title=JB_Load_Defaults
+description=Loads the default values into the dimensions
+title=JB_Load_Defaults
+file.description=Loads the default values into the dimensions

@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:34 EST 2019
+file.title=TR_GET_DIM_TRANSACTIONTYPE_KEY
+description=Gets the max transactiontype_id for the key
+title=TR_GET_DIM_TRANSACTIONTYPE_KEY
+file.description=Gets the max transactiontype_id for the key

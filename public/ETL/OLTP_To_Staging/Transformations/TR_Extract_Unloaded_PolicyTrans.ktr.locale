@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:14 EST 2019
+file.title=TR_Extract_Unloaded_PolicyTrans
+description=Transformation to extract unloaded policy transaction data to STG_POLICYTRANSACTION_TEMP table.
+title=TR_Extract_Unloaded_PolicyTrans
+file.description=Transformation to extract unloaded policy transaction data to STG_POLICYTRANSACTION_TEMP table.

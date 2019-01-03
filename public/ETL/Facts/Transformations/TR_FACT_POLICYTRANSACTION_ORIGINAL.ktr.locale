@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:54 EST 2019
+file.title=TR_FACT_POLICYTRANSACTION_ORIGINAL
+description=Loads the policy transaction fact table
+title=TR_FACT_POLICYTRANSACTION_ORIGINAL
+file.description=Loads the policy transaction fact table

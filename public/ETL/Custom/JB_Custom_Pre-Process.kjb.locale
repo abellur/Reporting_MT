@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:25 EST 2019
+file.title=JB_Custom_Pre-Process
+description=This job is for custom preprocessing ETL work
+title=JB_Custom_Pre-Process
+file.description=This job is for custom preprocessing ETL work

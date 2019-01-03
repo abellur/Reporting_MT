@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:01 EST 2019
+file.title=JB_Extract_Irregular_Policy_Data
+description=This is a job to load policy data that created during data conversion and have problem in OLTP, but not easy to fix in OLTP, to DRA policy staging tables.
+title=JB_Extract_Irregular_Policy_Data
+file.description=This is a job to load policy data that created during data conversion and have problem in OLTP, but not easy to fix in OLTP, to DRA policy staging tables.

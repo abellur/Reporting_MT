@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:26 EST 2019
+file.title=JB_Call_VL_WebServices
+description=This job create would call Velocity web serivces and save output files to output folder.
+title=JB_Call_VL_WebServices
+file.description=This job create would call Velocity web serivces and save output files to output folder.

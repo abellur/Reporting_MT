@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:19 EST 2019
+file.title=JB_Load_VL_Dimension_Tables_Bop
+description=Job to load data to BOP extension dimension tables.
+title=JB_Load_VL_Dimension_Tables_Bop
+file.description=Job to load data to BOP extension dimension tables.

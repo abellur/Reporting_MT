@@ -1,0 +1,1988 @@
+<job>
+  <name>SBJ_FT_Create_Lkup_Tables1</name>
+  <description>Sub job to load data to temp tables for dimension ID lookup for FACT_FINANCIALTRANSACTION table.</description>
+  <extended_description>Date         By     Description
+03/16/2016   Jma    Issue #170249. Update logic in Create tmp_ftt_lkup_account1 
+                    and Create tmp_ftt_lkup_accountext1 steps.
+04/27/2016   Jma    Issue #164950. Updated the logic in Create tmp_ftt_lkup_batch and
+                    Create tmp_ftt_lkup_paymentdetail job entries.</extended_description>
+  <job_version/>
+  <job_status>0</job_status>
+  <directory>/public/ETL/Facts/Sub-Jobs</directory>
+  <created_user>-</created_user>
+  <created_date>2014/10/24 15:45:55.936</created_date>
+  <modified_user>-</modified_user>
+  <modified_date>2018/08/14 03:37:40.450</modified_date>
+  <parameters>
+    </parameters>
+  <connection>
+    <name>4SBI_Staging</name>
+    <server>${G_STAGING_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_STAGING_DB_NAME}</database>
+    <port>${G_STAGING_DB_PORT}</port>
+    <username>${G_STAGING_DB_USERNAME}</username>
+    <password>${G_STAGING_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_STAGING_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_STAGING_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_STAGING_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <slaveservers>
+    <slaveserver>
+      <name>4Sight BI - PDI Server</name>
+      <hostname>10.0.0.21</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>joe</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Carte 1</name>
+      <hostname>localhost</hostname>
+      <port>9081</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>DI Server</name>
+      <hostname>localhost</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>joe</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_DEV</name>
+      <hostname>magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>shota</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_SERVER</name>
+      <hostname>http://magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>shota</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_TEST</name>
+      <hostname>magspentahotest</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO</name>
+      <hostname>magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO_BTS</name>
+      <hostname>129.144.25.104</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO_DEV</name>
+      <hostname>magspentahodev</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Master</name>
+      <hostname>localhost</hostname>
+      <port>8081</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SERVER1</name>
+      <hostname>LOCALHOST</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SLAVE ONE</name>
+      <hostname>192.168.2.101</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4a418bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SLAVE TWO</name>
+      <hostname>192.168.2.101</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave1</name>
+      <hostname>localhost</hostname>
+      <port>8082</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave2</name>
+      <hostname>localhost</hostname>
+      <port>8083</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave3</name>
+      <hostname>localhost</hostname>
+      <port>8084</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>local DIS</name>
+      <hostname>localhost</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>magspentahodev</name>
+      <hostname>magspentahodev</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+  </slaveservers>
+  <job-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <size_limit_lines/>
+    <interval/>
+    <timeout_days/>
+    <field>
+      <id>ID_JOB</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>JOBNAME</name>
+    </field>
+    <field>
+      <id>STATUS</id>
+      <enabled>Y</enabled>
+      <name>STATUS</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>STARTDATE</id>
+      <enabled>Y</enabled>
+      <name>STARTDATE</name>
+    </field>
+    <field>
+      <id>ENDDATE</id>
+      <enabled>Y</enabled>
+      <name>ENDDATE</name>
+    </field>
+    <field>
+      <id>LOGDATE</id>
+      <enabled>Y</enabled>
+      <name>LOGDATE</name>
+    </field>
+    <field>
+      <id>DEPDATE</id>
+      <enabled>Y</enabled>
+      <name>DEPDATE</name>
+    </field>
+    <field>
+      <id>REPLAYDATE</id>
+      <enabled>Y</enabled>
+      <name>REPLAYDATE</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>Y</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>EXECUTING_SERVER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_SERVER</name>
+    </field>
+    <field>
+      <id>EXECUTING_USER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_USER</name>
+    </field>
+    <field>
+      <id>START_JOB_ENTRY</id>
+      <enabled>N</enabled>
+      <name>START_JOB_ENTRY</name>
+    </field>
+    <field>
+      <id>CLIENT</id>
+      <enabled>N</enabled>
+      <name>CLIENT</name>
+    </field>
+  </job-log-table>
+  <jobentry-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>TRANSNAME</name>
+    </field>
+    <field>
+      <id>JOBENTRYNAME</id>
+      <enabled>Y</enabled>
+      <name>STEPNAME</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>RESULT</id>
+      <enabled>Y</enabled>
+      <name>RESULT</name>
+    </field>
+    <field>
+      <id>NR_RESULT_ROWS</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_ROWS</name>
+    </field>
+    <field>
+      <id>NR_RESULT_FILES</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_FILES</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>N</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>COPY_NR</id>
+      <enabled>N</enabled>
+      <name>COPY_NR</name>
+    </field>
+  </jobentry-log-table>
+  <channel-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>LOGGING_OBJECT_TYPE</id>
+      <enabled>Y</enabled>
+      <name>LOGGING_OBJECT_TYPE</name>
+    </field>
+    <field>
+      <id>OBJECT_NAME</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_NAME</name>
+    </field>
+    <field>
+      <id>OBJECT_COPY</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_COPY</name>
+    </field>
+    <field>
+      <id>REPOSITORY_DIRECTORY</id>
+      <enabled>Y</enabled>
+      <name>REPOSITORY_DIRECTORY</name>
+    </field>
+    <field>
+      <id>FILENAME</id>
+      <enabled>Y</enabled>
+      <name>FILENAME</name>
+    </field>
+    <field>
+      <id>OBJECT_ID</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_ID</name>
+    </field>
+    <field>
+      <id>OBJECT_REVISION</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_REVISION</name>
+    </field>
+    <field>
+      <id>PARENT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>PARENT_CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>ROOT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>ROOT_CHANNEL_ID</name>
+    </field>
+  </channel-log-table>
+  <checkpoint-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <max_nr_retries/>
+    <run_retry_period/>
+    <namespace_parameter/>
+    <save_parameters/>
+    <save_result_rows/>
+    <save_result_files/>
+    <field>
+      <id>ID_JOB_RUN</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB_RUN</name>
+    </field>
+    <field>
+      <id>ID_JOB</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>JOBNAME</name>
+    </field>
+    <field>
+      <id>NAMESPACE</id>
+      <enabled>Y</enabled>
+      <name>NAMESPACE</name>
+    </field>
+    <field>
+      <id>CHECKPOINT_NAME</id>
+      <enabled>Y</enabled>
+      <name>CHECKPOINT_NAME</name>
+    </field>
+    <field>
+      <id>CHECKPOINT_COPYNR</id>
+      <enabled>Y</enabled>
+      <name>CHECKPOINT_COPYNR</name>
+    </field>
+    <field>
+      <id>ATTEMPT_NR</id>
+      <enabled>Y</enabled>
+      <name>ATTEMPT_NR</name>
+    </field>
+    <field>
+      <id>JOB_RUN_START_DATE</id>
+      <enabled>Y</enabled>
+      <name>JOB_RUN_START_DATE</name>
+    </field>
+    <field>
+      <id>LOGDATE</id>
+      <enabled>Y</enabled>
+      <name>LOGDATE</name>
+    </field>
+    <field>
+      <id>RESULT_XML</id>
+      <enabled>Y</enabled>
+      <name>RESULT_XML</name>
+    </field>
+    <field>
+      <id>PARAMETER_XML</id>
+      <enabled>Y</enabled>
+      <name>PARAMETER_XML</name>
+    </field>
+  </checkpoint-log-table>
+  <pass_batchid>N</pass_batchid>
+  <shared_objects_file/>
+  <entries>
+    <entry>
+      <name>If exists tmp_ftt_lkup_ftransext</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>tmp_ftt_lkup_ftransext</tablename>
+      <schemaname/>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>304</xloc>
+      <yloc>69</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_ftt_lkup_ftransext</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_ftt_lkup_ftransext nologging PCTFREE 0 
+tablespace ${G_STAGING_DB_DATA}
+as
+SELECT sk_recordnum,
+       financialtransactionext_id
+FROM   (
+SELECT 
+       t.sk_recordnum,
+       dfte.financialtransactionext_id,
+       row_number() OVER (PARTITION BY t.sk_recordnum ORDER BY dfte.financialtransactionext_id DESC) pick1
+FROM   Dim_Financialtransactionext dfte,
+       tmp_ftt_trans_detail_1      t
+WHERE  dfte.financialtransaction_uniqueid = t.financialtransaction_uniqueid )
+WHERE  pick1 = 1;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>617</xloc>
+      <yloc>69</yloc>
+    </entry>
+    <entry>
+      <name>Drop tmp_ftt_lkup_ftransext</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table tmp_ftt_lkup_ftransext purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>452</xloc>
+      <yloc>11</yloc>
+    </entry>
+    <entry>
+      <name>START</name>
+      <description/>
+      <type>SPECIAL</type>
+      <start>Y</start>
+      <dummy>N</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>Y</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>37</xloc>
+      <yloc>688</yloc>
+    </entry>
+    <entry>
+      <name>If exists tmp_ftt_lkup_claim</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>tmp_ftt_lkup_claim</tablename>
+      <schemaname/>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>306</xloc>
+      <yloc>158</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_ftt_lkup_claim</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_ftt_lkup_claim nologging PCTFREE 0 
+tablespace ${G_STAGING_DB_DATA}
+as
+SELECT sk_recordnum,
+       claim_id
+FROM   (
+SELECT 
+       t.sk_recordnum,
+       dc.claim_id,
+       row_number() OVER (PARTITION BY t.sk_recordnum ORDER BY dc.claim_id DESC) pick1
+FROM   Dim_Claim                dc,
+       tmp_ftt_trans_detail_1   t
+WHERE  dc.clm_uniqueid = t.claim_uniqueid)
+WHERE  pick1 = 1;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>619</xloc>
+      <yloc>158</yloc>
+    </entry>
+    <entry>
+      <name>Drop tmp_ftt_lkup_claim</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table tmp_ftt_lkup_claim purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>454</xloc>
+      <yloc>100</yloc>
+    </entry>
+    <entry>
+      <name>If exists tmp_ftt_lkup_billcomp</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>tmp_ftt_lkup_billcomp</tablename>
+      <schemaname/>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>307</xloc>
+      <yloc>241</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_ftt_lkup_billcomp</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_ftt_lkup_billcomp nologging PCTFREE 0 
+tablespace ${G_STAGING_DB_DATA}
+as
+SELECT sk_recordnum,
+       BILLINGCOMPANY_ID
+FROM   (       
+SELECT 
+       t.sk_recordnum,
+       vbc.BILLINGCOMPANY_ID,
+       row_number() OVER (PARTITION BY t.sk_recordnum ORDER BY vbc.BILLINGCOMPANY_ID DESC) pick1
+FROM   Vdim_Billingcompany      vbc,
+       tmp_ftt_lkup_stg_account t
+WHERE  vbc.BILLINGCOMPANY_UNIQUEID = t.billingcompany_uniqueid) 
+WHERE  pick1 = 1;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>620</xloc>
+      <yloc>241</yloc>
+    </entry>
+    <entry>
+      <name>Drop tmp_ftt_lkup_billcomp</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table tmp_ftt_lkup_billcomp purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>455</xloc>
+      <yloc>183</yloc>
+    </entry>
+    <entry>
+      <name>If exists tmp_ftt_lkup_accthldr</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>tmp_ftt_lkup_accthldr</tablename>
+      <schemaname/>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>310</xloc>
+      <yloc>324</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_ftt_lkup_accthldr</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_ftt_lkup_accthldr nologging PCTFREE 0 
+tablespace ${G_STAGING_DB_DATA}
+as
+SELECT sk_recordnum,
+       ACCOUNTHOLDER_ID
+FROM   (       
+SELECT 
+       t.sk_recordnum,
+       vah.ACCOUNTHOLDER_ID,
+       row_number() OVER (PARTITION BY t.sk_recordnum ORDER BY vah.ACCOUNTHOLDER_ID DESC) pick1
+FROM   Vdim_Accountholder       vah,
+       tmp_ftt_lkup_stg_account t
+WHERE  vah.ACCOUNTHOLDER_UNIQUEID = t.accountholder_uniqueid) 
+WHERE  pick1 = 1;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>623</xloc>
+      <yloc>324</yloc>
+    </entry>
+    <entry>
+      <name>Drop tmp_ftt_lkup_accthldr</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table tmp_ftt_lkup_accthldr purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>458</xloc>
+      <yloc>266</yloc>
+    </entry>
+    <entry>
+      <name>If exists tmp_ftt_lkup_company</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>tmp_ftt_lkup_company</tablename>
+      <schemaname/>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>313</xloc>
+      <yloc>407</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_ftt_lkup_company</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_ftt_lkup_company nologging PCTFREE 0 
+tablespace ${G_STAGING_DB_DATA}
+as
+SELECT sk_recordnum,
+       COMPANY_ID
+FROM   (       
+SELECT 
+       t.sk_recordnum,
+       vc.COMPANY_ID,
+       row_number() OVER (PARTITION BY t.sk_recordnum ORDER BY vc.COMPANY_ID DESC) pick1
+FROM   Vdim_Company             vc,
+       tmp_ftt_lkup_stg_account t
+WHERE  vc.COMP_UNIQUEID = t.acctcompany_uniqueid) 
+WHERE  pick1 = 1;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>626</xloc>
+      <yloc>407</yloc>
+    </entry>
+    <entry>
+      <name>Drop tmp_ftt_lkup_company</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table tmp_ftt_lkup_company purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>461</xloc>
+      <yloc>349</yloc>
+    </entry>
+    <entry>
+      <name>If exists tmp_ftt_lkup_account1</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>tmp_ftt_lkup_account1</tablename>
+      <schemaname/>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>316</xloc>
+      <yloc>500</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_ftt_lkup_account1</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_ftt_lkup_account1 nologging PCTFREE 0 
+tablespace ${G_STAGING_DB_DATA}
+as
+SELECT sk_recordnum,
+       ACCOUNT1_ID
+FROM   (       
+SELECT 
+       t.sk_recordnum,
+       va.ACCOUNT1_ID,
+       row_number() OVER (PARTITION BY t.sk_recordnum ORDER BY va.ACCOUNT1_ID DESC) pick1
+FROM   Vdim_Account1          va,
+       tmp_ftt_trans_detail_1 t
+WHERE  va.ACCOUNT1_UNIQUEID     =  t.account1_uniqueid
+AND    TRUNC(va.VALID_FROMDATE) &lt;= t.ft_accountingdate
+AND    TRUNC(va.VALID_TODATE)   >  t.ft_accountingdate ) 
+WHERE  pick1 = 1;
+
+INSERT INTO tmp_ftt_lkup_account1
+SELECT sk_recordnum,
+       ACCOUNT1_ID
+FROM   (       
+SELECT 
+       t.sk_recordnum,
+       va.ACCOUNT1_ID,
+       row_number() OVER (PARTITION BY t.sk_recordnum ORDER BY va.ACCOUNT1_ID DESC) pick1
+FROM   Vdim_Account1          va,
+       tmp_ftt_trans_detail_1 t
+WHERE  va.ACCOUNT1_UNIQUEID     =  t.account1_uniqueid
+AND    NOT EXISTS
+       (SELECT 1 
+        FROM   tmp_ftt_lkup_account1 t1
+        WHERE  t1.sk_recordnum = t.sk_recordnum))
+WHERE  pick1 = 1;
+
+COMMIT;
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>629</xloc>
+      <yloc>500</yloc>
+    </entry>
+    <entry>
+      <name>Drop tmp_ftt_lkup_account1</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table tmp_ftt_lkup_account1 purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>464</xloc>
+      <yloc>442</yloc>
+    </entry>
+    <entry>
+      <name>If exists tmp_ftt_lkup_accountext1</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>tmp_ftt_lkup_accountext1</tablename>
+      <schemaname/>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>317</xloc>
+      <yloc>595</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_ftt_lkup_accountext1</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_ftt_lkup_accountext1 nologging PCTFREE 0 
+tablespace ${G_STAGING_DB_DATA}
+as
+SELECT sk_recordnum,
+       ACCOUNT1EXTENSION_ID
+FROM   (       
+SELECT 
+       t.sk_recordnum,
+       vae.ACCOUNT1EXTENSION_ID,
+       row_number() OVER (PARTITION BY t.sk_recordnum ORDER BY vae.ACCOUNT1EXTENSION_ID DESC) pick1
+FROM   Vdim_Account1extension vae,
+       tmp_ftt_trans_detail_1 t
+WHERE  vae.ACCOUNT_UNIQUEID      =  t.account1_uniqueid
+AND    TRUNC(vae.VALID_FROMDATE) &lt;= t.ft_accountingdate
+AND    TRUNC(vae.VALID_TODATE)   >  t.ft_accountingdate ) 
+WHERE  pick1 = 1;
+
+INSERT INTO tmp_ftt_lkup_accountext1
+SELECT sk_recordnum,
+       ACCOUNT1EXTENSION_ID
+FROM   (       
+SELECT 
+       t.sk_recordnum,
+       vae.ACCOUNT1EXTENSION_ID,
+       row_number() OVER (PARTITION BY t.sk_recordnum ORDER BY vae.ACCOUNT1EXTENSION_ID DESC) pick1
+FROM   Vdim_Account1extension vae,
+       tmp_ftt_trans_detail_1 t
+WHERE  vae.ACCOUNT_UNIQUEID      =  t.account1_uniqueid
+AND    NOT EXISTS
+       (SELECT 1 
+        FROM   tmp_ftt_lkup_accountext1 t1
+        WHERE  t1.sk_recordnum = t.sk_recordnum))
+WHERE  pick1 = 1;
+
+COMMIT;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>630</xloc>
+      <yloc>595</yloc>
+    </entry>
+    <entry>
+      <name>Drop tmp_ftt_lkup_accountext1</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table tmp_ftt_lkup_accountext1 purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>465</xloc>
+      <yloc>537</yloc>
+    </entry>
+    <entry>
+      <name>If exists tmp_ftt_lkup_subaccount</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>tmp_ftt_lkup_subaccount</tablename>
+      <schemaname/>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>317</xloc>
+      <yloc>690</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_ftt_lkup_subaccount</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_ftt_lkup_subaccount nologging PCTFREE 0 
+tablespace ${G_STAGING_DB_DATA}
+as
+SELECT sk_recordnum,
+       subaccount_id
+FROM   (
+SELECT 
+       t.sk_recordnum,
+       dsa.subaccount_id,
+       row_number() OVER (PARTITION BY t.sk_recordnum ORDER BY dsa.subaccount_id DESC) pick1
+FROM   Dim_Subaccount         dsa,
+       tmp_ftt_trans_detail_1 t
+WHERE  dsa.subaccount_uniqueid = t.subaccount_uniqueid) 
+WHERE  pick1 = 1;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>634</xloc>
+      <yloc>690</yloc>
+    </entry>
+    <entry>
+      <name>Drop tmp_ftt_lkup_subaccount</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table tmp_ftt_lkup_subaccount purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>465</xloc>
+      <yloc>629</yloc>
+    </entry>
+    <entry>
+      <name>If exists tmp_ftt_lkup_batch</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>tmp_ftt_lkup_batch</tablename>
+      <schemaname/>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>322</xloc>
+      <yloc>779</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_ftt_lkup_batch</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_ftt_lkup_batch nologging PCTFREE 0 
+tablespace ${G_STAGING_DB_DATA}
+as
+SELECT sk_recordnum,
+       batch_id
+FROM   (       
+SELECT 
+       t.sk_recordnum,
+       bat.batch_id,
+       row_number() OVER (PARTITION BY t.sk_recordnum ORDER BY bat.batch_id DESC) pick1
+FROM   Dim_Batch              bat,
+       tmp_ftt_trans_detail_1 t
+WHERE  bat.batch_uniqueid        =  t.batch_uniqueid
+AND    TRUNC(bat.VALID_FROMDATE) &lt;= t.ft_accountingdate
+AND    TRUNC(bat.VALID_TODATE)   >  t.ft_accountingdate ) 
+WHERE  pick1 = 1;
+
+-- Issue #164950. Add logic to get BATCH data without comparing transaction accounting dates. 
+
+INSERT INTO tmp_ftt_lkup_batch
+SELECT sk_recordnum,
+       batch_id
+FROM   (       
+        SELECT t.sk_recordnum,
+               bat.batch_id,
+               row_number() OVER (PARTITION BY t.sk_recordnum ORDER BY bat.batch_id DESC) pick1
+        FROM   Dim_Batch              bat,
+               tmp_ftt_trans_detail_1 t
+        WHERE  bat.batch_uniqueid        =  t.batch_uniqueid
+        AND    NOT EXISTS 
+               (SELECT 1 
+                FROM   tmp_ftt_lkup_batch b
+                WHERE  b.sk_recordnum = t.sk_recordnum)
+       ) 
+WHERE  pick1 = 1;
+
+commit;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>639</xloc>
+      <yloc>779</yloc>
+    </entry>
+    <entry>
+      <name>Drop tmp_ftt_lkup_batch</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table tmp_ftt_lkup_batch purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>470</xloc>
+      <yloc>718</yloc>
+    </entry>
+    <entry>
+      <name>If exists tmp_ftt_lkup_paymentdetail</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>tmp_ftt_lkup_paymentdetail</tablename>
+      <schemaname/>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>323</xloc>
+      <yloc>867</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_ftt_lkup_paymentdetail</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_ftt_lkup_paymentdetail nologging PCTFREE 0 
+tablespace ${G_STAGING_DB_DATA}
+as
+SELECT sk_recordnum,
+       paymentdetail_id
+FROM   (       
+SELECT 
+       t.sk_recordnum,
+       dpd.paymentdetail_id,
+       row_number() OVER (PARTITION BY t.sk_recordnum ORDER BY dpd.paymentdetail_id DESC) pick1
+FROM   Dim_Paymentdetail      dpd,
+       tmp_ftt_trans_detail_1 t
+WHERE  dpd.paymentdetail_uniqueid =  t.paymentdetail_uniqueid
+AND    TRUNC(dpd.VALID_FROMDATE)  &lt;= t.ft_accountingdate
+AND    TRUNC(dpd.VALID_TODATE)    >  t.ft_accountingdate ) 
+WHERE  pick1 = 1;
+
+-- Issue #164950. Add logic to get PAYMENTDETAIL data without comparing transaction accounting dates. 
+
+INSERT INTO tmp_ftt_lkup_paymentdetail 
+SELECT sk_recordnum,
+       paymentdetail_id
+FROM   (       
+        SELECT t.sk_recordnum,
+               dpd.paymentdetail_id,
+               row_number() OVER (PARTITION BY t.sk_recordnum ORDER BY dpd.paymentdetail_id DESC) pick1
+        FROM   Dim_Paymentdetail      dpd,
+               tmp_ftt_trans_detail_1 t
+        WHERE  dpd.paymentdetail_uniqueid =  t.paymentdetail_uniqueid
+        AND    NOT EXISTS 
+               (SELECT 1 
+                FROM   tmp_ftt_lkup_paymentdetail t1
+                WHERE  t1.sk_recordnum = t.sk_recordnum)
+       ) 
+WHERE  pick1 = 1;
+
+COMMIT;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>640</xloc>
+      <yloc>867</yloc>
+    </entry>
+    <entry>
+      <name>Drop tmp_ftt_lkup_paymentdetail</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table tmp_ftt_lkup_paymentdetail purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>471</xloc>
+      <yloc>806</yloc>
+    </entry>
+    <entry>
+      <name>If exists tmp_ftt_lkup_poltrans</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>tmp_ftt_lkup_poltrans</tablename>
+      <schemaname/>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>327</xloc>
+      <yloc>965</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_ftt_lkup_poltrans</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_ftt_lkup_poltrans nologging PCTFREE 0 
+tablespace ${G_STAGING_DB_DATA}
+as
+SELECT sk_recordnum,
+       policytransaction_id
+FROM   (       
+SELECT 
+       t.sk_recordnum,
+       fpt.policytransactionextension_id policytransaction_id,
+       row_number() OVER (PARTITION BY t.sk_recordnum ORDER BY fpt.policytransaction_id DESC) pick1
+FROM   Fact_Policytransaction fpt,
+       tmp_ftt_trans_detail_1 t
+WHERE  fpt.policytransaction_uniqueid =  t.originaltransaction_uniqueid) 
+WHERE  pick1 = 1;
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>644</xloc>
+      <yloc>965</yloc>
+    </entry>
+    <entry>
+      <name>Drop tmp_ftt_lkup_poltrans</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table tmp_ftt_lkup_poltrans purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>475</xloc>
+      <yloc>904</yloc>
+    </entry>
+    <entry>
+      <name>If exists tmp_ftt_lkup_clmtrans</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>tmp_ftt_lkup_clmtrans</tablename>
+      <schemaname/>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>327</xloc>
+      <yloc>1059</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_ftt_lkup_clmtrans</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_ftt_lkup_clmtrans nologging PCTFREE 0 
+tablespace ${G_STAGING_DB_DATA}
+as
+SELECT sk_recordnum,
+       claimtransaction_id
+FROM   (       
+SELECT 
+       t.sk_recordnum,
+       fct.claimtransactionextension_id claimtransaction_id,
+       row_number() OVER (PARTITION BY t.sk_recordnum ORDER BY fct.claimtransaction_id DESC) pick1
+FROM   Fact_Claimtransaction  fct,
+       tmp_ftt_trans_detail_1 t
+WHERE  fct.claimtransaction_uniqueid =  t.originaltransaction_uniqueid) 
+WHERE  pick1 = 1;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>644</xloc>
+      <yloc>1059</yloc>
+    </entry>
+    <entry>
+      <name>Drop tmp_ftt_lkup_clmtrans</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table tmp_ftt_lkup_clmtrans purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>475</xloc>
+      <yloc>998</yloc>
+    </entry>
+    <entry>
+      <name>If exists tmp_ftt_lkup_newrenewal</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>tmp_ftt_lkup_newrenewal</tablename>
+      <schemaname/>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>327</xloc>
+      <yloc>1152</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_ftt_lkup_newrenewal</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_ftt_lkup_newrenewal nologging PCTFREE 0 
+tablespace ${G_STAGING_DB_DATA}
+as
+WITH x AS (
+       SELECT s.policy_uniqueid, 
+              s.pt_typecode,
+              row_number() OVER (PARTITION BY s.policy_uniqueid ORDER BY s.stgpolicytransaction_id DESC) pick1
+       FROM   stg_policytransaction  s
+       WHERE  s.pt_typecode IN ('RB', 'NB')),
+     y AS (
+       SELECT x.policy_uniqueid,
+              x.pt_typecode
+       FROM   x 
+       WHERE  x.pick1 = 1)
+SELECT t.sk_recordnum,
+       DECODE(y.pt_typecode,'NB','New','RB','Renewal','Unknown') POLICYNEWORRENEWAL
+FROM   y,
+       tmp_ftt_trans_detail_1 t
+WHERE  y.policy_uniqueid = t.policy_uniqueid;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>644</xloc>
+      <yloc>1152</yloc>
+    </entry>
+    <entry>
+      <name>Drop tmp_ftt_lkup_newrenewal</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table tmp_ftt_lkup_newrenewal purge;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>475</xloc>
+      <yloc>1091</yloc>
+    </entry>
+  </entries>
+  <hops>
+    <hop>
+      <from>START</from>
+      <to>If exists tmp_ftt_lkup_ftransext</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_ftt_lkup_ftransext</from>
+      <to>Drop tmp_ftt_lkup_ftransext</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop tmp_ftt_lkup_ftransext</from>
+      <to>Create tmp_ftt_lkup_ftransext</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_ftt_lkup_ftransext</from>
+      <to>Create tmp_ftt_lkup_ftransext</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>If exists tmp_ftt_lkup_claim</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_ftt_lkup_claim</from>
+      <to>Drop tmp_ftt_lkup_claim</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop tmp_ftt_lkup_claim</from>
+      <to>Create tmp_ftt_lkup_claim</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_ftt_lkup_claim</from>
+      <to>Create tmp_ftt_lkup_claim</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>If exists tmp_ftt_lkup_billcomp</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_ftt_lkup_billcomp</from>
+      <to>Drop tmp_ftt_lkup_billcomp</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop tmp_ftt_lkup_billcomp</from>
+      <to>Create tmp_ftt_lkup_billcomp</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_ftt_lkup_billcomp</from>
+      <to>Create tmp_ftt_lkup_billcomp</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>If exists tmp_ftt_lkup_accthldr</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_ftt_lkup_accthldr</from>
+      <to>Drop tmp_ftt_lkup_accthldr</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop tmp_ftt_lkup_accthldr</from>
+      <to>Create tmp_ftt_lkup_accthldr</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_ftt_lkup_accthldr</from>
+      <to>Create tmp_ftt_lkup_accthldr</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>If exists tmp_ftt_lkup_company</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_ftt_lkup_company</from>
+      <to>Drop tmp_ftt_lkup_company</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop tmp_ftt_lkup_company</from>
+      <to>Create tmp_ftt_lkup_company</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_ftt_lkup_company</from>
+      <to>Create tmp_ftt_lkup_company</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>If exists tmp_ftt_lkup_account1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_ftt_lkup_account1</from>
+      <to>Drop tmp_ftt_lkup_account1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop tmp_ftt_lkup_account1</from>
+      <to>Create tmp_ftt_lkup_account1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_ftt_lkup_account1</from>
+      <to>Create tmp_ftt_lkup_account1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>If exists tmp_ftt_lkup_accountext1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_ftt_lkup_accountext1</from>
+      <to>Drop tmp_ftt_lkup_accountext1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop tmp_ftt_lkup_accountext1</from>
+      <to>Create tmp_ftt_lkup_accountext1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_ftt_lkup_accountext1</from>
+      <to>Create tmp_ftt_lkup_accountext1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>If exists tmp_ftt_lkup_subaccount</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_ftt_lkup_subaccount</from>
+      <to>Drop tmp_ftt_lkup_subaccount</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop tmp_ftt_lkup_subaccount</from>
+      <to>Create tmp_ftt_lkup_subaccount</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_ftt_lkup_subaccount</from>
+      <to>Create tmp_ftt_lkup_subaccount</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>If exists tmp_ftt_lkup_batch</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_ftt_lkup_batch</from>
+      <to>Drop tmp_ftt_lkup_batch</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop tmp_ftt_lkup_batch</from>
+      <to>Create tmp_ftt_lkup_batch</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_ftt_lkup_batch</from>
+      <to>Create tmp_ftt_lkup_batch</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>If exists tmp_ftt_lkup_paymentdetail</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_ftt_lkup_paymentdetail</from>
+      <to>Drop tmp_ftt_lkup_paymentdetail</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop tmp_ftt_lkup_paymentdetail</from>
+      <to>Create tmp_ftt_lkup_paymentdetail</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_ftt_lkup_paymentdetail</from>
+      <to>Create tmp_ftt_lkup_paymentdetail</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>If exists tmp_ftt_lkup_poltrans</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_ftt_lkup_poltrans</from>
+      <to>Drop tmp_ftt_lkup_poltrans</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop tmp_ftt_lkup_poltrans</from>
+      <to>Create tmp_ftt_lkup_poltrans</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_ftt_lkup_poltrans</from>
+      <to>Create tmp_ftt_lkup_poltrans</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>If exists tmp_ftt_lkup_clmtrans</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_ftt_lkup_clmtrans</from>
+      <to>Drop tmp_ftt_lkup_clmtrans</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop tmp_ftt_lkup_clmtrans</from>
+      <to>Create tmp_ftt_lkup_clmtrans</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_ftt_lkup_clmtrans</from>
+      <to>Create tmp_ftt_lkup_clmtrans</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>If exists tmp_ftt_lkup_newrenewal</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_ftt_lkup_newrenewal</from>
+      <to>Drop tmp_ftt_lkup_newrenewal</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Drop tmp_ftt_lkup_newrenewal</from>
+      <to>Create tmp_ftt_lkup_newrenewal</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>If exists tmp_ftt_lkup_newrenewal</from>
+      <to>Create tmp_ftt_lkup_newrenewal</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+  </hops>
+  <notepads>
+  </notepads>
+  <attributes>
+    <group>
+      <name>JobRestart</name>
+      <attribute>
+        <key>UniqueConnections</key>
+        <value>N</value>
+      </attribute>
+    </group>
+  </attributes>
+</job>

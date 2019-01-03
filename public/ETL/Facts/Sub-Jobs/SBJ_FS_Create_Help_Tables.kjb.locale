@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:48 EST 2019
+file.title=SBJ_FS_Create_Help_Tables
+description=Create help tables to load data to Fact_Financialsummary
+title=SBJ_FS_Create_Help_Tables
+file.description=Create help tables to load data to Fact_Financialsummary

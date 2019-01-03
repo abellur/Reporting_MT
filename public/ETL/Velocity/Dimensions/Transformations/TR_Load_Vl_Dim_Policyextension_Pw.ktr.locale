@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:24 EST 2019
+file.title=TR_Load_Vl_Dim_Policyextension_Pw
+description=Transformation to load Policy Wide policy specific data to DIM_POLICYEXTENSION_PW table.
+title=TR_Load_Vl_Dim_Policyextension_Pw
+file.description=Transformation to load Policy Wide policy specific data to DIM_POLICYEXTENSION_PW table.

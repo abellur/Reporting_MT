@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:56 EST 2019
+file.title=TR_POP_STG_POL_TRANSCODE_WORK
+description=Populate data to STG_POL_TRANSCODE_WORK table to improve performance
+title=TR_POP_STG_POL_TRANSCODE_WORK
+file.description=Populate data to STG_POL_TRANSCODE_WORK table to improve performance

@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:56 EST 2019
+file.title=TR_PERIOD_START_END_CLAIM_OSR
+description=Determines the starting (minimum) date and ending (maximum) date from the staging data for the load for fact_claim_osr table.
+title=TR_PERIOD_START_END_CLAIM_OSR
+file.description=Determines the starting (minimum) date and ending (maximum) date from the staging data for the load for fact_claim_osr table.

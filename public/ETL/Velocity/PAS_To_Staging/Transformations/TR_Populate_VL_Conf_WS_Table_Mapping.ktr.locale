@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:29 EST 2019
+file.title=TR_Populate_VL_Conf_WS_Table_Mapping
+description=Transformation to load data to VL_CONF_WS_TABLE_MAPPING
+title=TR_Populate_VL_Conf_WS_Table_Mapping
+file.description=Transformation to load data to VL_CONF_WS_TABLE_MAPPING

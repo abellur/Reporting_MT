@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:55 EST 2019
+file.title=TR_GENERATE_MONTH_ROWS_FACT_POLICYSNAPSHOT
+description=Generates a row for each month in the period to be loaded.
+title=TR_GENERATE_MONTH_ROWS_FACT_POLICYSNAPSHOT
+file.description=Generates a row for each month in the period to be loaded.

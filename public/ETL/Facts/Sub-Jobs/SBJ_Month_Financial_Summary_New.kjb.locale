@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:49 EST 2019
+file.title=SBJ_Month_Financial_Summary_New
+description=Sub-job calculates and inserts the summary values in the financial fact tables for only one month.
+title=SBJ_Month_Financial_Summary_New
+file.description=Sub-job calculates and inserts the summary values in the financial fact tables for only one month.

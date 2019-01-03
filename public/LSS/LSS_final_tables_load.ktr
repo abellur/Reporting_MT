@@ -1,0 +1,4446 @@
+<transformation>
+  <info>
+    <name>LSS_final_tables_load</name>
+    <description/>
+    <extended_description/>
+    <trans_version/>
+    <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
+    <directory>/public/LSS</directory>
+    <parameters>
+    </parameters>
+    <log>
+      <trans-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <size_limit_lines/>
+        <interval/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STATUS</id>
+          <enabled>Y</enabled>
+          <name>STATUS</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+          <subject/>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>STARTDATE</id>
+          <enabled>Y</enabled>
+          <name>STARTDATE</name>
+        </field>
+        <field>
+          <id>ENDDATE</id>
+          <enabled>Y</enabled>
+          <name>ENDDATE</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>DEPDATE</id>
+          <enabled>Y</enabled>
+          <name>DEPDATE</name>
+        </field>
+        <field>
+          <id>REPLAYDATE</id>
+          <enabled>Y</enabled>
+          <name>REPLAYDATE</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>Y</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+        <field>
+          <id>EXECUTING_SERVER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_SERVER</name>
+        </field>
+        <field>
+          <id>EXECUTING_USER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_USER</name>
+        </field>
+        <field>
+          <id>CLIENT</id>
+          <enabled>N</enabled>
+          <name>CLIENT</name>
+        </field>
+      </trans-log-table>
+      <perf-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <interval/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>SEQ_NR</id>
+          <enabled>Y</enabled>
+          <name>SEQ_NR</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>INPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>INPUT_BUFFER_ROWS</name>
+        </field>
+        <field>
+          <id>OUTPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>OUTPUT_BUFFER_ROWS</name>
+        </field>
+      </perf-log-table>
+      <channel-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>LOGGING_OBJECT_TYPE</id>
+          <enabled>Y</enabled>
+          <name>LOGGING_OBJECT_TYPE</name>
+        </field>
+        <field>
+          <id>OBJECT_NAME</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_NAME</name>
+        </field>
+        <field>
+          <id>OBJECT_COPY</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_COPY</name>
+        </field>
+        <field>
+          <id>REPOSITORY_DIRECTORY</id>
+          <enabled>Y</enabled>
+          <name>REPOSITORY_DIRECTORY</name>
+        </field>
+        <field>
+          <id>FILENAME</id>
+          <enabled>Y</enabled>
+          <name>FILENAME</name>
+        </field>
+        <field>
+          <id>OBJECT_ID</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_ID</name>
+        </field>
+        <field>
+          <id>OBJECT_REVISION</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_REVISION</name>
+        </field>
+        <field>
+          <id>PARENT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>PARENT_CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>ROOT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>ROOT_CHANNEL_ID</name>
+        </field>
+      </channel-log-table>
+      <step-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>N</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+      </step-log-table>
+      <metrics-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_DATE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_CODE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_CODE</name>
+        </field>
+        <field>
+          <id>METRICS_DESCRIPTION</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DESCRIPTION</name>
+        </field>
+        <field>
+          <id>METRICS_SUBJECT</id>
+          <enabled>Y</enabled>
+          <name>METRICS_SUBJECT</name>
+        </field>
+        <field>
+          <id>METRICS_TYPE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_TYPE</name>
+        </field>
+        <field>
+          <id>METRICS_VALUE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_VALUE</name>
+        </field>
+      </metrics-log-table>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+      <slaveserver>
+        <name>4Sight BI - PDI Server</name>
+        <hostname>10.0.0.21</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>joe</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Carte 1</name>
+        <hostname>localhost</hostname>
+        <port>9081</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>DI Server</name>
+        <hostname>localhost</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>joe</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_DEV</name>
+        <hostname>magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>shota</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_SERVER</name>
+        <hostname>http://magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>shota</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_TEST</name>
+        <hostname>magspentahotest</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO</name>
+        <hostname>magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO_BTS</name>
+        <hostname>129.144.25.104</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO_DEV</name>
+        <hostname>magspentahodev</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Master</name>
+        <hostname>localhost</hostname>
+        <port>8081</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SERVER1</name>
+        <hostname>LOCALHOST</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SLAVE ONE</name>
+        <hostname>192.168.2.101</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4a418bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SLAVE TWO</name>
+        <hostname>192.168.2.101</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave1</name>
+        <hostname>localhost</hostname>
+        <port>8082</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave2</name>
+        <hostname>localhost</hostname>
+        <port>8083</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave3</name>
+        <hostname>localhost</hostname>
+        <port>8084</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>local DIS</name>
+        <hostname>localhost</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>magspentahodev</name>
+        <hostname>magspentahodev</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+    </slaveservers>
+    <clusterschemas>
+      <clusterschema>
+        <name>4sbi_admin</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+        </slaveservers>
+      </clusterschema>
+      <clusterschema>
+        <name>ClusterSchema</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+          <name>Slave3</name>
+          <name>Slave2</name>
+          <name>Slave1</name>
+          <name>Master</name>
+        </slaveservers>
+      </clusterschema>
+      <clusterschema>
+        <name>cluster A</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+          <name>Carte 1</name>
+          <name>local DIS</name>
+        </slaveservers>
+      </clusterschema>
+    </clusterschemas>
+    <created_user>admin</created_user>
+    <created_date>2018/10/29 13:28:45.981</created_date>
+    <modified_user>neelima</modified_user>
+    <modified_date>2018/10/26 10:26:28.390</modified_date>
+    <key_for_session_key/>
+    <is_key_private>N</is_key_private>
+  </info>
+  <notepads>
+    <notepad>
+      <note>Tried to join both the Hours by Billing Rate and Hourly Rate by TK Category reprorts sql into 1 table....when combined both the joins being used behind these reports,
+ it is bringing  a total of 22 million records and when queried this final output table for Rate by TK catgry, the $'s are not matching.
+
+So bringing them as seperate
+----Attahced is the sql that is join of sql behind these 2 reports....but it is causing 22 million records
+Select
+dbo_ALL_COMPANIES8.COMPANY_NAME AS DIVISION_NAME,
+  dbo_ALL_COMPANIES9.COMPANY_NAME AS LAWFIRM_NAME,
+  dbo.HOURS_BY_BILLING_RATE.UNITS_COUNT AS HOURS_BILLED,
+  -----round(dbo.HOURS_BY_BILLING_RATE.BILLING_RATE * dbo.HOURS_BY_BILLING_RATE.UNITS_COUNT,2) as COST,
+  dbo.HOURS_BY_BILLING_RATE.BILLING_RATE AS ACTUAL_HOURLY_RATE,
+  dbo.LINE_OF_BUSINESS_CODES.LINE_OF_BUSINESS_CD,
+  dbo.LINE_OF_BUSINESS_CODES.LINE_OF_BUSINESS_DESC,
+  dbo.OFFICES.OFFICE_NAME as Division_Office_Name,
+  dbo_STATES6.STATE_NAME as LawfirmState,
+  dbo_INVOICE_HISTORY2.FIN_DT as INV_HSTRY_FIN_DATE2,
+  
+  dbo_EMPLOYEES15.LAST_NAME +', '+dbo_EMPLOYEES15.FIRST_NAME AS BILLING_EMPLOYEE_NAME,
+  
+    dbo_ALL_COMPANIES10.COMPANY_NAME AS DIVISION_NAME_MATTERS,
+  dbo_ALL_COMPANIES11.COMPANY_NAME AS LAWFIRM_NAME_MATTERS,
+  -----sum(dbo.INVOICE_LINE_ITEM_RPT_DETAILS.UNITS),
+  dbo.INVOICE_LINE_ITEM_RPT_DETAILS.UNITS AS SUBMITTED_UNITS,
+  -----sum(dbo.INVOICE_LINE_ITEM_RPT_DETAILS.RATE * dbo.INVOICE_LINE_ITEM_RPT_DETAILS.UNITS),
+  dbo.INVOICE_LINE_ITEM_RPT_DETAILS.RATE AS SUBMITTED_RATE,  
+  dbo_OFFICES9.OFFICE_NAME AS DIVISION_OFFICE_NAME_MATTERS,
+  dbo_EMPLOYEES2.LAST_NAME+', '+dbo_EMPLOYEES2.FIRST_NAME AS TIMEKEEPER_NAME,
+  dbo_TIMEKEEPER_CATEGORY_CODES2.TIMEKEEPER_CATEGORY_DESC,
+  dbo_STATES7.STATE_NAME AS LAWFIRM_STATE_MATTERS,
+  dbo.INVOICE_LINE_ITEM_RPT_DETAILS.LINE_ITEM_TYPE_CD,
+  dbo.INVOICE_HISTORY.FIN_DT AS INVHSTRY_FINDT_MATTERS,
+  
+  dbo.ALL_COMPANIES.COMPANY_TYPE_CD,
+  dbo_ALL_COMPANIES10.COMPANY_TYPE_CD as comp_10_typeCD,
+dbo_ALL_COMPANIES11.COMPANY_TYPE_CD as comp_11_typeCD,
+dbo_OFFICES9.OFFICE_TYPE_CD
+  
+FROM
+dbo.MATTERS
+LEFT OUTER JOIN  dbo.INVOICES ON (dbo.INVOICES.MATTER_ID=dbo.MATTERS.MATTER_ID)
+LEFT OUTER JOIN dbo.ALL_COMPANIES ON (dbo.ALL_COMPANIES.COMPANY_ID=dbo.INVOICES.DIVISION_ID)
+LEFT OUTER JOIN dbo.ALL_COMPANIES  dbo_ALL_COMPANIES2 ON (dbo_ALL_COMPANIES2.COMPANY_ID=dbo.INVOICES.FIRM_ID)
+LEFT OUTER JOIN dbo.STATES  dbo_STATES6 ON (dbo_ALL_COMPANIES2.STATE_ID=dbo_STATES6.STATE_ID)
+LEFT OUTER JOIN dbo.OFFICES ON (dbo.OFFICES.OFFICE_ID=dbo.INVOICES.DIVISION_OFFICE_ID)
+LEFT OUTER JOIN dbo.OCCURRENCES ON (dbo.MATTERS.OCCURRENCE_ID=dbo.OCCURRENCES.OCCURRENCE_ID)
+LEFT OUTER JOIN dbo.LINE_OF_BUSINESS_CODES ON (dbo.OCCURRENCES.LINE_OF_BUSINESS_CD=dbo.LINE_OF_BUSINESS_CODES.LINE_OF_BUSINESS_CD)
+LEFT OUTER JOIN dbo.HOURS_BY_BILLING_RATE ON (dbo.HOURS_BY_BILLING_RATE.INVOICE_ID=dbo.INVOICES.INVOICE_ID)
+LEFT OUTER JOIN dbo.ALL_COMPANIES  dbo_ALL_COMPANIES8 ON (dbo_ALL_COMPANIES8.COMPANY_ID=dbo.HOURS_BY_BILLING_RATE.DIVISION_ID)
+LEFT OUTER  JOIN dbo.ALL_COMPANIES  dbo_ALL_COMPANIES9 ON (dbo_ALL_COMPANIES9.COMPANY_ID=dbo.HOURS_BY_BILLING_RATE.FIRM_ID)
+LEFT OUTER JOIN dbo.INVOICE_HISTORY  dbo_INVOICE_HISTORY2 ON (dbo_INVOICE_HISTORY2.INVOICE_ID=dbo.HOURS_BY_BILLING_RATE.INVOICE_ID)
+
+LEFT OUTER JOIN dbo.EMPLOYEES  dbo_EMPLOYEES15 ON (dbo_EMPLOYEES15.EMPLOYEE_ID=dbo.HOURS_BY_BILLING_RATE.EMPLOYEE_ID)
+
+   LEFT OUTER JOIN dbo.INVOICE_HISTORY  ON (dbo.INVOICE_HISTORY.INVOICE_ID=dbo.INVOICES.INVOICE_ID)
+    LEFT OUTER JOIN dbo.MATTER_FIRMS ON (dbo.MATTERS.MATTER_ID=dbo.MATTER_FIRMS.MATTER_ID)
+       LEFT OUTER JOIN dbo.ALL_COMPANIES  dbo_ALL_COMPANIES10 ON (dbo.MATTERS.DIVISION_ID=dbo_ALL_COMPANIES10.COMPANY_ID)
+   LEFT OUTER JOIN dbo.ALL_COMPANIES  dbo_ALL_COMPANIES11 ON (dbo.MATTER_FIRMS.FIRM_ID=dbo_ALL_COMPANIES11.COMPANY_ID)
+   LEFT OUTER JOIN dbo.STATES  dbo_STATES7 ON (dbo_ALL_COMPANIES11.STATE_ID=dbo_STATES7.STATE_ID)
+    LEFT OUTER JOIN dbo.OFFICES  dbo_OFFICES9 ON (dbo.MATTERS.DIVISION_OFFICE_ID=dbo_OFFICES9.OFFICE_ID)
+   LEFT OUTER JOIN dbo.INVOICE_LINE_ITEM_RPT_DETAILS ON (dbo.INVOICES.INVOICE_ID=dbo.INVOICE_LINE_ITEM_RPT_DETAILS.INVOICE_ID)
+   LEFT OUTER JOIN dbo.EMPLOYEES  dbo_EMPLOYEES2 ON (dbo.INVOICE_LINE_ITEM_RPT_DETAILS.EMPLOYEE_ID=dbo_EMPLOYEES2.EMPLOYEE_ID)
+   LEFT OUTER JOIN dbo.TIMEKEEPER_CATEGORY_CODES  dbo_TIMEKEEPER_CATEGORY_CODES2 ON 
+(dbo.INVOICE_LINE_ITEM_RPT_DETAILS.TIMEKEEPER_CATEGORY_CD=dbo_TIMEKEEPER_CATEGORY_CODES2.TIMEKEEPER_CATEGORY_CD)
+  
+  -----  WHERE
+-----( dbo.ALL_COMPANIES.COMPANY_TYPE_CD = 'D'  )
+-----and ( dbo_ALL_COMPANIES10.COMPANY_TYPE_CD = 'D' or dbo_ALL_COMPANIES10.COMPANY_TYPE_CD IS NULL  )
+----  AND  ( dbo_ALL_COMPANIES11.COMPANY_TYPE_CD = 'L' or dbo_ALL_COMPANIES11.COMPANY_TYPE_CD IS NULL  )
+-----  AND  ( dbo_OFFICES9.OFFICE_TYPE_CD = 'D' or dbo_OFFICES9.OFFICE_TYPE_CD IS NULL  )
+</note>
+      <xloc>1008</xloc>
+      <yloc>48</yloc>
+      <width>1103</width>
+      <heigth>1410</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+  </notepads>
+  <connection>
+    <name>MAG LSS</name>
+    <server>${G_MAG_LSS_DB_HOST}</server>
+    <type>MSSQL</type>
+    <access>Native</access>
+    <database>${G_MAG_LSS_DB_NAME}</database>
+    <port>1433</port>
+    <username>${G_MAG_LSS_DB_USERNAME}</username>
+    <password>${G_MAG_LSS_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>MSSQL_DOUBLE_DECIMAL_SEPARATOR</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>1433</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>MAGSTAGE</name>
+    <server>${G_MAG_STAGING_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_MAG_STAGING_DB_NAME}</database>
+    <port>${G_MAG_STAGING_DB_PORT}</port>
+    <username>${G_MAG_STAGING_DB_USERNAME}</username>
+    <password>${G_MAG_STAGING_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_MAG_STAGING_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_MAG_STAGING_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_MAG_STAGING_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>STRICT_NUMBER_38_INTERPRETATION</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <order>
+    <hop>
+      <from>GETFRM_INV_RECUCTN_SUMMRY</from>
+      <to>String operations</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>String operations</from>
+      <to>Select values</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>GTFRM_FRQ_TIMECHARGES</from>
+      <to>String operations 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>GTFRM_HRS_BY_BILLINGRATES</from>
+      <to>String operations 3</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>String operations 3</from>
+      <to>Select values 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>GTFRM_MATTERCLAIMS</from>
+      <to>String operations 5</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>gtfrm_timekkeper_rates</from>
+      <to>String operations 6</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>String operations 6</from>
+      <to>Select values 3</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>get_law_firms_info</from>
+      <to>String operations 7</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>gtfrom_firmTrending_hoursBilled</from>
+      <to>String operations 8</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>gtfrom_fees_and_expenses_by_ctgry</from>
+      <to>String operations 9</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>String operations 9</from>
+      <to>Select values 4</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>get from_TK_houly_rate</from>
+      <to>String operations 4</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>String operations 4</from>
+      <to>Select values 5</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values</from>
+      <to>Get System Info_inv_redc</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get System Info_inv_redc</from>
+      <to>load_invc_redcn_smmry</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>String operations 2</from>
+      <to>Get System _info_freq-tm_chrgs</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get System _info_freq-tm_chrgs</from>
+      <to>load_frqncy_time_chrgs</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values 2</from>
+      <to>Get System _info_hrsd_billrate</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get System _info_hrsd_billrate</from>
+      <to>load_hrs_by_billrate</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values 5</from>
+      <to>Get System _info_tk_ctgry</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get System _info_tk_ctgry</from>
+      <to>load_TK_Hrly_Rate_Ctgry</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>String operations 5</from>
+      <to>Get System _info_matter_Claims</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get System _info_matter_Claims</from>
+      <to>load_matter_claims</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values 3</from>
+      <to>Get System _info_tk_rates</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get System _info_tk_rates</from>
+      <to>load_lss_timekkeperrates</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>String operations 7</from>
+      <to>Get System _info_lawfirms</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get System _info_lawfirms</from>
+      <to>load_loaws_firms_info</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>String operations 8</from>
+      <to>Get System _info_lhrs_billed</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get System _info_lhrs_billed</from>
+      <to>load_firmTrending_hrs_billed</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values 4</from>
+      <to>Get System _info_fees_exp_catgry</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get System _info_fees_exp_catgry</from>
+      <to>load_lss_ovrvw_fees_expnses_ctgry</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get System _info_lhrs_billed 2</from>
+      <to>load_firmTrending_dollars_billed</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>String operations 8 2</from>
+      <to>Get System _info_lhrs_billed 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>gtfrom_firmTrending_DollarsBilled</from>
+      <to>String operations 8 2</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <step>
+    <name>GETFRM_INV_RECUCTN_SUMMRY</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MAG LSS</connection>
+    <sql>SELECT distinct
+dbo.INVOICE_REDUCTION_SUMMARY.INVOICE_ID AS INV_REDUC_SUMMRY_INVID,
+dbo.INVOICE_REDUCTION_SUMMARY.DIVISION_ID AS INV_REDUC_SUMMRY_DIVID,
+dbo.INVOICE_REDUCTION_SUMMARY.FIRM_ID AS INV_REDUC_SUMMRY_FRMID,
+dbo.INVOICE_REDUCTION_SUMMARY.DIVISION_OFFICE_ID AS INV_REDUC_SUMMRY_DIVOFFID,
+dbo.INVOICE_REDUCTION_SUMMARY.AUDITED_AMT_BILLED,
+dbo.INVOICE_REDUCTION_SUMMARY.FINAL_REDUCTION_AMT,
+dbo.INVOICE_REDUCTION_SUMMARY.FINAL_AMT_BILLED,
+dbo.INVOICE_REDUCTION_SUMMARY.AMT_BILLED,
+dbo.INVOICE_REDUCTION_SUMMARY.FEE_EXPENSE_CD,
+dbo.INVOICE_REDUCTION_SUMMARY.AUDITED_REDUCTION_AMT,
+CASE WHEN dbo.INVOICE_REDUCTION_SUMMARY.COMPLIANCE_CD = '' THEN 'N/A' ELSE dbo.INVOICE_REDUCTION_SUMMARY.COMPLIANCE_CD END AS INV_REDUC_SUMMRY_CPMLI_CD,
+
+dbo_COMPLIANCE_CODES2.COMPLIANCE_CD AS CMPLNCD2_COMPLINCECD,
+CASE WHEN dbo_COMPLIANCE_CODES2.COMPLIANCE_DESC IS NULL THEN 'Not at Issue' ELSE dbo_COMPLIANCE_CODES2.COMPLIANCE_DESC END AS CMPLNCD2_COMPLANCEDESC,
+
+dbo_ALL_COMPANIES3.COMPANY_ID AS COMP3_COMPID,
+dbo_ALL_COMPANIES3.COMPANY_NAME AS COMP3_COMPNAME,
+dbo_ALL_COMPANIES3.COMPANY_TYPE_CD AS COMP3_COMPTYPCD,
+
+dbo_ALL_COMPANIES4.COMPANY_ID AS COMP4_COMPID,
+dbo_ALL_COMPANIES4.COMPANY_NAME  AS COMP4_COMPNAME,
+dbo_ALL_COMPANIES4.COMPANY_TYPE_CD AS COMP4_COMPTYPCD,
+
+dbo_OFFICES3.OFFICE_ID AS OFFC3_OFFID,
+dbo_OFFICES3.OFFICE_NAME AS OFFC3_OFFCNAME,
+
+dbo_INVOICE_HISTORY3.INVOICE_ID AS INVHSTRY3_INVID,
+dbo_INVOICE_HISTORY3.FIN_DT AS INVHSTRY3_FINDT,
+{fn year(dbo_INVOICE_HISTORY3.FIN_DT)} AS INVHSTRY3_FINYEAR
+
+FROM
+dbo.INVOICE_REDUCTION_SUMMARY
+LEFT OUTER JOIN dbo.COMPLIANCE_CODES  dbo_COMPLIANCE_CODES2 ON (dbo.INVOICE_REDUCTION_SUMMARY.COMPLIANCE_CD=dbo_COMPLIANCE_CODES2.COMPLIANCE_CD)
+INNER JOIN dbo.ALL_COMPANIES  dbo_ALL_COMPANIES3 ON (dbo_ALL_COMPANIES3.COMPANY_ID=dbo.INVOICE_REDUCTION_SUMMARY.DIVISION_ID)
+INNER JOIN dbo.ALL_COMPANIES  dbo_ALL_COMPANIES4 ON (dbo_ALL_COMPANIES4.COMPANY_ID=dbo.INVOICE_REDUCTION_SUMMARY.FIRM_ID)
+INNER JOIN dbo.OFFICES  dbo_OFFICES3 ON (dbo_OFFICES3.OFFICE_ID=dbo.INVOICE_REDUCTION_SUMMARY.DIVISION_OFFICE_ID)
+INNER JOIN dbo.INVOICE_HISTORY  dbo_INVOICE_HISTORY3 ON (dbo_INVOICE_HISTORY3.INVOICE_ID=dbo.INVOICE_REDUCTION_SUMMARY.INVOICE_ID)
+---INNER JOIN dbo.ALL_COMPANIES  dbo_ALL_COMPANIES3 ON (dbo_ALL_COMPANIES3.COMPANY_ID=dbo.INVOICE_REDUCTION_SUMMARY.DIVISION_ID)
+---INNER JOIN dbo.ALL_COMPANIES  dbo_ALL_COMPANIES4 ON (dbo_ALL_COMPANIES4.COMPANY_ID=dbo.INVOICE_REDUCTION_SUMMARY.FIRM_ID)
+--INNER JOIN dbo.OFFICES  dbo_OFFICES3 ON (dbo_OFFICES3.OFFICE_ID=dbo.INVOICE_REDUCTION_SUMMARY.DIVISION_OFFICE_ID)
+---INNER JOIN dbo.INVOICE_HISTORY  dbo_INVOICE_HISTORY3 ON (dbo_INVOICE_HISTORY3.INVOICE_ID=dbo.INVOICE_REDUCTION_SUMMARY.INVOICE_ID)
+ORDER BY dbo.INVOICE_REDUCTION_SUMMARY.INVOICE_ID
+
+
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>112</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>GTFRM_FRQ_TIMECHARGES</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MAG LSS</connection>
+    <sql>SELECT DISTINCT
+dbo.FREQ_OF_TIME_CHARGES.UNITS_BILLED,
+dbo.FREQ_OF_TIME_CHARGES.UNITS_COUNT,
+dbo.FREQ_OF_TIME_CHARGES.INVOICE_ID as Frqncy_tm_chrgs_invcID,
+dbo.FREQ_OF_TIME_CHARGES.EMPLOYEE_ID AS FRQ_OFTIME_CHRGES_EMPID,
+dbo_EMPLOYEES17.LAST_NAME AS EMP17_LSTNAME,
+dbo_EMPLOYEES17.FIRST_NAME EMP17_FSTNAME,
+dbo_EMPLOYEES17.EMPLOYEE_ID AS EMP17_EMPID
+from 
+dbo.FREQ_OF_TIME_CHARGES
+LEFT OUTER JOIN dbo.EMPLOYEES  dbo_EMPLOYEES17 ON (dbo.FREQ_OF_TIME_CHARGES.EMPLOYEE_ID=dbo_EMPLOYEES17.EMPLOYEE_ID)
+-----where dbo.FREQ_OF_TIME_CHARGES.INVOICE_ID= 179179 and dbo.FREQ_OF_TIME_CHARGES.EMPLOYEE_ID =2951
+ORDER BY dbo.FREQ_OF_TIME_CHARGES.INVOICE_ID</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>95</xloc>
+      <yloc>174</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>GTFRM_HRS_BY_BILLINGRATES</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MAG LSS</connection>
+    <sql>
+SELECT
+  dbo.INVOICES.INVOICE_ID as invc_invcid,
+  dbo.MATTERS.MATTER_ID as MTTR_MTTRID,
+  dbo.HOURS_BY_BILLING_RATE.EMPLOYEE_ID as HRS_BYBILL_RT_EMPYID,
+  dbo_ALL_COMPANIES8.COMPANY_NAME AS COMP8_COMPNAME,
+  dbo_ALL_COMPANIES9.COMPANY_NAME as COMP9_COMPNAME,
+  dbo.HOURS_BY_BILLING_RATE.UNITS_COUNT,
+  round(dbo.HOURS_BY_BILLING_RATE.BILLING_RATE * dbo.HOURS_BY_BILLING_RATE.UNITS_COUNT,2) as total_billing,
+  dbo.HOURS_BY_BILLING_RATE.BILLING_RATE,
+  dbo.LINE_OF_BUSINESS_CODES.LINE_OF_BUSINESS_CD,
+  dbo.LINE_OF_BUSINESS_CODES.LINE_OF_BUSINESS_DESC,
+  dbo.OFFICES.OFFICE_NAME,
+  dbo_STATES6.STATE_NAME,
+  dbo_INVOICE_HISTORY2.FIN_DT as invhstry2_findt
+FROM
+  dbo.ALL_COMPANIES INNER JOIN dbo.INVOICES ON (dbo.ALL_COMPANIES.COMPANY_ID=dbo.INVOICES.DIVISION_ID)
+   RIGHT OUTER JOIN dbo.MATTERS ON (dbo.INVOICES.MATTER_ID=dbo.MATTERS.MATTER_ID)
+   LEFT OUTER JOIN dbo.OCCURRENCES ON (dbo.MATTERS.OCCURRENCE_ID=dbo.OCCURRENCES.OCCURRENCE_ID)
+   LEFT OUTER JOIN dbo.LINE_OF_BUSINESS_CODES ON (dbo.OCCURRENCES.LINE_OF_BUSINESS_CD=dbo.LINE_OF_BUSINESS_CODES.LINE_OF_BUSINESS_CD)
+   INNER JOIN dbo.OFFICES ON (dbo.OFFICES.OFFICE_ID=dbo.INVOICES.DIVISION_OFFICE_ID)
+   INNER JOIN dbo.ALL_COMPANIES  dbo_ALL_COMPANIES2 ON (dbo_ALL_COMPANIES2.COMPANY_ID=dbo.INVOICES.FIRM_ID)
+   INNER JOIN dbo.STATES  dbo_STATES6 ON (dbo_ALL_COMPANIES2.STATE_ID=dbo_STATES6.STATE_ID)
+   LEFT OUTER JOIN dbo.HOURS_BY_BILLING_RATE ON (dbo.HOURS_BY_BILLING_RATE.INVOICE_ID=dbo.INVOICES.INVOICE_ID)
+   INNER JOIN dbo.ALL_COMPANIES  dbo_ALL_COMPANIES8 ON (dbo_ALL_COMPANIES8.COMPANY_ID=dbo.HOURS_BY_BILLING_RATE.DIVISION_ID)
+   INNER JOIN dbo.ALL_COMPANIES  dbo_ALL_COMPANIES9 ON (dbo_ALL_COMPANIES9.COMPANY_ID=dbo.HOURS_BY_BILLING_RATE.FIRM_ID)
+   INNER JOIN dbo.INVOICE_HISTORY  dbo_INVOICE_HISTORY2 ON (dbo_INVOICE_HISTORY2.INVOICE_ID=dbo.HOURS_BY_BILLING_RATE.INVOICE_ID)
+  
+WHERE
+( dbo.ALL_COMPANIES.COMPANY_TYPE_CD = 'D'  )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---select DISTINCT
+---dbo.HOURS_BY_BILLING_RATE.INVOICE_ID AS HRS_BYBILL_RT_INVID,
+---dbo.HOURS_BY_BILLING_RATE.DIVISION_ID AS HRS_BYBILL_RT_DIVID,
+---dbo.HOURS_BY_BILLING_RATE.FIRM_ID AS HRS_BYBILL_RT_FRMID,
+---dbo.HOURS_BY_BILLING_RATE.EMPLOYEE_ID as HRS_BYBILL_RT_EMPYID,
+---dbo.HOURS_BY_BILLING_RATE.UNITS_COUNT  AS HRS_BYBILL_RT_UNITSCOUNT,
+---dbo.HOURS_BY_BILLING_RATE.BILLING_RATE AS HRS_BYBILL_RT_BILLRATE,
+--round(dbo.HOURS_BY_BILLING_RATE.BILLING_RATE * dbo.HOURS_BY_BILLING_RATE.UNITS_COUNT,2) AS CALC_BILLINGRTES_UNTSCNT,
+
+---dbo_ALL_COMPANIES8.COMPANY_ID AS COMP8_COMPID,
+--dbo_ALL_COMPANIES8.COMPANY_NAME AS COMP8_COMPNAME,
+
+---dbo_ALL_COMPANIES9.COMPANY_ID AS COMP9_COMPID,
+--dbo_ALL_COMPANIES9.COMPANY_NAME AS COMP9_COMPNAME,
+
+--dbo_INVOICE_HISTORY2.INVOICE_ID AS INVHSTRY2_INVID,---dbo_INVOICE_HISTORY2.FIN_DT AS INVHSTRY2_FINDT
+
+---FROM  dbo.HOURS_BY_BILLING_RATE---INNER JOIN dbo.ALL_COMPANIES  dbo_ALL_COMPANIES8 ON (dbo_ALL_COMPANIES8.COMPANY_ID=dbo.HOURS_BY_BILLING_RATE.DIVISION_ID)
+--INNER JOIN dbo.ALL_COMPANIES  dbo_ALL_COMPANIES9 ON (dbo_ALL_COMPANIES9.COMPANY_ID=dbo.HOURS_BY_BILLING_RATE.FIRM_ID)---INNER JOIN dbo.INVOICE_HISTORY  dbo_INVOICE_HISTORY2 ON (dbo_INVOICE_HISTORY2.INVOICE_ID=dbo.HOURS_BY_BILLING_RATE.INVOICE_ID)
+
+-----ORDER BY dbo.HOURS_BY_BILLING_RATE.INVOICE_ID
+
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>80</xloc>
+      <yloc>304</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>GTFRM_MATTERCLAIMS</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MAG LSS</connection>
+    <sql>SELECT distinct
+dbo.MATTER_CLAIMS.MATTER_ID AS MTTR_CLMS_MTTRID,
+dbo.MATTER_CLAIMS.SPLIT_PCT AS MTTR_CLMS_SPLIT_PCT,
+dbo.MATTER_CLAIMS.OCCURRENCE_ID AS MTTR_CLMS_OCCRNCEID,
+dbo_OCCURRENCES2.OCCURRENCE_ID AS OCCRNCS2_OCCRNCID,
+dbo_OCCURRENCES2.CUST_REFERENCE_NO AS OCCRNCS2_CUSTREF_NO
+FROM dbo.MATTER_CLAIMS
+LEFT OUTER JOIN dbo.OCCURRENCES  dbo_OCCURRENCES2 ON (dbo.MATTER_CLAIMS.OCCURRENCE_ID=dbo_OCCURRENCES2.OCCURRENCE_ID)
+ORDER BY dbo.MATTER_CLAIMS.MATTER_ID
+
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>64</xloc>
+      <yloc>544</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get System Info_inv_redc</name>
+    <type>SystemInfo</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>LOAD_DATE</name>
+        <type>system date (fixed)</type>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>704</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get System _info_fees_exp_catgry</name>
+    <type>SystemInfo</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>LOAD_DATE</name>
+        <type>system date (fixed)</type>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>832</xloc>
+      <yloc>976</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get System _info_freq-tm_chrgs</name>
+    <type>SystemInfo</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>LOAD_DATE</name>
+        <type>system date (fixed)</type>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get System _info_hrsd_billrate</name>
+    <type>SystemInfo</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>LOAD_DATE</name>
+        <type>system date (fixed)</type>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>304</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get System _info_lawfirms</name>
+    <type>SystemInfo</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>LOAD_DATE</name>
+        <type>system date (fixed)</type>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>581</xloc>
+      <yloc>766</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get System _info_lhrs_billed</name>
+    <type>SystemInfo</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>LOAD_DATE</name>
+        <type>system date (fixed)</type>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>880</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get System _info_lhrs_billed 2</name>
+    <type>SystemInfo</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>LOAD_DATE</name>
+        <type>system date (fixed)</type>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>608</xloc>
+      <yloc>1159</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get System _info_matter_Claims</name>
+    <type>SystemInfo</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>LOAD_DATE</name>
+        <type>system date (fixed)</type>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>560</xloc>
+      <yloc>544</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get System _info_tk_ctgry</name>
+    <type>SystemInfo</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>LOAD_DATE</name>
+        <type>system date (fixed)</type>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>608</xloc>
+      <yloc>432</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get System _info_tk_rates</name>
+    <type>SystemInfo</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>LOAD_DATE</name>
+        <type>system date (fixed)</type>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>646</xloc>
+      <yloc>664</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>INVHSTRY3_FINDT</name>
+        <rename>INVHSTRY3_FINDT</rename>
+        <type>Timestamp</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values 2</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>invhstry2_findt</name>
+        <rename>invhstry2_findt</rename>
+        <type>Timestamp</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>304</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values 3</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>EFFECTIVE_DT</name>
+        <rename>EFFECTIVE_DT</rename>
+        <type>Timestamp</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>EXPIRATION_DT</name>
+        <rename>EXPIRATION_DT</rename>
+        <type>Timestamp</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>471</xloc>
+      <yloc>666</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values 4</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>finalized_date</name>
+        <rename>finalized_date</rename>
+        <type>Timestamp</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>544</xloc>
+      <yloc>976</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values 5</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>FIN_DT</name>
+        <rename>FIN_DT</rename>
+        <type>Timestamp</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>416</xloc>
+      <yloc>432</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>String operations</name>
+    <type>StringOperations</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>FEE_EXPENSE_CD</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>INV_REDUC_SUMMRY_CPMLI_CD</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>CMPLNCD2_COMPLINCECD</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>CMPLNCD2_COMPLANCEDESC</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>COMP3_COMPNAME</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>COMP3_COMPTYPCD</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>COMP4_COMPNAME</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>COMP4_COMPTYPCD</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>OFFC3_OFFCNAME</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>String operations 2</name>
+    <type>StringOperations</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>EMP17_LSTNAME</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>EMP17_FSTNAME</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>179</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>String operations 3</name>
+    <type>StringOperations</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>COMP8_COMPNAME</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>COMP9_COMPNAME</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>LINE_OF_BUSINESS_CD</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>LINE_OF_BUSINESS_DESC</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>OFFICE_NAME</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>STATE_NAME</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>298</xloc>
+      <yloc>307</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>String operations 4</name>
+    <type>StringOperations</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>Division_Name</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>LAw_firm_Name</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>LINE_OF_BUSINESS_CD</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>LINE_OF_BUSINESS_DESC</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Division_Office_Name</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Timekeeper_Name</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Timekeeper_Category</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Law_firm_state</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>432</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>String operations 5</name>
+    <type>StringOperations</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>OCCRNCS2_CUSTREF_NO</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>272</xloc>
+      <yloc>544</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>String operations 6</name>
+    <type>StringOperations</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>comp7_compname</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>offc7_offcname</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>LINE_OF_BUSINESS_DESC</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>comp6_compname</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>emply6_empname</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>TIMEKEEPER_CATEGORY_DESC</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>STATUS_CD</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>APPROVAL_IND</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>state4_stname</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>309</xloc>
+      <yloc>667</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>String operations 7</name>
+    <type>StringOperations</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>Law_Firm_Name</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Law_Firm_Office_Name</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Law_Firm_City</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Law_Firm_Country_Code</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Law_Firm_Office_Address1</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Law_Firm_Office_Address2</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Law_Firm_Office_Address3</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Law_Firm_Office_City</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Law_Firm_Office_Country_Code</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Law_Firm_Office_Email_Address</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Law_Firm_Office_Phone_No</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Law_Firm_Office_Postal_Code</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Law_Firm_Office_State_Name</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Law_Firm_Office_Status_Code</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Law_Firm_Office_Tax_Id</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Law_Firm_State_Name</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Law_Firm_Status_Code</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Law_Firm_Tax_ID</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>320</xloc>
+      <yloc>768</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>String operations 8</name>
+    <type>StringOperations</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>Accident_state</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>law_firm_name</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Law_firm_city</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>880</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>String operations 8 2</name>
+    <type>StringOperations</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>Division_Name</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Law_firm_Name</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Law_Firm_Office_State</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Accident_State</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Law_Firm_City</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>1159</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>String operations 9</name>
+    <type>StringOperations</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>Division</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Law_firm_name</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Law_firm_office_State</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Accident_state</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>LINE_ITEM_TYPE_CD</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Task_desc</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>Law_firm_city</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>UTASK_DESC</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>976</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>get from_TK_houly_rate</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MAG LSS</connection>
+    <sql>SELECT
+  dbo_ALL_COMPANIES10.COMPANY_NAME as Division_Name,
+  dbo_ALL_COMPANIES11.COMPANY_NAME as LAw_firm_Name,
+  dbo.INVOICE_LINE_ITEM_RPT_DETAILS.UNITS as Submitted_units,
+  ------sum(dbo.INVOICE_LINE_ITEM_RPT_DETAILS.RATE * dbo.INVOICE_LINE_ITEM_RPT_DETAILS.UNITS) as Submitted_Amount,
+  dbo.INVOICE_LINE_ITEM_RPT_DETAILS.RATE as Submitted_Rate,
+  dbo.LINE_OF_BUSINESS_CODES.LINE_OF_BUSINESS_CD,
+  dbo.LINE_OF_BUSINESS_CODES.LINE_OF_BUSINESS_DESC,
+  dbo_OFFICES9.OFFICE_NAME as Division_Office_Name,
+  dbo_EMPLOYEES2.LAST_NAME+', '+dbo_EMPLOYEES2.FIRST_NAME as Timekeeper_Name,
+  Case when dbo_TIMEKEEPER_CATEGORY_CODES2.TIMEKEEPER_CATEGORY_DESC='Junior Partner' then 'Partner'
+  when dbo_TIMEKEEPER_CATEGORY_CODES2.TIMEKEEPER_CATEGORY_DESC='Senior Partner' then 'Partner'
+   else dbo_TIMEKEEPER_CATEGORY_CODES2.TIMEKEEPER_CATEGORY_DESC end as Timekeeper_Category,
+  dbo_STATES7.STATE_NAME as Law_firm_state,
+  dbo.INVOICE_HISTORY.FIN_DT
+FROM
+  dbo.INVOICE_HISTORY RIGHT OUTER JOIN dbo.INVOICES ON (dbo.INVOICE_HISTORY.INVOICE_ID=dbo.INVOICES.INVOICE_ID)
+   RIGHT OUTER JOIN dbo.MATTERS ON (dbo.INVOICES.MATTER_ID=dbo.MATTERS.MATTER_ID)
+   LEFT OUTER JOIN dbo.MATTER_FIRMS ON (dbo.MATTERS.MATTER_ID=dbo.MATTER_FIRMS.MATTER_ID)
+   LEFT OUTER JOIN dbo.ALL_COMPANIES  dbo_ALL_COMPANIES11 ON (dbo.MATTER_FIRMS.FIRM_ID=dbo_ALL_COMPANIES11.COMPANY_ID)
+   LEFT OUTER JOIN dbo.STATES  dbo_STATES7 ON (dbo_ALL_COMPANIES11.STATE_ID=dbo_STATES7.STATE_ID)
+   LEFT OUTER JOIN dbo.OCCURRENCES ON (dbo.MATTERS.OCCURRENCE_ID=dbo.OCCURRENCES.OCCURRENCE_ID)
+   LEFT OUTER JOIN dbo.LINE_OF_BUSINESS_CODES ON (dbo.OCCURRENCES.LINE_OF_BUSINESS_CD=dbo.LINE_OF_BUSINESS_CODES.LINE_OF_BUSINESS_CD)
+   INNER JOIN dbo.ALL_COMPANIES  dbo_ALL_COMPANIES10 ON (dbo.MATTERS.DIVISION_ID=dbo_ALL_COMPANIES10.COMPANY_ID)
+   INNER JOIN dbo.OFFICES  dbo_OFFICES9 ON (dbo.MATTERS.DIVISION_OFFICE_ID=dbo_OFFICES9.OFFICE_ID)
+   INNER JOIN dbo.INVOICE_LINE_ITEM_RPT_DETAILS ON (dbo.INVOICES.INVOICE_ID=dbo.INVOICE_LINE_ITEM_RPT_DETAILS.INVOICE_ID)
+   LEFT OUTER JOIN dbo.EMPLOYEES  dbo_EMPLOYEES2 ON (dbo.INVOICE_LINE_ITEM_RPT_DETAILS.EMPLOYEE_ID=dbo_EMPLOYEES2.EMPLOYEE_ID)
+   LEFT OUTER JOIN dbo.TIMEKEEPER_CATEGORY_CODES  dbo_TIMEKEEPER_CATEGORY_CODES2 ON (dbo.INVOICE_LINE_ITEM_RPT_DETAILS.TIMEKEEPER_CATEGORY_CD=dbo_TIMEKEEPER_CATEGORY_CODES2.TIMEKEEPER_CATEGORY_CD)
+  
+WHERE
+( dbo_ALL_COMPANIES10.COMPANY_TYPE_CD = 'D' or dbo_ALL_COMPANIES10.COMPANY_TYPE_CD IS NULL  )
+  AND  ( dbo_ALL_COMPANIES11.COMPANY_TYPE_CD = 'L' or dbo_ALL_COMPANIES11.COMPANY_TYPE_CD IS NULL  )
+  AND  ( dbo_OFFICES9.OFFICE_TYPE_CD = 'D' or dbo_OFFICES9.OFFICE_TYPE_CD IS NULL  )
+
+   AND
+   dbo.INVOICE_LINE_ITEM_RPT_DETAILS.LINE_ITEM_TYPE_CD  IN  ( 'F'  )
+   AND
+   dbo_EMPLOYEES2.LAST_NAME+', '+dbo_EMPLOYEES2.FIRST_NAME  Is Not Null  
+
+
+
+
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>64</xloc>
+      <yloc>432</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>get_law_firms_info</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MAG LSS</connection>
+    <sql>  SELECT
+  dbo_ALL_COMPANIES6.COMPANY_NAME as Law_Firm_Name,
+  dbo_OFFICES6.OFFICE_NAME as Law_Firm_Office_Name,
+  dbo_ALL_COMPANIES6.CITY as Law_Firm_City,
+  dbo_ALL_COMPANIES6.COUNTRY_CD as Law_Firm_Country_Code,
+  dbo_OFFICES6.ADDRESS1 as Law_Firm_Office_Address1,
+  dbo_OFFICES6.ADDRESS2 as Law_Firm_Office_Address2,
+  dbo_OFFICES6.ADDRESS3 as Law_Firm_Office_Address3,
+  dbo_OFFICES6.CITY as Law_Firm_Office_City,
+  dbo_OFFICES6.COUNTRY_CD  as Law_Firm_Office_Country_Code,
+  dbo_OFFICES6.EMAIL_ADDRESS as Law_Firm_Office_Email_Address,
+  dbo_OFFICES6.PHONE_NO as Law_Firm_Office_Phone_No,
+  dbo_OFFICES6.POSTAL_CD as Law_Firm_Office_Postal_Code,
+  dbo_STATES4.STATE_NAME as Law_Firm_Office_State_Name,
+  dbo_OFFICES6.STATUS_CD  as Law_Firm_Office_Status_Code,
+  dbo_OFFICES6.TAX_ID_FIELD as Law_Firm_Office_Tax_Id,
+  dbo_STATES2.STATE_NAME  as Law_Firm_State_Name,
+  CASE (dbo_ALL_COMPANIES6.STATUS_CD)  WHEN 'A' THEN 'ACTIVE' WHEN 'I' THEN 'INACTIVE' ELSE 'N/A' END as Law_Firm_Status_Code,
+  dbo_ALL_COMPANIES6.TAX_ID_FIELD as Law_Firm_Tax_ID
+FROM
+  dbo.STATES  dbo_STATES2 RIGHT OUTER JOIN dbo.ALL_COMPANIES  dbo_ALL_COMPANIES6 ON (dbo_ALL_COMPANIES6.STATE_ID=dbo_STATES2.STATE_ID)
+   INNER JOIN dbo.OFFICES  dbo_OFFICES6 ON (dbo_ALL_COMPANIES6.COMPANY_ID=dbo_OFFICES6.COMPANY_ID)
+   LEFT OUTER JOIN dbo.STATES  dbo_STATES4 ON (dbo_OFFICES6.STATE_ID=dbo_STATES4.STATE_ID)
+  
+WHERE
+( dbo_ALL_COMPANIES6.COMPANY_TYPE_CD = 'L'  )
+  AND  ( dbo_ALL_COMPANIES6.COMPANY_TYPE_CD = 'L'  )</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>78</xloc>
+      <yloc>763</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>gtfrm_timekkeper_rates</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MAG LSS</connection>
+    <sql>SELECT DISTINCT
+  CASE dbo.TIMEKEEPER_RATES.DIVISION_ID WHEN 0  THEN  'All' ELSE dbo_ALL_COMPANIES7.COMPANY_NAME END as comp7_compname,
+  CASE dbo.TIMEKEEPER_RATES.DIVISION_OFFICE_ID WHEN  '0' THEN 'All'  ELSE dbo_OFFICES7.OFFICE_NAME  END as offc7_offcname,
+  CASE rTRIM ( lTRIM(dbo.TIMEKEEPER_RATES.LINE_OF_BUSINESS_CD) ) when '' then 'All' else  dbo_LINE_OF_BUSINESS_CODES2.LINE_OF_BUSINESS_DESC END as LINE_OF_BUSINESS_DESC,
+  dbo.TIMEKEEPER_RATES.MATTER_ID,
+  dbo.TIMEKEEPER_RATES.HOURLY_RATE,
+  dbo_ALL_COMPANIES6.COMPANY_NAME as comp6_compname,
+  dbo.TIMEKEEPER_RATES.EFFECTIVE_DT,
+  dbo.TIMEKEEPER_RATES.EXPIRATION_DT,
+  dbo_EMPLOYEES6.LAST_NAME+', '+dbo_EMPLOYEES6.FIRST_NAME as emply6_empname,
+  dbo.TIMEKEEPER_CATEGORY_CODES.TIMEKEEPER_CATEGORY_DESC,
+  dbo_EMPLOYEES6.STATUS_CD,
+  dbo.TIMEKEEPER_RATES.APPROVAL_IND,
+  CASE WHEN dbo_STATES4.STATE_NAME IS NULL THEN dbo_STATES6.STATE_NAME ELSE dbo_STATES4.STATE_NAME END AS state4_stname,
+  dbo.TIMEKEEPER_RATES.HISTORY_SEQ_NBR
+FROM dbo.ALL_COMPANIES  dbo_ALL_COMPANIES6
+   INNER JOIN dbo.OFFICES  dbo_OFFICES6 ON (dbo_ALL_COMPANIES6.COMPANY_ID=dbo_OFFICES6.COMPANY_ID)
+   LEFT OUTER JOIN  dbo.STATES  dbo_STATES4 ON (dbo_OFFICES6.STATE_ID=dbo_STATES4.STATE_ID)
+   LEFT OUTER JOIN dbo.STATES  dbo_STATES6  ON (dbo_ALL_COMPANIES6.STATE_ID=dbo_STATES6.STATE_ID)----ADDED THIS ADDITIONAL JOIN TO HANDLE NULL STAES FOR LAW FIRMS ON 12/16/2017
+    
+   LEFT OUTER JOIN dbo.EMPLOYEES  dbo_EMPLOYEES6 ON (dbo_EMPLOYEES6.COMPANY_ID=dbo_ALL_COMPANIES6.COMPANY_ID)
+   LEFT OUTER JOIN dbo.TIMEKEEPER_RATES ON (dbo_EMPLOYEES6.EMPLOYEE_ID=dbo.TIMEKEEPER_RATES.EMPLOYEE_ID)
+   INNER JOIN dbo.TIMEKEEPER_CATEGORY_CODES ON (dbo.TIMEKEEPER_RATES.TIMEKEEPER_CATEGORY_CD=dbo.TIMEKEEPER_CATEGORY_CODES.TIMEKEEPER_CATEGORY_CD)
+   LEFT OUTER JOIN dbo.ALL_COMPANIES  dbo_ALL_COMPANIES7 ON (dbo_ALL_COMPANIES7.COMPANY_ID=dbo.TIMEKEEPER_RATES.DIVISION_ID)
+   LEFT OUTER JOIN dbo.OFFICES  dbo_OFFICES7 ON (dbo_OFFICES7.OFFICE_ID=dbo.TIMEKEEPER_RATES.DIVISION_OFFICE_ID)
+   LEFT OUTER JOIN dbo.LINE_OF_BUSINESS_CODES  dbo_LINE_OF_BUSINESS_CODES2 ON (dbo_LINE_OF_BUSINESS_CODES2.LINE_OF_BUSINESS_CD=dbo.TIMEKEEPER_RATES.LINE_OF_BUSINESS_CD)
+  
+WHERE
+dbo_ALL_COMPANIES6.COMPANY_TYPE_CD = 'L'  
+  AND  
+ dbo.TIMEKEEPER_RATES.HISTORY_SEQ_NBR  =  0
+   AND
+   dbo.TIMEKEEPER_RATES.APPROVAL_IND  =  'Y'
+   AND
+   dbo.TIMEKEEPER_RATES.HOURLY_RATE  >  0
+AND
+   dbo.TIMEKEEPER_RATES.EXPIRATION_DT  IN  ( '12/31/2049 00:0:0')</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>100</xloc>
+      <yloc>667</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>gtfrom_fees_and_expenses_by_ctgry</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MAG LSS</connection>
+    <sql>SELECT
+  dbo.INVOICE_LINE_ITEM_RPT_DETAILS.BLOCKSEQ,
+  dbo.ALL_COMPANIES.COMPANY_NAME as Division,
+  dbo.INVOICE_LINE_ITEM_RPT_DETAILS.FINAL_RATE,
+  sum(dbo.INVOICE_LINE_ITEM_RPT_DETAILS.FINAL_UNITS) as Final_units,
+  sum(dbo.INVOICE_LINE_ITEM_RPT_DETAILS.FINAL_RATE * dbo.INVOICE_LINE_ITEM_RPT_DETAILS.FINAL_UNITS) as Final_amount,
+  dbo.INVOICES.INVOICE_ID,
+  dbo_ALL_COMPANIES2.COMPANY_NAME as Law_firm_name,
+  dbo.MATTERS.MATTER_ID,
+  {fn year(dbo.INVOICE_HISTORY.FIN_DT)} as Finalized_year,
+  dbo_STATES5.STATE_NAME Law_firm_office_State,
+  CASE WHEN dbo.OCCURRENCES.ACCIDENT_STATE_ID IS NULL THEN dbo_STATES5.STATE_NAME 
+ ------- WHEN dbo.OCCURRENCES.ACCIDENT_STATE_ID ='0' THEN dbo_STATES5.STATE_NAME
+  WHEN dbo.OCCURRENCES.ACCIDENT_STATE_ID = ' '  THEN dbo_STATES5.STATE_NAME ELSE dbo_STATES8.STATE_NAME END as Accident_state,
+  dbo.INVOICE_LINE_ITEM_RPT_DETAILS.LINE_ITEM_TYPE_CD,
+  case dbo.INVOICE_LINE_ITEM_RPT_DETAILS.UTASK_ID when 0 then 'N\A' else dbo.UCODE_UTASKS.UTASK_CD+' - '+dbo.UCODE_UTASKS.UTASK_DESC end as Task_desc,
+  dbo_ALL_COMPANIES2.CITY as Law_firm_city,
+  dbo.UCODE_UTASKS.UTASK_DESC,
+  dbo.INVOICE_HISTORY.FIN_DT as finalized_date
+FROM
+  dbo.INVOICE_HISTORY RIGHT OUTER JOIN dbo.INVOICES ON (dbo.INVOICE_HISTORY.INVOICE_ID=dbo.INVOICES.INVOICE_ID)
+   INNER JOIN dbo.ALL_COMPANIES ON (dbo.ALL_COMPANIES.COMPANY_ID=dbo.INVOICES.DIVISION_ID)
+   RIGHT OUTER JOIN dbo.MATTERS ON (dbo.INVOICES.MATTER_ID=dbo.MATTERS.MATTER_ID)
+   LEFT OUTER JOIN dbo.OCCURRENCES ON (dbo.MATTERS.OCCURRENCE_ID=dbo.OCCURRENCES.OCCURRENCE_ID)
+   LEFT OUTER JOIN dbo.STATES  dbo_STATES8 ON (dbo.OCCURRENCES.ACCIDENT_STATE_ID=dbo_STATES8.STATE_ID)
+   INNER JOIN dbo.ALL_COMPANIES  dbo_ALL_COMPANIES2 ON (dbo_ALL_COMPANIES2.COMPANY_ID=dbo.INVOICES.FIRM_ID)
+   INNER JOIN dbo.OFFICES  dbo_OFFICES2 ON (dbo_OFFICES2.OFFICE_ID=dbo.INVOICES.FIRM_OFFICE_ID)
+   LEFT OUTER JOIN dbo.STATES  dbo_STATES5 ON (dbo_OFFICES2.STATE_ID=dbo_STATES5.STATE_ID)
+   INNER JOIN dbo.INVOICE_LINE_ITEM_RPT_DETAILS ON (dbo.INVOICES.INVOICE_ID=dbo.INVOICE_LINE_ITEM_RPT_DETAILS.INVOICE_ID)
+   INNER JOIN dbo.UCODE_UTASKS ON (dbo.INVOICE_LINE_ITEM_RPT_DETAILS.UTASK_ID=dbo.UCODE_UTASKS.UTASK_ID)
+  
+WHERE
+( dbo.ALL_COMPANIES.COMPANY_TYPE_CD = 'D'  )
+  AND  ( dbo_ALL_COMPANIES2.COMPANY_TYPE_CD = 'L'  )
+  AND  
+  
+   dbo.INVOICE_LINE_ITEM_RPT_DETAILS.BLOCKSEQ  >=  0
+ 
+   GROUP BY
+  dbo.INVOICE_LINE_ITEM_RPT_DETAILS.BLOCKSEQ, 
+  dbo.ALL_COMPANIES.COMPANY_NAME, 
+  dbo.INVOICE_LINE_ITEM_RPT_DETAILS.FINAL_RATE, 
+  dbo.INVOICES.INVOICE_ID, 
+  dbo_ALL_COMPANIES2.COMPANY_NAME, 
+  dbo.MATTERS.MATTER_ID, 
+  {fn year(dbo.INVOICE_HISTORY.FIN_DT)}, 
+  dbo_STATES5.STATE_NAME, 
+  CASE WHEN dbo.OCCURRENCES.ACCIDENT_STATE_ID IS NULL THEN dbo_STATES5.STATE_NAME 
+------- WHEN dbo.OCCURRENCES.ACCIDENT_STATE_ID ='0' THEN dbo_STATES5.STATE_NAME 
+WHEN dbo.OCCURRENCES.ACCIDENT_STATE_ID = ' '  THEN dbo_STATES5.STATE_NAME ELSE dbo_STATES8.STATE_NAME END, 
+  dbo.INVOICE_LINE_ITEM_RPT_DETAILS.LINE_ITEM_TYPE_CD, 
+  case dbo.INVOICE_LINE_ITEM_RPT_DETAILS.UTASK_ID when 0 then 'N\A' else dbo.UCODE_UTASKS.UTASK_CD+' - '+dbo.UCODE_UTASKS.UTASK_DESC end, 
+  dbo_ALL_COMPANIES2.CITY, 
+  dbo.UCODE_UTASKS.UTASK_DESC,
+  dbo.INVOICE_HISTORY.FIN_DT
+
+
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>112</xloc>
+      <yloc>976</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>gtfrom_firmTrending_DollarsBilled</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MAG LSS</connection>
+    <sql>SELECT
+  dbo.ALL_COMPANIES.COMPANY_NAME as Division_Name,
+  dbo.INVOICES.INVOICE_ID as Invoice_ID,
+  dbo_ALL_COMPANIES2.COMPANY_NAME as Law_firm_Name,
+  dbo.MATTERS.MATTER_ID as Matter_id,
+  dbo.INVOICE_HISTORY.FIN_DT as finalized_Date,
+  {fn year(dbo.INVOICE_HISTORY.FIN_DT)} as year_of_finalized_date,
+  dbo_STATES5.STATE_NAME as Law_Firm_Office_State,
+  dbo.INVOICE_SUMMARY.FINAL_FEE_AMT as FINAL_FEE_AMT,
+  dbo.INVOICE_SUMMARY.FINAL_EXPENSE_AMT as FINAL_EXPENSE_AMT,
+  dbo.INVOICE_SUMMARY.FINAL_AMT as FINAL_AMT,
+  CASE WHEN dbo.OCCURRENCES.ACCIDENT_STATE_ID IS NULL THEN dbo_STATES5.STATE_NAME WHEN dbo.OCCURRENCES.ACCIDENT_STATE_ID = ' '  THEN dbo_STATES5.STATE_NAME 
+                   ELSE dbo_STATES8.STATE_NAME END as Accident_State,
+  dbo_ALL_COMPANIES2.CITY as Law_Firm_City
+FROM
+  dbo.INVOICE_HISTORY RIGHT OUTER JOIN dbo.INVOICES ON (dbo.INVOICE_HISTORY.INVOICE_ID=dbo.INVOICES.INVOICE_ID)
+   LEFT OUTER JOIN dbo.INVOICE_SUMMARY ON (dbo.INVOICE_SUMMARY.INVOICE_ID=dbo.INVOICES.INVOICE_ID)
+   INNER JOIN dbo.ALL_COMPANIES ON (dbo.ALL_COMPANIES.COMPANY_ID=dbo.INVOICES.DIVISION_ID)
+   RIGHT OUTER JOIN dbo.MATTERS ON (dbo.INVOICES.MATTER_ID=dbo.MATTERS.MATTER_ID)
+   LEFT OUTER JOIN dbo.OCCURRENCES ON (dbo.MATTERS.OCCURRENCE_ID=dbo.OCCURRENCES.OCCURRENCE_ID)
+   LEFT OUTER JOIN dbo.STATES  dbo_STATES8 ON (dbo.OCCURRENCES.ACCIDENT_STATE_ID=dbo_STATES8.STATE_ID)
+   INNER JOIN dbo.ALL_COMPANIES  dbo_ALL_COMPANIES2 ON (dbo_ALL_COMPANIES2.COMPANY_ID=dbo.INVOICES.FIRM_ID)
+   INNER JOIN dbo.OFFICES  dbo_OFFICES2 ON (dbo_OFFICES2.OFFICE_ID=dbo.INVOICES.FIRM_OFFICE_ID)
+   LEFT OUTER JOIN dbo.STATES  dbo_STATES5 ON (dbo_OFFICES2.STATE_ID=dbo_STATES5.STATE_ID)
+  
+WHERE
+( dbo.ALL_COMPANIES.COMPANY_TYPE_CD = 'D'  )
+  AND  ( dbo_ALL_COMPANIES2.COMPANY_TYPE_CD = 'L'  )
+  </sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>Y</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>96</xloc>
+      <yloc>1159</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>gtfrom_firmTrending_hoursBilled</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MAG LSS</connection>
+    <sql>SELECT
+  {fn year(dbo.INVOICE_HISTORY.FIN_DT)} as finalized_year,
+  dbo.MATTERS.MATTER_ID,
+  CASE WHEN dbo.OCCURRENCES.ACCIDENT_STATE_ID IS NULL THEN dbo_STATES5.STATE_NAME WHEN dbo.OCCURRENCES.ACCIDENT_STATE_ID = ' '  THEN dbo_STATES5.STATE_NAME 
+ELSE dbo_STATES8.STATE_NAME END as Accident_state,
+  dbo.INVOICES.INVOICE_ID,
+  sum(dbo.INVOICE_LINE_ITEM_RPT_DETAILS.FINAL_UNITS) as final_units,
+  dbo_ALL_COMPANIES2.COMPANY_NAME as law_firm_name,
+  dbo_ALL_COMPANIES2.CITY as Law_firm_city
+FROM
+  dbo.INVOICE_HISTORY RIGHT OUTER JOIN dbo.INVOICES ON (dbo.INVOICE_HISTORY.INVOICE_ID=dbo.INVOICES.INVOICE_ID)
+   RIGHT OUTER JOIN dbo.MATTERS ON (dbo.INVOICES.MATTER_ID=dbo.MATTERS.MATTER_ID)
+   LEFT OUTER JOIN dbo.MATTER_FIRMS ON (dbo.MATTERS.MATTER_ID=dbo.MATTER_FIRMS.MATTER_ID)
+   LEFT OUTER JOIN dbo.ALL_COMPANIES  dbo_ALL_COMPANIES11 ON (dbo.MATTER_FIRMS.FIRM_ID=dbo_ALL_COMPANIES11.COMPANY_ID)
+   LEFT OUTER JOIN dbo.OCCURRENCES ON (dbo.MATTERS.OCCURRENCE_ID=dbo.OCCURRENCES.OCCURRENCE_ID)
+   LEFT OUTER JOIN dbo.STATES  dbo_STATES8 ON (dbo.OCCURRENCES.ACCIDENT_STATE_ID=dbo_STATES8.STATE_ID)
+   INNER JOIN dbo.ALL_COMPANIES  dbo_ALL_COMPANIES10 ON (dbo.MATTERS.DIVISION_ID=dbo_ALL_COMPANIES10.COMPANY_ID)
+   INNER JOIN dbo.ALL_COMPANIES  dbo_ALL_COMPANIES2 ON (dbo_ALL_COMPANIES2.COMPANY_ID=dbo.INVOICES.FIRM_ID)
+   INNER JOIN dbo.OFFICES  dbo_OFFICES2 ON (dbo_OFFICES2.OFFICE_ID=dbo.INVOICES.FIRM_OFFICE_ID)
+   LEFT OUTER JOIN dbo.STATES  dbo_STATES5 ON (dbo_OFFICES2.STATE_ID=dbo_STATES5.STATE_ID)
+   INNER JOIN dbo.INVOICE_LINE_ITEM_RPT_DETAILS ON (dbo.INVOICES.INVOICE_ID=dbo.INVOICE_LINE_ITEM_RPT_DETAILS.INVOICE_ID)
+  
+WHERE
+( dbo_ALL_COMPANIES2.COMPANY_TYPE_CD = 'L'  )
+  AND  
+  
+   dbo.INVOICE_LINE_ITEM_RPT_DETAILS.BLOCKSEQ  >=  0
+   AND
+   dbo.INVOICE_LINE_ITEM_RPT_DETAILS.LINE_ITEM_TYPE_CD  =  'F'
+
+   
+GROUP BY
+  {fn year(dbo.INVOICE_HISTORY.FIN_DT)}, 
+  dbo.MATTERS.MATTER_ID, 
+  CASE WHEN dbo.OCCURRENCES.ACCIDENT_STATE_ID IS NULL THEN dbo_STATES5.STATE_NAME WHEN dbo.OCCURRENCES.ACCIDENT_STATE_ID = ' '  THEN dbo_STATES5.STATE_NAME 
+
+ELSE dbo_STATES8.STATE_NAME END, 
+  dbo.INVOICES.INVOICE_ID, 
+  dbo_ALL_COMPANIES2.COMPANY_NAME, 
+  dbo_ALL_COMPANIES2.CITY
+
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>80</xloc>
+      <yloc>880</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>load_TK_Hrly_Rate_Ctgry</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MAGSTAGE</connection>
+    <schema>magstage</schema>
+    <table>LSS_TK_Hourly_Rate_Ctgry</table>
+    <commit>10000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>Division_Name</column_name>
+        <stream_name>Division_Name</stream_name>
+      </field>
+      <field>
+        <column_name>LAw_firm_Name</column_name>
+        <stream_name>LAw_firm_Name</stream_name>
+      </field>
+      <field>
+        <column_name>Submitted_units</column_name>
+        <stream_name>Submitted_units</stream_name>
+      </field>
+      <field>
+        <column_name>Submitted_Rate</column_name>
+        <stream_name>Submitted_Rate</stream_name>
+      </field>
+      <field>
+        <column_name>LINE_OF_BUSINESS_CD</column_name>
+        <stream_name>LINE_OF_BUSINESS_CD</stream_name>
+      </field>
+      <field>
+        <column_name>LINE_OF_BUSINESS_DESC</column_name>
+        <stream_name>LINE_OF_BUSINESS_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>Division_Office_Name</column_name>
+        <stream_name>Division_Office_Name</stream_name>
+      </field>
+      <field>
+        <column_name>Timekeeper_Name</column_name>
+        <stream_name>Timekeeper_Name</stream_name>
+      </field>
+      <field>
+        <column_name>Timekeeper_Category</column_name>
+        <stream_name>Timekeeper_Category</stream_name>
+      </field>
+      <field>
+        <column_name>Law_firm_state</column_name>
+        <stream_name>Law_firm_state</stream_name>
+      </field>
+      <field>
+        <column_name>FIN_DT</column_name>
+        <stream_name>FIN_DT</stream_name>
+      </field>
+      <field>
+        <column_name>LOAD_DATE</column_name>
+        <stream_name>LOAD_DATE</stream_name>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>864</xloc>
+      <yloc>432</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>load_firmTrending_dollars_billed</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MAGSTAGE</connection>
+    <schema>magstage</schema>
+    <table>LSS_FIRM_TRNDING_DLARS_BILLED</table>
+    <commit>10000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>Division_Name</column_name>
+        <stream_name>Division_Name</stream_name>
+      </field>
+      <field>
+        <column_name>Invoice_ID</column_name>
+        <stream_name>Invoice_ID</stream_name>
+      </field>
+      <field>
+        <column_name>Law_firm_Name</column_name>
+        <stream_name>Law_firm_Name</stream_name>
+      </field>
+      <field>
+        <column_name>Matter_id</column_name>
+        <stream_name>Matter_id</stream_name>
+      </field>
+      <field>
+        <column_name>finalized_Date</column_name>
+        <stream_name>finalized_Date</stream_name>
+      </field>
+      <field>
+        <column_name>year_of_finalized_date</column_name>
+        <stream_name>year_of_finalized_date</stream_name>
+      </field>
+      <field>
+        <column_name>Law_Firm_Office_State</column_name>
+        <stream_name>Law_Firm_Office_State</stream_name>
+      </field>
+      <field>
+        <column_name>FINAL_FEE_AMT</column_name>
+        <stream_name>FINAL_FEE_AMT</stream_name>
+      </field>
+      <field>
+        <column_name>FINAL_EXPENSE_AMT</column_name>
+        <stream_name>FINAL_EXPENSE_AMT</stream_name>
+      </field>
+      <field>
+        <column_name>FINAL_AMT</column_name>
+        <stream_name>FINAL_AMT</stream_name>
+      </field>
+      <field>
+        <column_name>Accident_State</column_name>
+        <stream_name>Accident_State</stream_name>
+      </field>
+      <field>
+        <column_name>Law_Firm_City</column_name>
+        <stream_name>Law_Firm_City</stream_name>
+      </field>
+      <field>
+        <column_name>LOAD_DATE</column_name>
+        <stream_name>LOAD_DATE</stream_name>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>848</xloc>
+      <yloc>1159</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>load_firmTrending_hrs_billed</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MAGSTAGE</connection>
+    <schema>magstage</schema>
+    <table>lss_firm_trending_hrs_billed</table>
+    <commit>10000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>finalized_year</column_name>
+        <stream_name>finalized_year</stream_name>
+      </field>
+      <field>
+        <column_name>MATTER_ID</column_name>
+        <stream_name>MATTER_ID</stream_name>
+      </field>
+      <field>
+        <column_name>Accident_state</column_name>
+        <stream_name>Accident_state</stream_name>
+      </field>
+      <field>
+        <column_name>INVOICE_ID</column_name>
+        <stream_name>INVOICE_ID</stream_name>
+      </field>
+      <field>
+        <column_name>final_units</column_name>
+        <stream_name>final_units</stream_name>
+      </field>
+      <field>
+        <column_name>law_firm_name</column_name>
+        <stream_name>law_firm_name</stream_name>
+      </field>
+      <field>
+        <column_name>Law_firm_city</column_name>
+        <stream_name>Law_firm_city</stream_name>
+      </field>
+      <field>
+        <column_name>LOAD_DATE</column_name>
+        <stream_name>LOAD_DATE</stream_name>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>832</xloc>
+      <yloc>880</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>load_frqncy_time_chrgs</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MAGSTAGE</connection>
+    <schema>magstage</schema>
+    <table>LSS_frqncy_time_chrges</table>
+    <commit>10000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>UNITS_BILLED</column_name>
+        <stream_name>UNITS_BILLED</stream_name>
+      </field>
+      <field>
+        <column_name>UNITS_COUNT</column_name>
+        <stream_name>UNITS_COUNT</stream_name>
+      </field>
+      <field>
+        <column_name>Frqncy_tm_chrgs_invcID</column_name>
+        <stream_name>Frqncy_tm_chrgs_invcID</stream_name>
+      </field>
+      <field>
+        <column_name>FRQ_OFTIME_CHRGES_EMPID</column_name>
+        <stream_name>FRQ_OFTIME_CHRGES_EMPID</stream_name>
+      </field>
+      <field>
+        <column_name>EMP17_LSTNAME</column_name>
+        <stream_name>EMP17_LSTNAME</stream_name>
+      </field>
+      <field>
+        <column_name>EMP17_FSTNAME</column_name>
+        <stream_name>EMP17_FSTNAME</stream_name>
+      </field>
+      <field>
+        <column_name>EMP17_EMPID</column_name>
+        <stream_name>EMP17_EMPID</stream_name>
+      </field>
+      <field>
+        <column_name>LOAD_DATE</column_name>
+        <stream_name>LOAD_DATE</stream_name>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>848</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>load_hrs_by_billrate</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MAGSTAGE</connection>
+    <schema>magstage</schema>
+    <table>lss_hours_by_billingrate</table>
+    <commit>10000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>invc_invcid</column_name>
+        <stream_name>invc_invcid</stream_name>
+      </field>
+      <field>
+        <column_name>MTTR_MTTRID</column_name>
+        <stream_name>MTTR_MTTRID</stream_name>
+      </field>
+      <field>
+        <column_name>HRS_BYBILL_RT_EMPYID</column_name>
+        <stream_name>HRS_BYBILL_RT_EMPYID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP8_COMPNAME</column_name>
+        <stream_name>COMP8_COMPNAME</stream_name>
+      </field>
+      <field>
+        <column_name>COMP9_COMPNAME</column_name>
+        <stream_name>COMP9_COMPNAME</stream_name>
+      </field>
+      <field>
+        <column_name>UNITS_COUNT</column_name>
+        <stream_name>UNITS_COUNT</stream_name>
+      </field>
+      <field>
+        <column_name>total_billing</column_name>
+        <stream_name>total_billing</stream_name>
+      </field>
+      <field>
+        <column_name>BILLING_RATE</column_name>
+        <stream_name>BILLING_RATE</stream_name>
+      </field>
+      <field>
+        <column_name>LINE_OF_BUSINESS_CD</column_name>
+        <stream_name>LINE_OF_BUSINESS_CD</stream_name>
+      </field>
+      <field>
+        <column_name>LINE_OF_BUSINESS_DESC</column_name>
+        <stream_name>LINE_OF_BUSINESS_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>OFFICE_NAME</column_name>
+        <stream_name>OFFICE_NAME</stream_name>
+      </field>
+      <field>
+        <column_name>STATE_NAME</column_name>
+        <stream_name>STATE_NAME</stream_name>
+      </field>
+      <field>
+        <column_name>invhstry2_findt</column_name>
+        <stream_name>invhstry2_findt</stream_name>
+      </field>
+      <field>
+        <column_name>LOAD_DATE</column_name>
+        <stream_name>LOAD_DATE</stream_name>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>848</xloc>
+      <yloc>304</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>load_invc_redcn_smmry</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MAGSTAGE</connection>
+    <schema>magstage</schema>
+    <table>LSS_invoice_reduction_summary</table>
+    <commit>10000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>INV_REDUC_SUMMRY_INVID</column_name>
+        <stream_name>INV_REDUC_SUMMRY_INVID</stream_name>
+      </field>
+      <field>
+        <column_name>INV_REDUC_SUMMRY_DIVID</column_name>
+        <stream_name>INV_REDUC_SUMMRY_DIVID</stream_name>
+      </field>
+      <field>
+        <column_name>INV_REDUC_SUMMRY_FRMID</column_name>
+        <stream_name>INV_REDUC_SUMMRY_FRMID</stream_name>
+      </field>
+      <field>
+        <column_name>INV_REDUC_SUMMRY_DIVOFFID</column_name>
+        <stream_name>INV_REDUC_SUMMRY_DIVOFFID</stream_name>
+      </field>
+      <field>
+        <column_name>AUDITED_AMT_BILLED</column_name>
+        <stream_name>AUDITED_AMT_BILLED</stream_name>
+      </field>
+      <field>
+        <column_name>FINAL_REDUCTION_AMT</column_name>
+        <stream_name>FINAL_REDUCTION_AMT</stream_name>
+      </field>
+      <field>
+        <column_name>FINAL_AMT_BILLED</column_name>
+        <stream_name>FINAL_AMT_BILLED</stream_name>
+      </field>
+      <field>
+        <column_name>AMT_BILLED</column_name>
+        <stream_name>AMT_BILLED</stream_name>
+      </field>
+      <field>
+        <column_name>FEE_EXPENSE_CD</column_name>
+        <stream_name>FEE_EXPENSE_CD</stream_name>
+      </field>
+      <field>
+        <column_name>AUDITED_REDUCTION_AMT</column_name>
+        <stream_name>AUDITED_REDUCTION_AMT</stream_name>
+      </field>
+      <field>
+        <column_name>INV_REDUC_SUMMRY_CPMLI_CD</column_name>
+        <stream_name>INV_REDUC_SUMMRY_CPMLI_CD</stream_name>
+      </field>
+      <field>
+        <column_name>CMPLNCD2_COMPLINCECD</column_name>
+        <stream_name>CMPLNCD2_COMPLINCECD</stream_name>
+      </field>
+      <field>
+        <column_name>CMPLNCD2_COMPLANCEDESC</column_name>
+        <stream_name>CMPLNCD2_COMPLANCEDESC</stream_name>
+      </field>
+      <field>
+        <column_name>COMP3_COMPID</column_name>
+        <stream_name>COMP3_COMPID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP3_COMPNAME</column_name>
+        <stream_name>COMP3_COMPNAME</stream_name>
+      </field>
+      <field>
+        <column_name>COMP3_COMPTYPCD</column_name>
+        <stream_name>COMP3_COMPTYPCD</stream_name>
+      </field>
+      <field>
+        <column_name>COMP4_COMPID</column_name>
+        <stream_name>COMP4_COMPID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP4_COMPNAME</column_name>
+        <stream_name>COMP4_COMPNAME</stream_name>
+      </field>
+      <field>
+        <column_name>COMP4_COMPTYPCD</column_name>
+        <stream_name>COMP4_COMPTYPCD</stream_name>
+      </field>
+      <field>
+        <column_name>OFFC3_OFFID</column_name>
+        <stream_name>OFFC3_OFFID</stream_name>
+      </field>
+      <field>
+        <column_name>OFFC3_OFFCNAME</column_name>
+        <stream_name>OFFC3_OFFCNAME</stream_name>
+      </field>
+      <field>
+        <column_name>INVHSTRY3_INVID</column_name>
+        <stream_name>INVHSTRY3_INVID</stream_name>
+      </field>
+      <field>
+        <column_name>INVHSTRY3_FINDT</column_name>
+        <stream_name>INVHSTRY3_FINDT</stream_name>
+      </field>
+      <field>
+        <column_name>INVHSTRY3_FINYEAR</column_name>
+        <stream_name>INVHSTRY3_FINYEAR</stream_name>
+      </field>
+      <field>
+        <column_name>LOAD_DATE</column_name>
+        <stream_name>LOAD_DATE</stream_name>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>896</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>load_loaws_firms_info</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MAGSTAGE</connection>
+    <schema>magstage</schema>
+    <table>lss_law_firms_info_states</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>Law_Firm_Name</column_name>
+        <stream_name>Law_Firm_Name</stream_name>
+      </field>
+      <field>
+        <column_name>Law_Firm_Office_Name</column_name>
+        <stream_name>Law_Firm_Office_Name</stream_name>
+      </field>
+      <field>
+        <column_name>Law_Firm_City</column_name>
+        <stream_name>Law_Firm_City</stream_name>
+      </field>
+      <field>
+        <column_name>Law_Firm_Country_Code</column_name>
+        <stream_name>Law_Firm_Country_Code</stream_name>
+      </field>
+      <field>
+        <column_name>Law_Firm_Office_Address1</column_name>
+        <stream_name>Law_Firm_Office_Address1</stream_name>
+      </field>
+      <field>
+        <column_name>Law_Firm_Office_Address2</column_name>
+        <stream_name>Law_Firm_Office_Address2</stream_name>
+      </field>
+      <field>
+        <column_name>Law_Firm_Office_Address3</column_name>
+        <stream_name>Law_Firm_Office_Address3</stream_name>
+      </field>
+      <field>
+        <column_name>Law_Firm_Office_City</column_name>
+        <stream_name>Law_Firm_Office_City</stream_name>
+      </field>
+      <field>
+        <column_name>Law_Firm_Office_Country_Code</column_name>
+        <stream_name>Law_Firm_Office_Country_Code</stream_name>
+      </field>
+      <field>
+        <column_name>Law_Firm_Office_Email_Address</column_name>
+        <stream_name>Law_Firm_Office_Email_Address</stream_name>
+      </field>
+      <field>
+        <column_name>Law_Firm_Office_Phone_No</column_name>
+        <stream_name>Law_Firm_Office_Phone_No</stream_name>
+      </field>
+      <field>
+        <column_name>Law_Firm_Office_Postal_Code</column_name>
+        <stream_name>Law_Firm_Office_Postal_Code</stream_name>
+      </field>
+      <field>
+        <column_name>Law_Firm_Office_State_Name</column_name>
+        <stream_name>Law_Firm_Office_State_Name</stream_name>
+      </field>
+      <field>
+        <column_name>Law_Firm_Office_Status_Code</column_name>
+        <stream_name>Law_Firm_Office_Status_Code</stream_name>
+      </field>
+      <field>
+        <column_name>Law_Firm_Office_Tax_Id</column_name>
+        <stream_name>Law_Firm_Office_Tax_Id</stream_name>
+      </field>
+      <field>
+        <column_name>Law_Firm_State_Name</column_name>
+        <stream_name>Law_Firm_State_Name</stream_name>
+      </field>
+      <field>
+        <column_name>Law_Firm_Status_Code</column_name>
+        <stream_name>Law_Firm_Status_Code</stream_name>
+      </field>
+      <field>
+        <column_name>Law_Firm_Tax_ID</column_name>
+        <stream_name>Law_Firm_Tax_ID</stream_name>
+      </field>
+      <field>
+        <column_name>LOAD_DATE</column_name>
+        <stream_name>LOAD_DATE</stream_name>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>813</xloc>
+      <yloc>770</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>load_lss_ovrvw_fees_expnses_ctgry</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MAGSTAGE</connection>
+    <schema>magstage</schema>
+    <table>lss_ovrvw_fees_expnses_ctgry</table>
+    <commit>10000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>BLOCKSEQ</column_name>
+        <stream_name>BLOCKSEQ</stream_name>
+      </field>
+      <field>
+        <column_name>Division</column_name>
+        <stream_name>Division</stream_name>
+      </field>
+      <field>
+        <column_name>FINAL_RATE</column_name>
+        <stream_name>FINAL_RATE</stream_name>
+      </field>
+      <field>
+        <column_name>Final_units</column_name>
+        <stream_name>Final_units</stream_name>
+      </field>
+      <field>
+        <column_name>Final_amount</column_name>
+        <stream_name>Final_amount</stream_name>
+      </field>
+      <field>
+        <column_name>INVOICE_ID</column_name>
+        <stream_name>INVOICE_ID</stream_name>
+      </field>
+      <field>
+        <column_name>Law_firm_name</column_name>
+        <stream_name>Law_firm_name</stream_name>
+      </field>
+      <field>
+        <column_name>MATTER_ID</column_name>
+        <stream_name>MATTER_ID</stream_name>
+      </field>
+      <field>
+        <column_name>Finalized_year</column_name>
+        <stream_name>Finalized_year</stream_name>
+      </field>
+      <field>
+        <column_name>Law_firm_office_State</column_name>
+        <stream_name>Law_firm_office_State</stream_name>
+      </field>
+      <field>
+        <column_name>Accident_state</column_name>
+        <stream_name>Accident_state</stream_name>
+      </field>
+      <field>
+        <column_name>LINE_ITEM_TYPE_CD</column_name>
+        <stream_name>LINE_ITEM_TYPE_CD</stream_name>
+      </field>
+      <field>
+        <column_name>Task_desc</column_name>
+        <stream_name>Task_desc</stream_name>
+      </field>
+      <field>
+        <column_name>Law_firm_city</column_name>
+        <stream_name>Law_firm_city</stream_name>
+      </field>
+      <field>
+        <column_name>UTASK_DESC</column_name>
+        <stream_name>UTASK_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>finalized_date</column_name>
+        <stream_name>finalized_date</stream_name>
+      </field>
+      <field>
+        <column_name>LOAD_DATE</column_name>
+        <stream_name>LOAD_DATE</stream_name>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>832</xloc>
+      <yloc>1072</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>load_lss_timekkeperrates</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MAGSTAGE</connection>
+    <schema>magstage</schema>
+    <table>lss_timekeeper_rates</table>
+    <commit>10000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>comp7_compname</column_name>
+        <stream_name>comp7_compname</stream_name>
+      </field>
+      <field>
+        <column_name>offc7_offcname</column_name>
+        <stream_name>offc7_offcname</stream_name>
+      </field>
+      <field>
+        <column_name>LINE_OF_BUSINESS_DESC</column_name>
+        <stream_name>LINE_OF_BUSINESS_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MATTER_ID</column_name>
+        <stream_name>MATTER_ID</stream_name>
+      </field>
+      <field>
+        <column_name>HOURLY_RATE</column_name>
+        <stream_name>HOURLY_RATE</stream_name>
+      </field>
+      <field>
+        <column_name>comp6_compname</column_name>
+        <stream_name>comp6_compname</stream_name>
+      </field>
+      <field>
+        <column_name>EFFECTIVE_DT</column_name>
+        <stream_name>EFFECTIVE_DT</stream_name>
+      </field>
+      <field>
+        <column_name>EXPIRATION_DT</column_name>
+        <stream_name>EXPIRATION_DT</stream_name>
+      </field>
+      <field>
+        <column_name>emply6_empname</column_name>
+        <stream_name>emply6_empname</stream_name>
+      </field>
+      <field>
+        <column_name>TIMEKEEPER_CATEGORY_DESC</column_name>
+        <stream_name>TIMEKEEPER_CATEGORY_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>STATUS_CD</column_name>
+        <stream_name>STATUS_CD</stream_name>
+      </field>
+      <field>
+        <column_name>APPROVAL_IND</column_name>
+        <stream_name>APPROVAL_IND</stream_name>
+      </field>
+      <field>
+        <column_name>state4_stname</column_name>
+        <stream_name>state4_stname</stream_name>
+      </field>
+      <field>
+        <column_name>HISTORY_SEQ_NBR</column_name>
+        <stream_name>HISTORY_SEQ_NBR</stream_name>
+      </field>
+      <field>
+        <column_name>LOAD_DATE</column_name>
+        <stream_name>LOAD_DATE</stream_name>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>827</xloc>
+      <yloc>664</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>load_matter_claims</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MAGSTAGE</connection>
+    <schema>magstage</schema>
+    <table>lss_matter_claims</table>
+    <commit>10000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>MTTR_CLMS_MTTRID</column_name>
+        <stream_name>MTTR_CLMS_MTTRID</stream_name>
+      </field>
+      <field>
+        <column_name>MTTR_CLMS_SPLIT_PCT</column_name>
+        <stream_name>MTTR_CLMS_SPLIT_PCT</stream_name>
+      </field>
+      <field>
+        <column_name>MTTR_CLMS_OCCRNCEID</column_name>
+        <stream_name>MTTR_CLMS_OCCRNCEID</stream_name>
+      </field>
+      <field>
+        <column_name>OCCRNCS2_OCCRNCID</column_name>
+        <stream_name>OCCRNCS2_OCCRNCID</stream_name>
+      </field>
+      <field>
+        <column_name>OCCRNCS2_CUSTREF_NO</column_name>
+        <stream_name>OCCRNCS2_CUSTREF_NO</stream_name>
+      </field>
+      <field>
+        <column_name>LOAD_DATE</column_name>
+        <stream_name>LOAD_DATE</stream_name>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>832</xloc>
+      <yloc>544</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step_error_handling>
+  </step_error_handling>
+  <slave-step-copy-partition-distribution>
+  </slave-step-copy-partition-distribution>
+  <slave_transformation>N</slave_transformation>
+</transformation>

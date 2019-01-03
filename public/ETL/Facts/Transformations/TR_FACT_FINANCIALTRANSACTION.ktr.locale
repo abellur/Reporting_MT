@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:52 EST 2019
+file.title=TR_FACT_FINANCIALTRANSACTION
+description=Loads the financial transaction fact table
+title=TR_FACT_FINANCIALTRANSACTION
+file.description=Loads the financial transaction fact table

@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:06 EST 2019
+file.title=TR_Extract_Fake_Transaction
+description=Insert fake transaction records to STG_POLICYTRANSACTION table
+title=TR_Extract_Fake_Transaction
+file.description=Insert fake transaction records to STG_POLICYTRANSACTION table

@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:46 EST 2019
+file.title=JB_LOAD_FACT_POLICYCOVERAGE_EXT
+description=Job to load data to FACT_POLICYCOVERAGE_EXT table
+title=JB_LOAD_FACT_POLICYCOVERAGE_EXT
+file.description=Job to load data to FACT_POLICYCOVERAGE_EXT table

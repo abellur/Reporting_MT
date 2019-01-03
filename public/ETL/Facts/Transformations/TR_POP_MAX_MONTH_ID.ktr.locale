@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:56 EST 2019
+file.title=TR_POP_MAX_MONTH_ID
+description=Populate max month ID of each coverage unique ID
+title=TR_POP_MAX_MONTH_ID
+file.description=Populate max month ID of each coverage unique ID

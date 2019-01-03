@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:28 EST 2019
+file.title=TR_Load_XML_Data_To_Vl_Stg_Premiumdetail
+description=This is a skeleton transformation which would read data from a given XML file, and load data into a given table.
+title=TR_Load_XML_Data_To_Vl_Stg_Premiumdetail
+file.description=This is a skeleton transformation which would read data from a given XML file, and load data into a given table.

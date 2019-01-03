@@ -1,0 +1,4595 @@
+<transformation>
+  <info>
+    <name>TR_DIM_CLAIMTRANSACTIONTYPE</name>
+    <description/>
+    <extended_description/>
+    <trans_version/>
+    <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
+    <directory>/public/ETL/Defaults/Transformations</directory>
+    <parameters>
+    </parameters>
+    <log>
+      <trans-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <size_limit_lines/>
+        <interval/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STATUS</id>
+          <enabled>Y</enabled>
+          <name>STATUS</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+          <subject/>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>STARTDATE</id>
+          <enabled>Y</enabled>
+          <name>STARTDATE</name>
+        </field>
+        <field>
+          <id>ENDDATE</id>
+          <enabled>Y</enabled>
+          <name>ENDDATE</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>DEPDATE</id>
+          <enabled>Y</enabled>
+          <name>DEPDATE</name>
+        </field>
+        <field>
+          <id>REPLAYDATE</id>
+          <enabled>Y</enabled>
+          <name>REPLAYDATE</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>N</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+        <field>
+          <id>EXECUTING_SERVER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_SERVER</name>
+        </field>
+        <field>
+          <id>EXECUTING_USER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_USER</name>
+        </field>
+        <field>
+          <id>CLIENT</id>
+          <enabled>N</enabled>
+          <name>CLIENT</name>
+        </field>
+      </trans-log-table>
+      <perf-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <interval/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>SEQ_NR</id>
+          <enabled>Y</enabled>
+          <name>SEQ_NR</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>INPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>INPUT_BUFFER_ROWS</name>
+        </field>
+        <field>
+          <id>OUTPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>OUTPUT_BUFFER_ROWS</name>
+        </field>
+      </perf-log-table>
+      <channel-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>LOGGING_OBJECT_TYPE</id>
+          <enabled>Y</enabled>
+          <name>LOGGING_OBJECT_TYPE</name>
+        </field>
+        <field>
+          <id>OBJECT_NAME</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_NAME</name>
+        </field>
+        <field>
+          <id>OBJECT_COPY</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_COPY</name>
+        </field>
+        <field>
+          <id>REPOSITORY_DIRECTORY</id>
+          <enabled>Y</enabled>
+          <name>REPOSITORY_DIRECTORY</name>
+        </field>
+        <field>
+          <id>FILENAME</id>
+          <enabled>Y</enabled>
+          <name>FILENAME</name>
+        </field>
+        <field>
+          <id>OBJECT_ID</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_ID</name>
+        </field>
+        <field>
+          <id>OBJECT_REVISION</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_REVISION</name>
+        </field>
+        <field>
+          <id>PARENT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>PARENT_CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>ROOT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>ROOT_CHANNEL_ID</name>
+        </field>
+      </channel-log-table>
+      <step-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>N</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+      </step-log-table>
+      <metrics-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_DATE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_CODE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_CODE</name>
+        </field>
+        <field>
+          <id>METRICS_DESCRIPTION</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DESCRIPTION</name>
+        </field>
+        <field>
+          <id>METRICS_SUBJECT</id>
+          <enabled>Y</enabled>
+          <name>METRICS_SUBJECT</name>
+        </field>
+        <field>
+          <id>METRICS_TYPE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_TYPE</name>
+        </field>
+        <field>
+          <id>METRICS_VALUE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_VALUE</name>
+        </field>
+      </metrics-log-table>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit/>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+      <slaveserver>
+        <name>4Sight BI - PDI Server</name>
+        <hostname>10.0.0.21</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>joe</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Carte 1</name>
+        <hostname>localhost</hostname>
+        <port>9081</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>DI Server</name>
+        <hostname>localhost</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>joe</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_DEV</name>
+        <hostname>magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>shota</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_SERVER</name>
+        <hostname>http://magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>shota</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_TEST</name>
+        <hostname>magspentahotest</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO</name>
+        <hostname>magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO_BTS</name>
+        <hostname>129.144.25.104</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO_DEV</name>
+        <hostname>magspentahodev</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Master</name>
+        <hostname>localhost</hostname>
+        <port>8081</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SERVER1</name>
+        <hostname>LOCALHOST</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SLAVE ONE</name>
+        <hostname>192.168.2.101</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4a418bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SLAVE TWO</name>
+        <hostname>192.168.2.101</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave1</name>
+        <hostname>localhost</hostname>
+        <port>8082</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave2</name>
+        <hostname>localhost</hostname>
+        <port>8083</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave3</name>
+        <hostname>localhost</hostname>
+        <port>8084</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>local DIS</name>
+        <hostname>localhost</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>magspentahodev</name>
+        <hostname>magspentahodev</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+    </slaveservers>
+    <clusterschemas>
+      <clusterschema>
+        <name>4sbi_admin</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+        </slaveservers>
+      </clusterschema>
+      <clusterschema>
+        <name>ClusterSchema</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+          <name>Slave3</name>
+          <name>Slave2</name>
+          <name>Slave1</name>
+          <name>Master</name>
+        </slaveservers>
+      </clusterschema>
+      <clusterschema>
+        <name>cluster A</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+          <name>Carte 1</name>
+          <name>local DIS</name>
+        </slaveservers>
+      </clusterschema>
+    </clusterschemas>
+    <created_user>admin</created_user>
+    <created_date>2011/06/03 07:57:19.000</created_date>
+    <modified_user>admin</modified_user>
+    <modified_date>2017/03/08 11:00:45.914</modified_date>
+    <key_for_session_key/>
+    <is_key_private>N</is_key_private>
+  </info>
+  <notepads>
+    <notepad>
+      <note>${MAX_CLAIMTRANSACTIONTYPE_ID}</note>
+      <xloc>645</xloc>
+      <yloc>156</yloc>
+      <width>215</width>
+      <heigth>26</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+  </notepads>
+  <connection>
+    <name>4SBI_DataWarehouse</name>
+    <server>${G_DW_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_DW_DB_NAME}</database>
+    <port>${G_DW_DB_PORT}</port>
+    <username>${G_DW_DB_USERNAME}</username>
+    <password>${G_DW_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_DW_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_DW_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_DW_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>Delphi_OLTP</name>
+    <server>${G_OLTP_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_OLTP_DB_NAME}</database>
+    <port>${G_OLTP_DB_PORT}</port>
+    <username>${G_OLTP_DB_USERNAME}</username>
+    <password>${G_OLTP_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_OLTP_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_OLTP_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_OLTP_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <order>
+    <hop>
+      <from>Default Nulls</from>
+      <to>DIM_TRANSACTIONTYPE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>KEYGENERATION</from>
+      <to>Default Nulls</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>CLAIM TRANSACTION TYPE</from>
+      <to>Change name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Change name</from>
+      <to>Merge Rows (diff)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DIM_CLAIMTRANSACTIONTYPE input</from>
+      <to>Original table Change name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Original table Change name</from>
+      <to>Merge Rows (diff)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge Rows (diff)</from>
+      <to>Get Variables: loadDate</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Variables: loadDate</from>
+      <to>Filter if rows changed</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter if rows changed</from>
+      <to>KEYGENERATION</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter if rows changed</from>
+      <to>Dummy (do nothing)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing)</from>
+      <to>KEYGENERATION</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get Variables: loadMAIL</from>
+      <to>Mail</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Memory Group by</from>
+      <to>Mail subject and comment</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Mail subject and comment</from>
+      <to>Get Variables: loadMAIL</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Original table Change name</from>
+      <to>Stream lookup</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing)</from>
+      <to>Stream lookup</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Stream lookup</from>
+      <to>Microsoft Excel Output - ClaimTransType</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Microsoft Excel Output - ClaimTransType</from>
+      <to>Memory Group by</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <step>
+    <name>CLAIM TRANSACTION TYPE</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Delphi_OLTP</connection>
+    <sql>SELECT x.*,
+       DECODE(ROWNUM,1,'+') USD1, 
+       DECODE(ROWNUM,2,'+') USD2,
+       DECODE(ROWNUM,3,'+') USD3,
+       DECODE(ROWNUM,4,'+') USD4,
+       DECODE(ROWNUM,5,'+') USD5,
+       DECODE(ROWNUM,6,'+') USD6,
+       DECODE(ROWNUM,7,'+') USD7,
+       DECODE(ROWNUM,8,'+') USD8,
+       DECODE(ROWNUM,9,'+') USD9,
+       DECODE(ROWNUM,10,'+') USD10,
+       DECODE(ROWNUM,11,'+') USD11,
+       DECODE(ROWNUM,12,'+') USD12,
+       DECODE(ROWNUM,13,'+') USD13,
+       DECODE(ROWNUM,14,'+') USD14,
+       DECODE(ROWNUM,15,'+') USD15,
+       DECODE(ROWNUM,16,'+') USD16,
+       DECODE(ROWNUM,17,'+') USD17,
+       DECODE(ROWNUM,18,'+') USD18,
+       DECODE(ROWNUM,19,'+') USD19,
+       DECODE(ROWNUM,20,'+') USD20,
+       DECODE(ROWNUM,21,'+') USD21,
+       DECODE(ROWNUM,22,'+') USD22,
+       DECODE(ROWNUM,23,'+') USD23,
+       DECODE(ROWNUM,24,'+') USD24,
+       DECODE(ROWNUM,25,'+') USD25,
+       DECODE(ROWNUM,26,'+') USD26,
+       DECODE(ROWNUM,27,'+') USD27,
+       DECODE(ROWNUM,28,'+') USD28,
+       DECODE(ROWNUM,29,'+') USD29,
+       DECODE(ROWNUM,30,'+') USD30,
+       DECODE(ROWNUM,31,'+') USD31,
+       DECODE(ROWNUM,32,'+') USD32,
+       DECODE(ROWNUM,33,'+') USD33,
+       DECODE(ROWNUM,34,'+') USD34,
+       DECODE(ROWNUM,35,'+') USD35,
+       DECODE(ROWNUM,36,'+') USD36,
+       DECODE(ROWNUM,37,'+') USD37,
+       DECODE(ROWNUM,38,'+') USD38,
+       DECODE(ROWNUM,39,'+') USD39,
+       DECODE(ROWNUM,40,'+') USD40,
+       DECODE(ROWNUM,41,'+') USD41,
+       DECODE(ROWNUM,42,'+') USD42,
+       DECODE(ROWNUM,43,'+') USD43,
+       DECODE(ROWNUM,44,'+') USD44,
+       DECODE(ROWNUM,45,'+') USD45,
+       DECODE(ROWNUM,46,'+') USD46,
+       DECODE(ROWNUM,47,'+') USD47,
+       DECODE(ROWNUM,48,'+') USD48,
+       DECODE(ROWNUM,49,'+') USD49,
+       DECODE(ROWNUM,50,'+') USD50
+FROM   (
+SELECT tc.cm_transaction_type_code "Transaction Code" ,
+       tc.short_description "Name",
+       tc.long_description "Description",
+       ctc.cm_cost_type_code "Transaction SubCode",
+       ctc.short_description "SubCode Name",
+       ctc.long_description "SubCode Description",
+       (CASE ctc.cm_cost_type_code
+          WHEN 'INDEMNITY' THEN
+            DECODE(NVL(tc.paid_b,'N')||nvl(tc.recovery_b,'N'),'YN','+',NULL)
+          ELSE
+            NULL 
+        END) loss_paid,
+       (CASE ctc.cm_cost_type_code
+          WHEN 'INDEMNITY' THEN
+            DECODE(NVL(tc.reserve_b,'N'),'Y','+',NULL)
+          ELSE
+            NULL 
+        END) loss_reserve,
+       (CASE ctc.cm_cost_type_code
+          WHEN 'EXPENSE' THEN
+            DECODE(NVL(tc.paid_b,'N')||NVL(tc.recovery_b,'N'),'YN','+',NULL)
+          ELSE
+            NULL 
+        END) alae_paid,
+       (CASE ctc.cm_cost_type_code
+          WHEN 'EXPENSE' THEN
+            DECODE(NVL(tc.reserve_b,'N'),'Y','+',NULL)
+          ELSE
+            NULL 
+        END) alae_reserve,
+       NULL uale_paid,
+       NULL uale_reserve,
+       NULL subro_received,
+       NULL subro_paid,
+       NULL subro_reserve,
+       NULL salvage_received,
+       NULL salvage_reserve,
+       NULL deductible_recovery_received,
+       NULL deductible_recovery_reserve,
+       (CASE 
+          WHEN (tc.cm_cost_type_code = 'EXPENSE' AND 
+                NVL(tc.recovery_b,'N') = 'Y') THEN
+            '+'
+          ELSE 
+            NULL
+        END) exp_recv,
+       (CASE 
+          WHEN (tc.cm_cost_type_code = 'INDEMNITY' AND 
+                NVL(tc.recovery_b,'N') = 'Y') THEN
+            '+'
+          ELSE 
+            NULL
+        END) ind_recv,
+       (CASE 
+          WHEN (tc.cm_cost_type_code NOT IN ('EXPENSE','INDEMNITY') AND 
+                NVL(tc.recovery_b,'N') = 'Y') THEN
+            '+'
+          ELSE 
+            NULL
+        END) other_recv      
+FROM   Cm_Transaction_Type_code tc,
+       Cm_Cost_Type_Code ctc
+WHERE  tc.cm_cost_type_code = ctc.cm_cost_type_code
+UNION ALL
+SELECT 'DUMMY',
+       'Dummy',
+       'Dummy',
+       'DUMMY',
+       'Dummy',
+       'Dummy',
+       NULL,
+       NULL,
+       NULL,
+       NULL,
+       NULL uale_paid,
+       NULL uale_reserve,
+       NULL subro_received,
+       NULL subro_paid,
+       NULL subro_reserve,
+       NULL salvage_received,
+       NULL salvage_reserve,
+       NULL deductible_recovery_received,
+       NULL deductible_recovery_reserve,
+       NULL exp_recv,
+       NULL ind_recv,
+       NULL other_recv
+FROM   Dual
+ORDER  BY 1,4) x
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>71</xloc>
+      <yloc>49</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Change name</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>Transaction Code</name>
+        <rename>Transaction Code</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>Name</name>
+        <rename>Name</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>Description</name>
+        <rename>Description</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>Transaction SubCode</name>
+        <rename>Transaction SubCode</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>SubCode Name</name>
+        <rename>SubCode Name</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>SubCode Description</name>
+        <rename>SubCode Description</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>LOSS_PAID</name>
+        <rename>Loss Paid</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>LOSS_RESERVE</name>
+        <rename>Loss Reserve</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>ALAE_PAID</name>
+        <rename>ALAE Paid</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>ALAE_RESERVE</name>
+        <rename>ALAE Reserve</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>UALE_PAID</name>
+        <rename>ULAE Paid</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>UALE_RESERVE</name>
+        <rename>ULAE Reserve</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>SUBRO_RECEIVED</name>
+        <rename>Subro Received</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>SUBRO_PAID</name>
+        <rename>Subro Paid</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>SUBRO_RESERVE</name>
+        <rename>Subro Reserve</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>SALVAGE_RECEIVED</name>
+        <rename>Salvage Received</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>SALVAGE_RESERVE</name>
+        <rename>Salvage Reserve</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>DEDUCTIBLE_RECOVERY_RECEIVED</name>
+        <rename>Deductible Recovery Received</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>DEDUCTIBLE_RECOVERY_RESERVE</name>
+        <rename>Deductible Recovery Reserve</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>EXP_RECV</name>
+        <rename>Exp Recv</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>IND_RECV</name>
+        <rename>Loss Recv</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>OTHER_RECV</name>
+        <rename>Other Recv</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD1</name>
+        <rename>UDS 1</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD2</name>
+        <rename>UDS 2</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD3</name>
+        <rename>UDS 3</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD4</name>
+        <rename>UDS 4</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD5</name>
+        <rename>UDS 5</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD6</name>
+        <rename>UDS 6</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD7</name>
+        <rename>UDS 7</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD8</name>
+        <rename>UDS 8</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD9</name>
+        <rename>UDS 9</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD10</name>
+        <rename>UDS 10</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD11</name>
+        <rename>UDS 11</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD12</name>
+        <rename>UDS 12</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD13</name>
+        <rename>UDS 13</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD14</name>
+        <rename>UDS 14</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD15</name>
+        <rename>UDS 15</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD16</name>
+        <rename>UDS 16</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD17</name>
+        <rename>UDS 17</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD18</name>
+        <rename>UDS 18</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD19</name>
+        <rename>UDS 19</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD20</name>
+        <rename>UDS 20</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD21</name>
+        <rename>UDS 21</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD22</name>
+        <rename>UDS 22</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD23</name>
+        <rename>UDS 23</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD24</name>
+        <rename>UDS 24</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD25</name>
+        <rename>UDS 25</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD26</name>
+        <rename>UDS 26</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD27</name>
+        <rename>UDS 27</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD28</name>
+        <rename>UDS 28</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD29</name>
+        <rename>UDS 29</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD30</name>
+        <rename>UDS 30</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD31</name>
+        <rename>UDS 31</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD32</name>
+        <rename>UDS 32</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD33</name>
+        <rename>UDS 33</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD34</name>
+        <rename>UDS 34</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD35</name>
+        <rename>UDS 35</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD36</name>
+        <rename>UDS 36</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD37</name>
+        <rename>UDS 37</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD38</name>
+        <rename>UDS 38</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD39</name>
+        <rename>UDS 39</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD40</name>
+        <rename>UDS 40</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD41</name>
+        <rename>UDS 41</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD42</name>
+        <rename>UDS 42</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD43</name>
+        <rename>UDS 43</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD44</name>
+        <rename>UDS 44</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD45</name>
+        <rename>UDS 45</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD46</name>
+        <rename>UDS 46</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD47</name>
+        <rename>UDS 47</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD48</name>
+        <rename>UDS 48</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD49</name>
+        <rename>UDS 49</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>USD50</name>
+        <rename>UDS 50</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>191</xloc>
+      <yloc>49</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>DIM_CLAIMTRANSACTIONTYPE input</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>4SBI_DataWarehouse</connection>
+    <sql>select * from DIM_CLAIMTRANSACTIONTYPE
+--where 
+order by CTRANS_CODE,CTRANS_DESCRIPTION</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>285</xloc>
+      <yloc>318</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>DIM_TRANSACTIONTYPE</name>
+    <type>InsertUpdate</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>4SBI_DataWarehouse</connection>
+    <commit>1000</commit>
+    <update_bypassed>N</update_bypassed>
+    <lookup>
+      <schema/>
+      <table>DIM_CLAIMTRANSACTIONTYPE</table>
+      <key>
+        <name>Transaction Code</name>
+        <field>ctrans_code</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>ctrans_code</name>
+        <rename>Transaction Code</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>ctrans_subcode</name>
+        <rename>Transaction SubCode</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>claimTransactionType_id</name>
+        <rename>TRANSACTIONTYPE_ID</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>ctrans_name</name>
+        <rename>Name</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_description</name>
+        <rename>Description</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_subname</name>
+        <rename>SubCode Name</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_subDescription</name>
+        <rename>SubCode Description</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_lossPaid</name>
+        <rename>Loss Paid</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_lossReserve</name>
+        <rename>Loss Reserve</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_ALAEPaid</name>
+        <rename>ALAE Paid</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_ALAEReserve</name>
+        <rename>ALAE Reserve</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_ULAEPaid</name>
+        <rename>ULAE Paid</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_ULAEReserve</name>
+        <rename>ULAE Reserve</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_subroReceived</name>
+        <rename>Subro Received</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_subroPaid</name>
+        <rename>Subro Paid</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_subroReserve</name>
+        <rename>Subro Reserve</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_salvageReceived</name>
+        <rename>Salvage Received</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_salvageReserve</name>
+        <rename>Salvage Reserve</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_deductRecoveryRecvd</name>
+        <rename>Deductible Recovery Received</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_deductRecoveryRsrv</name>
+        <rename>Deductible Recovery Reserve</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_alcExpRecovery</name>
+        <rename>Exp Recv</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_lossRecovery</name>
+        <rename>Loss Recv</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_otherRecovery</name>
+        <rename>Other Recv</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary1</name>
+        <rename>UDS 1</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary2</name>
+        <rename>UDS 2</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary3</name>
+        <rename>UDS 3</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary4</name>
+        <rename>UDS 4</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary5</name>
+        <rename>UDS 5</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary6</name>
+        <rename>UDS 6</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary7</name>
+        <rename>UDS 7</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary8</name>
+        <rename>UDS 8</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary9</name>
+        <rename>UDS 9</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary10</name>
+        <rename>UDS 10</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary11</name>
+        <rename>UDS 11</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary12</name>
+        <rename>UDS 12</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary13</name>
+        <rename>UDS 13</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary14</name>
+        <rename>UDS 14</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary15</name>
+        <rename>UDS 15</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary16</name>
+        <rename>UDS 16</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary17</name>
+        <rename>UDS 17</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary18</name>
+        <rename>UDS 18</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary19</name>
+        <rename>UDS 19</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary20</name>
+        <rename>UDS 20</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary21</name>
+        <rename>UDS 21</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary22</name>
+        <rename>UDS 22</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary23</name>
+        <rename>UDS 23</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary24</name>
+        <rename>UDS 24</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary25</name>
+        <rename>UDS 25</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary26</name>
+        <rename>UDS 26</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary27</name>
+        <rename>UDS 27</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary28</name>
+        <rename>UDS 28</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary29</name>
+        <rename>UDS 29</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary30</name>
+        <rename>UDS 30</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary31</name>
+        <rename>UDS 31</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary32</name>
+        <rename>UDS 32</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary33</name>
+        <rename>UDS 33</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary34</name>
+        <rename>UDS 34</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary35</name>
+        <rename>UDS 35</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary36</name>
+        <rename>UDS 36</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary37</name>
+        <rename>UDS 37</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary38</name>
+        <rename>UDS 38</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary39</name>
+        <rename>UDS 39</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary40</name>
+        <rename>UDS 40</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary41</name>
+        <rename>UDS 41</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary42</name>
+        <rename>UDS 42</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary43</name>
+        <rename>UDS 43</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary44</name>
+        <rename>UDS 44</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary45</name>
+        <rename>UDS 45</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary46</name>
+        <rename>UDS 46</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary47</name>
+        <rename>UDS 47</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary48</name>
+        <rename>UDS 48</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary49</name>
+        <rename>UDS 49</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ctrans_userDefinedSummary50</name>
+        <rename>UDS 50</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>loadDate</name>
+        <rename>loadDate</rename>
+        <update>N</update>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>909</xloc>
+      <yloc>49</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Default Nulls</name>
+    <type>IfNull</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <replaceAllByValue/>
+    <replaceAllMask/>
+    <selectFields>N</selectFields>
+    <selectValuesType>Y</selectValuesType>
+    <setEmptyStringAll>N</setEmptyStringAll>
+    <valuetypes>
+      <valuetype>
+        <name>Number</name>
+        <value>${G_DEFAULT_NUMBER}</value>
+        <mask/>
+        <set_type_empty_string>N</set_type_empty_string>
+      </valuetype>
+      <valuetype>
+        <name>String</name>
+        <value>${G_DEFAULT_TEXT}</value>
+        <mask/>
+        <set_type_empty_string>N</set_type_empty_string>
+      </valuetype>
+      <valuetype>
+        <name>Date</name>
+        <value>${G_DEFAULT_DATE}</value>
+        <mask>mm/dd/yyyy</mask>
+        <set_type_empty_string>N</set_type_empty_string>
+      </valuetype>
+      <valuetype>
+        <name>Integer</name>
+        <value>${G_DEFAULT_NUMBER}</value>
+        <mask/>
+        <set_type_empty_string>N</set_type_empty_string>
+      </valuetype>
+    </valuetypes>
+    <fields>
+      </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>788</xloc>
+      <yloc>49</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing)</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>523</xloc>
+      <yloc>134</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Filter if rows changed</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>Dummy (do nothing)</send_true_to>
+    <send_false_to>KEYGENERATION</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>flagfield</leftvalue>
+        <function>=</function>
+        <rightvalue/>
+        <value>
+          <name>constant</name>
+          <type>String</type>
+          <text>changed</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask/>
+        </value>
+      </condition>
+    </compare>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>523</xloc>
+      <yloc>49</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get Variables: loadDate</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>loadDate</name>
+        <variable>${loadDate}</variable>
+        <type>Date</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>406</xloc>
+      <yloc>49</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get Variables: loadMAIL</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>G_MAIL_TO_ADDR</name>
+        <variable>${G_MAIL_TO_ADDR}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>G_MAIL_CC_LIST</name>
+        <variable>${G_MAIL_CC_LIST}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>G_MAIL_BCC_LIST</name>
+        <variable>${G_MAIL_BCC_LIST}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>G_MAIL_SENDER_NAME</name>
+        <variable>${G_MAIL_SENDER_NAME}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>G_MAIL_FROM_ADDR</name>
+        <variable>${G_MAIL_FROM_ADDR}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>G_MAIL_REPLY_TO</name>
+        <variable>${G_MAIL_REPLY_TO}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>G_MAIL_CONTACT_PERSON</name>
+        <variable>${G_MAIL_CONTACT_PERSON}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>G_MAIL_CONTACT_PHONE</name>
+        <variable>${G_MAIL_CONTACT_PHONE}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>G_MAIL_SMTP_SERVER_NAME</name>
+        <variable>${G_MAIL_SMTP_SERVER_NAME}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>G_MAIL_SMTP_SERVER_PORT</name>
+        <variable>${G_MAIL_SMTP_SERVER_PORT}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>897</xloc>
+      <yloc>318</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>KEYGENERATION</name>
+    <type>Sequence</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <valuename>TRANSACTIONTYPE_ID</valuename>
+    <use_database>N</use_database>
+    <connection/>
+    <schema/>
+    <seqname>TRANSACTIONTYPE_ID</seqname>
+    <use_counter>Y</use_counter>
+    <counter_name/>
+    <start_at>${MAX_CLAIMTRANSACTIONTYPE_ID}</start_at>
+    <increment_by>1</increment_by>
+    <max_value>999999999</max_value>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>663</xloc>
+      <yloc>49</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Mail</name>
+    <type>Mail</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <server>G_MAIL_SMTP_SERVER_NAME</server>
+    <port>G_MAIL_SMTP_SERVER_PORT</port>
+    <destination>G_MAIL_TO_ADDR</destination>
+    <destinationCc>G_MAIL_CC_LIST</destinationCc>
+    <destinationBCc>G_MAIL_BCC_LIST</destinationBCc>
+    <replyToAddresses>G_MAIL_REPLY_TO</replyToAddresses>
+    <replyto>G_MAIL_FROM_ADDR</replyto>
+    <replytoname>G_MAIL_SENDER_NAME</replytoname>
+    <subject>subject</subject>
+    <include_date>Y</include_date>
+    <include_subfolders>N</include_subfolders>
+    <zipFilenameDynamic>N</zipFilenameDynamic>
+    <isFilenameDynamic>N</isFilenameDynamic>
+    <attachContentFromField>N</attachContentFromField>
+    <attachContentField/>
+    <attachContentFileNameField/>
+    <dynamicFieldname/>
+    <dynamicWildcard/>
+    <dynamicZipFilename/>
+    <sourcefilefoldername>${DEFAULTS_PATH}\Temp\ClaimTransactionType.xls</sourcefilefoldername>
+    <sourcewildcard/>
+    <contact_person>G_MAIL_CONTACT_PERSON</contact_person>
+    <contact_phone>G_MAIL_CONTACT_PHONE</contact_phone>
+    <comment>comment</comment>
+    <include_files>N</include_files>
+    <zip_files>N</zip_files>
+    <zip_name/>
+    <zip_limit_size>0</zip_limit_size>
+    <use_auth>N</use_auth>
+    <use_secure_auth>N</use_secure_auth>
+    <auth_user/>
+    <auth_password>Encrypted </auth_password>
+    <only_comment>Y</only_comment>
+    <use_HTML>Y</use_HTML>
+    <use_Priority>N</use_Priority>
+    <encoding>UTF-8</encoding>
+    <priority>normal</priority>
+    <importance>normal</importance>
+    <sensitivity>normal</sensitivity>
+    <secureconnectiontype>SSL</secureconnectiontype>
+    <embeddedimages>
+      </embeddedimages>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1010</xloc>
+      <yloc>318</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Mail subject and comment</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>//Script here
+
+var comment="We have detected changes made for following claim transaction type code in OASIS:&lt;br/>&lt;br/>&lt;b>"+Trans_Code+"&lt;/b>&lt;br/>&lt;br/>These changes would lead to changes in DIM_CLAIMTRANSACTIONTYPE table in DRA. Please review the mapping of these fields in DIM_CLAIMTRANSACTIONTYPE table and decide if you would like to reload claim summary fact tables. &lt;br/>You can find the original mapping data in the attached spreadsheet.&lt;br/>&lt;br/>";
+var subject="[DRA] Changes detected for Claim Transaction Type";
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>comment</name>
+        <rename>comment</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>subject</name>
+        <rename>subject</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>756</xloc>
+      <yloc>318</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Memory Group by</name>
+    <type>MemoryGroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>flagfield</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>Trans_Code</aggregate>
+        <subject>Transaction Code</subject>
+        <type>CONCAT_COMMA</type>
+        <valuefield/>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>635</xloc>
+      <yloc>275</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Merge Rows (diff)</name>
+    <type>MergeRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <keys>
+      <key>Transaction Code</key>
+      <key>Transaction SubCode</key>
+    </keys>
+    <values>
+      <value>Loss Paid</value>
+      <value>Loss Reserve</value>
+      <value>ALAE Paid</value>
+      <value>ALAE Reserve</value>
+      <value>ULAE Paid</value>
+      <value>ULAE Reserve</value>
+      <value>Subro Received</value>
+      <value>Subro Paid</value>
+      <value>Subro Reserve</value>
+      <value>Salvage Received</value>
+      <value>Salvage Reserve</value>
+      <value>Deductible Recovery Received</value>
+      <value>Deductible Recovery Reserve</value>
+      <value>Exp Recv</value>
+      <value>Loss Recv</value>
+      <value>Other Recv</value>
+      <value>UDS 1</value>
+      <value>UDS 2</value>
+      <value>UDS 3</value>
+      <value>UDS 4</value>
+      <value>UDS 5</value>
+      <value>UDS 6</value>
+      <value>UDS 7</value>
+      <value>UDS 8</value>
+      <value>UDS 9</value>
+      <value>UDS 10</value>
+      <value>UDS 11</value>
+      <value>UDS 12</value>
+      <value>UDS 13</value>
+      <value>UDS 14</value>
+      <value>UDS 15</value>
+      <value>UDS 16</value>
+      <value>UDS 17</value>
+      <value>UDS 18</value>
+      <value>UDS 19</value>
+      <value>UDS 20</value>
+      <value>UDS 21</value>
+      <value>UDS 22</value>
+      <value>UDS 23</value>
+      <value>UDS 24</value>
+      <value>UDS 25</value>
+      <value>UDS 26</value>
+      <value>UDS 27</value>
+      <value>UDS 28</value>
+      <value>UDS 29</value>
+      <value>UDS 30</value>
+      <value>UDS 31</value>
+      <value>UDS 32</value>
+      <value>UDS 33</value>
+      <value>UDS 34</value>
+      <value>UDS 35</value>
+      <value>UDS 36</value>
+      <value>UDS 37</value>
+      <value>UDS 38</value>
+      <value>UDS 39</value>
+      <value>UDS 40</value>
+      <value>UDS 41</value>
+      <value>UDS 42</value>
+      <value>UDS 43</value>
+      <value>UDS 44</value>
+      <value>UDS 45</value>
+      <value>UDS 46</value>
+      <value>UDS 47</value>
+      <value>UDS 48</value>
+      <value>UDS 49</value>
+      <value>UDS 50</value>
+    </values>
+    <flag_field>flagfield</flag_field>
+    <reference>Original table Change name</reference>
+    <compare>Change name</compare>
+    <compare>
+    </compare>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>285</xloc>
+      <yloc>49</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Microsoft Excel Output - ClaimTransType</name>
+    <type>ExcelOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <header>Y</header>
+    <footer>N</footer>
+    <encoding/>
+    <append>N</append>
+    <add_to_result_filenames>Y</add_to_result_filenames>
+    <file>
+      <name>${DEFAULTS_PATH}\Temp\ClaimTransactionType</name>
+      <extention>xls</extention>
+      <do_not_open_newfile_init>N</do_not_open_newfile_init>
+      <create_parent_folder>N</create_parent_folder>
+      <split>N</split>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <sheetname>ClaimTransactionType</sheetname>
+      <autosizecolums>N</autosizecolums>
+      <nullisblank>N</nullisblank>
+      <protect_sheet>N</protect_sheet>
+      <password>Encrypted </password>
+      <splitevery>0</splitevery>
+      <usetempfiles>N</usetempfiles>
+      <tempdirectory/>
+    </file>
+    <template>
+      <enabled>N</enabled>
+      <append>N</append>
+      <filename>template.xls</filename>
+    </template>
+    <fields>
+      <field>
+        <name>Transaction Code_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>Name_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>Description_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>Transaction SubCode_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>SubCode Name_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>SubCode Description_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>Loss Paid_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>Loss Reserve_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>ALAE Paid_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>ALAE Reserve_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>ULAE Paid_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>ULAE Reserve_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>Subro Received_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>Subro Paid_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>Subro Reserve_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>Salvage Received_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>Salvage Reserve_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>Deductible Recovery Received_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>Deductible Recovery Reserve_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>Exp Recv_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>Loss Recv_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>Other Recv_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 1_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 2_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 3_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 4_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 5_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 6_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 7_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 8_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 9_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 10_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 11_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 12_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 13_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 14_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 15_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 16_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 17_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 18_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 19_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 20_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 21_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 22_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 23_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 24_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 25_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 26_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 27_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 28_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 29_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 30_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 31_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 32_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 33_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 34_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 35_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 36_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 37_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 38_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 39_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 40_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 41_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 42_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 43_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 44_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 45_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 46_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 47_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 48_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 49_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>UDS 50_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>loadDate</name>
+        <type>Date</type>
+        <format>mm/dd/yyyy</format>
+      </field>
+    </fields>
+    <custom>
+      <header_font_name>arial</header_font_name>
+      <header_font_size>10</header_font_size>
+      <header_font_bold>N</header_font_bold>
+      <header_font_italic>N</header_font_italic>
+      <header_font_underline>no</header_font_underline>
+      <header_font_orientation>horizontal</header_font_orientation>
+      <header_font_color>black</header_font_color>
+      <header_background_color>none</header_background_color>
+      <header_row_height>255</header_row_height>
+      <header_alignment>left</header_alignment>
+      <header_image/>
+      <row_font_name>arial</row_font_name>
+      <row_font_size>10</row_font_size>
+      <row_font_color>black</row_font_color>
+      <row_background_color>none</row_background_color>
+    </custom>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>523</xloc>
+      <yloc>318</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Original table Change name</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>CTRANS_CODE</name>
+        <rename>Transaction Code</rename>
+      </field>
+      <field>
+        <name>CTRANS_NAME</name>
+        <rename>Name</rename>
+      </field>
+      <field>
+        <name>CTRANS_DESCRIPTION</name>
+        <rename>Description</rename>
+      </field>
+      <field>
+        <name>CTRANS_SUBCODE</name>
+        <rename>Transaction SubCode</rename>
+      </field>
+      <field>
+        <name>CTRANS_SUBNAME</name>
+        <rename>SubCode Name</rename>
+      </field>
+      <field>
+        <name>CTRANS_SUBDESCRIPTION</name>
+        <rename>SubCode Description</rename>
+      </field>
+      <field>
+        <name>CTRANS_LOSSPAID</name>
+        <rename>Loss Paid</rename>
+      </field>
+      <field>
+        <name>CTRANS_LOSSRESERVE</name>
+        <rename>Loss Reserve</rename>
+      </field>
+      <field>
+        <name>CTRANS_ALAEPAID</name>
+        <rename>ALAE Paid</rename>
+      </field>
+      <field>
+        <name>CTRANS_ALAERESERVE</name>
+        <rename>ALAE Reserve</rename>
+      </field>
+      <field>
+        <name>CTRANS_ULAEPAID</name>
+        <rename>ULAE Paid</rename>
+      </field>
+      <field>
+        <name>CTRANS_ULAERESERVE</name>
+        <rename>ULAE Reserve</rename>
+      </field>
+      <field>
+        <name>CTRANS_SUBRORECEIVED</name>
+        <rename>Subro Received</rename>
+      </field>
+      <field>
+        <name>CTRANS_SUBROPAID</name>
+        <rename>Subro Paid</rename>
+      </field>
+      <field>
+        <name>CTRANS_SUBRORESERVE</name>
+        <rename>Subro Reserve</rename>
+      </field>
+      <field>
+        <name>CTRANS_SALVAGERECEIVED</name>
+        <rename>Salvage Received</rename>
+      </field>
+      <field>
+        <name>CTRANS_SALVAGERESERVE</name>
+        <rename>Salvage Reserve</rename>
+      </field>
+      <field>
+        <name>CTRANS_DEDUCTRECOVERYRECVD</name>
+        <rename>Deductible Recovery Received</rename>
+      </field>
+      <field>
+        <name>CTRANS_DEDUCTRECOVERYRSRV</name>
+        <rename>Deductible Recovery Reserve</rename>
+      </field>
+      <field>
+        <name>CTRANS_ALCEXPRECOVERY</name>
+        <rename>Exp Recv</rename>
+      </field>
+      <field>
+        <name>CTRANS_LOSSRECOVERY</name>
+        <rename>Loss Recv</rename>
+      </field>
+      <field>
+        <name>CTRANS_OTHERRECOVERY</name>
+        <rename>Other Recv</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY1</name>
+        <rename>UDS 1</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY2</name>
+        <rename>UDS 2</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY3</name>
+        <rename>UDS 3</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY4</name>
+        <rename>UDS 4</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY5</name>
+        <rename>UDS 5</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY6</name>
+        <rename>UDS 6</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY7</name>
+        <rename>UDS 7</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY8</name>
+        <rename>UDS 8</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY9</name>
+        <rename>UDS 9</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY10</name>
+        <rename>UDS 10</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY11</name>
+        <rename>UDS 11</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY12</name>
+        <rename>UDS 12</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY13</name>
+        <rename>UDS 13</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY14</name>
+        <rename>UDS 14</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY15</name>
+        <rename>UDS 15</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY16</name>
+        <rename>UDS 16</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY17</name>
+        <rename>UDS 17</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY18</name>
+        <rename>UDS 18</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY19</name>
+        <rename>UDS 19</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY20</name>
+        <rename>UDS 20</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY21</name>
+        <rename>UDS 21</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY22</name>
+        <rename>UDS 22</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY23</name>
+        <rename>UDS 23</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY24</name>
+        <rename>UDS 24</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY25</name>
+        <rename>UDS 25</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY26</name>
+        <rename>UDS 26</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY27</name>
+        <rename>UDS 27</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY28</name>
+        <rename>UDS 28</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY29</name>
+        <rename>UDS 29</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY30</name>
+        <rename>UDS 30</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY31</name>
+        <rename>UDS 31</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY32</name>
+        <rename>UDS 32</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY33</name>
+        <rename>UDS 33</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY34</name>
+        <rename>UDS 34</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY35</name>
+        <rename>UDS 35</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY36</name>
+        <rename>UDS 36</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY37</name>
+        <rename>UDS 37</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY38</name>
+        <rename>UDS 38</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY39</name>
+        <rename>UDS 39</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY40</name>
+        <rename>UDS 40</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY41</name>
+        <rename>UDS 41</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY42</name>
+        <rename>UDS 42</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY43</name>
+        <rename>UDS 43</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY44</name>
+        <rename>UDS 44</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY45</name>
+        <rename>UDS 45</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY46</name>
+        <rename>UDS 46</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY47</name>
+        <rename>UDS 47</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY48</name>
+        <rename>UDS 48</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY49</name>
+        <rename>UDS 49</rename>
+      </field>
+      <field>
+        <name>CTRANS_USERDEFINEDSUMMARY50</name>
+        <rename>UDS 50</rename>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>285</xloc>
+      <yloc>217</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Stream lookup</name>
+    <type>StreamLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <from>Original table Change name</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>Transaction Code</name>
+        <field>Transaction Code</field>
+      </key>
+      <value>
+        <name>Transaction Code</name>
+        <rename>Transaction Code</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>Name</name>
+        <rename>Name</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>Description</name>
+        <rename>Description</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>Transaction SubCode</name>
+        <rename>Transaction SubCode</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>SubCode Name</name>
+        <rename>SubCode Name</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>SubCode Description</name>
+        <rename>SubCode Description</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>Loss Paid</name>
+        <rename>Loss Paid</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>Loss Reserve</name>
+        <rename>Loss Reserve</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>ALAE Paid</name>
+        <rename>ALAE Paid</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>ALAE Reserve</name>
+        <rename>ALAE Reserve</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>ULAE Paid</name>
+        <rename>ULAE Paid</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>ULAE Reserve</name>
+        <rename>ULAE Reserve</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>Subro Received</name>
+        <rename>Subro Received</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>Subro Paid</name>
+        <rename>Subro Paid</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>Subro Reserve</name>
+        <rename>Subro Reserve</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>Salvage Received</name>
+        <rename>Salvage Received</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>Salvage Reserve</name>
+        <rename>Salvage Reserve</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>Deductible Recovery Received</name>
+        <rename>Deductible Recovery Received</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>Deductible Recovery Reserve</name>
+        <rename>Deductible Recovery Reserve</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>Exp Recv</name>
+        <rename>Exp Recv</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>Loss Recv</name>
+        <rename>Loss Recv</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>Other Recv</name>
+        <rename>Other Recv</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 1</name>
+        <rename>UDS 1</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 2</name>
+        <rename>UDS 2</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 3</name>
+        <rename>UDS 3</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 4</name>
+        <rename>UDS 4</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 5</name>
+        <rename>UDS 5</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 6</name>
+        <rename>UDS 6</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 7</name>
+        <rename>UDS 7</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 8</name>
+        <rename>UDS 8</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 9</name>
+        <rename>UDS 9</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 10</name>
+        <rename>UDS 10</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 11</name>
+        <rename>UDS 11</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 12</name>
+        <rename>UDS 12</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 13</name>
+        <rename>UDS 13</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 14</name>
+        <rename>UDS 14</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 15</name>
+        <rename>UDS 15</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 16</name>
+        <rename>UDS 16</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 17</name>
+        <rename>UDS 17</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 18</name>
+        <rename>UDS 18</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 19</name>
+        <rename>UDS 19</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 20</name>
+        <rename>UDS 20</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 21</name>
+        <rename>UDS 21</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 22</name>
+        <rename>UDS 22</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 23</name>
+        <rename>UDS 23</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 24</name>
+        <rename>UDS 24</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 25</name>
+        <rename>UDS 25</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 26</name>
+        <rename>UDS 26</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 27</name>
+        <rename>UDS 27</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 28</name>
+        <rename>UDS 28</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 29</name>
+        <rename>UDS 29</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 30</name>
+        <rename>UDS 30</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 31</name>
+        <rename>UDS 31</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 32</name>
+        <rename>UDS 32</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 33</name>
+        <rename>UDS 33</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 34</name>
+        <rename>UDS 34</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 35</name>
+        <rename>UDS 35</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 36</name>
+        <rename>UDS 36</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 37</name>
+        <rename>UDS 37</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 38</name>
+        <rename>UDS 38</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 39</name>
+        <rename>UDS 39</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 40</name>
+        <rename>UDS 40</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 41</name>
+        <rename>UDS 41</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 42</name>
+        <rename>UDS 42</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 43</name>
+        <rename>UDS 43</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 44</name>
+        <rename>UDS 44</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 45</name>
+        <rename>UDS 45</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 46</name>
+        <rename>UDS 46</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 47</name>
+        <rename>UDS 47</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 48</name>
+        <rename>UDS 48</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 49</name>
+        <rename>UDS 49</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>UDS 50</name>
+        <rename>UDS 50</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>523</xloc>
+      <yloc>217</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step_error_handling>
+  </step_error_handling>
+  <slave-step-copy-partition-distribution>
+  </slave-step-copy-partition-distribution>
+  <slave_transformation>N</slave_transformation>
+</transformation>

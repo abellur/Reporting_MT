@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:43 EST 2019
+file.title=TR_Process_Entity_Merge
+description=Transformation to deal with CIS entity merge operation in OASIS.
+title=TR_Process_Entity_Merge
+file.description=Transformation to deal with CIS entity merge operation in OASIS.

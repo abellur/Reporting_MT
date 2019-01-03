@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:50 EST 2019
+file.title=TR_FACT_CLAIM
+description=Loads the claim summary records into the fact_claim table.
+title=TR_FACT_CLAIM
+file.description=Loads the claim summary records into the fact_claim table.

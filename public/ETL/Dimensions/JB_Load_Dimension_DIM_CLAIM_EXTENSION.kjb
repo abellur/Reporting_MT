@@ -1,0 +1,1312 @@
+<job>
+  <name>JB_Load_Dimension_DIM_CLAIM_EXTENSION</name>
+  <description>Loads the dimension tables from staging.</description>
+  <extended_description>Date       By    Description
+08/15/2016 Jma   #178681. Add more fields from CIX table in Create tmp_claimext_01 step.</extended_description>
+  <job_version>3.0</job_version>
+  <job_status>1</job_status>
+  <directory>/public/ETL/Dimensions</directory>
+  <created_user>admin</created_user>
+  <created_date>2012/02/20 15:36:56.177</created_date>
+  <modified_user>joe</modified_user>
+  <modified_date>2018/04/02 14:33:44.144</modified_date>
+  <parameters>
+    </parameters>
+  <connection>
+    <name>4SBI_DataWarehouse</name>
+    <server>${G_DW_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_DW_DB_NAME}</database>
+    <port>${G_DW_DB_PORT}</port>
+    <username>${G_DW_DB_USERNAME}</username>
+    <password>${G_DW_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_DW_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_DW_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_DW_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>4SBI_Staging</name>
+    <server>${G_STAGING_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_STAGING_DB_NAME}</database>
+    <port>${G_STAGING_DB_PORT}</port>
+    <username>${G_STAGING_DB_USERNAME}</username>
+    <password>${G_STAGING_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_STAGING_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_STAGING_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_STAGING_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <slaveservers>
+    <slaveserver>
+      <name>4Sight BI - PDI Server</name>
+      <hostname>10.0.0.21</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>joe</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Carte 1</name>
+      <hostname>localhost</hostname>
+      <port>9081</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>DI Server</name>
+      <hostname>localhost</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>joe</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_DEV</name>
+      <hostname>magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>shota</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_SERVER</name>
+      <hostname>http://magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>shota</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_TEST</name>
+      <hostname>magspentahotest</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO</name>
+      <hostname>magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO_BTS</name>
+      <hostname>129.144.25.104</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO_DEV</name>
+      <hostname>magspentahodev</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Master</name>
+      <hostname>localhost</hostname>
+      <port>8081</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SERVER1</name>
+      <hostname>LOCALHOST</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SLAVE ONE</name>
+      <hostname>192.168.2.101</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4a418bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SLAVE TWO</name>
+      <hostname>192.168.2.101</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave1</name>
+      <hostname>localhost</hostname>
+      <port>8082</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave2</name>
+      <hostname>localhost</hostname>
+      <port>8083</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave3</name>
+      <hostname>localhost</hostname>
+      <port>8084</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>local DIS</name>
+      <hostname>localhost</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>magspentahodev</name>
+      <hostname>magspentahodev</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+  </slaveservers>
+  <job-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <size_limit_lines/>
+    <interval/>
+    <timeout_days/>
+    <field>
+      <id>ID_JOB</id>
+      <enabled>N</enabled>
+      <name>ID_JOB</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>JOBNAME</name>
+    </field>
+    <field>
+      <id>STATUS</id>
+      <enabled>Y</enabled>
+      <name>STATUS</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>STARTDATE</id>
+      <enabled>Y</enabled>
+      <name>STARTDATE</name>
+    </field>
+    <field>
+      <id>ENDDATE</id>
+      <enabled>Y</enabled>
+      <name>ENDDATE</name>
+    </field>
+    <field>
+      <id>LOGDATE</id>
+      <enabled>Y</enabled>
+      <name>LOGDATE</name>
+    </field>
+    <field>
+      <id>DEPDATE</id>
+      <enabled>Y</enabled>
+      <name>DEPDATE</name>
+    </field>
+    <field>
+      <id>REPLAYDATE</id>
+      <enabled>Y</enabled>
+      <name>REPLAYDATE</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>N</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>EXECUTING_SERVER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_SERVER</name>
+    </field>
+    <field>
+      <id>EXECUTING_USER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_USER</name>
+    </field>
+    <field>
+      <id>START_JOB_ENTRY</id>
+      <enabled>N</enabled>
+      <name>START_JOB_ENTRY</name>
+    </field>
+    <field>
+      <id>CLIENT</id>
+      <enabled>N</enabled>
+      <name>CLIENT</name>
+    </field>
+  </job-log-table>
+  <jobentry-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>TRANSNAME</name>
+    </field>
+    <field>
+      <id>JOBENTRYNAME</id>
+      <enabled>Y</enabled>
+      <name>STEPNAME</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>RESULT</id>
+      <enabled>Y</enabled>
+      <name>RESULT</name>
+    </field>
+    <field>
+      <id>NR_RESULT_ROWS</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_ROWS</name>
+    </field>
+    <field>
+      <id>NR_RESULT_FILES</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_FILES</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>N</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>COPY_NR</id>
+      <enabled>N</enabled>
+      <name>COPY_NR</name>
+    </field>
+  </jobentry-log-table>
+  <channel-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>LOGGING_OBJECT_TYPE</id>
+      <enabled>Y</enabled>
+      <name>LOGGING_OBJECT_TYPE</name>
+    </field>
+    <field>
+      <id>OBJECT_NAME</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_NAME</name>
+    </field>
+    <field>
+      <id>OBJECT_COPY</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_COPY</name>
+    </field>
+    <field>
+      <id>REPOSITORY_DIRECTORY</id>
+      <enabled>Y</enabled>
+      <name>REPOSITORY_DIRECTORY</name>
+    </field>
+    <field>
+      <id>FILENAME</id>
+      <enabled>Y</enabled>
+      <name>FILENAME</name>
+    </field>
+    <field>
+      <id>OBJECT_ID</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_ID</name>
+    </field>
+    <field>
+      <id>OBJECT_REVISION</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_REVISION</name>
+    </field>
+    <field>
+      <id>PARENT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>PARENT_CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>ROOT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>ROOT_CHANNEL_ID</name>
+    </field>
+  </channel-log-table>
+  <checkpoint-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <max_nr_retries/>
+    <run_retry_period/>
+    <namespace_parameter/>
+    <save_parameters/>
+    <save_result_rows/>
+    <save_result_files/>
+    <field>
+      <id>ID_JOB_RUN</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB_RUN</name>
+    </field>
+    <field>
+      <id>ID_JOB</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>JOBNAME</name>
+    </field>
+    <field>
+      <id>NAMESPACE</id>
+      <enabled>Y</enabled>
+      <name>NAMESPACE</name>
+    </field>
+    <field>
+      <id>CHECKPOINT_NAME</id>
+      <enabled>Y</enabled>
+      <name>CHECKPOINT_NAME</name>
+    </field>
+    <field>
+      <id>CHECKPOINT_COPYNR</id>
+      <enabled>Y</enabled>
+      <name>CHECKPOINT_COPYNR</name>
+    </field>
+    <field>
+      <id>ATTEMPT_NR</id>
+      <enabled>Y</enabled>
+      <name>ATTEMPT_NR</name>
+    </field>
+    <field>
+      <id>JOB_RUN_START_DATE</id>
+      <enabled>Y</enabled>
+      <name>JOB_RUN_START_DATE</name>
+    </field>
+    <field>
+      <id>LOGDATE</id>
+      <enabled>Y</enabled>
+      <name>LOGDATE</name>
+    </field>
+    <field>
+      <id>RESULT_XML</id>
+      <enabled>Y</enabled>
+      <name>RESULT_XML</name>
+    </field>
+    <field>
+      <id>PARAMETER_XML</id>
+      <enabled>Y</enabled>
+      <name>PARAMETER_XML</name>
+    </field>
+  </checkpoint-log-table>
+  <pass_batchid>N</pass_batchid>
+  <shared_objects_file/>
+  <entries>
+    <entry>
+      <name>START</name>
+      <description/>
+      <type>SPECIAL</type>
+      <start>Y</start>
+      <dummy>N</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>84</xloc>
+      <yloc>149</yloc>
+    </entry>
+    <entry>
+      <name>Table exists tmp_claimext_01</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>tmp_claimext_01</tablename>
+      <schemaname/>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>211</xloc>
+      <yloc>149</yloc>
+    </entry>
+    <entry>
+      <name>drop tmp_claimext_01</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table tmp_claimext_01 purge;</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>328</xloc>
+      <yloc>69</yloc>
+    </entry>
+    <entry>
+      <name>Create tmp_claimext_01</name>
+      <description/>
+      <type>SQL</type>
+      <sql>CREATE TABLE tmp_claimext_01 nologging AS
+SELECT s.max_claimextension_id,
+       s.scd2_record_version,
+       s.scd2_record_version + nvl(s.scd2_current_record_version, 0) scd2_record_version_new,
+       s.scd2_latest_flg,
+       coalesce(s.scd2_valid_todate, to_date('3000/01/01', 'yyyy/mm/dd')) scd2_valid_todate,
+       s.pentaho_order,
+       s.claim_uniqueid,
+       s.clm_changeeffectivedate,
+       s.source_system,
+       s.loaddate,
+       nvl(s.mmclm_agg_ded, 0) mmclm_agg_ded,
+       nvl(s.mmclm_agg_lim, 0) mmclm_agg_lim,
+       nvl(s.mmclm_agg_sir, 0) mmclm_agg_sir,
+       s.mmclm_alternate_claim_no,
+       s.mmclm_alternate_claim_no_type,
+       s.mmclm_boolean1,
+       s.mmclm_boolean2,
+       s.mmclm_boolean3,
+       s.mmclm_boolean4,
+       s.mmclm_boolean5,
+       s.mmclm_boolean6,
+       s.mmclm_branch_office,
+       s.mmclm_branch_office_desc,
+       s.mmclm_case_name,
+       s.mmclm_category_code,
+       s.mmclm_category_desc,
+       s.mmclm_char1,
+       s.mmclm_char10,
+       s.mmclm_char2,
+       s.mmclm_char3,
+       s.mmclm_char4,
+       s.mmclm_char5,
+       s.mmclm_char6,
+       s.mmclm_char7,
+       s.mmclm_char8,
+       s.mmclm_char9,
+       s.mmclm_ci_claim_specialty,
+       nvl(s.mmclm_ci_consent_date, to_date('19000101', 'YYYYMMDD')) mmclm_ci_consent_date,
+       s.mmclm_ci_consent_type,
+       nvl(s.mmclm_ci_contact_uniqueid, 0) mmclm_ci_contact_uniqueid,
+       nvl(s.mmclm_ci_settlement_amt, 0) mmclm_ci_settlement_amt,
+       nvl(s.mmclm_ci_settlement_date, to_date('19000101', 'YYYYMMDD')) mmclm_ci_settlement_date,
+       s.mmclm_cix_coverage_desc,
+       nvl(s.mmclm_cix_expense_pct, 0) mmclm_cix_expense_pct,
+       nvl(s.mmclm_cix_indemnity_pct, 0) mmclm_cix_indemnity_pct,
+       s.mmclm_claim_company,
+       s.mmclm_claim_severity_code,
+       s.mmclm_claim_severity_desc,
+       nvl(s.mmclm_claim_status_date, to_date('19000101', 'YYYYMMDD')) mmclm_claim_status_date,
+       nvl(s.mmclm_claim_type_date, to_date('19000101', 'YYYYMMDD')) mmclm_claim_type_date,
+       s.mmclm_classif_code1,
+       s.mmclm_classif_code10,
+       s.mmclm_classif_code2,
+       s.mmclm_classif_code3,
+       s.mmclm_classif_code4,
+       s.mmclm_classif_code5,
+       s.mmclm_classif_code6,
+       s.mmclm_classif_code7,
+       s.mmclm_classif_code8,
+       s.mmclm_classif_code9,
+       s.mmclm_classif_desc1,
+       s.mmclm_classif_desc10,
+       s.mmclm_classif_desc2,
+       s.mmclm_classif_desc3,
+       s.mmclm_classif_desc4,
+       s.mmclm_classif_desc5,
+       s.mmclm_classif_desc6,
+       s.mmclm_classif_desc7,
+       s.mmclm_classif_desc8,
+       s.mmclm_classif_desc9,
+       nvl(s.mmclm_clmnt_age_at_loss, 0) mmclm_clmnt_age_at_loss,
+       s.mmclm_clmnt_age_at_loss_type,
+       s.mmclm_clmnt_char1,
+       s.mmclm_clmnt_char2,
+       s.mmclm_clmnt_char3,
+       s.mmclm_clmnt_char4,
+       s.mmclm_clmnt_char5,
+       s.mmclm_clmnt_class,
+       s.mmclm_clmnt_edu_level,
+       s.mmclm_clmnt_empl_info,
+       s.mmclm_clmnt_empl_status_code,
+       s.mmclm_clmnt_empl_status_desc,
+       s.mmclm_clmnt_empl_type_code,
+       s.mmclm_clmnt_empl_type_desc,
+       nvl(s.mmclm_clmnt_exp_pct, 0) mmclm_clmnt_exp_pct,
+       nvl(s.mmclm_clmnt_ind_pct, 0) mmclm_clmnt_ind_pct,
+       s.mmclm_clmnt_insurance_carrier,
+       s.mmclm_clmnt_marital_status,
+       nvl(s.mmclm_clmnt_no_dependents, 0) mmclm_clmnt_no_dependents,
+       s.mmclm_clmnt_occupation,
+       s.mmclm_clmnt_occupation_code,
+       s.mmclm_clmnt_occupation_desc,
+       s.mmclm_clmnt_rel_to_patient,
+       nvl(s.mmclm_clmnt_weekly_wage, 0) mmclm_clmnt_weekly_wage,
+       s.mmclm_cmd_char1,
+       s.mmclm_cmd_char10,
+       s.mmclm_cmd_char11,
+       s.mmclm_cmd_char12,
+       s.mmclm_cmd_char13,
+       s.mmclm_cmd_char14,
+       s.mmclm_cmd_char15,
+       s.mmclm_cmd_char16,
+       s.mmclm_cmd_char17,
+       s.mmclm_cmd_char18,
+       s.mmclm_cmd_char19,
+       s.mmclm_cmd_char2,
+       s.mmclm_cmd_char20,
+       s.mmclm_cmd_char21,
+       s.mmclm_cmd_char22,
+       s.mmclm_cmd_char23,
+       s.mmclm_cmd_char24,
+       s.mmclm_cmd_char25,
+       s.mmclm_cmd_char26,
+       s.mmclm_cmd_char27,
+       s.mmclm_cmd_char28,
+       s.mmclm_cmd_char29,
+       s.mmclm_cmd_char3,
+       s.mmclm_cmd_char30,
+       s.mmclm_cmd_char31,
+       s.mmclm_cmd_char32,
+       s.mmclm_cmd_char33,
+       s.mmclm_cmd_char34,
+       s.mmclm_cmd_char35,
+       s.mmclm_cmd_char36,
+       s.mmclm_cmd_char4,
+       s.mmclm_cmd_char5,
+       s.mmclm_cmd_char6,
+       s.mmclm_cmd_char7,
+       s.mmclm_cmd_char8,
+       s.mmclm_cmd_char9,
+       nvl(s.mmclm_cmd_date1, to_date('19000101', 'YYYYMMDD')) mmclm_cmd_date1,
+       nvl(s.mmclm_cmd_date10, to_date('19000101', 'YYYYMMDD')) mmclm_cmd_date10,
+       nvl(s.mmclm_cmd_date11, to_date('19000101', 'YYYYMMDD')) mmclm_cmd_date11,
+       nvl(s.mmclm_cmd_date12, to_date('19000101', 'YYYYMMDD')) mmclm_cmd_date12,
+       nvl(s.mmclm_cmd_date13, to_date('19000101', 'YYYYMMDD')) mmclm_cmd_date13,
+       nvl(s.mmclm_cmd_date14, to_date('19000101', 'YYYYMMDD')) mmclm_cmd_date14,
+       nvl(s.mmclm_cmd_date15, to_date('19000101', 'YYYYMMDD')) mmclm_cmd_date15,
+       nvl(s.mmclm_cmd_date16, to_date('19000101', 'YYYYMMDD')) mmclm_cmd_date16,
+       nvl(s.mmclm_cmd_date17, to_date('19000101', 'YYYYMMDD')) mmclm_cmd_date17,
+       nvl(s.mmclm_cmd_date18, to_date('19000101', 'YYYYMMDD')) mmclm_cmd_date18,
+       nvl(s.mmclm_cmd_date19, to_date('19000101', 'YYYYMMDD')) mmclm_cmd_date19,
+       nvl(s.mmclm_cmd_date2, to_date('19000101', 'YYYYMMDD')) mmclm_cmd_date2,
+       nvl(s.mmclm_cmd_date20, to_date('19000101', 'YYYYMMDD')) mmclm_cmd_date20,
+       nvl(s.mmclm_cmd_date3, to_date('19000101', 'YYYYMMDD')) mmclm_cmd_date3,
+       nvl(s.mmclm_cmd_date4, to_date('19000101', 'YYYYMMDD')) mmclm_cmd_date4,
+       nvl(s.mmclm_cmd_date5, to_date('19000101', 'YYYYMMDD')) mmclm_cmd_date5,
+       nvl(s.mmclm_cmd_date6, to_date('19000101', 'YYYYMMDD')) mmclm_cmd_date6,
+       nvl(s.mmclm_cmd_date7, to_date('19000101', 'YYYYMMDD')) mmclm_cmd_date7,
+       nvl(s.mmclm_cmd_date8, to_date('19000101', 'YYYYMMDD')) mmclm_cmd_date8,
+       nvl(s.mmclm_cmd_date9, to_date('19000101', 'YYYYMMDD')) mmclm_cmd_date9,
+       nvl(s.mmclm_cmd_num1, 0) mmclm_cmd_num1,
+       nvl(s.mmclm_cmd_num10, 0) mmclm_cmd_num10,
+       nvl(s.mmclm_cmd_num11, 0) mmclm_cmd_num11,
+       nvl(s.mmclm_cmd_num12, 0) mmclm_cmd_num12,
+       nvl(s.mmclm_cmd_num13, 0) mmclm_cmd_num13,
+       nvl(s.mmclm_cmd_num14, 0) mmclm_cmd_num14,
+       nvl(s.mmclm_cmd_num15, 0) mmclm_cmd_num15,
+       nvl(s.mmclm_cmd_num16, 0) mmclm_cmd_num16,
+       nvl(s.mmclm_cmd_num17, 0) mmclm_cmd_num17,
+       nvl(s.mmclm_cmd_num18, 0) mmclm_cmd_num18,
+       nvl(s.mmclm_cmd_num19, 0) mmclm_cmd_num19,
+       nvl(s.mmclm_cmd_num2, 0) mmclm_cmd_num2,
+       nvl(s.mmclm_cmd_num20, 0) mmclm_cmd_num20,
+       nvl(s.mmclm_cmd_num21, 0) mmclm_cmd_num21,
+       nvl(s.mmclm_cmd_num22, 0) mmclm_cmd_num22,
+       nvl(s.mmclm_cmd_num23, 0) mmclm_cmd_num23,
+       nvl(s.mmclm_cmd_num24, 0) mmclm_cmd_num24,
+       nvl(s.mmclm_cmd_num25, 0) mmclm_cmd_num25,
+       nvl(s.mmclm_cmd_num26, 0) mmclm_cmd_num26,
+       nvl(s.mmclm_cmd_num27, 0) mmclm_cmd_num27,
+       nvl(s.mmclm_cmd_num28, 0) mmclm_cmd_num28,
+       nvl(s.mmclm_cmd_num29, 0) mmclm_cmd_num29,
+       nvl(s.mmclm_cmd_num3, 0) mmclm_cmd_num3,
+       nvl(s.mmclm_cmd_num30, 0) mmclm_cmd_num30,
+       nvl(s.mmclm_cmd_num4, 0) mmclm_cmd_num4,
+       nvl(s.mmclm_cmd_num5, 0) mmclm_cmd_num5,
+       nvl(s.mmclm_cmd_num6, 0) mmclm_cmd_num6,
+       nvl(s.mmclm_cmd_num7, 0) mmclm_cmd_num7,
+       nvl(s.mmclm_cmd_num8, 0) mmclm_cmd_num8,
+       nvl(s.mmclm_cmd_num9, 0) mmclm_cmd_num9,
+       s.mmclm_current_claim_type,
+       s.mmclm_current_claim_type_desc,
+       nvl(s.mmclm_date1, to_date('19000101', 'YYYYMMDD')) mmclm_date1,
+       nvl(s.mmclm_date2, to_date('19000101', 'YYYYMMDD')) mmclm_date2,
+       nvl(s.mmclm_date3, to_date('19000101', 'YYYYMMDD')) mmclm_date3,
+       nvl(s.mmclm_date4, to_date('19000101', 'YYYYMMDD')) mmclm_date4,
+       nvl(s.mmclm_date5, to_date('19000101', 'YYYYMMDD')) mmclm_date5,
+       nvl(s.mmclm_date6, to_date('19000101', 'YYYYMMDD')) mmclm_date6,
+       nvl(s.mmclm_filed_date, to_date('19000101', 'YYYYMMDD')) mmclm_filed_date,
+       s.mmclm_final_disposition_code,
+       nvl(s.mmclm_final_disposition_date, to_date('19000101', 'YYYYMMDD')) mmclm_final_disposition_date,
+       s.mmclm_final_disposition_desc,
+       nvl(s.mmclm_inc_ded, 0) mmclm_inc_ded,
+       nvl(s.mmclm_inc_lim, 0) mmclm_inc_lim,
+       nvl(s.mmclm_inc_sir, 0) mmclm_inc_sir,
+       nvl(s.mmclm_incident_end_date, to_date('19000101', 'YYYYMMDD')) mmclm_incident_end_date,
+       nvl(s.mmclm_incident_start_date, to_date('19000101', 'YYYYMMDD')) mmclm_incident_start_date,
+       nvl(s.mmclm_index_date, to_date('19000101', 'YYYYMMDD')) mmclm_index_date,
+       s.mmclm_jurisdiction_code,
+       s.mmclm_jurisdiction_desc,
+       s.mmclm_layer_agg_res_b,
+       s.mmclm_layer_cost_code_list,
+       s.mmclm_layer_diff_to_b,
+       s.mmclm_layer_diff_to_list,
+       s.mmclm_layer_fully_eroded_b,
+       s.mmclm_layer_lob_code_list,
+       s.mmclm_layer_name,
+       s.mmclm_layer_named_risk_b,
+       s.mmclm_layer_res_eroded_b,
+       nvl(s.mmclm_layer_seq_no, 0) mmclm_layer_seq_no,
+       s.mmclm_layer_shrd_w_limit_list,
+       s.mmclm_layer_verif_needed_b,
+       s.mmclm_litigation_b,
+       s.mmclm_location_code,
+       s.mmclm_location_desc,
+       s.mmclm_loss_sub_type_code,
+       s.mmclm_loss_sub_type_desc,
+       nvl(s.mmclm_num1, 0) mmclm_num1,
+       nvl(s.mmclm_num2, 0) mmclm_num2,
+       nvl(s.mmclm_num3, 0) mmclm_num3,
+       nvl(s.mmclm_num4, 0) mmclm_num4,
+       nvl(s.mmclm_num5, 0) mmclm_num5,
+       nvl(s.mmclm_num6, 0) mmclm_num6,
+       nvl(s.mmclm_over_agg_ded, 0) mmclm_over_agg_ded,
+       nvl(s.mmclm_over_agg_lim, 0) mmclm_over_agg_lim,
+       nvl(s.mmclm_over_agg_sir, 0) mmclm_over_agg_sir,
+       nvl(s.mmclm_over_inc_ded, 0) mmclm_over_inc_ded,
+       nvl(s.mmclm_over_inc_lim, 0) mmclm_over_inc_lim,
+       nvl(s.mmclm_over_inc_sir, 0) mmclm_over_inc_sir,
+       nvl(s.mmclm_program_end_date, to_date('19000101', 'YYYYMMDD')) mmclm_program_end_date,
+       nvl(s.mmclm_program_incurred_amt, 0) mmclm_program_incurred_amt,
+       s.mmclm_program_short_descr,
+       nvl(s.mmclm_program_start_date, to_date('19000101', 'YYYYMMDD')) mmclm_program_start_date,
+       nvl(s.mmclm_receive_date, to_date('19000101', 'YYYYMMDD')) mmclm_receive_date,
+       s.mmclm_reinsurance_b,
+       s.mmclm_response_to_claim,
+       s.mmclm_response_to_claim_desc,
+       nvl(s.mmclm_shared_agg_ded, 0) mmclm_shared_agg_ded,
+       nvl(s.mmclm_shared_agg_lim, 0) mmclm_shared_agg_lim,
+       nvl(s.mmclm_shared_agg_sir, 0) mmclm_shared_agg_sir,
+       nvl(s.mmclm_shared_inc_ded, 0) mmclm_shared_inc_ded,
+       nvl(s.mmclm_shared_inc_lim, 0) mmclm_shared_inc_lim,
+       nvl(s.mmclm_shared_inc_sir, 0) mmclm_shared_inc_sir,
+       nvl(s.mmclm_sys_create_time, to_date('19000101', 'YYYYMMDD')) mmclm_sys_create_time,
+       s.mmclm_sys_created_by,
+       nvl(s.mmclm_sys_update_time, to_date('19000101', 'YYYYMMDD')) mmclm_sys_update_time,
+       s.mmclm_sys_updated_by,
+       s.mmclm_tpa_b,
+       s.mmclm_tpa_claim_no,
+       s.mmclm_catastrophe_number,
+       s.mmclm_clmnt_primary_b,
+       -- Issue 164532
+       s.coverage_pk,
+       s.risk_pk,
+       -- Issue 178681
+       mmclm_cix_incident_low_value,
+       mmclm_cix_incident_high_value,
+       mmclm_cix_aggregate_low_value,
+       mmclm_cix_aggregate_high_value,
+       mmclm_cix_policy_name,
+       mmclm_cix_retro_date,
+       mmclm_cix_policy_start_date,
+       mmclm_cix_policy_end_date,
+       mmclm_cix_form_descr,
+       mmclm_cix_limit_descr, 
+       mmclm_cix_excess_b,
+       mmclm_cix_indemnity_res_ero,
+       mmclm_cix_indemnity_paid_ero,
+       mmclm_cix_coverage_issue_b,
+       mmclm_cix_coverage_verified_b,
+       mmclm_cix_deductible_type,
+       mmclm_cix_product_cov_code,
+       mmclm_cix_status,
+       mmclm_cix_status_date,
+       mmclm_cix_risk_inc_limit,
+       mmclm_cix_risk_agg_limit,
+       mmclm_cix_pol_inc_limit,
+       mmclm_cix_pol_agg_limit,
+       mmclm_cix_limit_cost_type,
+       mmclm_cix_pl_aggregate,
+       mmclm_cix_gl_aggregate,
+       mmclm_cix_sir_cost_type_list,
+       mmclm_cix_ded_cost_type_list
+  FROM (SELECT row_number() over(PARTITION BY s.claim_uniqueid ORDER BY s.clm_changeeffectivedate) scd2_record_version,
+               (SELECT d.record_version
+                  FROM dim_claimextension d
+                 WHERE s.claim_uniqueid = d.claim_uniqueid
+                   AND d.valid_todate = to_date('3000/01/01', 'yyyy/mm/dd')) scd2_current_record_version,
+               row_number() over(PARTITION BY s.claim_uniqueid ORDER BY s.clm_changeeffectivedate DESC) scd2_latest_flg,
+               lead(s.clm_changeeffectivedate) over(PARTITION BY s.claim_uniqueid ORDER BY s.clm_changeeffectivedate) scd2_valid_todate,
+               row_number() over(ORDER BY s.claim_uniqueid, s.clm_changeeffectivedate) pentaho_order,
+               m.max_claimextension_id,
+               s.*
+          FROM stg_claim s,
+               (SELECT nvl(MAX(claimextension_id), 1) max_claimextension_id
+                  FROM dim_claimextension) m
+         WHERE s.loaddate = ${sql_loadDate}
+       ) s
+
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>405</xloc>
+      <yloc>149</yloc>
+    </entry>
+    <entry>
+      <name>create index tmp_claimext_01_ix1</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create index tmp_claimext_01_ix1 on tmp_claimext_01(scd2_record_version,CLAIM_UNIQUEID) nologging;</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>597</xloc>
+      <yloc>149</yloc>
+    </entry>
+    <entry>
+      <name>Table exists tmp_claimext_2</name>
+      <description/>
+      <type>TABLE_EXISTS</type>
+      <tablename>tmp_claimext_02</tablename>
+      <schemaname/>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>486</xloc>
+      <yloc>259</yloc>
+    </entry>
+    <entry>
+      <name>drop tmp_claimext_2</name>
+      <description/>
+      <type>SQL</type>
+      <sql>drop table tmp_claimext_02 purge;</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>597</xloc>
+      <yloc>341</yloc>
+    </entry>
+    <entry>
+      <name>make tmp_claimext_02</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table tmp_claimext_02 nologging as
+select d.claimExtension_id, s.clm_changeeffectivedate SCD2_VALID_TODATE
+from 
+    dim_claimextension d,
+    tmp_claimext_01 s
+where
+    s.scd2_record_version=1
+and s.CLAIM_UNIQUEID = d.CLAIM_UNIQUEID
+and d.valid_todate = to_date('3000/01/01','yyyy/mm/dd');</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>673</xloc>
+      <yloc>259</yloc>
+    </entry>
+    <entry>
+      <name>create unique index tmp_claimext_02_uix1</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create unique index tmp_claimext_02_uix1 on tmp_claimext_02 (CLAIMEXTENSION_ID) nologging;</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_Staging</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>937</xloc>
+      <yloc>259</yloc>
+    </entry>
+    <entry>
+      <name>update SCD2</name>
+      <description/>
+      <type>SQL</type>
+      <sql>update 
+(
+  select /*+ use_hash(d s) */
+  	d.claimExtension_id, d.valid_todate, s.SCD2_VALID_TODATE
+  from dim_claimextension d, tmp_claimext_02 s
+  where d.claimExtension_id = s.claimExtension_id
+) u
+set u.valid_todate = u.SCD2_VALID_TODATE
+;
+
+commit;</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_DataWarehouse</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>937</xloc>
+      <yloc>378</yloc>
+    </entry>
+    <entry>
+      <name>TR_DIM_CLAIM_EXTENSION_SCD2_Insert</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>rep_name</specification_method>
+      <trans_object_id/>
+      <filename/>
+      <transname>TR_DIM_CLAIM_EXTENSION_SCD2_Insert</transname>
+      <directory>/public/ETL/Dimensions/Transformations</directory>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration/>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>937</xloc>
+      <yloc>488</yloc>
+    </entry>
+  </entries>
+  <hops>
+    <hop>
+      <from>Table exists tmp_claimext_01</from>
+      <to>drop tmp_claimext_01</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>drop tmp_claimext_01</from>
+      <to>Create tmp_claimext_01</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Table exists tmp_claimext_01</from>
+      <to>Create tmp_claimext_01</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create tmp_claimext_01</from>
+      <to>create index tmp_claimext_01_ix1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>create index tmp_claimext_01_ix1</from>
+      <to>Table exists tmp_claimext_2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Table exists tmp_claimext_2</from>
+      <to>drop tmp_claimext_2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>drop tmp_claimext_2</from>
+      <to>make tmp_claimext_02</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Table exists tmp_claimext_2</from>
+      <to>make tmp_claimext_02</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>make tmp_claimext_02</from>
+      <to>create unique index tmp_claimext_02_uix1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>create unique index tmp_claimext_02_uix1</from>
+      <to>update SCD2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>update SCD2</from>
+      <to>TR_DIM_CLAIM_EXTENSION_SCD2_Insert</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>Table exists tmp_claimext_01</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+  </hops>
+  <notepads>
+  </notepads>
+  <attributes>
+    <group>
+      <name>JobRestart</name>
+      <attribute>
+        <key>UniqueConnections</key>
+        <value>N</value>
+      </attribute>
+    </group>
+  </attributes>
+</job>

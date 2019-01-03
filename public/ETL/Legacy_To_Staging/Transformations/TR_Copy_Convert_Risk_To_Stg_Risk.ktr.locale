@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:59 EST 2019
+file.title=TR_Copy_Convert_Risk_To_Stg_Risk
+description=Copy data from Stg_Risk_Convert to Stg_Risk
+title=TR_Copy_Convert_Risk_To_Stg_Risk
+file.description=Copy data from Stg_Risk_Convert to Stg_Risk

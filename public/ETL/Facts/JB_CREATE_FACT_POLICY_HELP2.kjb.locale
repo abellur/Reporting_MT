@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:43 EST 2019
+file.title=JB_CREATE_FACT_POLICY_HELP2
+description=Create another two help tables to populate data to FACT_POLICY table.
+title=JB_CREATE_FACT_POLICY_HELP2
+file.description=Create another two help tables to populate data to FACT_POLICY table.

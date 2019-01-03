@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:59 EST 2019
+file.title=JB_Copy_Stg_Convert_To_Stg
+description=Copy data from convert staging tables to regular staging tables.
+title=JB_Copy_Stg_Convert_To_Stg
+file.description=Copy data from convert staging tables to regular staging tables.

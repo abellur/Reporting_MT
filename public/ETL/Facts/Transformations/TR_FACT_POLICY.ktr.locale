@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:52 EST 2019
+file.title=TR_FACT_POLICY
+description=Loads one summary record for each policy for each month into the fact_policy table.
+title=TR_FACT_POLICY
+file.description=Loads one summary record for each policy for each month into the fact_policy table.

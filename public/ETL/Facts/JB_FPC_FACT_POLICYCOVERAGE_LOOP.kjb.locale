@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:44 EST 2019
+file.title=JB_FPC_FACT_POLICYCOVERAGE_LOOP
+description=Load data to Fact_PolicyCoverage table.
+title=JB_FPC_FACT_POLICYCOVERAGE_LOOP
+file.description=Load data to Fact_PolicyCoverage table.

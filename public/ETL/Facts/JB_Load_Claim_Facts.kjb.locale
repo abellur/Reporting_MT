@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:46 EST 2019
+file.title=JB_Load_Claim_Facts
+description=Loads the summary fact tables (FACT_CLAIMTRANSACTION, FACT_CLAIM)
+title=JB_Load_Claim_Facts
+file.description=Loads the summary fact tables (FACT_CLAIMTRANSACTION, FACT_CLAIM)

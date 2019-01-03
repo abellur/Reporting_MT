@@ -1,0 +1,1626 @@
+<transformation>
+  <info>
+    <name>STG_CURR_COMP_COV</name>
+    <description/>
+    <extended_description/>
+    <trans_version/>
+    <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
+    <directory>/public/Policy/Data_Mart</directory>
+    <parameters>
+    </parameters>
+    <log>
+      <trans-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <size_limit_lines/>
+        <interval/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STATUS</id>
+          <enabled>Y</enabled>
+          <name>STATUS</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+          <subject/>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>STARTDATE</id>
+          <enabled>Y</enabled>
+          <name>STARTDATE</name>
+        </field>
+        <field>
+          <id>ENDDATE</id>
+          <enabled>Y</enabled>
+          <name>ENDDATE</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>DEPDATE</id>
+          <enabled>Y</enabled>
+          <name>DEPDATE</name>
+        </field>
+        <field>
+          <id>REPLAYDATE</id>
+          <enabled>Y</enabled>
+          <name>REPLAYDATE</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>Y</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+        <field>
+          <id>EXECUTING_SERVER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_SERVER</name>
+        </field>
+        <field>
+          <id>EXECUTING_USER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_USER</name>
+        </field>
+        <field>
+          <id>CLIENT</id>
+          <enabled>N</enabled>
+          <name>CLIENT</name>
+        </field>
+      </trans-log-table>
+      <perf-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <interval/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>SEQ_NR</id>
+          <enabled>Y</enabled>
+          <name>SEQ_NR</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>INPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>INPUT_BUFFER_ROWS</name>
+        </field>
+        <field>
+          <id>OUTPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>OUTPUT_BUFFER_ROWS</name>
+        </field>
+      </perf-log-table>
+      <channel-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>LOGGING_OBJECT_TYPE</id>
+          <enabled>Y</enabled>
+          <name>LOGGING_OBJECT_TYPE</name>
+        </field>
+        <field>
+          <id>OBJECT_NAME</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_NAME</name>
+        </field>
+        <field>
+          <id>OBJECT_COPY</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_COPY</name>
+        </field>
+        <field>
+          <id>REPOSITORY_DIRECTORY</id>
+          <enabled>Y</enabled>
+          <name>REPOSITORY_DIRECTORY</name>
+        </field>
+        <field>
+          <id>FILENAME</id>
+          <enabled>Y</enabled>
+          <name>FILENAME</name>
+        </field>
+        <field>
+          <id>OBJECT_ID</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_ID</name>
+        </field>
+        <field>
+          <id>OBJECT_REVISION</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_REVISION</name>
+        </field>
+        <field>
+          <id>PARENT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>PARENT_CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>ROOT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>ROOT_CHANNEL_ID</name>
+        </field>
+      </channel-log-table>
+      <step-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>N</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+      </step-log-table>
+      <metrics-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_DATE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_CODE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_CODE</name>
+        </field>
+        <field>
+          <id>METRICS_DESCRIPTION</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DESCRIPTION</name>
+        </field>
+        <field>
+          <id>METRICS_SUBJECT</id>
+          <enabled>Y</enabled>
+          <name>METRICS_SUBJECT</name>
+        </field>
+        <field>
+          <id>METRICS_TYPE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_TYPE</name>
+        </field>
+        <field>
+          <id>METRICS_VALUE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_VALUE</name>
+        </field>
+      </metrics-log-table>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+      <slaveserver>
+        <name>4Sight BI - PDI Server</name>
+        <hostname>10.0.0.21</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>joe</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Carte 1</name>
+        <hostname>localhost</hostname>
+        <port>9081</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>DI Server</name>
+        <hostname>localhost</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>joe</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_DEV</name>
+        <hostname>magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>shota</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_SERVER</name>
+        <hostname>http://magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>shota</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_TEST</name>
+        <hostname>magspentahotest</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO</name>
+        <hostname>magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO_BTS</name>
+        <hostname>129.144.25.104</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO_DEV</name>
+        <hostname>magspentahodev</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Master</name>
+        <hostname>localhost</hostname>
+        <port>8081</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SERVER1</name>
+        <hostname>LOCALHOST</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SLAVE ONE</name>
+        <hostname>192.168.2.101</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4a418bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SLAVE TWO</name>
+        <hostname>192.168.2.101</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave1</name>
+        <hostname>localhost</hostname>
+        <port>8082</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave2</name>
+        <hostname>localhost</hostname>
+        <port>8083</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave3</name>
+        <hostname>localhost</hostname>
+        <port>8084</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>local DIS</name>
+        <hostname>localhost</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>magspentahodev</name>
+        <hostname>magspentahodev</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+    </slaveservers>
+    <clusterschemas>
+      <clusterschema>
+        <name>4sbi_admin</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+        </slaveservers>
+      </clusterschema>
+      <clusterschema>
+        <name>ClusterSchema</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+          <name>Slave3</name>
+          <name>Slave2</name>
+          <name>Slave1</name>
+          <name>Master</name>
+        </slaveservers>
+      </clusterschema>
+      <clusterschema>
+        <name>cluster A</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+          <name>Carte 1</name>
+          <name>local DIS</name>
+        </slaveservers>
+      </clusterschema>
+    </clusterschemas>
+    <created_user>aparna</created_user>
+    <created_date>2017/11/02 13:14:41.231</created_date>
+    <modified_user>admin</modified_user>
+    <modified_date>2018/11/06 21:49:53.314</modified_date>
+    <key_for_session_key/>
+    <is_key_private>N</is_key_private>
+  </info>
+  <notepads>
+    <notepad>
+      <note>184744_draDelphi Fix related change
+DD.COV_DEDUCTIBLE1     AS COMP_VALUE,
+  DD.COV_DEDUCTIBLE2 AS COMP_AGG_VALUE
+Pulling these two columns for Legacy claims from DIM_DEDUTIBLE
+
+--04/20/2017
+
+Eliminating bringing policy information for old hospital policies.
+
+--07/03/2017
+
+COMPONENT_ID  has been added to the CURRENT policy - but not to the Legacy policy
+
+--10/11/2017 - Aparna Bellur
+
+
+Neelima Alapati made changes on 12/4/2017:
+
+Adding Additional Left outer join to filter the records with same component effective and component expiration dates for the current term of each policy------
+this is done to handles the deductibles not showing the latest values. ex henderson should show 100k/400k for 2017-20198 term but showing 100k/533k
+
+---this join added to correc tthe deductibles for the current term of each policy
+
+LEFT OUTER JOIN
+     (select 
+          FPCOV.MONTH_ID,
+          FPCOV.FIRSTINSURED_ID,
+          FPCOV.COVEREDRISK_ID,
+          max(FPCOV.POLICY_ID) AS MAX_POL_ID, 
+          max(FPCOV.POLICYEXPIRATIONDATE_ID) AS MAX_EXPDATE_ID,
+          SUM(0) AS FlagYES
+          FROM FACT_POLICYCOVERAGE FPCOV
+          INNER JOIN DIM_COVERAGE DC ON FPCOV.COVERAGE_ID = DC.COVERAGE_ID
+          INNER JOIN DIM_COMPONENT DCOM ON FPCOV.COMPONENT_ID = DCOM.COMPONENT_ID
+          WHERE 
+           DCOM.MMCOM_COMPONENT_TYPE_CODE IN (
+          'DEDUCTIBLE',
+          'DISCOUNT',
+          'SURCHARGE',
+          'ADJUSTMENT',
+          'SIR',
+          'Unknown',
+          'Gross'
+          ) 
+         AND FPCOV.LIMIT_ID &lt;&gt; '0'--remove dthis filter neelima
+          ---and FPCOV.MONTH_ID = '20171101' 
+          and DCOM.MMCOM_EFFECTIVE_FROM_DATE = DCOM.MMCOM_EFFECTIVE_TO_DATE
+          group by 
+          FPCOV.MONTH_ID,
+          FPCOV.FIRSTINSURED_ID,
+          FPCOV.COVEREDRISK_ID ) L1 on 
+              L1.MONTH_ID = FPCOV.MONTH_ID   
+          AND L1.FIRSTINSURED_ID = FPCOV.FIRSTINSURED_ID 
+          AND L1.COVEREDRISK_ID = FPCOV.COVEREDRISK_ID
+WHERE 
+ DCOM.MMCOM_COMPONENT_TYPE_CODE IN (
+'DEDUCTIBLE',
+'DISCOUNT',
+'SURCHARGE',
+'ADJUSTMENT',
+'SIR',
+'Unknown',
+'Gross'
+) 
+AND FPCOV.LIMIT_ID &lt;&gt; '0'
+AND NOT
+(
+    FlagYES = 0 
+AND DCOM.MMCOM_EFFECTIVE_FROM_DATE = DCOM.MMCOM_EFFECTIVE_TO_DATE AND DCOM.MMCOM_EFFECTIVE_TO_DATE IS NOT NULL AND DCOM.MMCOM_EFFECTIVE_FROM_DATE IS NOT NULL
+AND L1.MAX_POL_ID = FPCOV.POLICY_ID 
+AND L1.MAX_EXPDATE_ID = FPCOV.POLICYEXPIRATIONDATE_ID
+)
+
+-----------------------------
+
+Commented the below lines to aviod droppeding endorsments that have effective and expiration dates as the same date - this was affecting premium summary and premium bdx reports
+
+AND NOT
+(
+    FlagYES = 0 
+AND DCOM.MMCOM_EFFECTIVE_FROM_DATE = DCOM.MMCOM_EFFECTIVE_TO_DATE AND DCOM.MMCOM_EFFECTIVE_TO_DATE IS NOT NULL AND DCOM.MMCOM_EFFECTIVE_FROM_DATE IS NOT NULL
+AND L1.MAX_POL_ID = FPCOV.POLICY_ID 
+AND L1.MAX_EXPDATE_ID = FPCOV.POLICYEXPIRATIONDATE_ID
+)
+
+--Aparna Bellur 12/13/2017
+-------------------------------------
+Modified FACT_POLICYCOVERAGE to FACT_POLICYSNAPSHOT
+
+--Aparna Bellur 12/14/2017
+
+Broke the component query into two parts 
+
+1) ('DISCOUNT', 'SURCHARGE', 'ADJUSTMENT', 'Unknown', 'Gross') picking up all the rows
+
+2) ('DEDUCTIBLE', 'SIR') picking only latest valid deductible  - AND DCOM.MMCOM_EFFECTIVE_TO_DATE > TO_DATE(FPCOV.COVERAGEEFFECTIVEDATE_ID,'YYYYMMDD')
+
+--Aparna Bellur 12/19/2017
+
+Added COVEREDRISKEXTENSION_ID to the component staging data - to enable the look up of the Risk Practice state, Risk Speciality 
+
+-Aparna Bellur 12/20/2017
+
+Added POLICYEXTENSION_ID to the component staging data - to enable the look up of policy cancel type and reason look up
+
+--Aparna Bellur 12/21/2017
+
+Added the below to drop unaccepted TAIL coverages for - INC0027023
+
+INNER JOIN DIM_COVERAGEEXTENSION CX
+ON FPCOV.COVERAGEEXTENSION_ID = CX.COVERAGEEXTENSION_ID
+AND CX.MMCOV_COVERAGE_STATUS NOT IN ( 'OFFER','DECLINE')
+
+--Aparna Bellur 04/27/2018
+
+REF email : - RE: MAG- 2017.1.0 - 20180529 - Delivery Notification (Contains Delivery Issues 192126) (PART 2 of 2:  includes ODB)
+
+Added changes to use the MMCOV_TOTAL_LIMIT  from dim_coverageextension tabel for the limits.
+
+--Aparna Bellur 06/07/2018
+
+
+
+</note>
+      <xloc>20</xloc>
+      <yloc>680</yloc>
+      <width>1357</width>
+      <heigth>2490</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+  </notepads>
+  <connection>
+    <name>S_OLAP_PROD_DRA_17</name>
+    <server>172.18.1.114</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>DRA17PRD</database>
+    <port>1521</port>
+    <username>magdwr</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb1db962ce80a0de</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>1521</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>STAGE_OLAP_PROD_DRA_17</name>
+    <server>172.18.1.114</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>DRA17PRD</database>
+    <port>1521</port>
+    <username>magstage</username>
+    <password>Encrypted 2be98afc86aa7f2e4a618a963ca93a8df</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>1521</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <order>
+    <hop>
+      <from>CURRENT</from>
+      <to>STG_CURR_COV</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>CURRENT_COMP</from>
+      <to>STG_COMP_COV</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>LEGACY</from>
+      <to>STG_LEGACY_CURR_COV</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>LEGACY_COMP</from>
+      <to>STG_LEGACY_COMP_COV</to>
+      <enabled>N</enabled>
+    </hop>
+  </order>
+  <step>
+    <name>CURRENT</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MAGSTAGE</connection>
+    <sql>SELECT *
+FROM VW_STG_CURR_COV</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>527</xloc>
+      <yloc>199</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>CURRENT_COMP</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MAGSTAGE</connection>
+    <sql>SELECT *
+FROM VW_STG_COMP_COV</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>533</xloc>
+      <yloc>329</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>LEGACY</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>S_OLAP_PROD_DRA_17</connection>
+    <sql>SELECT DISTINCT 
+  DP.POLICY_ID AS CURR_POL_ID,
+  VFC.FIRSTINSURED_ID AS CURR_FI_ID,
+  VFC.COVEREDRISK_ID AS CURR_COVRSK_ID,
+  VFC.COVERAGE_ID AS CURR_COVG_ID,
+  VFC.MONTH_ID AS CURR_MONTH_ID,
+  VFC.POLICYEFFECTIVEDATE_ID AS CURR_POLEFFDT_ID,
+  VFC.POLICYEXPIRATIONDATE_ID AS CURR_POLEXPDT_ID,
+  DC.COV_TYPE AS CURR_COV_TYP,
+  DC.COV_NAME AS CURR_COV_NAME,
+  DCRX.MMRSK_INC_LIMIT AS CGL_LIMIT,
+  DCRX.MMRSK_AGG_LIMIT AS CGL_AGG
+FROM VFACT_CLAIM VFC
+INNER JOIN DIM_POLICY DP
+ON DP.POLICY_ID = VFC.POLICY_ID
+INNER JOIN DIM_POLICYEXTENSION DPX
+ON VFC.POLICYEXTENSION_ID = DPX.POLICYEXTENSION_ID
+INNER JOIN DIM_COVERAGE DC
+ON DC.COVERAGE_ID = VFC.COVERAGE_ID
+INNER JOIN DIM_COVERAGEEXTENSION DCX
+ON DCX.COVERAGEEXTENSION_ID = VFC.COVERAGEEXTENSION_ID
+INNER JOIN DIM_COVEREDRISKEXTENSION DCRX
+ON DCRX.COVEREDRISKEXTENSION_ID    = VFC.COVEREDRISKEXTENSION_ID
+WHERE 
+--VFC.COVEREDRISKEXTENSION_ID IN
+--  (SELECT DIM_COVEREDRISKEXTENSION.COVEREDRISKEXTENSION_ID
+--  FROM DIM_COVEREDRISKEXTENSION
+--  WHERE 
+--  DIM_COVEREDRISKEXTENSION.MMRSK_CHAR1 NOT  IN ('DED', 'SR')
+--  )
+--AND 
+--VFC.MONTH_ID   = 20160801
+--AND 
+VFC.POLICY_ID IN
+  (SELECT DIM_POLICY.POLICY_ID
+  FROM DIM_POLICY
+  WHERE (DIM_POLICY.POL_POLICYNUMBER LIKE 'HPL%')
+  OR (DIM_POLICY.POL_POLICYNUMBER LIKE 'HLP%')
+  OR (DIM_POLICY.POL_POLICYNUMBER LIKE 'HUL%')
+  OR (DIM_POLICY.POL_POLICYNUMBER LIKE 'HXL%')
+  )
+--AND VFC.FIRSTINSURED_ID IN
+--  (SELECT DIM_LEGALENTITY.LEGALENTITY_ID
+--  FROM DIM_LEGALENTITY
+--  WHERE DIM_LEGALENTITY.LENTY_ROLE = 'INSURED'
+--  AND DIM_LEGALENTITY.LENTY_TYPE   = 'CLMINSURED'
+--  )
+ORDER BY DP.POLICY_ID,  VFC.COVEREDRISK_ID,  DC.COV_TYPE</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>534</xloc>
+      <yloc>468</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>LEGACY_COMP</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>S_OLAP_PROD_DRA_17</connection>
+    <sql>SELECT DISTINCT 
+  DP.POLICY_ID     AS COMP_POL_ID,
+  VFC.FIRSTINSURED_ID            AS COMP_FI_ID,
+  VFC.COVEREDRISK_ID             AS COMP_COVRSK_ID,
+  VFC.COVERAGE_ID                AS COMP_COVG_ID,
+  VFC.MONTH_ID                   AS COMP_MONTH_ID,
+  VFC.POLICYEFFECTIVEDATE_ID     AS COMP_POLEFFDT_ID,
+  VFC.POLICYEXPIRATIONDATE_ID    AS COMP_POLEXPDT_ID,
+  DC.COV_TYPE                    AS COMP_COV_TYP,
+  DC.COV_NAME                    AS COMP_COV_NAME,
+  DCRX.MMRSK_CHAR1               AS CGL_COMPONENT_TYP,
+  DCX.MMCOV_DEDUCTIBLE_TYPE_DESC AS CGL_IND_EXP_BOTH,
+  DD.COV_DEDUCTIBLE1     AS COMP_VALUE,
+  DD.COV_DEDUCTIBLE2 AS COMP_AGG_VALUE
+
+FROM VFACT_CLAIM VFC
+INNER JOIN DIM_POLICY DP
+ON DP.POLICY_ID = VFC.POLICY_ID
+INNER JOIN DIM_POLICYEXTENSION DPX
+ON VFC.POLICYEXTENSION_ID = DPX.POLICYEXTENSION_ID
+INNER JOIN DIM_COVERAGE DC
+ON DC.COVERAGE_ID = VFC.COVERAGE_ID
+INNER JOIN DIM_COVERAGEEXTENSION DCX
+ON DCX.COVERAGEEXTENSION_ID = VFC.COVERAGEEXTENSION_ID
+INNER JOIN DIM_COVEREDRISKEXTENSION DCRX
+ON DCRX.COVEREDRISKEXTENSION_ID = VFC.COVEREDRISKEXTENSION_ID
+INNER JOIN DIM_DEDUCTIBLE DD
+ON VFC.DEDUCTIBLE_ID               = DD.DEDUCTIBLE_ID
+WHERE VFC.COVEREDRISKEXTENSION_ID IN
+  (SELECT DIM_COVEREDRISKEXTENSION.COVEREDRISKEXTENSION_ID
+  FROM DIM_COVEREDRISKEXTENSION
+  WHERE DIM_COVEREDRISKEXTENSION.MMRSK_CHAR1 IN ('Ded', 'SR')
+  )
+AND VFC.POLICY_ID IN
+  (SELECT DIM_POLICY.POLICY_ID
+  FROM DIM_POLICY
+  WHERE (DIM_POLICY.POL_POLICYNUMBER LIKE 'HPL%')
+  OR (DIM_POLICY.POL_POLICYNUMBER LIKE 'HLP%')
+  OR (DIM_POLICY.POL_POLICYNUMBER LIKE 'HUL%')
+  OR (DIM_POLICY.POL_POLICYNUMBER LIKE 'HXL%')
+  )
+--AND VFC.CLAIM_NO = '46600'  
+ORDER BY COMP_POL_ID,
+  COMP_COVRSK_ID,
+  COMP_COV_TYP</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>536</xloc>
+      <yloc>609</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>STG_COMP_COV</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MAGSTAGE</connection>
+    <schema/>
+    <table>STG_COMP_COV</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>COMP_POL_ID</column_name>
+        <stream_name>COMP_POL_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_FI_ID</column_name>
+        <stream_name>COMP_FI_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_COVRSK_ID</column_name>
+        <stream_name>COMP_COVRSK_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_COVG_ID</column_name>
+        <stream_name>COMP_COVG_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_COMP_ID</column_name>
+        <stream_name>COMP_COMP_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_MONTH_ID</column_name>
+        <stream_name>COMP_MONTH_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_POLEFFDT_ID</column_name>
+        <stream_name>COMP_POLEFFDT_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_POLEXPDT_ID</column_name>
+        <stream_name>COMP_POLEXPDT_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_COV_EXT_ID</column_name>
+        <stream_name>COMP_COV_EXT_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_COV_CLAS_EXT_ID</column_name>
+        <stream_name>COMP_COV_CLAS_EXT_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_COVEFFDT_ID</column_name>
+        <stream_name>COMP_COVEFFDT_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_COVEXPDT_ID</column_name>
+        <stream_name>COMP_COVEXPDT_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_COV_TYP</column_name>
+        <stream_name>COMP_COV_TYP</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_COV_NAME</column_name>
+        <stream_name>COMP_COV_NAME</stream_name>
+      </field>
+      <field>
+        <column_name>CGL_COMPONENT_TYP</column_name>
+        <stream_name>CGL_COMPONENT_TYP</stream_name>
+      </field>
+      <field>
+        <column_name>CGL_IND_EXP_BOTH</column_name>
+        <stream_name>CGL_IND_EXP_BOTH</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_VALUE</column_name>
+        <stream_name>COMP_VALUE</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_AGG_VALUE</column_name>
+        <stream_name>COMP_AGG_VALUE</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_COV_LIMIT</column_name>
+        <stream_name>COMP_LIMIT</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_COV_AGG</column_name>
+        <stream_name>COMP_AGG</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_COVRSKEXTN_ID</column_name>
+        <stream_name>COMP_COVRSKEXTN_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_POLEXTN_ID</column_name>
+        <stream_name>COMP_POLEXTN_ID</stream_name>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>684</xloc>
+      <yloc>328</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>STG_CURR_COV</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>MAGSTAGE</connection>
+    <schema/>
+    <table>STG_CURR_COV</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>CURR_POL_ID</column_name>
+        <stream_name>CURR_POL_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CURR_FI_ID</column_name>
+        <stream_name>CURR_FI_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CURR_COVRSK_ID</column_name>
+        <stream_name>CURR_COVRSK_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CURR_COVG_ID</column_name>
+        <stream_name>CURR_COVG_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CURR_COMP_ID</column_name>
+        <stream_name>CURR_COMP_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CURR_MONTH_ID</column_name>
+        <stream_name>CURR_MONTH_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CURR_POLEFFDT_ID</column_name>
+        <stream_name>CURR_POLEFFDT_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CURR_POLEXPDT_ID</column_name>
+        <stream_name>CURR_POLEXPDT_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CURR_COV_EXT_ID</column_name>
+        <stream_name>CURR_COV_EXT_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CURR_COV_CLAS_EXT_ID</column_name>
+        <stream_name>CURR_COV_CLAS_EXT_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CURR_COVEFFDT_ID</column_name>
+        <stream_name>CURR_COVEFFDT_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CURR_COVEXPDT_ID</column_name>
+        <stream_name>CURR_COVEXPDT_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CURR_COV_TYP</column_name>
+        <stream_name>CURR_COV_TYP</stream_name>
+      </field>
+      <field>
+        <column_name>CURR_COV_NAME</column_name>
+        <stream_name>CURR_COV_NAME</stream_name>
+      </field>
+      <field>
+        <column_name>CURR_COMPONENT_TYP</column_name>
+        <stream_name>CURR_COMPONENT_TYP</stream_name>
+      </field>
+      <field>
+        <column_name>CURR_IND_EXP_BOTH</column_name>
+        <stream_name>CURR_IND_EXP_BOTH</stream_name>
+      </field>
+      <field>
+        <column_name>CGL_LIMIT</column_name>
+        <stream_name>CGL_LIMIT</stream_name>
+      </field>
+      <field>
+        <column_name>CGL_AGG</column_name>
+        <stream_name>CGL_AGG</stream_name>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>683</xloc>
+      <yloc>199</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>STG_LEGACY_COMP_COV</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>STAGE_OLAP_PROD_DRA_17</connection>
+    <schema/>
+    <table>STG_COMP_COV</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>COMP_POL_ID</column_name>
+        <stream_name>COMP_POL_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_FI_ID</column_name>
+        <stream_name>COMP_FI_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_COVRSK_ID</column_name>
+        <stream_name>COMP_COVRSK_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_COVG_ID</column_name>
+        <stream_name>COMP_COVG_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_MONTH_ID</column_name>
+        <stream_name>COMP_MONTH_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_POLEFFDT_ID</column_name>
+        <stream_name>COMP_POLEFFDT_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_POLEXPDT_ID</column_name>
+        <stream_name>COMP_POLEXPDT_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_COV_TYP</column_name>
+        <stream_name>COMP_COV_TYP</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_COV_NAME</column_name>
+        <stream_name>COMP_COV_NAME</stream_name>
+      </field>
+      <field>
+        <column_name>CGL_COMPONENT_TYP</column_name>
+        <stream_name>CGL_COMPONENT_TYP</stream_name>
+      </field>
+      <field>
+        <column_name>CGL_IND_EXP_BOTH</column_name>
+        <stream_name>CGL_IND_EXP_BOTH</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_VALUE</column_name>
+        <stream_name>COMP_VALUE</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_AGG_VALUE</column_name>
+        <stream_name>COMP_AGG_VALUE</stream_name>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>698</xloc>
+      <yloc>603</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>STG_LEGACY_CURR_COV</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>STAGE_OLAP_PROD_DRA_17</connection>
+    <schema/>
+    <table>STG_CURR_COV</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>CURR_POL_ID</column_name>
+        <stream_name>CURR_POL_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CURR_FI_ID</column_name>
+        <stream_name>CURR_FI_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CURR_COVRSK_ID</column_name>
+        <stream_name>CURR_COVRSK_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CURR_COVG_ID</column_name>
+        <stream_name>CURR_COVG_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CURR_MONTH_ID</column_name>
+        <stream_name>CURR_MONTH_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CURR_POLEFFDT_ID</column_name>
+        <stream_name>CURR_POLEFFDT_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CURR_POLEXPDT_ID</column_name>
+        <stream_name>CURR_POLEXPDT_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CURR_COV_TYP</column_name>
+        <stream_name>CURR_COV_TYP</stream_name>
+      </field>
+      <field>
+        <column_name>CURR_COV_NAME</column_name>
+        <stream_name>CURR_COV_NAME</stream_name>
+      </field>
+      <field>
+        <column_name>CGL_LIMIT</column_name>
+        <stream_name>CGL_LIMIT</stream_name>
+      </field>
+      <field>
+        <column_name>CGL_AGG</column_name>
+        <stream_name>CGL_AGG</stream_name>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>692</xloc>
+      <yloc>467</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step_error_handling>
+  </step_error_handling>
+  <slave-step-copy-partition-distribution>
+  </slave-step-copy-partition-distribution>
+  <slave_transformation>N</slave_transformation>
+</transformation>

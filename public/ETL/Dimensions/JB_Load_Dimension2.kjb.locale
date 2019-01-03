@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:35 EST 2019
+file.title=JB_Load_Dimension2
+description=Put some dimension load transformations in this job to prevent getting Oracle snapshot too old error.
+title=JB_Load_Dimension2
+file.description=Put some dimension load transformations in this job to prevent getting Oracle snapshot too old error.

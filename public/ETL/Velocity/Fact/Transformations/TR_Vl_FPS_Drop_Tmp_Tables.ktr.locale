@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:25 EST 2019
+file.title=TR_Vl_FPS_Drop_Tmp_Tables
+description=Drop the temp tables created by last ETL run.
+title=TR_Vl_FPS_Drop_Tmp_Tables
+file.description=Drop the temp tables created by last ETL run.

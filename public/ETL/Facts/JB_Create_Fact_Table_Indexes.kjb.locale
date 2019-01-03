@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:44 EST 2019
+file.title=JB_Create_Fact_Table_Indexes
+description=Job to recreate indexes on Fact summary tables.
+title=JB_Create_Fact_Table_Indexes
+file.description=Job to recreate indexes on Fact summary tables.

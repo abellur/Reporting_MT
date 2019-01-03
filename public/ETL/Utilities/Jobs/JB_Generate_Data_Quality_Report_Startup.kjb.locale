@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:16 EST 2019
+file.title=JB_Generate_Data_Quality_Report_Startup
+description=This job can automatic output the data quality result in Excel file according to the scripts in the Access.
+title=JB_Generate_Data_Quality_Report_Startup
+file.description=This job can automatic output the data quality result in Excel file according to the scripts in the Access.

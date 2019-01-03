@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:36 EST 2019
+file.title=JB_Load_Pre_DIMCLAIMTRANSACTIONEXTENSION
+description=Prepare the load for DIM_CLAIMTRANSACTIONEXTENSION table.
+title=JB_Load_Pre_DIMCLAIMTRANSACTIONEXTENSION
+file.description=Prepare the load for DIM_CLAIMTRANSACTIONEXTENSION table.

@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:59 EST 2019
+file.title=TR_Copy_Convert_Entity_To_STG_Entity
+description=Copy data from Stg_Entity_Convert to Stg_Entity
+title=TR_Copy_Convert_Entity_To_STG_Entity
+file.description=Copy data from Stg_Entity_Convert to Stg_Entity

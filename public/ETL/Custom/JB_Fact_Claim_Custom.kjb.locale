@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:25 EST 2019
+file.title=JB_Fact_Claim_Custom
+description=This job is for custom processing ETL for processing at the end of the JB_Fact_Claim job.
+title=JB_Fact_Claim_Custom
+file.description=This job is for custom processing ETL for processing at the end of the JB_Fact_Claim job.

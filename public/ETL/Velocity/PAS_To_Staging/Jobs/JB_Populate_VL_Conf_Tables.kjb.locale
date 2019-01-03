@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:27 EST 2019
+file.title=JB_Populate_VL_Conf_Tables
+description=Job to load data to VL_CONF tables.
+title=JB_Populate_VL_Conf_Tables
+file.description=Job to load data to VL_CONF tables.

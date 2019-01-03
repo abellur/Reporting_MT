@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:48 EST 2019
+file.title=SBJ_FS_Populate_Fact_FinancialSummary
+description=Job to populate data to Fact_Financialsummary table.
+title=SBJ_FS_Populate_Fact_FinancialSummary
+file.description=Job to populate data to Fact_Financialsummary table.

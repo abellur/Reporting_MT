@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:29 EST 2019
+file.title=TR_Populate_VL_Conf_Webservice
+description=Transformation to load data to VL_CONF_WEBSERVICE table.
+title=TR_Populate_VL_Conf_Webservice
+file.description=Transformation to load data to VL_CONF_WEBSERVICE table.

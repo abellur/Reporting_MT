@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:58 EST 2019
+file.title=jb_load_tmp_clm_mon_sum_temp2
+description=Populate data for claim insured, claimant and loss location.
+title=jb_load_tmp_clm_mon_sum_temp2
+file.description=Populate data for claim insured, claimant and loss location.

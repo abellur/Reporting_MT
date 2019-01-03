@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:25 EST 2019
+file.title=JB_Vl_Load_Fact_PolicySnapshot
+description=Load Velocity PAS data to policy snapshot fact table for all policy term data.
+title=JB_Vl_Load_Fact_PolicySnapshot
+file.description=Load Velocity PAS data to policy snapshot fact table for all policy term data.

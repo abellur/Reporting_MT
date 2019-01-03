@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:49 EST 2019
+file.title=SJB_Month_Claim_Summary_OSR
+description=Job to populate data for Fact_Claim_OSR table
+title=SJB_Month_Claim_Summary_OSR
+file.description=Job to populate data for Fact_Claim_OSR table

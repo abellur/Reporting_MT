@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:51 EST 2019
+file.title=TR_FACT_FINANCIALSUMMARY
+description=Loads the financial summary records from the financial transactions
+title=TR_FACT_FINANCIALSUMMARY
+file.description=Loads the financial summary records from the financial transactions

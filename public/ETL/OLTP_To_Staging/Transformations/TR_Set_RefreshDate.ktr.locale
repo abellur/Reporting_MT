@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:15 EST 2019
+file.title=TR_Set_RefreshDate
+description=Insert refresh date information to DW_REFRESH_DATE table.
+title=TR_Set_RefreshDate
+file.description=Insert refresh date information to DW_REFRESH_DATE table.

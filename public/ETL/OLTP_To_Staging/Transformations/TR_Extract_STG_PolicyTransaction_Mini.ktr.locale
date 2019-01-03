@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:11 EST 2019
+file.title=TR_Extract_STG_PolicyTransaction_Mini
+description=Populate dummy records to STG_PolicyTransaction table for Mini Policy.
+title=TR_Extract_STG_PolicyTransaction_Mini
+file.description=Populate dummy records to STG_PolicyTransaction table for Mini Policy.

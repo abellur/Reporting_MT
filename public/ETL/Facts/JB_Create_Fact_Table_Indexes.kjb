@@ -1,0 +1,1919 @@
+<job>
+  <name>JB_Create_Fact_Table_Indexes</name>
+  <description>Job to recreate indexes on Fact summary tables.</description>
+  <extended_description>Date         By     Description
+08/16/2015   Jma    #187796. Update index creation script to create bitmap index for MAG since they have Oracle Enterprise license.</extended_description>
+  <job_version/>
+  <job_status>0</job_status>
+  <directory>/public/ETL/Facts</directory>
+  <created_user/>
+  <created_date>2014/06/23 13:18:06.747</created_date>
+  <modified_user>joe</modified_user>
+  <modified_date>2017/08/16 15:28:37.521</modified_date>
+  <parameters>
+    </parameters>
+  <connection>
+    <name>4SBI_DataWarehouse</name>
+    <server>${G_DW_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_DW_DB_NAME}</database>
+    <port>${G_DW_DB_PORT}</port>
+    <username>${G_DW_DB_USERNAME}</username>
+    <password>${G_DW_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_DW_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_DW_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_DW_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>DW_Log_Link</name>
+    <server>${G_LOG_DB_HOST}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${G_LOG_DB_NAME}</database>
+    <port>${G_LOG_DB_PORT}</port>
+    <username>${G_LOG_DB_USERNAME}</username>
+    <password>${G_LOG_DB_PWD}</password>
+    <servername/>
+    <data_tablespace>${G_LOG_DB_DATA}</data_tablespace>
+    <index_tablespace>${G_LOG_DB_INDEX}</index_tablespace>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${G_LOG_DB_PORT}</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <slaveservers>
+    <slaveserver>
+      <name>4Sight BI - PDI Server</name>
+      <hostname>10.0.0.21</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>joe</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Carte 1</name>
+      <hostname>localhost</hostname>
+      <port>9081</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>DI Server</name>
+      <hostname>localhost</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>joe</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_DEV</name>
+      <hostname>magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>shota</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_SERVER</name>
+      <hostname>http://magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>shota</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_ETL_TEST</name>
+      <hostname>magspentahotest</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO</name>
+      <hostname>magspentaho</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO_BTS</name>
+      <hostname>129.144.25.104</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>MM_PENTAHO_DEV</name>
+      <hostname>magspentahodev</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Master</name>
+      <hostname>localhost</hostname>
+      <port>8081</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SERVER1</name>
+      <hostname>LOCALHOST</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SLAVE ONE</name>
+      <hostname>192.168.2.101</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4a418bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>SLAVE TWO</name>
+      <hostname>192.168.2.101</hostname>
+      <port>3306</port>
+      <webAppName/>
+      <username>root</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave1</name>
+      <hostname>localhost</hostname>
+      <port>8082</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave2</name>
+      <hostname>localhost</hostname>
+      <port>8083</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>Slave3</name>
+      <hostname>localhost</hostname>
+      <port>8084</port>
+      <webAppName/>
+      <username>cluster</username>
+      <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>local DIS</name>
+      <hostname>localhost</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>N</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+    <slaveserver>
+      <name>magspentahodev</name>
+      <hostname>magspentahodev</hostname>
+      <port>9080</port>
+      <webAppName>pentaho-di</webAppName>
+      <username>admin</username>
+      <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+      <proxy_hostname/>
+      <proxy_port/>
+      <non_proxy_hosts/>
+      <master>Y</master>
+      <sslMode>N</sslMode>
+    </slaveserver>
+  </slaveservers>
+  <job-log-table>
+    <connection>DW_Log_Link</connection>
+    <schema/>
+    <table>${G_DB_JOB_LOG_TABLE}</table>
+    <size_limit_lines/>
+    <interval/>
+    <timeout_days/>
+    <field>
+      <id>ID_JOB</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>JOBNAME</name>
+    </field>
+    <field>
+      <id>STATUS</id>
+      <enabled>Y</enabled>
+      <name>STATUS</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>STARTDATE</id>
+      <enabled>Y</enabled>
+      <name>STARTDATE</name>
+    </field>
+    <field>
+      <id>ENDDATE</id>
+      <enabled>Y</enabled>
+      <name>ENDDATE</name>
+    </field>
+    <field>
+      <id>LOGDATE</id>
+      <enabled>Y</enabled>
+      <name>LOGDATE</name>
+    </field>
+    <field>
+      <id>DEPDATE</id>
+      <enabled>Y</enabled>
+      <name>DEPDATE</name>
+    </field>
+    <field>
+      <id>REPLAYDATE</id>
+      <enabled>Y</enabled>
+      <name>REPLAYDATE</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>Y</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>EXECUTING_SERVER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_SERVER</name>
+    </field>
+    <field>
+      <id>EXECUTING_USER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_USER</name>
+    </field>
+    <field>
+      <id>START_JOB_ENTRY</id>
+      <enabled>N</enabled>
+      <name>START_JOB_ENTRY</name>
+    </field>
+    <field>
+      <id>CLIENT</id>
+      <enabled>N</enabled>
+      <name>CLIENT</name>
+    </field>
+  </job-log-table>
+  <jobentry-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>TRANSNAME</name>
+    </field>
+    <field>
+      <id>JOBENTRYNAME</id>
+      <enabled>Y</enabled>
+      <name>STEPNAME</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>RESULT</id>
+      <enabled>Y</enabled>
+      <name>RESULT</name>
+    </field>
+    <field>
+      <id>NR_RESULT_ROWS</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_ROWS</name>
+    </field>
+    <field>
+      <id>NR_RESULT_FILES</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_FILES</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>N</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>COPY_NR</id>
+      <enabled>N</enabled>
+      <name>COPY_NR</name>
+    </field>
+  </jobentry-log-table>
+  <channel-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>LOGGING_OBJECT_TYPE</id>
+      <enabled>Y</enabled>
+      <name>LOGGING_OBJECT_TYPE</name>
+    </field>
+    <field>
+      <id>OBJECT_NAME</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_NAME</name>
+    </field>
+    <field>
+      <id>OBJECT_COPY</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_COPY</name>
+    </field>
+    <field>
+      <id>REPOSITORY_DIRECTORY</id>
+      <enabled>Y</enabled>
+      <name>REPOSITORY_DIRECTORY</name>
+    </field>
+    <field>
+      <id>FILENAME</id>
+      <enabled>Y</enabled>
+      <name>FILENAME</name>
+    </field>
+    <field>
+      <id>OBJECT_ID</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_ID</name>
+    </field>
+    <field>
+      <id>OBJECT_REVISION</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_REVISION</name>
+    </field>
+    <field>
+      <id>PARENT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>PARENT_CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>ROOT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>ROOT_CHANNEL_ID</name>
+    </field>
+  </channel-log-table>
+  <checkpoint-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <max_nr_retries/>
+    <run_retry_period/>
+    <namespace_parameter/>
+    <save_parameters/>
+    <save_result_rows/>
+    <save_result_files/>
+    <field>
+      <id>ID_JOB_RUN</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB_RUN</name>
+    </field>
+    <field>
+      <id>ID_JOB</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>JOBNAME</name>
+    </field>
+    <field>
+      <id>NAMESPACE</id>
+      <enabled>Y</enabled>
+      <name>NAMESPACE</name>
+    </field>
+    <field>
+      <id>CHECKPOINT_NAME</id>
+      <enabled>Y</enabled>
+      <name>CHECKPOINT_NAME</name>
+    </field>
+    <field>
+      <id>CHECKPOINT_COPYNR</id>
+      <enabled>Y</enabled>
+      <name>CHECKPOINT_COPYNR</name>
+    </field>
+    <field>
+      <id>ATTEMPT_NR</id>
+      <enabled>Y</enabled>
+      <name>ATTEMPT_NR</name>
+    </field>
+    <field>
+      <id>JOB_RUN_START_DATE</id>
+      <enabled>Y</enabled>
+      <name>JOB_RUN_START_DATE</name>
+    </field>
+    <field>
+      <id>LOGDATE</id>
+      <enabled>Y</enabled>
+      <name>LOGDATE</name>
+    </field>
+    <field>
+      <id>RESULT_XML</id>
+      <enabled>Y</enabled>
+      <name>RESULT_XML</name>
+    </field>
+    <field>
+      <id>PARAMETER_XML</id>
+      <enabled>Y</enabled>
+      <name>PARAMETER_XML</name>
+    </field>
+  </checkpoint-log-table>
+  <pass_batchid>N</pass_batchid>
+  <shared_objects_file/>
+  <entries>
+    <entry>
+      <name>Check ONLY</name>
+      <description/>
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname/>
+      <variablename>${G_STAGING_LOAD_TYPE}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask/>
+      <comparevalue>ONLY,LAST</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>inlist</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>249</xloc>
+      <yloc>133</yloc>
+    </entry>
+    <entry>
+      <name>START</name>
+      <description/>
+      <type>SPECIAL</type>
+      <start>Y</start>
+      <dummy>N</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>105</xloc>
+      <yloc>133</yloc>
+    </entry>
+    <entry>
+      <name>No need to recreate indexes</name>
+      <description/>
+      <type>SUCCESS</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>249</xloc>
+      <yloc>234</yloc>
+    </entry>
+    <entry>
+      <name>Enable Constrains on Fact tables</name>
+      <description/>
+      <type>SQL</type>
+      <sql>DECLARE 
+CURSOR constraint_cur IS
+select table_name,
+       constraint_name,
+       constraint_type
+FROM   user_constraints
+WHERE  constraint_type = 'R'
+AND    table_name NOT LIKE 'VL_%';
+
+BEGIN
+  
+  -- Disable all foreign keys ...
+  FOR c1 IN constraint_cur LOOP
+    
+     EXECUTE IMMEDIATE ('alter table '|| c1.table_name || ' ENABLE CONSTRAINT '||c1.constraint_name);
+  END LOOP;
+
+END;</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>T</sendOneStatement>
+      <connection>4SBI_DataWarehouse</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>536</xloc>
+      <yloc>133</yloc>
+    </entry>
+    <entry>
+      <name>Create index</name>
+      <description/>
+      <type>SQL</type>
+      <sql>--Fact_Claim Table
+create bitmap index IN_FC_CLM_CLAIM_ID on FACT_CLAIM (CLAIM_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;    
+  
+create bitmap index IN_FC_CLM_COVERAGE_ID on FACT_CLAIM (COVERAGE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+  
+create bitmap index IN_FC_CLM_COVERAGEEXT_ID on FACT_CLAIM (COVERAGEEXTENSION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;    
+
+create bitmap index IN_FC_CLM_COVGEFFDATE_ID on FACT_CLAIM (COVERAGEEFFECTIVEDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;    
+
+create bitmap index IN_FC_CLM_COVGEXPDATE_ID on FACT_CLAIM (COVERAGEEXPIRATIONDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;     
+
+create bitmap index IN_FC_CLM_COVEREDRISK_ID on FACT_CLAIM (COVEREDRISK_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+  
+create bitmap index IN_FC_CLM_COVEREDRISKEXT_ID on FACT_CLAIM (COVEREDRISKEXTENSION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING; 
+
+create bitmap index IN_FC_CLM_COVEREDRISKLOC_ID on FACT_CLAIM (COVEREDRISKLOCATION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING; 
+
+create bitmap index IN_FC_CLM_ADJUSTER_ID on FACT_CLAIM (ADJUSTER_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;   
+
+create bitmap index IN_FC_CLM_CLAIMANT_ID on FACT_CLAIM (CLAIMANT_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+  
+create bitmap index IN_FC_CLM_UNDERWRITER_ID on FACT_CLAIM (UNDERWRITER_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING; 
+
+create bitmap index IN_FC_CLM_COMPANY_ID on FACT_CLAIM (COMPANY_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;   
+
+create bitmap index IN_FC_CLM_POLICY_ID on FACT_CLAIM (POLICY_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+  
+create bitmap index IN_FC_CLM_POLICYEXT_ID on FACT_CLAIM (POLICYEXTENSION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_CLM_POLICYEFF_ID on FACT_CLAIM (POLICYEFFECTIVEDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+  
+create bitmap index IN_FC_CLM_POLICYEXP_ID on FACT_CLAIM (POLICYEXPIRATIONDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+  
+create bitmap index IN_FC_CLM_PRODUCER_ID on FACT_CLAIM (PRODUCER_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;   
+
+create bitmap index IN_FC_CLM_TERRITORY_ID on FACT_CLAIM (TERRITORY_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+
+create bitmap index IN_FC_CLM_CLAIMEXT_ID on FACT_CLAIM (CLAIMEXTENSION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+  
+create bitmap index IN_FC_CLM_STATUS_ID on FACT_CLAIM (CLAIMSTATUS_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+
+create bitmap index IN_FC_CLM_LOSSLOCATION_ID on FACT_CLAIM (CLAIMLOSSLOCATION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;    
+  
+create bitmap index IN_FC_CLM_REPORTDATE_ID on FACT_CLAIM (DATEREPORTED_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;    
+
+create bitmap index IN_FC_CLM_LOSSDATE_ID on FACT_CLAIM (DATEOFLOSS_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;      
+  
+create bitmap index IN_FC_CLM_CLOSEDDATE_ID on FACT_CLAIM (CLOSEDDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;     
+  
+create bitmap index IN_FC_CLM_FIRSTINSURED_ID on FACT_CLAIM (FIRSTINSURED_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_CLM_LIMIT_ID on FACT_CLAIM (LIMIT_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+  
+create bitmap index IN_FC_CLM_CLMPART_ID1 on FACT_CLAIM (CLMPART_ID1)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS  
+  NOLOGGING;
+
+create bitmap index IN_FC_CLM_CLMPART_ID2 on FACT_CLAIM (CLMPART_ID2)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS  
+  NOLOGGING;
+  
+create bitmap index IN_FC_CLM_CLMPART_ID3 on FACT_CLAIM (CLMPART_ID3)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS  
+  NOLOGGING;   
+
+create bitmap index IN_FC_CLM_CLMPART_ID4 on FACT_CLAIM (CLMPART_ID4)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS  
+  NOLOGGING;   
+  
+create bitmap index IN_FC_CLM_CLMPART_ID5 on FACT_CLAIM (CLMPART_ID5)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS  
+  NOLOGGING;   
+
+create bitmap index IN_FC_CLM_CLMPART_ID6 on FACT_CLAIM (CLMPART_ID6)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS  
+  NOLOGGING;   
+
+create bitmap index IN_FC_CLM_CLMPART_ID7 on FACT_CLAIM (CLMPART_ID7)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS  
+  NOLOGGING;   
+
+create bitmap index IN_FC_CLM_CLMPART_ID8 on FACT_CLAIM (CLMPART_ID8)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS  
+  NOLOGGING;   
+
+create bitmap index IN_FC_CLM_CLMPART_ID9 on FACT_CLAIM (CLMPART_ID9)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS  
+  NOLOGGING;     
+
+create bitmap index IN_FC_CLM_CLMPART_ID10 on FACT_CLAIM (CLMPART_ID10)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS  
+  NOLOGGING;   
+  
+create bitmap index INC_FC_CLAIM_ID_MON_ID on FACT_CLAIM (CLAIMSUMMARY_ID, CLAIM_ID, MONTH_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS  
+  NOLOGGING;  
+
+create bitmap index IN_FC_CLAIM_UNIQUEID on FACT_CLAIM (CLAIM_UNIQUEID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS  
+  NOLOGGING;  
+
+--Fact_Claimtransaction Table
+
+create bitmap index IN_FC_CT_TRANSDATE_ID ON FACT_CLAIMTRANSACTION (TRANSACTIONDATE_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+  
+create bitmap index IN_FC_CT_ACCTDATE_ID ON FACT_CLAIMTRANSACTION (ACCOUNTINGDATE_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_CT_ADJUSTER_ID ON FACT_CLAIMTRANSACTION (ADJUSTER_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_CT_CLAIMANT_ID ON FACT_CLAIMTRANSACTION (CLAIMANT_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_CT_FIRSTINSD_ID ON FACT_CLAIMTRANSACTION (FIRSTINSURED_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_CT_PAYEE_ID ON FACT_CLAIMTRANSACTION (PAYEE_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+
+create bitmap index IN_FC_CT_CLAIM_ID ON FACT_CLAIMTRANSACTION (CLAIM_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+  
+create bitmap index IN_FC_CT_CLAIMEXT_ID ON FACT_CLAIMTRANSACTION (CLAIMEXTENSION_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+  
+create bitmap index IN_FC_CT_CLAIMSTATUS_ID ON FACT_CLAIMTRANSACTION (CLAIMSTATUS_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+
+create bitmap index IN_FC_CT_CLAIMLOSSLOC_ID ON FACT_CLAIMTRANSACTION (CLAIMLOSSLOCATION_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+      
+create bitmap index IN_FC_CT_POLICY_ID ON FACT_CLAIMTRANSACTION (POLICY_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_CT_POLICYEXT_ID ON FACT_CLAIMTRANSACTION (POLICYEXTENSION_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+
+create bitmap index IN_FC_CT_POLICYEFFDATE_ID ON FACT_CLAIMTRANSACTION (POLICYEFFECTIVEDATE_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+
+create bitmap index IN_FC_CT_POLICYEXPDATE_ID ON FACT_CLAIMTRANSACTION (POLICYEXPIRATIONDATE_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+
+create bitmap index IN_FC_CT_COVERAGE_ID ON FACT_CLAIMTRANSACTION (COVERAGE_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_CT_COVERAGEEXT_ID ON FACT_CLAIMTRANSACTION (COVERAGEEXTENSION_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_CT_LIMIT_ID ON FACT_CLAIMTRANSACTION (LIMIT_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_CT_DEDUCTIBLE_ID ON FACT_CLAIMTRANSACTION (DEDUCTIBLE_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_CT_COVEFFDATE_ID ON FACT_CLAIMTRANSACTION (COVERAGEEFFECTIVEDATE_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_CT_COVEXPDATE_ID ON FACT_CLAIMTRANSACTION (COVERAGEEXPIRATIONDATE_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_CT_CLASS_ID ON FACT_CLAIMTRANSACTION (CLASS_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_CT_CLOSEDATE_ID ON FACT_CLAIMTRANSACTION (CLOSEDDATE_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_CT_REPORTDATE_ID ON FACT_CLAIMTRANSACTION (DATEREPORTED_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_CT_LOSSDATE_ID ON FACT_CLAIMTRANSACTION (DATEOFLOSS_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_CT_CLAIMTRANSEXT_ID ON FACT_CLAIMTRANSACTION (CLAIMTRANSACTIONEXTENSION_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+  
+create bitmap index IN_FC_CT_LOSSCODE_ID ON FACT_CLAIMTRANSACTION (LOSSCODING_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+  
+create bitmap index IN_FC_CT_PRODUCER_ID ON FACT_CLAIMTRANSACTION (PRODUCER_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+  
+create bitmap index IN_FC_CT_COMPANY_ID ON FACT_CLAIMTRANSACTION (COMPANY_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+
+create bitmap index IN_FC_CT_RISK_ID ON FACT_CLAIMTRANSACTION (COVEREDRISK_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_CT_RISKEXT_ID ON FACT_CLAIMTRANSACTION (COVEREDRISKEXTENSION_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+
+create bitmap index IN_FC_CT_RISKLOC_ID ON FACT_CLAIMTRANSACTION (COVEREDRISKLOCATION_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;    
+
+create bitmap index IN_FC_CT_TERRITORY_ID ON FACT_CLAIMTRANSACTION (TERRITORY_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_CT_CLAIMTRANSTYPE_ID ON FACT_CLAIMTRANSACTION (CLAIMTRANSACTIONTYPE_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_CT_UNDERWRITER_ID ON FACT_CLAIMTRANSACTION (UNDERWRITER_ID) 
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index INC_FC_CT_CTXNUID_STATUSDATE on FACT_CLAIMTRANSACTION (CLAIMTRANSACTION_UNIQUEID, TRANSACTIONSTATUSDATE)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;    
+
+create bitmap index INC_FC_CT_CLMID_TXNID on fact_claimtransaction(claim_id,claimtransaction_id)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  nologging;  
+
+
+--Fact_Policycoverage Table
+
+create bitmap index IN_FC_COV_UNDERWRITER_ID on FACT_POLICYCOVERAGE (UNDERWRITER_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+  
+create bitmap index IN_FC_COV_PRODUCER_ID on FACT_POLICYCOVERAGE (PRODUCER_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;   
+
+create bitmap index IN_FC_COV_COMPANY_ID on FACT_POLICYCOVERAGE (COMPANY_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING; 
+  
+create bitmap index IN_FC_COV_FIRSTINSD_ID on FACT_POLICYCOVERAGE (FIRSTINSURED_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_COV_POLICYEXT_ID on FACT_POLICYCOVERAGE (POLICYEXTENSION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;   
+
+create bitmap index IN_FC_COV_POLICYEFFDATE_ID on FACT_POLICYCOVERAGE (POLICYEFFECTIVEDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;   
+
+create bitmap index IN_FC_COV_POLICYEXPDATE_ID on FACT_POLICYCOVERAGE (POLICYEXPIRATIONDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;   
+
+create bitmap index IN_FC_COV_POLICYSTATUS_ID on FACT_POLICYCOVERAGE (POLICYSTATUS_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING; 
+  
+create bitmap index IN_FC_COV_COVERAGE_ID on FACT_POLICYCOVERAGE (COVERAGE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING; 
+
+create bitmap index IN_FC_COV_COVEXT_ID on FACT_POLICYCOVERAGE (COVERAGEEXTENSION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING; 
+  
+create bitmap index IN_FC_COV_COVEFFDATE_ID on FACT_POLICYCOVERAGE (COVERAGEEFFECTIVEDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+  
+create bitmap index IN_FC_COV_COVEXPDATE_ID on FACT_POLICYCOVERAGE (COVERAGEEXPIRATIONDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+  
+create bitmap index IN_FC_COV_RISK_ID on FACT_POLICYCOVERAGE (COVEREDRISK_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING; 
+
+create bitmap index IN_FC_COV_RISKEXT_ID on FACT_POLICYCOVERAGE (COVEREDRISKEXTENSION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING; 
+  
+create bitmap index IN_FC_COV_RISKLOC_ID on FACT_POLICYCOVERAGE (COVEREDRISKLOCATION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;   
+
+create bitmap index IN_FC_COV_TERRITORY_ID on FACT_POLICYCOVERAGE (TERRITORY_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING; 
+
+create bitmap index IN_FC_COV_LIMIT_ID on FACT_POLICYCOVERAGE (LIMIT_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+
+create bitmap index IN_FC_COV_DEDUCTIBLE_ID on FACT_POLICYCOVERAGE (DEDUCTIBLE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+
+create bitmap index IN_FC_COV_CLASS_ID on FACT_POLICYCOVERAGE (CLASS_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+  
+create bitmap index INC_FC_COV_MON_POL_RISK_COV on FACT_POLICYCOVERAGE (MONTH_ID, POLICY_ID, COVEREDRISK_ID, coverage_id, COVERAGEEXTENSION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+
+create bitmap index IN_FC_COV_COMPONENT_ID on FACT_POLICYCOVERAGE (COMPONENT_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+
+create bitmap index IN_FC_COV_OTHERADJ_ID on FACT_POLICYCOVERAGE (OTHERADJUSTMENT_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING; 
+  
+-- Fact_Policy Table
+
+create bitmap index IN_FC_POL_MONTH_ID on FACT_POLICY (MONTH_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING; 
+
+create bitmap index IN_FC_POL_UNDERWRITER_ID on FACT_POLICY (UNDERWRITER_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;     
+
+create bitmap index IN_FC_POL_PRODUCER_ID on FACT_POLICY (PRODUCER_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING; 
+
+create bitmap index IN_FC_POL_COMPANY_ID on FACT_POLICY (COMPANY_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING; 
+
+create bitmap index IN_FC_POL_FIRSTINSD_ID on FACT_POLICY (FIRSTINSURED_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING; 
+  
+create bitmap index IN_FC_POL_POLICY_ID on FACT_POLICY (POLICY_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;   
+
+create bitmap index IN_FC_POL_POLICYEXT_ID on FACT_POLICY (POLICYEXTENSION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;   
+
+create bitmap index IN_FC_POL_POLICYEFFDATE_ID on FACT_POLICY (POLICYEFFECTIVEDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;   
+
+create bitmap index IN_FC_POL_POLICYEXPDATE_ID on FACT_POLICY (POLICYEXPIRATIONDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;     
+  
+create bitmap index IN_FC_POL_POLICYSTATUS_ID on FACT_POLICY (POLICYSTATUS_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;   
+    
+create bitmap index IN_FC_POL_TERRITORY_ID on FACT_POLICY (TERRITORY_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING; 
+
+--Fact_Policytransaction Table
+
+create bitmap index IN_FC_PT_TRANS_ACCTDATE_ID on FACT_POLICYTRANSACTION (ACCOUNTINGDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+ 
+create bitmap index IN_FC_PT_TRANS_EFFDATE_ID on FACT_POLICYTRANSACTION (EFFECTIVEDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_PT_TRANS_EXPDATE_ID on FACT_POLICYTRANSACTION (EXPIRATIONDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+  
+create bitmap index IN_FC_PT_FIRSTINSURED_ID on FACT_POLICYTRANSACTION (FIRSTINSURED_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;    
+
+create bitmap index IN_FC_PT_PRODUCER_ID on FACT_POLICYTRANSACTION (PRODUCER_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;     
+  
+create bitmap index IN_FC_PT_COMPANY_ID on FACT_POLICYTRANSACTION (COMPANY_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;   
+  
+create bitmap index IN_FC_PT_POLICY_ID on FACT_POLICYTRANSACTION (POLICY_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;      
+  
+create bitmap index IN_FC_PT_POLEXT_ID on FACT_POLICYTRANSACTION (POLICYEXTENSION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;     
+
+create bitmap index IN_FC_PT_POLICYEFFDATE_ID on FACT_POLICYTRANSACTION (POLICYEFFECTIVEDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;     
+
+create bitmap index IN_FC_PT_POLICYEXPDATE_ID on FACT_POLICYTRANSACTION (POLICYEXPIRATIONDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;     
+
+create bitmap index IN_FC_PT_COVERAGE_ID on FACT_POLICYTRANSACTION (COVERAGE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+  
+create bitmap index IN_FC_PT_COVERAGEEXT_ID on FACT_POLICYTRANSACTION (COVERAGEEXTENSION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;    
+
+create bitmap index IN_FC_PT_COVERAGEEFFDATE_ID on FACT_POLICYTRANSACTION (COVERAGEEFFECTIVEDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;   
+
+create bitmap index IN_FC_PT_COVERAGEEXPDATE_ID on FACT_POLICYTRANSACTION (COVERAGEEXPIRATIONDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;     
+  
+create bitmap index IN_FC_PT_RISK_ID on FACT_POLICYTRANSACTION (COVEREDRISK_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;     
+
+create bitmap index IN_FC_PT_RISKEXT_ID on FACT_POLICYTRANSACTION (COVEREDRISKEXTENSION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;       
+
+create bitmap index IN_FC_PT_RISKLOC_ID on FACT_POLICYTRANSACTION (COVEREDRISKLOCATION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING; 
+
+create bitmap index IN_FC_PT_POLTRANSEXT_ID on FACT_POLICYTRANSACTION (POLICYTRANSACTIONEXTENSION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;   
+  
+create bitmap index IN_FC_PT_TERRITORY_ID on FACT_POLICYTRANSACTION (TERRITORY_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;   
+
+create bitmap index IN_FC_PT_TRANSACTIONDATE_ID on FACT_POLICYTRANSACTION (TRANSACTIONDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;   
+
+create bitmap index IN_FC_PT_TRANSSEQUENCE on FACT_POLICYTRANSACTION (TRANSACTIONSEQUENCE)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;     
+
+create bitmap index IN_FC_PT_TRANSTYPE_ID on FACT_POLICYTRANSACTION (TRANSACTIONTYPE_ID)
+  tablespace ${G_DW_DB_INDEX}
+   pctfree 0 COMPUTE STATISTICS
+  NOLOGGING; 
+
+create bitmap index IN_FC_PT_UNDERWRITER_ID on FACT_POLICYTRANSACTION (UNDERWRITER_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;   
+
+create bitmap index IN_FC_PT_POLTRANSUNIQ_ID on FACT_POLICYTRANSACTION (POLICYTRANSACTION_UNIQUEID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_PT_OTHERADJUSTMENT_ID on FACT_POLICYTRANSACTION (OTHERADJUSTMENT_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+
+
+-- FACT_FINANCIALSUMMARY
+
+create bitmap index IN_FC_FS_TRANSCOMP_ID on FACT_FINANCIALSUMMARY(TRANSACTIONISSUINGCOMPANY_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+
+create bitmap index IN_FC_FS_BILLINGCOMP_ID on FACT_FINANCIALSUMMARY(BILLINGCOMPANY_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+
+create bitmap index IN_FC_FS_POLICY_ID on FACT_FINANCIALSUMMARY(POLICY_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+
+create bitmap index IN_FC_FS_POLICYEXT_ID on FACT_FINANCIALSUMMARY(POLICYEXTENSION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_FS_POLICYEFFDATE_ID on FACT_FINANCIALSUMMARY(POLICYEFFECTIVEDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+  
+create bitmap index IN_FC_FS_POLICYEXPDATE_ID on FACT_FINANCIALSUMMARY(POLICYEXPIRATIONDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+    
+create bitmap index IN_FC_FS_BOOKEFFDATE_ID on FACT_FINANCIALSUMMARY(BOOKEDTERMEFFECTIVEDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;	
+
+create bitmap index IN_FC_FS_BOOKEXPDATE_ID on FACT_FINANCIALSUMMARY(BOOKEDTERMEXPIRATIONDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;	
+  
+create bitmap index IN_FC_FS_TERRITORY_ID on FACT_FINANCIALSUMMARY(TERRITORY_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;	
+    
+create bitmap index IN_FC_FS_COVERAGE_ID on FACT_FINANCIALSUMMARY(COVERAGE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;	
+
+create bitmap index IN_FC_FS_COVERAGEEXT_ID on FACT_FINANCIALSUMMARY(COVERAGEEXTENSION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;	
+
+create bitmap index IN_FC_FS_COVERAGEEFF_ID on FACT_FINANCIALSUMMARY(COVERAGEEFFECTIVEDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;	
+  
+create bitmap index IN_FC_FS_COVERAGEEXP_ID on FACT_FINANCIALSUMMARY(COVERAGEEXPIRATIONDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;	  
+
+create bitmap index IN_FC_FS_COVEREDRISK_ID on FACT_FINANCIALSUMMARY(PRIMARYRISK_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_FS_COVEREDRISKEXT_ID on FACT_FINANCIALSUMMARY(PRIMARYRISKEXTENSION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_FS_CLASS_ID on FACT_FINANCIALSUMMARY(CLASSIFICATION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_FS_CLAIM_ID on FACT_FINANCIALSUMMARY(CLAIM_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+    
+create bitmap index IN_FC_FS_FIRSTINSURED_ID on FACT_FINANCIALSUMMARY(FIRSTINSURED_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;	
+
+create bitmap index IN_FC_FS_UNDERWRITER_ID on FACT_FINANCIALSUMMARY(UNDERWRITER_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;	
+
+create bitmap index IN_FC_FS_PRODUCER_ID on FACT_FINANCIALSUMMARY(PRODUCER_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;	
+
+create bitmap index IN_FC_FS_ACCOUNTHOLDER_ID on FACT_FINANCIALSUMMARY(ACCOUNTHOLDER_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;	
+  
+create bitmap index IN_FC_FS_ACCOUNT_ID1 on FACT_FINANCIALSUMMARY(ACCOUNT1_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_FS_ACCOUNTEXT_ID1 on FACT_FINANCIALSUMMARY(ACCOUNT1EXTENSION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;  
+
+create bitmap index IN_FC_FS_SUBACCOUNT_ID on FACT_FINANCIALSUMMARY(SUBACCOUNT_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;	
+ 
+create bitmap index IN_FC_FS_FINGROUP_ID on FACT_FINANCIALSUMMARY(FINANCIALGROUP_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;	
+ 
+create bitmap index IN_FC_FS_FINTERM_ID on FACT_FINANCIALSUMMARY(FINANCIALTERMS_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING; 
+
+create bitmap index IN_FC_FS_INVOICE_ID on FACT_FINANCIALSUMMARY(INVOICE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING; 
+
+create bitmap index IN_FC_FS_ACCT_UNIQUEID on FACT_FINANCIALSUMMARY (ACCOUNT_UNIQUEID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING; 
+ 
+-- Fact_Financialtransaction
+
+create bitmap index IN_FC_FT_TRANS_EFFDATE_ID on FACT_FINANCIALTRANSACTION(TRANSACTIONEFFECTIVEDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING; 
+  
+create bitmap index IN_FC_FT_FIRSTINSURED_ID on FACT_FINANCIALTRANSACTION (FIRSTINSURED_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;    
+
+create bitmap index IN_FC_FT_PRODUCER_ID on FACT_FINANCIALTRANSACTION (PRODUCER_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;     
+  
+create bitmap index IN_FC_FT_ISSCOMPANY_ID on FACT_FINANCIALTRANSACTION(TRANSACTIONISSUINGCOMPANY_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;   
+  
+create bitmap index IN_FC_FT_POLICY_ID on FACT_FINANCIALTRANSACTION (POLICY_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;      
+  
+create bitmap index IN_FC_FT_POLEXT_ID on FACT_FINANCIALTRANSACTION (POLICYEXTENSION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;     
+
+create bitmap index IN_FC_FT_POLICYEFFDATE_ID on FACT_FINANCIALTRANSACTION (POLICYEFFECTIVEDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;     
+
+create bitmap index IN_FC_FT_POLICYEXPDATE_ID on FACT_FINANCIALTRANSACTION (POLICYEXPIRATIONDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;     
+
+create bitmap index IN_FC_FT_COVERAGE_ID on FACT_FINANCIALTRANSACTION (COVERAGE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+  
+create bitmap index IN_FC_FT_COVERAGEEXT_ID on FACT_FINANCIALTRANSACTION (COVERAGEEXTENSION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;    
+
+create bitmap index IN_FC_FT_COVERAGEEFFDATE_ID on FACT_FINANCIALTRANSACTION (COVERAGEEFFECTIVEDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;   
+
+create bitmap index IN_FC_FT_COVERAGEEXPDATE_ID on FACT_FINANCIALTRANSACTION (COVERAGEEXPIRATIONDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;     
+  
+create bitmap index IN_FC_FT_RISK_ID on FACT_FINANCIALTRANSACTION(PRIMARYRISK_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;     
+
+create bitmap index IN_FC_FT_RISKEXT_ID on FACT_FINANCIALTRANSACTION(Primaryriskextension_Id)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_FT_ACCOUNT_ID on FACT_FINANCIALTRANSACTION(ACCOUNT1_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING; 
+
+create bitmap index IN_FC_FT_ACCOUNTEXT_ID on FACT_FINANCIALTRANSACTION(ACCOUNT1EXTENSION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING; 
+
+create bitmap index IN_FC_FT_FINTRANSEXT_ID on FACT_FINANCIALTRANSACTION(FINANCIALTRANSACTIONEXT_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;   
+  
+create bitmap index IN_FC_FT_TERRITORY_ID on FACT_FINANCIALTRANSACTION (TERRITORY_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;   
+
+create bitmap index IN_FC_FT_TRANSTYPE_ID on FACT_FINANCIALTRANSACTION(FINANCIALTRANSACTIONTYPE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_FT_UNDERWRITER_ID on FACT_FINANCIALTRANSACTION (UNDERWRITER_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;   
+  
+create bitmap index IN_FC_FT_SUBACCOUNT_ID on FACT_FINANCIALTRANSACTION(SUBACCOUNT_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_FT_BILLCOMPANY_ID on FACT_FINANCIALTRANSACTION(BILLINGCOMPANY_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_FT_BOOKTERMEFF_ID on FACT_FINANCIALTRANSACTION(BOOKEDTERMEFFECTIVEDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+  
+create bitmap index IN_FC_FT_BOOKTERMEXP_ID on FACT_FINANCIALTRANSACTION(BOOKEDTERMEXPIRATIONDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;         
+  
+create bitmap index IN_FC_FT_ACCTHOLDER_ID on FACT_FINANCIALTRANSACTION(ACCOUNTHOLDER_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+  
+create bitmap index IN_FC_FT_DUEDATE_ID on FACT_FINANCIALTRANSACTION(DUEDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+  
+create bitmap index IN_FC_FT_INVOICEDATE_ID on FACT_FINANCIALTRANSACTION(INVOICEDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;     
+
+create bitmap index IN_FC_FT_AGINGSTARTDATE_ID on FACT_FINANCIALTRANSACTION(AGINGSTARTDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+  
+create bitmap index IN_FC_FT_FINTERM_ID on FACT_FINANCIALTRANSACTION(FINANCIALTERMS_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+
+create bitmap index IN_FC_FT_BATCH_ID on FACT_FINANCIALTRANSACTION(BATCH_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+  
+create bitmap index IN_FC_FT_PAYMENTDETAIL_ID on FACT_FINANCIALTRANSACTION(PAYMENTDETAIL_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;   
+  
+create bitmap index IN_FC_FT_FINANCIALGROUP_ID on FACT_FINANCIALTRANSACTION(FINANCIALGROUP_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING;
+  
+create bitmap index IN_FC_FT_TRANSBASIS_ID on FACT_FINANCIALTRANSACTION(TRANSACTIONBASIS_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS
+  NOLOGGING; 
+
+--Fact_Claim_OSR table
+create bitmap index IN_FCO_CLAIM_UNIQUEID on FACT_CLAIM_OSR (CLAIM_UNIQUEID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+  
+create bitmap index IN_FCO_CLM_ADJUSTER_ID on FACT_CLAIM_OSR (ADJUSTER_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+  
+create bitmap index IN_FCO_CLM_CLAIMANT_ID on FACT_CLAIM_OSR (CLAIMANT_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+  
+create bitmap index IN_FCO_CLM_CLAIMEXT_ID on FACT_CLAIM_OSR (CLAIMEXTENSION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+  
+create bitmap index IN_FCO_CLM_CLAIM_ID on FACT_CLAIM_OSR (CLAIM_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+  
+create bitmap index IN_FCO_CLM_CLMPART_ID1 on FACT_CLAIM_OSR (CLMPART_ID1)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+  
+create bitmap index IN_FCO_CLM_CLMPART_ID10 on FACT_CLAIM_OSR (CLMPART_ID10)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+  
+create bitmap index IN_FCO_CLM_CLMPART_ID2 on FACT_CLAIM_OSR (CLMPART_ID2)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+  
+create bitmap index IN_FCO_CLM_CLMPART_ID3 on FACT_CLAIM_OSR (CLMPART_ID3)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+  
+create bitmap index IN_FCO_CLM_CLMPART_ID4 on FACT_CLAIM_OSR (CLMPART_ID4)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+  
+create bitmap index IN_FCO_CLM_CLMPART_ID5 on FACT_CLAIM_OSR (CLMPART_ID5)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+  
+create bitmap index IN_FCO_CLM_CLMPART_ID6 on FACT_CLAIM_OSR (CLMPART_ID6)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+  
+create bitmap index IN_FCO_CLM_CLMPART_ID7 on FACT_CLAIM_OSR (CLMPART_ID7)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+  
+create bitmap index IN_FCO_CLM_CLMPART_ID8 on FACT_CLAIM_OSR (CLMPART_ID8)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+  
+create bitmap index IN_FCO_CLM_CLMPART_ID9 on FACT_CLAIM_OSR (CLMPART_ID9)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+  
+create bitmap index IN_FCO_CLM_CLOSEDDATE_ID on FACT_CLAIM_OSR (CLOSEDDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+  
+create bitmap index IN_FCO_CLM_COMPANY_ID on FACT_CLAIM_OSR (COMPANY_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+
+create bitmap index IN_FCO_CLM_FIRSTINSURED_ID on FACT_CLAIM_OSR (FIRSTINSURED_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+
+create bitmap index IN_FCO_CLM_LOSSDATE_ID on FACT_CLAIM_OSR (DATEOFLOSS_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+  
+create bitmap index IN_FCO_CLM_LOSSLOCATION_ID on FACT_CLAIM_OSR (CLAIMLOSSLOCATION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+  
+create bitmap index IN_FCO_CLM_MONTH_ID on FACT_CLAIM_OSR (MONTH_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+  
+create bitmap index IN_FCO_CLM_POLICYEFF_ID on FACT_CLAIM_OSR (POLICYEFFECTIVEDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+  
+create bitmap index IN_FCO_CLM_POLICYEXP_ID on FACT_CLAIM_OSR (POLICYEXPIRATIONDATE_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+  
+create bitmap index IN_FCO_CLM_POLICYEXT_ID on FACT_CLAIM_OSR (POLICYEXTENSION_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+  
+create bitmap index IN_FCO_CLM_POLICY_ID on FACT_CLAIM_OSR (POLICY_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+
+create bitmap index IN_FCO_CLM_REPORTDATE_ID on FACT_CLAIM_OSR (DATEREPORTED_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+  
+create bitmap index IN_FCO_CLM_STATUS_ID on FACT_CLAIM_OSR (CLAIMSTATUS_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;
+
+create bitmap index IN_FCO_CLM_UNDERWRITER_ID on FACT_CLAIM_OSR (UNDERWRITER_ID)
+  tablespace ${G_DW_DB_INDEX}
+  pctfree 0 COMPUTE STATISTICS;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>4SBI_DataWarehouse</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>381</xloc>
+      <yloc>133</yloc>
+    </entry>
+  </entries>
+  <hops>
+    <hop>
+      <from>START</from>
+      <to>Check ONLY</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Check ONLY</from>
+      <to>No need to recreate indexes</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Check ONLY</from>
+      <to>Create index</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create index</from>
+      <to>Enable Constrains on Fact tables</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+  </hops>
+  <notepads>
+  </notepads>
+  <attributes>
+    <group>
+      <name>JobRestart</name>
+      <attribute>
+        <key>UniqueConnections</key>
+        <value>N</value>
+      </attribute>
+    </group>
+  </attributes>
+</job>

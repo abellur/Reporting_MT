@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:49 EST 2019
+file.title=SBJ_Load_Fact_Financialtransaction
+description=Job to load data from Stg_Financialtransaction to Fact_Financialtransaction.
+title=SBJ_Load_Fact_Financialtransaction
+file.description=Job to load data from Stg_Financialtransaction to Fact_Financialtransaction.

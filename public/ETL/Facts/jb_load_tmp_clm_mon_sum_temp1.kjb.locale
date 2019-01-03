@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:58 EST 2019
+file.title=jb_load_tmp_clm_mon_sum_temp1
+description=Job to create temp tables to help Fact_Claim table load.
+title=jb_load_tmp_clm_mon_sum_temp1
+file.description=Job to create temp tables to help Fact_Claim table load.

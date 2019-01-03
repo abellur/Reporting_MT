@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:55 EST 2019
+file.title=TR_Get_DateDifference_Daily
+description=Transformation to check if current loop is first month for incremental refresh.
+title=TR_Get_DateDifference_Daily
+file.description=Transformation to check if current loop is first month for incremental refresh.

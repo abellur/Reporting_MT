@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:01 EST 2019
+file.title=JB_Extract_FM_Staging_Hist
+description=Extract OLTP FM data into Staging table
+title=JB_Extract_FM_Staging_Hist
+file.description=Extract OLTP FM data into Staging table

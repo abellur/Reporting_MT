@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:47 EST 2019
+file.title=SBJ_FS_Create_Dim_Lkup_Tables
+description=Create dimension lookup tables for financial summary table load.
+title=SBJ_FS_Create_Dim_Lkup_Tables
+file.description=Create dimension lookup tables for financial summary table load.

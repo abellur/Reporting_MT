@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:25 EST 2019
+file.title=TR_Vl_FP_Drop_Tmp_Tables
+description=Drop temp tables created for FACT_POLICY table load.
+title=TR_Vl_FP_Drop_Tmp_Tables
+file.description=Drop temp tables created for FACT_POLICY table load.

@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:54 EST 2019
+file.title=TR_FPC_EXT_DROP_TMP_TABLES
+description=Drop the temp tables created by last ETL run.
+title=TR_FPC_EXT_DROP_TMP_TABLES
+file.description=Drop the temp tables created by last ETL run.

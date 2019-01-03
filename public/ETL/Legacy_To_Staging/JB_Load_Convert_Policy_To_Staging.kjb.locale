@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:59 EST 2019
+file.title=JB_Load_Convert_Policy_To_Staging
+description=Load convert policy and policy transaction data to DW staging tables
+title=JB_Load_Convert_Policy_To_Staging
+file.description=Load convert policy and policy transaction data to DW staging tables

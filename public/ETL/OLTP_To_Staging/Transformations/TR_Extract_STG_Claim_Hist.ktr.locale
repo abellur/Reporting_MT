@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:08 EST 2019
+file.title=TR_Extract_STG_Claim_Hist
+description=Transformation to extract data from OLTP tables to Stg_Claim for historical load
+title=TR_Extract_STG_Claim_Hist
+file.description=Transformation to extract data from OLTP tables to Stg_Claim for historical load

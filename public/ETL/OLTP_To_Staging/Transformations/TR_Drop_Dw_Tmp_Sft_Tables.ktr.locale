@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:05 EST 2019
+file.title=TR_Drop_Dw_Tmp_Sft_Tables
+description=Drop temp tables created for loading data to STG_FINANCIALTRANSACTION table.
+title=TR_Drop_Dw_Tmp_Sft_Tables
+file.description=Drop temp tables created for loading data to STG_FINANCIALTRANSACTION table.

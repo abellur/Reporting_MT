@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:37 EST 2019
+file.title=TR_DIM_ACCOUNT
+description=Load data from Stg_Account to Dim_Account table
+title=TR_DIM_ACCOUNT
+file.description=Load data from Stg_Account to Dim_Account table

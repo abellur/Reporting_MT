@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:24 EST 2019
+file.title=TR_Load_Vl_Dim_Policyextension_Cul
+description=Transformation to load CUL policy specific data to DIM_POLICYEXTENSION_CU table.
+title=TR_Load_Vl_Dim_Policyextension_Cul
+file.description=Transformation to load CUL policy specific data to DIM_POLICYEXTENSION_CU table.

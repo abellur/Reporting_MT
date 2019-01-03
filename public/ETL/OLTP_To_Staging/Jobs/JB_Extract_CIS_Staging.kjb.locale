@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:41:01 EST 2019
+file.title=JB_Extract_CIS_Staging
+description=Job to extract data to CIS Staging tables
+title=JB_Extract_CIS_Staging
+file.description=Job to extract data to CIS Staging tables

@@ -1,0 +1,3920 @@
+<transformation>
+  <info>
+    <name>TF_GET_CLAIMSNAPSHOT_LICENSE_INFO_QUATERLY</name>
+    <description/>
+    <extended_description/>
+    <trans_version/>
+    <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
+    <directory>/public/Claim</directory>
+    <parameters>
+    </parameters>
+    <log>
+      <trans-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <size_limit_lines/>
+        <interval/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STATUS</id>
+          <enabled>Y</enabled>
+          <name>STATUS</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+          <subject/>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+          <subject/>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>STARTDATE</id>
+          <enabled>Y</enabled>
+          <name>STARTDATE</name>
+        </field>
+        <field>
+          <id>ENDDATE</id>
+          <enabled>Y</enabled>
+          <name>ENDDATE</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>DEPDATE</id>
+          <enabled>Y</enabled>
+          <name>DEPDATE</name>
+        </field>
+        <field>
+          <id>REPLAYDATE</id>
+          <enabled>Y</enabled>
+          <name>REPLAYDATE</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>Y</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+        <field>
+          <id>EXECUTING_SERVER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_SERVER</name>
+        </field>
+        <field>
+          <id>EXECUTING_USER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_USER</name>
+        </field>
+        <field>
+          <id>CLIENT</id>
+          <enabled>N</enabled>
+          <name>CLIENT</name>
+        </field>
+      </trans-log-table>
+      <perf-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <interval/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>SEQ_NR</id>
+          <enabled>Y</enabled>
+          <name>SEQ_NR</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>INPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>INPUT_BUFFER_ROWS</name>
+        </field>
+        <field>
+          <id>OUTPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>OUTPUT_BUFFER_ROWS</name>
+        </field>
+      </perf-log-table>
+      <channel-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>LOGGING_OBJECT_TYPE</id>
+          <enabled>Y</enabled>
+          <name>LOGGING_OBJECT_TYPE</name>
+        </field>
+        <field>
+          <id>OBJECT_NAME</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_NAME</name>
+        </field>
+        <field>
+          <id>OBJECT_COPY</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_COPY</name>
+        </field>
+        <field>
+          <id>REPOSITORY_DIRECTORY</id>
+          <enabled>Y</enabled>
+          <name>REPOSITORY_DIRECTORY</name>
+        </field>
+        <field>
+          <id>FILENAME</id>
+          <enabled>Y</enabled>
+          <name>FILENAME</name>
+        </field>
+        <field>
+          <id>OBJECT_ID</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_ID</name>
+        </field>
+        <field>
+          <id>OBJECT_REVISION</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_REVISION</name>
+        </field>
+        <field>
+          <id>PARENT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>PARENT_CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>ROOT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>ROOT_CHANNEL_ID</name>
+        </field>
+      </channel-log-table>
+      <step-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>N</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+      </step-log-table>
+      <metrics-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_DATE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_CODE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_CODE</name>
+        </field>
+        <field>
+          <id>METRICS_DESCRIPTION</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DESCRIPTION</name>
+        </field>
+        <field>
+          <id>METRICS_SUBJECT</id>
+          <enabled>Y</enabled>
+          <name>METRICS_SUBJECT</name>
+        </field>
+        <field>
+          <id>METRICS_TYPE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_TYPE</name>
+        </field>
+        <field>
+          <id>METRICS_VALUE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_VALUE</name>
+        </field>
+      </metrics-log-table>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+      <slaveserver>
+        <name>4Sight BI - PDI Server</name>
+        <hostname>10.0.0.21</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>joe</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Carte 1</name>
+        <hostname>localhost</hostname>
+        <port>9081</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>DI Server</name>
+        <hostname>localhost</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>joe</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_DEV</name>
+        <hostname>magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>shota</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_SERVER</name>
+        <hostname>http://magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>shota</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb79ce63d69dbbdb</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_ETL_TEST</name>
+        <hostname>magspentahotest</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO</name>
+        <hostname>magspentaho</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO_BTS</name>
+        <hostname>129.144.25.104</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>MM_PENTAHO_DEV</name>
+        <hostname>magspentahodev</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Master</name>
+        <hostname>localhost</hostname>
+        <port>8081</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SERVER1</name>
+        <hostname>LOCALHOST</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SLAVE ONE</name>
+        <hostname>192.168.2.101</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4a418bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>SLAVE TWO</name>
+        <hostname>192.168.2.101</hostname>
+        <port>3306</port>
+        <webAppName/>
+        <username>root</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave1</name>
+        <hostname>localhost</hostname>
+        <port>8082</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave2</name>
+        <hostname>localhost</hostname>
+        <port>8083</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>Slave3</name>
+        <hostname>localhost</hostname>
+        <port>8084</port>
+        <webAppName/>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>local DIS</name>
+        <hostname>localhost</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>magspentahodev</name>
+        <hostname>magspentahodev</hostname>
+        <port>9080</port>
+        <webAppName>pentaho-di</webAppName>
+        <username>admin</username>
+        <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+        <proxy_hostname/>
+        <proxy_port/>
+        <non_proxy_hosts/>
+        <master>Y</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+    </slaveservers>
+    <clusterschemas>
+      <clusterschema>
+        <name>4sbi_admin</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+        </slaveservers>
+      </clusterschema>
+      <clusterschema>
+        <name>ClusterSchema</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+          <name>Slave3</name>
+          <name>Slave2</name>
+          <name>Slave1</name>
+          <name>Master</name>
+        </slaveservers>
+      </clusterschema>
+      <clusterschema>
+        <name>cluster A</name>
+        <base_port>40000</base_port>
+        <sockets_buffer_size>2000</sockets_buffer_size>
+        <sockets_flush_interval>5000</sockets_flush_interval>
+        <sockets_compressed>Y</sockets_compressed>
+        <dynamic>N</dynamic>
+        <slaveservers>
+          <name>Carte 1</name>
+          <name>local DIS</name>
+        </slaveservers>
+      </clusterschema>
+    </clusterschemas>
+    <created_user>-</created_user>
+    <created_date>2017/01/12 09:54:50.461</created_date>
+    <modified_user>neelima</modified_user>
+    <modified_date>2019/01/02 09:00:47.246</modified_date>
+    <key_for_session_key/>
+    <is_key_private>N</is_key_private>
+  </info>
+  <notepads>
+  </notepads>
+  <connection>
+    <name>OAS17APD</name>
+    <server>172.18.1.127</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>OAS17APD</database>
+    <port>1521</port>
+    <username>OASHI</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ce7fdf81a7d3</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>1521</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>STRICT_NUMBER_38_INTERPRETATION</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <order>
+    <hop>
+      <from>LOB_MAPPING</from>
+      <to>Stream COV</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Stream COV</from>
+      <to>Stream OpenDate</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Open Date</from>
+      <to>Stream OpenDate</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Stream OpenDate</from>
+      <to>Stream Component</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DIM_COMPONENT</from>
+      <to>Stream Component</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Stream Component</from>
+      <to>Stream lookup</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Table County Code</from>
+      <to>Stream lookup</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Stream lookup</from>
+      <to>lOOKUP_lICENSE_INFO</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get_License_Info</from>
+      <to>lOOKUP_lICENSE_INFO</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>LOOKUP_POLICY_TYP_CODE</from>
+      <to>Stream COV</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>get_from_dim_policyext</from>
+      <to>LOOKUP_POLICY_TYP_CODE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>GET_POL_UNIQUE_ID</from>
+      <to>LKP_POL_UNIQUEID</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>lOOKUP_lICENSE_INFO</from>
+      <to>LKP_POL_UNIQUEID</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>LKP_POL_UNIQUEID</from>
+      <to>STG_CLAIM_SNAPSHOT</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>VFACT_CLAIM</from>
+      <to>LKP_COURTCASE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>LKP_COURTCASE</from>
+      <to>LOOKUP_POLICY_TYP_CODE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>GET_COURTCASE</from>
+      <to>LKP_COURTCASE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator </from>
+      <to>FR: Filter 1st of MTH</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dummy  True</from>
+      <to>Select values </to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>FR: Filter 1st of MTH</from>
+      <to>Dummy  True</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>FR: Filter 1st of MTH</from>
+      <to>Dummy False</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Get System Info 2</from>
+      <to>Calculator </to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Execute SQL script</from>
+      <to>VFACT_CLAIM</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Select values </from>
+      <to>Write to log</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Write to log</from>
+      <to>Execute SQL script</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Execute SQL script 2</from>
+      <to>VFACT_CLAIM</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <step>
+    <name>Calculator </name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <calculation>
+      <field_name>currentYear</field_name>
+      <calc_type>YEAR_OF_DATE</calc_type>
+      <field_a>firstDayOfCurrentMonth</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>4</value_length>
+      <value_precision>-1</value_precision>
+      <remove>Y</remove>
+      <conversion_mask>####</conversion_mask>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <calculation>
+      <field_name>currentMonth</field_name>
+      <calc_type>MONTH_OF_DATE</calc_type>
+      <field_a>firstDayOfCurrentMonth</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>Integer</value_type>
+      <value_length>2</value_length>
+      <value_precision>-1</value_precision>
+      <remove>Y</remove>
+      <conversion_mask>00</conversion_mask>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <calculation>
+      <field_name>firstDay</field_name>
+      <calc_type>CONSTANT</calc_type>
+      <field_a>01</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>2</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask>##</conversion_mask>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <calculation>
+      <field_name>filterYearMonthCurrent</field_name>
+      <calc_type>ADD3</calc_type>
+      <field_a>currentYear</field_a>
+      <field_b>currentMonth</field_b>
+      <field_c>firstDay</field_c>
+      <value_type>String</value_type>
+      <value_length>15</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask>########</conversion_mask>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <calculation>
+      <field_name>previousYear</field_name>
+      <calc_type>YEAR_OF_DATE</calc_type>
+      <field_a>firstDayOfLastMonth</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>4</value_length>
+      <value_precision>-1</value_precision>
+      <remove>Y</remove>
+      <conversion_mask>####</conversion_mask>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <calculation>
+      <field_name>previousMonth</field_name>
+      <calc_type>MONTH_OF_DATE</calc_type>
+      <field_a>firstDayOfLastMonth</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>Integer</value_type>
+      <value_length>2</value_length>
+      <value_precision>-1</value_precision>
+      <remove>Y</remove>
+      <conversion_mask>00</conversion_mask>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <calculation>
+      <field_name>filterYearMonthPrevious</field_name>
+      <calc_type>ADD</calc_type>
+      <field_a>previousYear</field_a>
+      <field_b>previousMonth</field_b>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>6</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask>######</conversion_mask>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <calculation>
+      <field_name>currentDay</field_name>
+      <calc_type>DAY_OF_MONTH</calc_type>
+      <field_a>currentDate</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>Integer</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask>#</conversion_mask>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>64</xloc>
+      <yloc>496</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>DIM_COMPONENT</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DRABPRD</connection>
+    <sql>SELECT DISTINCT VFC.POLICY_ID AS COMP_POL_ID,
+  VFC.COVEREDRISK_ID AS COMP_COVRSK_ID,
+  VFC.COVERAGE_ID AS COMP_COVG_ID,
+  VFC.MONTH_ID AS COMP_MONTH_ID,
+  VFC.POLICYEFFECTIVEDATE_ID AS COMP_POLEFFDT_ID,
+  VFC.POLICYEXPIRATIONDATE_ID AS COMP_POLEXPDT_ID,
+  DC.COV_TYPE AS COMP_COV_TYP,
+  DC.COV_NAME AS COMP_COV_NAME,
+  --DIM_LIMIT.COV_LIMIT1 AS CGL_DEDUCTIBLE_LIMIT,
+  --DIM_LIMIT.COV_LIMIT2 AS CGL_DEDUCTIBLE_AGG,
+  DCOM.MMCOM_COMPONENT_TYPE_CODE  AS CGL_COMPONENT_TYP,
+  DCOM.MMCOM_COMPONENT_LONG_DESC  AS CGL_IND_EXP_BOTH,
+  DCOM.MMCOM_DEDUCTBILE_VALUE     AS COMP_VALUE,
+  DCOM.MMCOM_DEDUCTBILE_AGG_VALUE AS COMP_AGG_VALUE,
+  VFC.DEDUCTIBLE_ID AS COMPONENT_ID
+FROM VFACT_CLAIM VFC
+INNER JOIN DIM_COVERAGE DC
+ON VFC.COVERAGE_ID = DC.COVERAGE_ID
+INNER JOIN DIM_COMPONENT DCOM
+ON VFC.DEDUCTIBLE_ID = DCOM.COMPONENT_ID
+LEFT JOIN VDIM_COVEREDRISKNAME VCR
+ON VCR.COVEREDRISK_ID = VFC.COVEREDRISK_ID
+--INNER JOIN DIM_LIMIT
+--ON FPCOV.LIMIT_ID = DIM_LIMIT.LIMIT_ID
+WHERE 
+ DCOM.MMCOM_COMPONENT_TYPE_CODE IN (
+'DEDUCTIBLE',
+'DISCOUNT',
+'SURCHARGE',
+'ADJUSTMENT',
+'SIR' --,
+--'Unknown',
+--'Gross'
+) 
+and VFC.limit_id &lt;&gt; '0' --and FPCOV.POLICY_ID ='117492'--and de.mmcov_shared_limit_b is not null
+-- Ignoring LIMIT_ID = '0' as coverage without the dollar value
+
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1200</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy  True</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>496</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy False</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>176</xloc>
+      <yloc>496</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Execute SQL script</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>magstage_DRABPRD</connection>
+    <execute_each_row>Y</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>Y</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>DELETE CLAIMS_DATA_MART WHERE MONTH_ID=?
+
+---DELETE  CLAIMS_DATA_MART WHERE substr(to_char(month_id),1,6) = substr(to_char(sysdate,'yyyymmdd'),1,6)
+
+
+</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+      <argument>
+        <name>AsOf</name>
+      </argument>
+    </arguments>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>528</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FR: Filter 1st of MTH</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to/>
+    <send_false_to/>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>currentDay</leftvalue>
+        <function>=</function>
+        <rightvalue/>
+        <value>
+          <name>constant</name>
+          <type>Integer</type>
+          <text>1</text>
+          <length>-1</length>
+          <precision>0</precision>
+          <isnull>N</isnull>
+          <mask>#;-#</mask>
+        </value>
+      </condition>
+    </compare>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>176</xloc>
+      <yloc>384</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>GET_COURTCASE</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DRABPRD</connection>
+    <sql>SELECT
+ DCC.COURTCASE_ID
+,DCC.OFFICIAL_CASE_NO
+,DCC.CASE_NAME
+,DCC.COURT_NAME
+,DCC.COURT_TYPE
+,DCC.TRIAL_JUDGE
+,DCC.FILED_DATE AS SUIT_DATE
+,DCC.ORIG_TRIAL_DATE
+,DCC.CURRENT_TRIAL_DATE
+,DCC.TRIAL_STATUS_CODE
+,DCC.TRIAL_STATUS_DATE
+,DCC.TRIAL_RESULT
+,DCC.TRIAL_RESULT_DATE
+,DCC.DECLARATORY_JUDGEMENT_B
+,DCC.VERDICT_AMT 
+,DCC.SETTLEMENT_AMT
+,DCC.VENUE_STATE
+,DCC.COMMITTEE_REVIEW_DATE
+,DCC.COMMITTEE_DECISION
+,DCC.VERDICT_DATE
+,DCC.CMS_AWARD_DATE
+,DCC.CMS_AWARD_AMT 
+,round(months_between (trunc(sysdate), trunc(filed_date))) AS MONTHS_IN_SUIT
+FROM DIM_COURTCASE DCC
+ORDER BY DCC.COURTCASE_ID
+
+ </sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>624</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>GET_POL_UNIQUE_ID</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>magstage_DRABPRD</connection>
+    <sql>SELECT POL_UNIQUEID,CLIENT_ID,LOSSRUN_MAP_CODE,POL_UNIQUEID_EXC_DSHBRD
+FROM
+(
+SELECT DISTINCT PV.POL_UNIQUEID,PV.CLIENT_ID,PV.LOSSRUN_MAP_CODE,PV.POL_UNIQUEID AS POL_UNIQUEID_EXC_DSHBRD  FROM DM_POLICY_PV PV 
+WHERE PV.LOSSRUN_MAP_CODE IN ('HPL','HUL') AND COV_TYP &lt;&gt; 'PRIMARY'
+ 
+
+UNION
+SELECT DISTINCT PV.MINI_POL_XREF_UNQID AS POL_UNIQUEID,PV.CLIENT_ID,PV.LOSSRUN_MAP_CODE,PV.POL_UNIQUEID AS POL_UNIQUEID_EXC_DSHBRD FROM DM_POLICY_PV PV 
+WHERE PV.LOSSRUN_MAP_CODE IN ('HPL') AND COV_TYP &lt;&gt; 'PRIMARY'
+
+UNION
+SELECT DISTINCT PV.MINI_POL_UMB_XREF_UNQID AS POL_UNIQUEID,PV.CLIENT_ID,PV.LOSSRUN_MAP_CODE,PV.POL_UNIQUEID AS POL_UNIQUEID_EXC_DSHBRD FROM DM_POLICY_PV PV 
+WHERE PV.LOSSRUN_MAP_CODE IN ('HUL') AND COV_TYP &lt;&gt; 'PRIMARY'
+)
+ORDER BY POL_UNIQUEID,CLIENT_ID</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1536</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get System Info 2</name>
+    <type>SystemInfo</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>firstDayOfCurrentMonth</name>
+        <type>this month start</type>
+      </field>
+      <field>
+        <name>firstDayOfLastMonth</name>
+        <type>last month start</type>
+      </field>
+      <field>
+        <name>currentDate</name>
+        <type>system date (fixed)</type>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>64</xloc>
+      <yloc>384</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get_License_Info</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DRABPRD</connection>
+    <sql>SELECT DISTINCT
+CR.COVEREDRISK_ID,
+LCP.LIC_LICENSE_NO as LICENSE_NO,
+LCP.LIC_LICENSE_TYPE_SHORT_DESC AS LICENSE_TYPE_SHORT_DESC,
+LCP.LIC_LICENSED_STATE_CODE AS LICENSED_STATE_CODE,
+DE.EN_CLIENT_ID AS CLIENT_ID,
+DE.EN_LEGACY_DATA_ID AS MAGID
+FROM  DIM_COVEREDRISK CR
+INNER JOIN DIM_LEGALENTITY LE ON LE.LENTY_UNIQUEID = CR.CVRSK_NUMBER
+INNER JOIN DIM_ENTITY DE ON LE.LENTY_NUMBER   = DE.EN_ENTITY_PK
+LEFT OUTER JOIN DIM_LICENSE_PROFILE LCP ON LCP.LIC_ENTITY_FK=DE.EN_ENTITY_PK
+
+
+
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1536</xloc>
+      <yloc>240</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>LKP_COURTCASE</name>
+    <type>StreamLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <from>GET_COURTCASE</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>COURTCASE_ID</name>
+        <field>COURTCASE_ID</field>
+      </key>
+      <value>
+        <name>OFFICIAL_CASE_NO</name>
+        <rename>OFFICIAL_CASE_NO</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>CASE_NAME</name>
+        <rename>CASE_NAME</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>COURT_NAME</name>
+        <rename>COURT_NAME</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>COURT_TYPE</name>
+        <rename>COURT_TYPE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>TRIAL_JUDGE</name>
+        <rename>TRIAL_JUDGE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>SUIT_DATE</name>
+        <rename>SUIT_DATE</rename>
+        <default/>
+        <type>Timestamp</type>
+      </value>
+      <value>
+        <name>ORIG_TRIAL_DATE</name>
+        <rename>ORIG_TRIAL_DATE</rename>
+        <default/>
+        <type>Timestamp</type>
+      </value>
+      <value>
+        <name>CURRENT_TRIAL_DATE</name>
+        <rename>CURRENT_TRIAL_DATE</rename>
+        <default/>
+        <type>Timestamp</type>
+      </value>
+      <value>
+        <name>TRIAL_STATUS_CODE</name>
+        <rename>TRIAL_STATUS_CODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>TRIAL_STATUS_DATE</name>
+        <rename>TRIAL_STATUS_DATE</rename>
+        <default/>
+        <type>Timestamp</type>
+      </value>
+      <value>
+        <name>TRIAL_RESULT</name>
+        <rename>TRIAL_RESULT</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>TRIAL_RESULT_DATE</name>
+        <rename>TRIAL_RESULT_DATE</rename>
+        <default/>
+        <type>Timestamp</type>
+      </value>
+      <value>
+        <name>DECLARATORY_JUDGEMENT_B</name>
+        <rename>DECLARATORY_JUDGEMENT_B</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>VERDICT_AMT</name>
+        <rename>VERDICT_AMT</rename>
+        <default/>
+        <type>Number</type>
+      </value>
+      <value>
+        <name>SETTLEMENT_AMT</name>
+        <rename>SETTLEMENT_AMT</rename>
+        <default/>
+        <type>Number</type>
+      </value>
+      <value>
+        <name>VENUE_STATE</name>
+        <rename>VENUE_STATE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>COMMITTEE_REVIEW_DATE</name>
+        <rename>COMMITTEE_REVIEW_DATE</rename>
+        <default/>
+        <type>Timestamp</type>
+      </value>
+      <value>
+        <name>COMMITTEE_DECISION</name>
+        <rename>COMMITTEE_DECISION</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>VERDICT_DATE</name>
+        <rename>VERDICT_DATE</rename>
+        <default/>
+        <type>Timestamp</type>
+      </value>
+      <value>
+        <name>CMS_AWARD_DATE</name>
+        <rename>CMS_AWARD_DATE</rename>
+        <default/>
+        <type>Timestamp</type>
+      </value>
+      <value>
+        <name>CMS_AWARD_AMT</name>
+        <rename>CMS_AWARD_AMT</rename>
+        <default/>
+        <type>Number</type>
+      </value>
+      <value>
+        <name>MONTHS_IN_SUIT</name>
+        <rename>MONTHS_IN_SUIT</rename>
+        <default/>
+        <type>BigNumber</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>624</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>LKP_POL_UNIQUEID</name>
+    <type>StreamLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <from>GET_POL_UNIQUE_ID</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>POL_UNIQUEID</name>
+        <field>POL_UNIQUEID</field>
+      </key>
+      <key>
+        <name>CLIENT_ID</name>
+        <field>CLIENT_ID</field>
+      </key>
+      <value>
+        <name>LOSSRUN_MAP_CODE</name>
+        <rename>LOSSRUN_MAP_CODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>POL_UNIQUEID_EXC_DSHBRD</name>
+        <rename>POL_UNIQUEID_EXC_DSHBRD</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1344</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>LOB_MAPPING</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DRABPRD</connection>
+    <sql>SELECT MAPPING_CODE AS LOB,CLAIM_MAP_CODE, COVERAGE_CODE
+FROM mag_coverage_mapping
+where  MAPPING_CATEGORY = 'LOB'
+ORDER BY COVERAGE_CODE</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>944</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>LOOKUP_POLICY_TYP_CODE</name>
+    <type>StreamLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <from>get_from_dim_policyext</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>POLICYEXTENSION_ID</name>
+        <field>POLICYEXTENSION_ID</field>
+      </key>
+      <value>
+        <name>MMPOL_POLICY_TYPE_CODE</name>
+        <rename>MMPOL_POLICY_TYPE_CODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>784</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Open Date</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DRABPRD</connection>
+    <sql>SELECT dce.claimextension_id,
+       dce.mmclm_claim_type_date,
+       dce.claim_uniqueid
+  FROM dim_claimextension dce
+--WHERE dce. record_version = 1
+order by dce.claimextension_id</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1056</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>STG_CLAIM_SNAPSHOT</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>magstage_DRABPRD</connection>
+    <schema>magstage</schema>
+    <table>STG_CLAIM_SNAPSHOT</table>
+    <commit>10000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>CLAIMSUMMARY_ID</column_name>
+        <stream_name>CLAIMSUMMARY_ID</stream_name>
+      </field>
+      <field>
+        <column_name>MONTH_ID</column_name>
+        <stream_name>MONTH_ID</stream_name>
+      </field>
+      <field>
+        <column_name>YEAR</column_name>
+        <stream_name>YEAR</stream_name>
+      </field>
+      <field>
+        <column_name>MONTH</column_name>
+        <stream_name>MONTH</stream_name>
+      </field>
+      <field>
+        <column_name>ASOF</column_name>
+        <stream_name>ASOF</stream_name>
+      </field>
+      <field>
+        <column_name>COVERAGE_ID</column_name>
+        <stream_name>COVERAGE_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COV_TYPE</column_name>
+        <stream_name>COV_TYPE</stream_name>
+      </field>
+      <field>
+        <column_name>COV_CODE</column_name>
+        <stream_name>COV_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>COV_NAME</column_name>
+        <stream_name>COV_NAME</stream_name>
+      </field>
+      <field>
+        <column_name>COV_DESCRIPTION</column_name>
+        <stream_name>COV_DESCRIPTION</stream_name>
+      </field>
+      <field>
+        <column_name>COVERAGEEXTENSION_ID</column_name>
+        <stream_name>COVERAGEEXTENSION_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COVERAGEEFFECTIVEDATE_ID</column_name>
+        <stream_name>COVERAGEEFFECTIVEDATE_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COVERAGEEXPIRATIONDATE_ID</column_name>
+        <stream_name>COVERAGEEXPIRATIONDATE_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COVEREDRISK_ID</column_name>
+        <stream_name>COVEREDRISK_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COVEREDRISK_FORMATTED_NAME</column_name>
+        <stream_name>COVEREDRISK_FORMATTED_NAME</stream_name>
+      </field>
+      <field>
+        <column_name>COVEREDRISK_NAME1</column_name>
+        <stream_name>COVEREDRISK_NAME1</stream_name>
+      </field>
+      <field>
+        <column_name>COVEREDRISK_NAME2</column_name>
+        <stream_name>COVEREDRISK_NAME2</stream_name>
+      </field>
+      <field>
+        <column_name>COVEREDRISK_GENDER</column_name>
+        <stream_name>COVEREDRISK_GENDER</stream_name>
+      </field>
+      <field>
+        <column_name>COVEREDRISK_ADDRESS1</column_name>
+        <stream_name>COVEREDRISK_ADDRESS1</stream_name>
+      </field>
+      <field>
+        <column_name>COVEREDRISK_ADDRESS2</column_name>
+        <stream_name>COVEREDRISK_ADDRESS2</stream_name>
+      </field>
+      <field>
+        <column_name>COVEREDRISK_ADDRESS3</column_name>
+        <stream_name>COVEREDRISK_ADDRESS3</stream_name>
+      </field>
+      <field>
+        <column_name>COVEREDRISK_COUNTY</column_name>
+        <stream_name>COVEREDRISK_COUNTY</stream_name>
+      </field>
+      <field>
+        <column_name>COVEREDRISK_CITY</column_name>
+        <stream_name>COVEREDRISK_CITY</stream_name>
+      </field>
+      <field>
+        <column_name>COVEREDRISK_STATE</column_name>
+        <stream_name>COVEREDRISK_STATE</stream_name>
+      </field>
+      <field>
+        <column_name>COVEREDRISK_ZIPCODE</column_name>
+        <stream_name>COVEREDRISK_ZIPCODE</stream_name>
+      </field>
+      <field>
+        <column_name>COVEREDRISK_TELEPHONE</column_name>
+        <stream_name>COVEREDRISK_TELEPHONE</stream_name>
+      </field>
+      <field>
+        <column_name>COVEREDRISK_EMAIL</column_name>
+        <stream_name>COVEREDRISK_EMAIL</stream_name>
+      </field>
+      <field>
+        <column_name>COVEREDRISK_DOB</column_name>
+        <stream_name>COVEREDRISK_DOB</stream_name>
+      </field>
+      <field>
+        <column_name>COVEREDRISK_AGE</column_name>
+        <stream_name>COVEREDRISK_AGE</stream_name>
+      </field>
+      <field>
+        <column_name>COVEREDRISKEXTENSION_ID</column_name>
+        <stream_name>COVEREDRISKEXTENSION_ID</stream_name>
+      </field>
+      <field>
+        <column_name>MMRSK_SPECIALTY_CODE</column_name>
+        <stream_name>MMRSK_SPECIALTY_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMRSK_SPEC_DESC</column_name>
+        <stream_name>MMRSK_SPEC_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMRSK_COUNTY_CODE</column_name>
+        <stream_name>MMRSK_COUNTY_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMRSK_PREMIUM_CLASS</column_name>
+        <stream_name>MMRSK_PREMIUM_CLASS</stream_name>
+      </field>
+      <field>
+        <column_name>MMRSK_PRACTICE_STATE_CODE</column_name>
+        <stream_name>MMRSK_PRACTICE_STATE_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>COVEREDRISKLOCATION_ID</column_name>
+        <stream_name>COVEREDRISKLOCATION_ID</stream_name>
+      </field>
+      <field>
+        <column_name>ADJUSTER_ID</column_name>
+        <stream_name>ADJUSTER_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CLAIMANT_ID</column_name>
+        <stream_name>CLAIMANT_ID</stream_name>
+      </field>
+      <field>
+        <column_name>UNDERWRITER_ID</column_name>
+        <stream_name>UNDERWRITER_ID</stream_name>
+      </field>
+      <field>
+        <column_name>UW_TYPEDESCRIPTION</column_name>
+        <stream_name>UW_TYPEDESCRIPTION</stream_name>
+      </field>
+      <field>
+        <column_name>UW_NUMBER</column_name>
+        <stream_name>UW_NUMBER</stream_name>
+      </field>
+      <field>
+        <column_name>UW_FORMATTED_NAME</column_name>
+        <stream_name>UW_FORMATTED_NAME</stream_name>
+      </field>
+      <field>
+        <column_name>UW_ADDRESS1</column_name>
+        <stream_name>UW_ADDRESS1</stream_name>
+      </field>
+      <field>
+        <column_name>UW_ADDRESS2</column_name>
+        <stream_name>UW_ADDRESS2</stream_name>
+      </field>
+      <field>
+        <column_name>UW_COUNTY</column_name>
+        <stream_name>UW_COUNTY</stream_name>
+      </field>
+      <field>
+        <column_name>UW_CITY</column_name>
+        <stream_name>UW_CITY</stream_name>
+      </field>
+      <field>
+        <column_name>UW_STATE</column_name>
+        <stream_name>UW_STATE</stream_name>
+      </field>
+      <field>
+        <column_name>UW_ZIPCODE</column_name>
+        <stream_name>UW_ZIPCODE</stream_name>
+      </field>
+      <field>
+        <column_name>UW_TELEPHONE</column_name>
+        <stream_name>UW_TELEPHONE</stream_name>
+      </field>
+      <field>
+        <column_name>UW_EMAIL</column_name>
+        <stream_name>UW_EMAIL</stream_name>
+      </field>
+      <field>
+        <column_name>PRODUCT_ID</column_name>
+        <stream_name>PRODUCT_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMPANY_ID</column_name>
+        <stream_name>COMPANY_ID</stream_name>
+      </field>
+      <field>
+        <column_name>POLICY_ID</column_name>
+        <stream_name>POLICY_ID</stream_name>
+      </field>
+      <field>
+        <column_name>POL_POLICYNUMBER</column_name>
+        <stream_name>POL_POLICYNUMBER</stream_name>
+      </field>
+      <field>
+        <column_name>POL_ORIGINALEFFECTIVEDATE</column_name>
+        <stream_name>POL_ORIGINALEFFECTIVEDATE</stream_name>
+      </field>
+      <field>
+        <column_name>POL_MASTERSTATE</column_name>
+        <stream_name>POL_MASTERSTATE</stream_name>
+      </field>
+      <field>
+        <column_name>POL_UNIQUEID</column_name>
+        <stream_name>POL_UNIQUEID</stream_name>
+      </field>
+      <field>
+        <column_name>POLICYEXTENSION_ID</column_name>
+        <stream_name>POLICYEXTENSION_ID</stream_name>
+      </field>
+      <field>
+        <column_name>POLICYEFFECTIVEDATE_ID</column_name>
+        <stream_name>POLICYEFFECTIVEDATE_ID</stream_name>
+      </field>
+      <field>
+        <column_name>POLICYEXPIRATIONDATE_ID</column_name>
+        <stream_name>POLICYEXPIRATIONDATE_ID</stream_name>
+      </field>
+      <field>
+        <column_name>PRODUCER_ID</column_name>
+        <stream_name>PRODUCER_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CONTACT_ID</column_name>
+        <stream_name>CONTACT_ID</stream_name>
+      </field>
+      <field>
+        <column_name>TERRITORY_ID</column_name>
+        <stream_name>TERRITORY_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CLAIM_ID</column_name>
+        <stream_name>CLAIM_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CLAIMEXTENSION_ID</column_name>
+        <stream_name>CLAIMEXTENSION_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CLAIMSTATUS_ID</column_name>
+        <stream_name>CLAIMSTATUS_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CLMST_STATUSCD</column_name>
+        <stream_name>CLMST_STATUSCD</stream_name>
+      </field>
+      <field>
+        <column_name>CLMST_STATUS</column_name>
+        <stream_name>CLMST_STATUS</stream_name>
+      </field>
+      <field>
+        <column_name>CLAIMLOSSLOCATION_ID</column_name>
+        <stream_name>CLAIMLOSSLOCATION_ID</stream_name>
+      </field>
+      <field>
+        <column_name>DATEREPORTED_ID</column_name>
+        <stream_name>DATEREPORTED_ID</stream_name>
+      </field>
+      <field>
+        <column_name>DATEOFLOSS_ID</column_name>
+        <stream_name>DATEOFLOSS_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CLOSEDDATE_ID</column_name>
+        <stream_name>CLOSEDDATE_ID</stream_name>
+      </field>
+      <field>
+        <column_name>FIRSTINSURED_ID</column_name>
+        <stream_name>FIRSTINSURED_ID</stream_name>
+      </field>
+      <field>
+        <column_name>SECONDINSURED_ID</column_name>
+        <stream_name>SECONDINSURED_ID</stream_name>
+      </field>
+      <field>
+        <column_name>THIRDINSURED_ID</column_name>
+        <stream_name>THIRDINSURED_ID</stream_name>
+      </field>
+      <field>
+        <column_name>FIRSTOTHERINTEREST_ID</column_name>
+        <stream_name>FIRSTOTHERINTEREST_ID</stream_name>
+      </field>
+      <field>
+        <column_name>SECONDOTHERINTEREST_ID</column_name>
+        <stream_name>SECONDOTHERINTEREST_ID</stream_name>
+      </field>
+      <field>
+        <column_name>LIMIT_ID</column_name>
+        <stream_name>LIMIT_ID</stream_name>
+      </field>
+      <field>
+        <column_name>DEDUCTIBLE_ID</column_name>
+        <stream_name>DEDUCTIBLE_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CLASS_ID</column_name>
+        <stream_name>CLASS_ID</stream_name>
+      </field>
+      <field>
+        <column_name>LOSSCODING_ID</column_name>
+        <stream_name>LOSSCODING_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CLAIM_NO</column_name>
+        <stream_name>CLAIM_NO</stream_name>
+      </field>
+      <field>
+        <column_name>CLM_GROUPNUMBER</column_name>
+        <stream_name>CLM_GROUPNUMBER</stream_name>
+      </field>
+      <field>
+        <column_name>CLM_DESCRIPTION</column_name>
+        <stream_name>CLM_DESCRIPTION</stream_name>
+      </field>
+      <field>
+        <column_name>CLM_TYPELOSS</column_name>
+        <stream_name>CLM_TYPELOSS</stream_name>
+      </field>
+      <field>
+        <column_name>CLM_TYPELOSSDESCRIPTION</column_name>
+        <stream_name>CLM_TYPELOSSDESCRIPTION</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_NUMBER</column_name>
+        <stream_name>COMP_NUMBER</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_NAME</column_name>
+        <stream_name>COMP_NAME</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_NAME2</column_name>
+        <stream_name>COMP_NAME2</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_ADDRESS1</column_name>
+        <stream_name>COMP_ADDRESS1</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_ADDRESS2</column_name>
+        <stream_name>COMP_ADDRESS2</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_COUNTY</column_name>
+        <stream_name>COMP_COUNTY</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_CITY</column_name>
+        <stream_name>COMP_CITY</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_STATE</column_name>
+        <stream_name>COMP_STATE</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_ZIPCODE</column_name>
+        <stream_name>COMP_ZIPCODE</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_TELEPHONE</column_name>
+        <stream_name>COMP_TELEPHONE</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_FEINSSN</column_name>
+        <stream_name>COMP_FEINSSN</stream_name>
+      </field>
+      <field>
+        <column_name>PRIMARY_CLAIM_B</column_name>
+        <stream_name>PRIMARY_CLAIM_B</stream_name>
+      </field>
+      <field>
+        <column_name>LOSS_PD_AMT_MTD</column_name>
+        <stream_name>LOSS_PD_AMT_MTD</stream_name>
+      </field>
+      <field>
+        <column_name>LOSS_RSRV_CHG_AMT_MTD</column_name>
+        <stream_name>LOSS_RSRV_CHG_AMT_MTD</stream_name>
+      </field>
+      <field>
+        <column_name>EXP_PD_AMT_MTD</column_name>
+        <stream_name>EXP_PD_AMT_MTD</stream_name>
+      </field>
+      <field>
+        <column_name>EXP_RSRV_CHNG_AMT_MTD</column_name>
+        <stream_name>EXP_RSRV_CHNG_AMT_MTD</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM1</column_name>
+        <stream_name>USR_DEF_SUM1</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM2</column_name>
+        <stream_name>USR_DEF_SUM2</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM5</column_name>
+        <stream_name>USR_DEF_SUM5</stream_name>
+      </field>
+      <field>
+        <column_name>DEDUCTTIBLE_EXP_DUE_MTD</column_name>
+        <stream_name>DEDUCTTIBLE_EXP_DUE_MTD</stream_name>
+      </field>
+      <field>
+        <column_name>OUTSTANDING_DED_EXP_DUE_MTD</column_name>
+        <stream_name>OUTSTANDING_DED_EXP_DUE_MTD</stream_name>
+      </field>
+      <field>
+        <column_name>OUTSTANDING_DED_IND_DUE_MTD</column_name>
+        <stream_name>OUTSTANDING_DED_IND_DUE_MTD</stream_name>
+      </field>
+      <field>
+        <column_name>OUTSTANDING_DED_EXP_DUE_YTD</column_name>
+        <stream_name>OUTSTANDING_DED_EXP_DUE_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>OUTSTANDING_DED_IND_DUE_YTD</column_name>
+        <stream_name>OUTSTANDING_DED_IND_DUE_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>OUTSTANDING_DED_EXP_DUE_ITD</column_name>
+        <stream_name>OUTSTANDING_DED_EXP_DUE_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>OUTSTANDING_DED_IND_DUE_ITD</column_name>
+        <stream_name>OUTSTANDING_DED_IND_DUE_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>DEDUCTTIBLE_IND_DUE_MTD</column_name>
+        <stream_name>DEDUCTTIBLE_IND_DUE_MTD</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM17</column_name>
+        <stream_name>USR_DEF_SUM17</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM20</column_name>
+        <stream_name>USR_DEF_SUM20</stream_name>
+      </field>
+      <field>
+        <column_name>EXPENSE_RESERVES_MTD</column_name>
+        <stream_name>EXPENSE_RESERVES_MTD</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM24</column_name>
+        <stream_name>USR_DEF_SUM24</stream_name>
+      </field>
+      <field>
+        <column_name>INDEMNITY_RESERVES_MTD</column_name>
+        <stream_name>INDEMNITY_RESERVES_MTD</stream_name>
+      </field>
+      <field>
+        <column_name>DEDUCTIBLE_EXP_RECOVERED_MTD</column_name>
+        <stream_name>DEDUCTIBLE_EXP_RECOVERED_MTD</stream_name>
+      </field>
+      <field>
+        <column_name>DEDUCTIBLE_LOSS_RECOVERED_MTD</column_name>
+        <stream_name>DEDUCTIBLE_LOSS_RECOVERED_MTD</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM30</column_name>
+        <stream_name>USR_DEF_SUM30</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM31</column_name>
+        <stream_name>USR_DEF_SUM31</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM34</column_name>
+        <stream_name>USR_DEF_SUM34</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM38</column_name>
+        <stream_name>USR_DEF_SUM38</stream_name>
+      </field>
+      <field>
+        <column_name>LOSS_PD_AMT_YTD</column_name>
+        <stream_name>LOSS_PD_AMT_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>LOSS_RSRV_CHNG_AMT_YTD</column_name>
+        <stream_name>LOSS_RSRV_CHNG_AMT_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>EXP_PD_AMT_YTD</column_name>
+        <stream_name>EXP_PD_AMT_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>EXP_RSRV_CHNG_AMT_YTD</column_name>
+        <stream_name>EXP_RSRV_CHNG_AMT_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>UALC_EXP_PD_AMT_YTD</column_name>
+        <stream_name>UALC_EXP_PD_AMT_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>UALC_EXP_RSRV_CHNG_AMT_YTD</column_name>
+        <stream_name>UALC_EXP_RSRV_CHNG_AMT_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>SUBRO_RECV_CHNG_AMT_YTD</column_name>
+        <stream_name>SUBRO_RECV_CHNG_AMT_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>SUBRO_RSRV_CHNG_AMT_YTD</column_name>
+        <stream_name>SUBRO_RSRV_CHNG_AMT_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>SUBRO_PAID_CHNG_AMT_YTD</column_name>
+        <stream_name>SUBRO_PAID_CHNG_AMT_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>SALVAGE_RECV_CHNG_AMT_YTD</column_name>
+        <stream_name>SALVAGE_RECV_CHNG_AMT_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>SALVAGE_RSRV_CHNG_AMT_YTD</column_name>
+        <stream_name>SALVAGE_RSRV_CHNG_AMT_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>DEDRECOV_RECV_CHNG_AMT_YTD</column_name>
+        <stream_name>DEDRECOV_RECV_CHNG_AMT_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>DEDRECOV_RSRV_CHNG_AMT_YTD</column_name>
+        <stream_name>DEDRECOV_RSRV_CHNG_AMT_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>ALC_EXP_RECOVERY_AMT_YTD</column_name>
+        <stream_name>ALC_EXP_RECOVERY_AMT_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>LOSS_RECOVERY_AMT_YTD</column_name>
+        <stream_name>LOSS_RECOVERY_AMT_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>OTHER_RECOVERY_AMT_YTD</column_name>
+        <stream_name>OTHER_RECOVERY_AMT_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM1_YTD</column_name>
+        <stream_name>USR_DEF_SUM1_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM2_YTD</column_name>
+        <stream_name>USR_DEF_SUM2_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM5_YTD</column_name>
+        <stream_name>USR_DEF_SUM5_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>DEDUCTTIBLE_EXP_DUE_YTD</column_name>
+        <stream_name>DEDUCTTIBLE_EXP_DUE_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>DEDUCTTIBLE_IND_DUE_YTD</column_name>
+        <stream_name>DEDUCTTIBLE_IND_DUE_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM17_YTD</column_name>
+        <stream_name>USR_DEF_SUM17_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM20_YTD</column_name>
+        <stream_name>USR_DEF_SUM20_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>EXPENSE_RESERVES_YTD</column_name>
+        <stream_name>EXPENSE_RESERVES_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM24_YTD</column_name>
+        <stream_name>USR_DEF_SUM24_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>INDEMNITY_RESERVES_YTD</column_name>
+        <stream_name>INDEMNITY_RESERVES_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>DEDUCTTIBLE_EXP_RECOVERED_YTD</column_name>
+        <stream_name>DEDUCTTIBLE_EXP_RECOVERED_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>DEDUCTIBLE_LOSS_RECOVERED_YTD</column_name>
+        <stream_name>DEDUCTIBLE_LOSS_RECOVERED_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM30_YTD</column_name>
+        <stream_name>USR_DEF_SUM30_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM31_YTD</column_name>
+        <stream_name>USR_DEF_SUM31_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM34_YTD</column_name>
+        <stream_name>USR_DEF_SUM34_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM38_YTD</column_name>
+        <stream_name>USR_DEF_SUM38_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>LOSS_PD_AMT_ITD</column_name>
+        <stream_name>LOSS_PD_AMT_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>LOSS_RSRV_CHNG_AMT_ITD</column_name>
+        <stream_name>LOSS_RSRV_CHNG_AMT_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>EXP_PD_AMT_ITD</column_name>
+        <stream_name>EXP_PD_AMT_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>EXP_RSRV_CHNG_AMT_ITD</column_name>
+        <stream_name>EXP_RSRV_CHNG_AMT_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>UALC_EXP_PD_AMT_ITD</column_name>
+        <stream_name>UALC_EXP_PD_AMT_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>UALC_EXP_RSRV_CHNG_AMT_ITD</column_name>
+        <stream_name>UALC_EXP_RSRV_CHNG_AMT_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>SUBRO_RECV_CHNG_AMT_ITD</column_name>
+        <stream_name>SUBRO_RECV_CHNG_AMT_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>SUBRO_RSRV_CHNG_AMT_ITD</column_name>
+        <stream_name>SUBRO_RSRV_CHNG_AMT_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>SUBRO_PAID_CHNG_AMT_ITD</column_name>
+        <stream_name>SUBRO_PAID_CHNG_AMT_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>SALVAGE_RECV_CHNG_AMT_ITD</column_name>
+        <stream_name>SALVAGE_RECV_CHNG_AMT_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>SALVAGE_RSRV_CHNG_AMT_ITD</column_name>
+        <stream_name>SALVAGE_RSRV_CHNG_AMT_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>DEDRECOV_RECV_CHNG_AMT_ITD</column_name>
+        <stream_name>DEDRECOV_RECV_CHNG_AMT_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>DEDRECOV_RSRV_CHNG_AMT_ITD</column_name>
+        <stream_name>DEDRECOV_RSRV_CHNG_AMT_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>ALC_EXP_RECOVERY_AMT_ITD</column_name>
+        <stream_name>ALC_EXP_RECOVERY_AMT_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>LOSS_RECOVERY_AMT_ITD</column_name>
+        <stream_name>LOSS_RECOVERY_AMT_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>OTHER_RECOVERY_AMT_ITD</column_name>
+        <stream_name>OTHER_RECOVERY_AMT_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM1_ITD</column_name>
+        <stream_name>USR_DEF_SUM1_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM2_ITD</column_name>
+        <stream_name>USR_DEF_SUM2_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM5_ITD</column_name>
+        <stream_name>USR_DEF_SUM5_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>DEDUCTTIBLE_EXP_DUE_ITD</column_name>
+        <stream_name>DEDUCTTIBLE_EXP_DUE_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>DEDUCTTIBLE_IND_DUE_ITD</column_name>
+        <stream_name>DEDUCTTIBLE_IND_DUE_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM17_ITD</column_name>
+        <stream_name>USR_DEF_SUM17_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM20_ITD</column_name>
+        <stream_name>USR_DEF_SUM20_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>EXPENSE_RESERVES_ITD</column_name>
+        <stream_name>EXPENSE_RESERVES_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM24_ITD</column_name>
+        <stream_name>USR_DEF_SUM24_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>INDEMNITY_RESERVES_ITD</column_name>
+        <stream_name>INDEMNITY_RESERVES_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>DEDUCTIBLE_EXP_RECOVERED_ITD</column_name>
+        <stream_name>DEDUCTIBLE_EXP_RECOVERED_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>DEDUCTIBLE_LOSS_RECOVERED_ITD</column_name>
+        <stream_name>DEDUCTIBLE_LOSS_RECOVERED_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM30_ITD</column_name>
+        <stream_name>USR_DEF_SUM30_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM31_ITD</column_name>
+        <stream_name>USR_DEF_SUM31_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM34_ITD</column_name>
+        <stream_name>USR_DEF_SUM34_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM38_ITD</column_name>
+        <stream_name>USR_DEF_SUM38_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>DAYS_OPEN</column_name>
+        <stream_name>DAYS_OPEN</stream_name>
+      </field>
+      <field>
+        <column_name>LOADDATE</column_name>
+        <stream_name>LOADDATE</stream_name>
+      </field>
+      <field>
+        <column_name>CLMPART_ID1</column_name>
+        <stream_name>CLMPART_ID1</stream_name>
+      </field>
+      <field>
+        <column_name>CLMPART_ID2</column_name>
+        <stream_name>CLMPART_ID2</stream_name>
+      </field>
+      <field>
+        <column_name>CLMPART_ID3</column_name>
+        <stream_name>CLMPART_ID3</stream_name>
+      </field>
+      <field>
+        <column_name>CLMPART_ID4</column_name>
+        <stream_name>CLMPART_ID4</stream_name>
+      </field>
+      <field>
+        <column_name>CLMPART_ID5</column_name>
+        <stream_name>CLMPART_ID5</stream_name>
+      </field>
+      <field>
+        <column_name>CLMPART_ID6</column_name>
+        <stream_name>CLMPART_ID6</stream_name>
+      </field>
+      <field>
+        <column_name>CLMPART_ID7</column_name>
+        <stream_name>CLMPART_ID7</stream_name>
+      </field>
+      <field>
+        <column_name>CLMPART_ID8</column_name>
+        <stream_name>CLMPART_ID8</stream_name>
+      </field>
+      <field>
+        <column_name>CLMPART_ID9</column_name>
+        <stream_name>CLMPART_ID9</stream_name>
+      </field>
+      <field>
+        <column_name>CLMPART_ID10</column_name>
+        <stream_name>CLMPART_ID10</stream_name>
+      </field>
+      <field>
+        <column_name>CLAIMTYPE_ID</column_name>
+        <stream_name>CLAIMTYPE_ID</stream_name>
+      </field>
+      <field>
+        <column_name>CTYP_CODE</column_name>
+        <stream_name>CTYP_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>CTYP_SUBDESCRIPTION</column_name>
+        <stream_name>CTYP_SUBDESCRIPTION</stream_name>
+      </field>
+      <field>
+        <column_name>FINALDISPOSITION_ID</column_name>
+        <stream_name>FINALDISPOSITION_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COURTCASE_ID</column_name>
+        <stream_name>COURTCASE_ID</stream_name>
+      </field>
+      <field>
+        <column_name>OFFICIAL_CASE_NO</column_name>
+        <stream_name>OFFICIAL_CASE_NO</stream_name>
+      </field>
+      <field>
+        <column_name>CASE_NAME</column_name>
+        <stream_name>CASE_NAME</stream_name>
+      </field>
+      <field>
+        <column_name>COURT_NAME</column_name>
+        <stream_name>COURT_NAME</stream_name>
+      </field>
+      <field>
+        <column_name>COURT_TYPE</column_name>
+        <stream_name>COURT_TYPE</stream_name>
+      </field>
+      <field>
+        <column_name>TRIAL_JUDGE</column_name>
+        <stream_name>TRIAL_JUDGE</stream_name>
+      </field>
+      <field>
+        <column_name>SUIT_DATE</column_name>
+        <stream_name>SUIT_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>ORIG_TRIAL_DATE</column_name>
+        <stream_name>ORIG_TRIAL_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>CURRENT_TRIAL_DATE</column_name>
+        <stream_name>CURRENT_TRIAL_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>TRIAL_STATUS_CODE</column_name>
+        <stream_name>TRIAL_STATUS_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>TRIAL_STATUS_DATE</column_name>
+        <stream_name>TRIAL_STATUS_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>TRIAL_RESULT</column_name>
+        <stream_name>TRIAL_RESULT</stream_name>
+      </field>
+      <field>
+        <column_name>TRIAL_RESULT_DATE</column_name>
+        <stream_name>TRIAL_RESULT_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>DECLARATORY_JUDGEMENT_B</column_name>
+        <stream_name>DECLARATORY_JUDGEMENT_B</stream_name>
+      </field>
+      <field>
+        <column_name>VERDICT_AMT</column_name>
+        <stream_name>VERDICT_AMT</stream_name>
+      </field>
+      <field>
+        <column_name>SETTLEMENT_AMT</column_name>
+        <stream_name>SETTLEMENT_AMT</stream_name>
+      </field>
+      <field>
+        <column_name>VENUE_STATE</column_name>
+        <stream_name>VENUE_STATE</stream_name>
+      </field>
+      <field>
+        <column_name>COMMITTEE_REVIEW_DATE</column_name>
+        <stream_name>COMMITTEE_REVIEW_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>COMMITTEE_DECISION</column_name>
+        <stream_name>COMMITTEE_DECISION</stream_name>
+      </field>
+      <field>
+        <column_name>VERDICT_DATE</column_name>
+        <stream_name>VERDICT_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>CMS_AWARD_DATE</column_name>
+        <stream_name>CMS_AWARD_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>CMS_AWARD_AMT</column_name>
+        <stream_name>CMS_AWARD_AMT</stream_name>
+      </field>
+      <field>
+        <column_name>MONTHS_IN_SUIT</column_name>
+        <stream_name>MONTHS_IN_SUIT</stream_name>
+      </field>
+      <field>
+        <column_name>OPENDATE_ID</column_name>
+        <stream_name>OPENDATE_ID</stream_name>
+      </field>
+      <field>
+        <column_name>NET_INDEMNITY_PAID_MTD</column_name>
+        <stream_name>NET_INDEMNITY_PAID_MTD</stream_name>
+      </field>
+      <field>
+        <column_name>NET_INDEMNITY_PAID_YTD</column_name>
+        <stream_name>NET_INDEMNITY_PAID_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>NET_INDEMNITY_PAID_ITD</column_name>
+        <stream_name>NET_INDEMNITY_PAID_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>NET_EXPENSE_PAID_MTD</column_name>
+        <stream_name>NET_EXPENSE_PAID_MTD</stream_name>
+      </field>
+      <field>
+        <column_name>NET_EXPENSE_PAID_YTD</column_name>
+        <stream_name>NET_EXPENSE_PAID_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>NET_EXPENSE_PAID_ITD</column_name>
+        <stream_name>NET_EXPENSE_PAID_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLAIM_SEVERITY_CODE</column_name>
+        <stream_name>MMCLM_CLAIM_SEVERITY_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLAIM_SEVERITY_DESC</column_name>
+        <stream_name>MMCLM_CLAIM_SEVERITY_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLAIM_STATUS_DATE</column_name>
+        <stream_name>MMCLM_CLAIM_STATUS_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CLAIM_TYPE_DATE</column_name>
+        <stream_name>MMCLM_CLAIM_TYPE_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>CASE_DIRECTION</column_name>
+        <stream_name>CASE_DIRECTION</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_BRANCH_OFFICE</column_name>
+        <stream_name>MMCLM_BRANCH_OFFICE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CI_CLAIM_SPECIALTY</column_name>
+        <stream_name>MMCLM_CI_CLAIM_SPECIALTY</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_FINAL_DISPOSITION_DATE</column_name>
+        <stream_name>MMCLM_FINAL_DISPOSITION_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_INC_LIM</column_name>
+        <stream_name>MMCLM_INC_LIM</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_AGG_LIM</column_name>
+        <stream_name>MMCLM_AGG_LIM</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_INC_DED</column_name>
+        <stream_name>MMCLM_INC_DED</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_INC_SIR</column_name>
+        <stream_name>MMCLM_INC_SIR</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_AGG_SIR</column_name>
+        <stream_name>MMCLM_AGG_SIR</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_SHARED_INC_LIM</column_name>
+        <stream_name>MMCLM_SHARED_INC_LIM</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_SHARED_AGG_LIM</column_name>
+        <stream_name>MMCLM_SHARED_AGG_LIM</stream_name>
+      </field>
+      <field>
+        <column_name>ACCIDENT_STATE</column_name>
+        <stream_name>ACCIDENT_STATE</stream_name>
+      </field>
+      <field>
+        <column_name>ACCIDENT_COUNTY</column_name>
+        <stream_name>ACCIDENT_COUNTY</stream_name>
+      </field>
+      <field>
+        <column_name>LOSS_OSD_RSRV_CHNG_MTD</column_name>
+        <stream_name>LOSS_OSD_RSRV_CHNG_MTD</stream_name>
+      </field>
+      <field>
+        <column_name>EXP_OSD_RSRV_CHNG_MTD</column_name>
+        <stream_name>EXP_OSD_RSRV_CHNG_MTD</stream_name>
+      </field>
+      <field>
+        <column_name>LOSS_OSD_RSRV_CHNG_YTD</column_name>
+        <stream_name>LOSS_OSD_RSRV_CHNG_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>LOSS_OSD_RSRV_CHNG_ITD</column_name>
+        <stream_name>LOSS_OSD_RSRV_CHNG_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>EXP_OSD_RSRV_CHNG_YTD</column_name>
+        <stream_name>EXP_OSD_RSRV_CHNG_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>EXP_OSD_RSRV_CHNG_ITD</column_name>
+        <stream_name>EXP_OSD_RSRV_CHNG_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>LOSS_TOT_INCURRED_MTD</column_name>
+        <stream_name>LOSS_TOT_INCURRED_MTD</stream_name>
+      </field>
+      <field>
+        <column_name>LOSS_TOT_INCURRED_YTD</column_name>
+        <stream_name>LOSS_TOT_INCURRED_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>LOSS_TOT_INCURRED_ITD</column_name>
+        <stream_name>LOSS_TOT_INCURRED_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>EXP_TOT_INCURRED_MTD</column_name>
+        <stream_name>EXP_TOT_INCURRED_MTD</stream_name>
+      </field>
+      <field>
+        <column_name>EXP_TOT_INCURRED_YTD</column_name>
+        <stream_name>EXP_TOT_INCURRED_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>EXP_TOT_INCURRED_ITD</column_name>
+        <stream_name>EXP_TOT_INCURRED_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>CLAIM_CLOSED_FLAG</column_name>
+        <stream_name>CLAIM_CLOSED_FLAG</stream_name>
+      </field>
+      <field>
+        <column_name>CLAIM_OPEN_FLAG</column_name>
+        <stream_name>CLAIM_OPEN_FLAG</stream_name>
+      </field>
+      <field>
+        <column_name>CLAIM_OPENERROR_FLAG</column_name>
+        <stream_name>CLAIM_OPENERROR_FLAG</stream_name>
+      </field>
+      <field>
+        <column_name>CLAIM_CLOSED_WITH_IND_FLAG</column_name>
+        <stream_name>CLAIM_CLOSED_WITH_IND_FLAG</stream_name>
+      </field>
+      <field>
+        <column_name>CLAIM_CLOSED_WITH_EXPONLY_FLAG</column_name>
+        <stream_name>CLAIM_CLOSED_WITH_EXPONLY_FLAG</stream_name>
+      </field>
+      <field>
+        <column_name>CLAIM_CLOSED_NOPAY_FLAG</column_name>
+        <stream_name>CLAIM_CLOSED_NOPAY_FLAG</stream_name>
+      </field>
+      <field>
+        <column_name>MAG_REOPEN_DATE</column_name>
+        <stream_name>MAG_REOPEN_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MAG_CLOSE_DATE</column_name>
+        <stream_name>MAG_CLOSE_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MAG_OPEN_DATE</column_name>
+        <stream_name>MAG_OPEN_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MAG_OPENERROR_DATE</column_name>
+        <stream_name>MAG_OPENERROR_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MAG_SUIT_DATE</column_name>
+        <stream_name>MAG_SUIT_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MAG_NOI_DATE</column_name>
+        <stream_name>MAG_NOI_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MAG_SUSPENSE_DATE</column_name>
+        <stream_name>MAG_SUSPENSE_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>MAG_MULTILOSS_FLAG</column_name>
+        <stream_name>MAG_MULTILOSS_FLAG</stream_name>
+      </field>
+      <field>
+        <column_name>MAG_MULTILOSS_OPEN_FLAG</column_name>
+        <stream_name>MAG_MULTILOSS_OPEN_FLAG</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_CIX_DEDUCTIBLE_TYPE</column_name>
+        <stream_name>MMCLM_CIX_DEDUCTIBLE_TYPE</stream_name>
+      </field>
+      <field>
+        <column_name>LOB</column_name>
+        <stream_name>LOB</stream_name>
+      </field>
+      <field>
+        <column_name>COVERAGE_CODE</column_name>
+        <stream_name>COVERAGE_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>CLAIM_UNIQUEID</column_name>
+        <stream_name>CLAIM_UNIQUEID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_POL_ID</column_name>
+        <stream_name>COMP_POL_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_COVRSK_ID</column_name>
+        <stream_name>COMP_COVRSK_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_COVG_ID</column_name>
+        <stream_name>COMP_COVG_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_MONTH_ID</column_name>
+        <stream_name>COMP_MONTH_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_POLEFFDT_ID</column_name>
+        <stream_name>COMP_POLEFFDT_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_POLEXPDT_ID</column_name>
+        <stream_name>COMP_POLEXPDT_ID</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_COV_TYP</column_name>
+        <stream_name>COMP_COV_TYP</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_COV_NAME</column_name>
+        <stream_name>COMP_COV_NAME</stream_name>
+      </field>
+      <field>
+        <column_name>CGL_COMPONENT_TYP</column_name>
+        <stream_name>CGL_COMPONENT_TYP</stream_name>
+      </field>
+      <field>
+        <column_name>CGL_IND_EXP_BOTH</column_name>
+        <stream_name>CGL_IND_EXP_BOTH</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_VALUE</column_name>
+        <stream_name>COMP_VALUE</stream_name>
+      </field>
+      <field>
+        <column_name>COMP_AGG_VALUE</column_name>
+        <stream_name>COMP_AGG_VALUE</stream_name>
+      </field>
+      <field>
+        <column_name>COMPONENT_ID</column_name>
+        <stream_name>COMPONENT_ID</stream_name>
+      </field>
+      <field>
+        <column_name>VENUE_COUNTY</column_name>
+        <stream_name>VENUE_COUNTY</stream_name>
+      </field>
+      <field>
+        <column_name>LICENSE_NO</column_name>
+        <stream_name>LICENSE_NO</stream_name>
+      </field>
+      <field>
+        <column_name>LICENSE_TYPE_SHORT_DESC</column_name>
+        <stream_name>LICENSE_TYPE_SHORT_DESC</stream_name>
+      </field>
+      <field>
+        <column_name>LICENSED_STATE_CODE</column_name>
+        <stream_name>LICENSED_STATE_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>LOSSRUN_MAP_CODE</column_name>
+        <stream_name>LOSSRUN_MAP_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>CLAIM_MAP_CODE</column_name>
+        <stream_name>CLAIM_MAP_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>MMPOL_POLICY_TYPE_CODE</column_name>
+        <stream_name>MMPOL_POLICY_TYPE_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>CLIENT_ID</column_name>
+        <stream_name>CLIENT_ID</stream_name>
+      </field>
+      <field>
+        <column_name>MAGID</column_name>
+        <stream_name>MAGID</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM11_YTD</column_name>
+        <stream_name>USR_DEF_SUM11_YTD</stream_name>
+      </field>
+      <field>
+        <column_name>POL_UNIQUEID_EXC_DSHBRD</column_name>
+        <stream_name>POL_UNIQUEID_EXC_DSHBRD</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_AGG_DED</column_name>
+        <stream_name>MMCLM_AGG_DED</stream_name>
+      </field>
+      <field>
+        <column_name>MMCLM_NUM2</column_name>
+        <stream_name>MMCLM_NUM2</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM11_MTD</column_name>
+        <stream_name>USR_DEF_SUM11_MTD</stream_name>
+      </field>
+      <field>
+        <column_name>USR_DEF_SUM11_ITD</column_name>
+        <stream_name>USR_DEF_SUM11_ITD</stream_name>
+      </field>
+      <field>
+        <column_name>LOSS_RECOVERY_AMT_MTD</column_name>
+        <stream_name>LOSS_RECOVERY_AMT_MTD</stream_name>
+      </field>
+      <field>
+        <column_name>ALC_EXP_RECOVERY_AMT_MTD</column_name>
+        <stream_name>ALC_EXP_RECOVERY_AMT_MTD</stream_name>
+      </field>
+      <field>
+        <column_name>RISK_CURRENT_STATUS</column_name>
+        <stream_name>RISK_CURRENT_STATUS</stream_name>
+      </field>
+      <field>
+        <column_name>RETROACTIVE_DATE</column_name>
+        <stream_name>RETROACTIVE_DATE</stream_name>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1344</xloc>
+      <yloc>496</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values </name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>filterYearMonthCurrent</name>
+        <rename>AsOf</rename>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>400</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Stream COV</name>
+    <type>StreamLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <from>LOB_MAPPING</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>COV_TYPE</name>
+        <field>COVERAGE_CODE</field>
+      </key>
+      <value>
+        <name>LOB</name>
+        <rename>LOB</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>COVERAGE_CODE</name>
+        <rename>COVERAGE_CODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>CLAIM_MAP_CODE</name>
+        <rename>CLAIM_MAP_CODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>944</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Stream Component</name>
+    <type>StreamLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <from>DIM_COMPONENT</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>POLICY_ID</name>
+        <field>COMP_POL_ID</field>
+      </key>
+      <key>
+        <name>COVEREDRISK_ID</name>
+        <field>COMP_COVRSK_ID</field>
+      </key>
+      <key>
+        <name>POLICYEFFECTIVEDATE_ID</name>
+        <field>COMP_POLEFFDT_ID</field>
+      </key>
+      <key>
+        <name>POLICYEXPIRATIONDATE_ID</name>
+        <field>COMP_POLEXPDT_ID</field>
+      </key>
+      <key>
+        <name>COVERAGE_ID</name>
+        <field>COMP_COVG_ID</field>
+      </key>
+      <key>
+        <name>DEDUCTIBLE_ID</name>
+        <field>COMPONENT_ID</field>
+      </key>
+      <value>
+        <name>COMP_POL_ID</name>
+        <rename>COMP_POL_ID</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>COMP_COVRSK_ID</name>
+        <rename>COMP_COVRSK_ID</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>COMP_COVG_ID</name>
+        <rename>COMP_COVG_ID</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>COMP_MONTH_ID</name>
+        <rename>COMP_MONTH_ID</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>COMP_POLEFFDT_ID</name>
+        <rename>COMP_POLEFFDT_ID</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>COMP_POLEXPDT_ID</name>
+        <rename>COMP_POLEXPDT_ID</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>COMP_COV_TYP</name>
+        <rename>COMP_COV_TYP</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>COMP_COV_NAME</name>
+        <rename>COMP_COV_NAME</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>CGL_COMPONENT_TYP</name>
+        <rename>CGL_COMPONENT_TYP</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>CGL_IND_EXP_BOTH</name>
+        <rename>CGL_IND_EXP_BOTH</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>COMP_VALUE</name>
+        <rename>COMP_VALUE</rename>
+        <default/>
+        <type>BigNumber</type>
+      </value>
+      <value>
+        <name>COMP_AGG_VALUE</name>
+        <rename>COMP_AGG_VALUE</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>COMPONENT_ID</name>
+        <rename>COMPONENT_ID</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1200</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Stream OpenDate</name>
+    <type>StreamLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <from>Open Date</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>CLAIMEXTENSION_ID</name>
+        <field>CLAIMEXTENSION_ID</field>
+      </key>
+      <value>
+        <name>CLAIMEXTENSION_ID</name>
+        <rename>CLAIMEXTENSION_ID</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>MMCLM_CLAIM_TYPE_DATE</name>
+        <rename>MMCLM_CLAIM_TYPE_DATE</rename>
+        <default/>
+        <type>Timestamp</type>
+      </value>
+      <value>
+        <name>CLAIM_UNIQUEID</name>
+        <rename>CLAIM_UNIQUEID</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1056</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Stream lookup</name>
+    <type>StreamLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <from>Table County Code</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>COURT_NAME</name>
+        <field>CODE</field>
+      </key>
+      <value>
+        <name>VENUE_COUNTY</name>
+        <rename>VENUE_COUNTY</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1344</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Table County Code</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>OAS17APD</connection>
+    <sql>SELECT
+  CODE
+, LONG_DESCRIPTION AS VENUE_COUNTY
+
+FROM COUNTY_CODE
+ORDER BY CODE
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1536</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>VFACT_CLAIM</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DRABPRD</connection>
+    <sql>SELECT 
+ VFC.CLAIMSUMMARY_ID
+,VFC.MONTH_ID
+, substr(to_char(VFC.MONTH_ID),1,4) as YEAR
+, substr(to_char(VFC.MONTH_ID),5,2) as Month
+, substr(to_char(VFC.MONTH_ID),1,4)||substr(to_char(VFC.MONTH_ID),5,2) AS ASOF
+,VFC.COVERAGE_ID
+,DCO.COV_TYPE
+,DCO.COV_CODE
+,DCO.COV_NAME
+,DCO.COV_DESCRIPTION
+,VFC.COVERAGEEXTENSION_ID
+,VFC.COVERAGEEFFECTIVEDATE_ID
+,VFC.COVERAGEEXPIRATIONDATE_ID
+,VFC.COVEREDRISK_ID
+,VDR.COVEREDRISK_FORMATTED_NAME
+,VDR.COVEREDRISK_NAME1
+,VDR.COVEREDRISK_NAME2
+,VDR.COVEREDRISK_GENDER
+,VDR.COVEREDRISK_ADDRESS1
+,VDR.COVEREDRISK_ADDRESS2
+,VDR.COVEREDRISK_ADDRESS3
+,VDR.COVEREDRISK_COUNTY
+,VDR.COVEREDRISK_CITY
+,VDR.COVEREDRISK_STATE
+,VDR.COVEREDRISK_ZIPCODE
+,VDR.COVEREDRISK_TELEPHONE
+,VDR.COVEREDRISK_EMAIL
+,VDR.COVEREDRISK_DOB
+,VDR.COVEREDRISK_AGE
+,VFC.COVEREDRISKEXTENSION_ID
+,DCR.MMRSK_SPECIALTY_CODE
+,DCR.MMRSK_SPEC_DESC
+,DCR.MMRSK_COUNTY_CODE
+,DCR.MMRSK_PREMIUM_CLASS
+,DCR.MMRSK_PRACTICE_STATE_CODE
+,DCR.MMRSK_CURRENT_STATUS AS RISK_CURRENT_STATUS
+,VFC.COVEREDRISKLOCATION_ID
+,VFC.ADJUSTER_ID
+,VFC.CLAIMANT_ID
+,VFC.UNDERWRITER_ID
+,VDU.UW_TYPEDESCRIPTION
+,VDU.UW_NUMBER
+,VDU.UW_FORMATTED_NAME
+,VDU.UW_ADDRESS1
+,VDU.UW_ADDRESS1
+,VDU.UW_ADDRESS2
+,VDU.UW_COUNTY
+,VDU.UW_CITY
+,VDU.UW_STATE
+,VDU.UW_ZIPCODE
+,VDU.UW_TELEPHONE
+,VDU.UW_EMAIL 
+,VFC.PRODUCT_ID
+,VFC.COMPANY_ID
+,VFC.POLICY_ID
+,DPO.POL_POLICYNUMBER
+,DPO.POL_ORIGINALEFFECTIVEDATE
+,DPO.POL_MASTERSTATE
+,DPO.POL_UNIQUEID
+,VFC.POLICYEXTENSION_ID
+,VFC.POLICYEFFECTIVEDATE_ID
+,VFC.POLICYEXPIRATIONDATE_ID
+,VFC.PRODUCER_ID
+,VFC.CONTACT_ID
+,VFC.TERRITORY_ID
+,VFC.CLAIM_ID
+,VFC.CLAIMEXTENSION_ID
+,VFC.CLAIMSTATUS_ID
+,VDS.CLMST_STATUSCD
+,VDS.CLMST_STATUS
+,VFC.CLAIMLOSSLOCATION_ID
+,VFC.DATEREPORTED_ID  
+,VFC.DATEOFLOSS_ID 
+,VFC.CLOSEDDATE_ID 
+,VFC.FIRSTINSURED_ID
+,VFC.SECONDINSURED_ID
+,VFC.THIRDINSURED_ID
+,VFC.FIRSTOTHERINTEREST_ID
+,VFC.SECONDOTHERINTEREST_ID
+,VFC.LIMIT_ID
+,VFC.DEDUCTIBLE_ID
+,VFC.CLASS_ID
+,VFC.LOSSCODING_ID
+,VFC.CLAIM_NO
+,VDC.CLM_GROUPNUMBER
+,VDC.CLM_DESCRIPTION 
+,VDC.CLM_TYPELOSS
+,VDC.CLM_TYPELOSSDESCRIPTION
+,VDC.COMP_NUMBER
+,VDC.COMP_NAME
+,VDC.COMP_NAME2
+,VDC.COMP_ADDRESS1
+,VDC.COMP_ADDRESS2
+,VDC.COMP_COUNTY
+,VDC.COMP_CITY
+,VDC.COMP_STATE
+,VDC.COMP_ZIPCODE
+,VDC.COMP_TELEPHONE
+,VDC.COMP_FEINSSN
+,VDC.PRIMARY_CLAIM_B
+,VFC.LOSS_PD_AMT AS LOSS_PD_AMT_MTD
+,VFC.LOSS_RSRV_CHNG_AMT AS LOSS_RSRV_CHG_AMT_MTD
+,VFC.ALC_EXP_PD_AMT AS EXP_PD_AMT_MTD
+,VFC.ALC_EXP_RSRV_CHNG_AMT AS EXP_RSRV_CHNG_AMT_MTD
+,VFC.USR_DEF_SUM1
+,VFC.USR_DEF_SUM2
+,VFC.USR_DEF_SUM5
+,VFC.USR_DEF_SUM8 AS DEDUCTTIBLE_EXP_DUE_MTD
+,VFC.USR_DEF_SUM8 - VFC.USR_DEF_SUM28 AS OUTSTANDING_DED_EXP_DUE_MTD
+,VFC.USR_DEF_SUM14 - VFC.USR_DEF_SUM29 AS OUTSTANDING_DED_IND_DUE_MTD
+,VFC.USR_DEF_SUM8_YTD -  VFC.USR_DEF_SUM28_YTD AS OUTSTANDING_DED_EXP_DUE_YTD
+,VFC.USR_DEF_SUM14_YTD - VFC.USR_DEF_SUM29_YTD AS OUTSTANDING_DED_IND_DUE_YTD
+,VFC.USR_DEF_SUM8_ITD -  VFC.USR_DEF_SUM28_ITD AS OUTSTANDING_DED_EXP_DUE_ITD
+,VFC.USR_DEF_SUM14_ITD - VFC.USR_DEF_SUM29_YTD AS OUTSTANDING_DED_IND_DUE_ITD
+,VFC.USR_DEF_SUM14 AS DEDUCTTIBLE_IND_DUE_MTD
+,VFC.USR_DEF_SUM17
+,VFC.USR_DEF_SUM20
+,VFC.USR_DEF_SUM22 AS EXPENSE_RESERVES_MTD
+,VFC.USR_DEF_SUM24
+,VFC.USR_DEF_SUM26 AS INDEMNITY_RESERVES_MTD
+,VFC.USR_DEF_SUM28 AS DEDUCTIBLE_EXP_RECOVERED_MTD
+,VFC.USR_DEF_SUM29 AS DEDUCTIBLE_LOSS_RECOVERED_MTD
+,VFC.USR_DEF_SUM30
+,VFC.USR_DEF_SUM31
+,VFC.USR_DEF_SUM34
+,VFC.USR_DEF_SUM38
+,VFC.LOSS_PD_AMT_YTD
+,VFC.LOSS_RSRV_CHNG_AMT_YTD
+,VFC.ALC_EXP_PD_AMT_YTD  AS EXP_PD_AMT_YTD
+,VFC.ALC_EXP_RSRV_CHNG_AMT_YTD  AS EXP_RSRV_CHNG_AMT_YTD
+,VFC.UALC_EXP_PD_AMT_YTD
+,VFC.UALC_EXP_RSRV_CHNG_AMT_YTD
+,VFC.SUBRO_RECV_CHNG_AMT_YTD
+,VFC.SUBRO_RSRV_CHNG_AMT_YTD
+,VFC.SUBRO_PAID_CHNG_AMT_YTD
+,VFC.SALVAGE_RECV_CHNG_AMT_YTD
+,VFC.SALVAGE_RSRV_CHNG_AMT_YTD
+,VFC.DEDRECOV_RECV_CHNG_AMT_YTD
+,VFC.DEDRECOV_RSRV_CHNG_AMT_YTD
+,VFC.ALC_EXP_RECOVERY_AMT_YTD
+,VFC.LOSS_RECOVERY_AMT_YTD
+,VFC.OTHER_RECOVERY_AMT_YTD
+,VFC.USR_DEF_SUM11_YTD
+,VFC.USR_DEF_SUM1_YTD
+,VFC.USR_DEF_SUM2_YTD
+,VFC.USR_DEF_SUM5_YTD
+,VFC.USR_DEF_SUM8_YTD AS DEDUCTTIBLE_EXP_DUE_YTD
+,VFC.USR_DEF_SUM14_YTD AS DEDUCTTIBLE_IND_DUE_YTD
+,VFC.USR_DEF_SUM17_YTD
+,VFC.USR_DEF_SUM20_YTD
+,VFC.USR_DEF_SUM22_YTD AS EXPENSE_RESERVES_YTD
+,VFC.USR_DEF_SUM24_YTD
+,VFC.USR_DEF_SUM26_YTD AS INDEMNITY_RESERVES_YTD
+--,VFC.USR_DEF_SUM27_YTD
+,VFC.USR_DEF_SUM28_YTD AS DEDUCTTIBLE_EXP_RECOVERED_YTD
+,VFC.USR_DEF_SUM29_YTD AS DEDUCTIBLE_LOSS_RECOVERED_YTD
+,VFC.USR_DEF_SUM30_YTD
+,VFC.USR_DEF_SUM31_YTD
+,VFC.USR_DEF_SUM34_YTD
+,VFC.USR_DEF_SUM38_YTD
+,VFC.LOSS_PD_AMT_ITD
+,VFC.LOSS_RSRV_CHNG_AMT_ITD
+,VFC.ALC_EXP_PD_AMT_ITD  AS EXP_PD_AMT_ITD
+,VFC.ALC_EXP_RSRV_CHNG_AMT_ITD  AS EXP_RSRV_CHNG_AMT_ITD
+,VFC.UALC_EXP_PD_AMT_ITD
+,VFC.UALC_EXP_RSRV_CHNG_AMT_ITD
+,VFC.SUBRO_RECV_CHNG_AMT_ITD
+,VFC.SUBRO_RSRV_CHNG_AMT_ITD
+,VFC.SUBRO_PAID_CHNG_AMT_ITD
+,VFC.SALVAGE_RECV_CHNG_AMT_ITD
+,VFC.SALVAGE_RSRV_CHNG_AMT_ITD
+,VFC.DEDRECOV_RECV_CHNG_AMT_ITD
+,VFC.DEDRECOV_RSRV_CHNG_AMT_ITD
+,VFC.ALC_EXP_RECOVERY_AMT_ITD
+,VFC.LOSS_RECOVERY_AMT_ITD
+,VFC.OTHER_RECOVERY_AMT_ITD
+,VFC.USR_DEF_SUM1_ITD
+,VFC.USR_DEF_SUM2_ITD
+,VFC.USR_DEF_SUM5_ITD
+,VFC.USR_DEF_SUM8_ITD AS DEDUCTTIBLE_EXP_DUE_ITD
+,VFC.USR_DEF_SUM14_ITD AS DEDUCTTIBLE_IND_DUE_ITD
+,VFC.USR_DEF_SUM17_ITD
+,VFC.USR_DEF_SUM20_ITD
+,VFC.USR_DEF_SUM22_ITD AS EXPENSE_RESERVES_ITD
+,VFC.USR_DEF_SUM24_ITD
+,VFC.USR_DEF_SUM26_ITD AS INDEMNITY_RESERVES_ITD
+,VFC.USR_DEF_SUM28_ITD AS DEDUCTIBLE_EXP_RECOVERED_ITD
+,VFC.USR_DEF_SUM29_ITD AS DEDUCTIBLE_LOSS_RECOVERED_ITD
+,VFC.USR_DEF_SUM30_ITD
+,VFC.USR_DEF_SUM31_ITD
+,VFC.USR_DEF_SUM34_ITD
+,VFC.USR_DEF_SUM38_ITD
+,VFC.DAYS_OPEN
+,VFC.LOADDATE
+,VFC.CLMPART_ID1
+,VFC.CLMPART_ID2
+,VFC.CLMPART_ID3
+,VFC.CLMPART_ID4
+,VFC.CLMPART_ID5
+,VFC.CLMPART_ID6
+,VFC.CLMPART_ID7
+,VFC.CLMPART_ID8
+,VFC.CLMPART_ID9
+,VFC.CLMPART_ID10
+,VFC.CLAIMTYPE_ID
+,DCT.CTYP_CODE
+,DCT.CTYP_SUBDESCRIPTION
+,VFC.FINALDISPOSITION_ID
+,VFC.COURTCASE_ID
+,VFC.OPENDATE_ID
+,VFC.NET_INDEMNITY_PAID_MTD
+,VFC.NET_INDEMNITY_PAID_YTD
+,VFC.NET_INDEMNITY_PAID_ITD
+,VFC.NET_EXPENSE_PAID_MTD
+,VFC.NET_EXPENSE_PAID_YTD
+,VFC.NET_EXPENSE_PAID_ITD
+,DCE.MMCLM_CLAIM_SEVERITY_CODE
+,DCE.MMCLM_CLAIM_SEVERITY_DESC
+,DCE.MMCLM_CLAIM_STATUS_DATE
+,DCE.MMCLM_CLAIM_TYPE_DATE
+,DCE.MMCLM_CHAR3 AS CASE_DIRECTION
+,DCE.MMCLM_BRANCH_OFFICE
+,DCE.MMCLM_CI_CLAIM_SPECIALTY
+,DCE.MMCLM_FINAL_DISPOSITION_DATE
+,DCE.MMCLM_INC_LIM
+,DCE.MMCLM_AGG_LIM
+,DCE.MMCLM_INC_DED
+,DCE.MMCLM_AGG_DED
+,DCE.MMCLM_INC_SIR
+,DCE.MMCLM_AGG_SIR
+,DCE.MMCLM_SHARED_INC_LIM
+,DCE.MMCLM_SHARED_AGG_LIM
+,VCL.CLMLOC_STATE   AS ACCIDENT_STATE
+,VCL.CLMLOC_COUNTY  AS ACCIDENT_COUNTY
+,VFC.MONTH_ID
+,VFC.CLAIM_ID
+,VFC.LOSS_OSD_RSRV_CHNG_MTD
+,VFC.EXP_OSD_RSRV_CHNG_MTD
+,VFC.LOSS_OSD_RSRV_CHNG_YTD
+,VFC.LOSS_OSD_RSRV_CHNG_ITD
+,VFC.EXP_OSD_RSRV_CHNG_YTD
+,VFC.EXP_OSD_RSRV_CHNG_ITD
+,VFC.LOSS_TOT_INCURRED_AMT AS LOSS_TOT_INCURRED_MTD
+,VFC.LOSS_TOT_INCURRED_YTD
+,VFC.LOSS_TOT_INCURRED_ITD
+,VFC.EXP_TOT_INCURRED_AMT AS EXP_TOT_INCURRED_MTD
+,VFC.EXP_TOT_INCURRED_YTD  
+,VFC.EXP_TOT_INCURRED_ITD
+,CLAIM_CLOSED_FLAG
+,CLAIM_OPEN_FLAG
+,CLAIM_OPENERROR_FLAG
+,CLAIM_CLOSED_WITH_IND_FLAG
+,CLAIM_CLOSED_WITH_EXPONLY_FLAG
+,CLAIM_CLOSED_NOPAY_FLAG
+,MAG_REOPEN_DATE
+,MAG_CLOSE_DATE
+,MAG_OPEN_DATE
+,MAG_OPENERROR_DATE
+,MAG_SUIT_DATE
+,MAG_NOI_DATE
+,MAG_SUSPENSE_DATE
+,MAG_MULTILOSS_FLAG
+,MAG_MULTILOSS_OPEN_FLAG
+,DCE.mmclm_cix_deductible_type
+,DCE.MMCLM_NUM2
+,VFC.USR_DEF_SUM11 AS USR_DEF_SUM11_MTD
+,VFC.USR_DEF_SUM11_ITD
+,VFC.LOSS_RECOVERY_AMT AS LOSS_RECOVERY_AMT_MTD
+,VFC.ALC_EXP_RECOVERY_AMT AS ALC_EXP_RECOVERY_AMT_MTD
+,DCVX.MMCOV_RETROACTIVE_DATE AS RETROACTIVE_DATE
+
+
+
+
+FROM VFACT_CLAIM VFC
+LEFT OUTER JOIN VDIM_CLAIM VDC ON VFC.CLAIM_ID=VDC.CLAIM_ID
+AND VDC.CLM_CLAIMNUMBER &lt;&gt; 'Unknown'
+LEFT OUTER JOIN DIM_COVERAGE  DCO ON VFC.COVERAGE_ID=DCO.COVERAGE_ID
+LEFT OUTER JOIN VDIM_COMPANY VDC ON VFC.COMPANY_ID=VDC.COMPANY_ID
+LEFT OUTER JOIN VDIM_UNDERWRITER VDU ON VFC.UNDERWRITER_ID=VDU.UNDERWRITER_ID
+LEFT OUTER JOIN VDIM_CLAIMSTATUS VDS ON VFC.CLAIMSTATUS_ID=VDS.CLAIMSTATUS_ID
+LEFT OUTER JOIN VDIM_COVEREDRISKNAME VDR ON VFC.COVEREDRISK_ID=VDR.COVEREDRISK_ID
+LEFT OUTER JOIN VDIM_CLAIMLOSSLOCATION VCL ON VFC.CLAIMLOSSLOCATION_ID=VCL.CLAIMLOCATION_ID
+
+LEFT OUTER JOIN DIM_POLICY DPO ON VFC.POLICY_ID=DPO.POLICY_ID
+LEFT OUTER JOIN DIM_COVEREDRISKEXTENSION DCR ON VFC.COVEREDRISKEXTENSION_ID=DCR.COVEREDRISKEXTENSION_ID
+
+INNER JOIN DIM_CLAIMTYPE DCT ON VFC.CLAIMTYPE_ID=DCT.CLAIMTYPE_ID AND DCT.CTYP_CODE &lt;&gt; 'UNK'
+INNER JOIN DIM_COVERAGEEXTENSION DCVX ON DCVX.COVERAGEEXTENSION_ID=VFC.COVERAGEEXTENSION_ID
+
+LEFT OUTER JOIN DIM_CLAIMEXTENSION DCE ON VFC.CLAIMEXTENSION_ID=DCE.CLAIMEXTENSION_ID
+------LEFT OUTER JOIN   DIM_LOOKUPCODE DLKP
+------ON SUBSTR(TO_CHAR(DLKP.LOOKUP_CODE),1,2) = SUBSTR(TO_CHAR(DCE.MMCLM_NUM2),1,2) AND DLKP.LOOKUP_TYPE_CODE IN ('ISO_LOSS_TYPE_CODE','BOP_ISO_LOSS_TYPE')
+
+
+
+WHERE -----VFC.MONTH_ID = ?
+substr(to_char(vfc.month_id),1,6) ='201812'
+---to_char(sysdate,'yyyymm')
+
+and  DPO.POL_POLICYNUMBER not like '%OFIC%'
+
+
+ORDER BY VFC.MONTH_ID, VFC.CLAIM_NO
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>Y</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Write to log</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage/>
+    <fields>
+      <field>
+        <name>AsOf</name>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>528</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>get_from_dim_policyext</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>DRABPRD</connection>
+    <sql>SELECT POLICYEXTENSION_ID,MMPOL_POLICY_TYPE_CODE
+FROM DIM_POLICYEXTENSION DPX
+ORDER BY POLICYEXTENSION_ID</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>784</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>lOOKUP_lICENSE_INFO</name>
+    <type>StreamLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <from>Get_License_Info</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>COVEREDRISK_ID</name>
+        <field>COVEREDRISK_ID</field>
+      </key>
+      <value>
+        <name>LICENSE_NO</name>
+        <rename>LICENSE_NO</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>LICENSE_TYPE_SHORT_DESC</name>
+        <rename>LICENSE_TYPE_SHORT_DESC</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>LICENSED_STATE_CODE</name>
+        <rename>LICENSED_STATE_CODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>CLIENT_ID</name>
+        <rename>CLIENT_ID</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>MAGID</name>
+        <rename>MAGID</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1344</xloc>
+      <yloc>240</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Execute SQL script 2</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>magstage_DRABPRD</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>
+
+DELETE  CLAIMS_DATA_MART WHERE substr(to_char(month_id),1,6) = '201812'
+---to_char(sysdate,'yyyymm')
+----('2016O4','201603','201602')</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>240</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step_error_handling>
+  </step_error_handling>
+  <slave-step-copy-partition-distribution>
+  </slave-step-copy-partition-distribution>
+  <slave_transformation>N</slave_transformation>
+</transformation>

@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:47 EST 2019
+file.title=JB_Load_Fact_Claim_OSR
+description=Job to load data to Fact_Claim_OSR table
+title=JB_Load_Fact_Claim_OSR
+file.description=Job to load data to Fact_Claim_OSR table

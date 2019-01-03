@@ -1,0 +1,6 @@
+#Locale = default
+#Thu Jan 03 11:40:49 EST 2019
+file.title=SJB_Fact_Claim_Current
+description=Job to create Fact_Claim_Current table.
+title=SJB_Fact_Claim_Current
+file.description=Job to create Fact_Claim_Current table.
